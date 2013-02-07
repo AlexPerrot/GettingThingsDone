@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="452e3446-97ef-480a-ae1b-c27260e4e4a1" name="Tasks" linkedPackageId="4e07cf73-9c52-4c91-948d-46b1368764d3" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="af3fbc9e-4edd-4dd5-9d5d-096b5785dee9">
+      <profileInstance Id="aa25a48f-c1c2-4dc1-858c-bb4e4ec45fe1" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="caf05d31-5d92-4494-8c85-94e56e1e1182">
+      <profileInstance Id="533e8409-33fc-46f1-93ca-296040d9a0e2" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="12b96771-bf5b-4333-8861-02f86cea1ea6" name="Task" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="bb918ae6-4516-4017-942c-da622dffe72c" />
+        <generalsInternal>
+          <generalization Id="9405350e-9a16-4c1f-b9bc-49be160528c4" isSubstitutable="false">
+            <interfaceMoniker Id="069a3da1-3d80-434b-be01-3634b386dffb" LastKnownName="GTDItem" />
+            <elementDefinition Id="9da918f5-9e64-4711-b93e-2257a670877f" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributes>
+          <property Id="f4cae552-cedc-44df-bba1-c5be74cb39b3" name="Name" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="5e2c38f6-3efe-494b-94aa-c07a33230502" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="4633b7dc-fadc-40c2-abaf-b9c524b80749" LastKnownName="String" />
+            </type_NamedElement>
+          </property>
+          <property Id="aa923e67-0b2f-42d9-aaf3-a921a412fc58" name="Description" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="9c82309e-5d3c-48f5-a1fc-ef707375fe93" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="4633b7dc-fadc-40c2-abaf-b9c524b80749" LastKnownName="String" />
+            </type_NamedElement>
+          </property>
+          <property Id="dbf2ada6-2522-4882-850e-5009c1abcc2e" name="Done" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="ebf1b30c-08df-402c-b853-d8f1f05b8675" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="a563a90a-ddd8-46da-b960-8e24eeda426f" LastKnownName="Boolean" />
+            </type_NamedElement>
+          </property>
+          <property Id="9ecbde5f-b602-4857-8eab-ba55d9eeec9e" name="DueDate" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="e1c47f24-5cb7-4059-b0b2-a2fa655e5bde" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="b4ef9de5-d63b-4218-a28f-47c06f0c36bd" LastKnownName="Date" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributes>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="7e288528-35db-47ed-9e7f-a3e694a50927" name="TaskList" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="09113a15-402d-4b09-9cc0-b6ae01adb811" />
+        <generalsInternal>
+          <generalization Id="350eaf49-62e8-432f-9250-165216cd9441" isSubstitutable="false">
+            <interfaceMoniker Id="069a3da1-3d80-434b-be01-3634b386dffb" LastKnownName="GTDItem" />
+            <elementDefinition Id="3241601a-9c94-4626-adfb-258ed34ea883" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association Id="e732540b-79ef-4db5-80a7-5cecb24ee60d" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <interfaceMoniker Id="069a3da1-3d80-434b-be01-3634b386dffb" LastKnownName="GTDItem" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="48bb5fe9-d014-4577-b886-4aeb134c4b81" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="1dfb686b-1054-4345-acc6-5a0a630bed23" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d29482af-6ba3-45c3-9d7d-d70233493e00" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="4fa0c44e-97b4-40a7-b2be-a017432ed41b" name="Lower" value="*">
+                      <elementDefinition Id="b986748c-e43a-4ff4-b07e-b6f34cc28ec1" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="0e5d759f-1ada-4f1b-a954-98a1c7be9d08" name="Upper" value="*">
+                      <elementDefinition Id="1ae25b73-65a6-4e23-8a96-99a59fe58343" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="17ecea36-181e-46f6-9c62-c9279465a819" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="44ca34c7-42a5-42ae-a699-da85648eee9c" />
+          </association>
+        </targetEnds>
+        <ownedOperations>
+          <operation Id="56bb8bf4-1414-493a-a012-f9e18b5b6cdd" name="AddItem" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="80a52a40-eb4f-43e6-ba07-f74b96d4e014" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="6ab43165-7e85-495c-aed7-c4b590bc9121" name="GTDItem" direction="In" isUnique="false">
+                  <elementDefinition Id="b908891c-e940-4de5-ab60-401590023a0d" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="fe03ad94-9610-4d3b-a67b-07900e3ac7b2" name="RemoveItem" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ef133f6c-0d0b-4c82-a2df-f8cc9ec3f2d4" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="b95d9f33-0c7a-4667-a015-4008022d52fb" name="GTDItem" direction="In" isUnique="false">
+                  <elementDefinition Id="235f839d-2d92-4d15-b96b-e25d83121bda" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="80a327c6-e12e-4022-86a6-9f71c577033e" name="GetEnumerator" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="8ee20f2c-a3e2-4bc4-8a9f-3b26bd0b8421" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="643e6cbe-92e9-4f2e-b515-49db8b539e10" direction="Return">
+                  <elementDefinition Id="11a01dc0-0639-40fe-a01e-90083ac0840b" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="42f6bdad-9eaf-4a51-a039-5034c1dd977d" LastKnownName="IEnumerator&lt;Task&gt;" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="42f6bdad-9eaf-4a51-a039-5034c1dd977d" name="IEnumerator&lt;Task&gt;" isAbstract="false" isLeaf="false" cachedFullName="IEnumerator&lt;Task&gt;">
+        <elementDefinition Id="0744493c-83b2-4e81-bbd2-6e874281358e" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="4633b7dc-fadc-40c2-abaf-b9c524b80749" name="String" isAbstract="false" isLeaf="false" cachedFullName="String">
+        <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="a563a90a-ddd8-46da-b960-8e24eeda426f" name="Boolean" isAbstract="false" isLeaf="false" cachedFullName="Boolean">
+        <elementDefinition Id="8943dc84-709e-4f62-b15a-a3273aa6f165" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="b4ef9de5-d63b-4218-a28f-47c06f0c36bd" name="Date" isAbstract="false" isLeaf="false" cachedFullName="Date">
+        <elementDefinition Id="7dfa4a5a-f3e2-41e2-b695-c43f680fc7dc" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="2fd54d1b-5874-464c-a8ad-9e25b93bc496" name="SingleTask" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="cc6efae5-1ca5-4bc5-bbf2-fe6faef15de6" />
+        <suppliersInternal>
+          <interfaceRealization Id="ec494daa-ca8e-4bdb-978d-7decb015244e">
+            <interfaceMoniker Id="12b96771-bf5b-4333-8861-02f86cea1ea6" LastKnownName="Task" />
+            <elementDefinition Id="13fde509-844a-4e67-9315-0d3d2fb131c4" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="97e94b54-10b1-465e-b355-4521509f9a83" name="Project" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="18d5ec28-3aeb-449a-be2c-b04aaf703f60" />
+        <suppliersInternal>
+          <interfaceRealization Id="c9e09c4e-5ecd-4425-ade5-e0663f5a761b">
+            <interfaceMoniker Id="12b96771-bf5b-4333-8861-02f86cea1ea6" LastKnownName="Task" />
+            <elementDefinition Id="60ef02c5-58ad-427d-ab3c-8656ff24bc75" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <targetEnds>
+          <association Id="316efdd6-3aee-4d66-80f5-00eeb88ca3ba" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <classMoniker Id="2fd54d1b-5874-464c-a8ad-9e25b93bc496" LastKnownName="SingleTask" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="86d09b5e-d71f-4c03-82e8-0b534dfd2da0" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString Id="b51737fb-48ce-4c53-8ef7-d156f2f55b06" name="Lower" value="0">
+                      <elementDefinition Id="31fb9723-21e5-48ad-af47-739f65d3045d" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="b387e1e9-b9f5-4870-85d9-6ef02e1f7da6" name="Upper" value="1">
+                      <elementDefinition Id="0d550e5c-e4e0-4005-bc18-41d8846e8e38" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="850c7dbd-8d24-41c7-bab4-2ada71d87fa0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5e3dc11e-8646-447e-92b2-9226aedb71ee" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="7cc56dfd-6c07-4e92-9d30-dbfaa9d4ba59" name="Lower" value="1">
+                      <elementDefinition Id="a36fbc86-0c2d-4f2c-9fde-d73812436ccc" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="b30cddea-0060-4b7f-91ca-4b08e4998ef0" name="Upper" value="*">
+                      <elementDefinition Id="de403708-d82d-49a8-8b07-a02e8a988f89" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="e8516316-ea3c-4b3d-8b09-1073c042a8cd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="476ba920-a311-45d4-a985-fa9729d75fc2" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="069a3da1-3d80-434b-be01-3634b386dffb" name="GTDItem" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f55c7859-6cf3-4b0f-b0e4-555654157246" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="4e07cf73-9c52-4c91-948d-46b1368764d3" name="GTDModel">
+    <elementDefinition Id="68ed9b68-d9ba-4c27-8db7-793801948951" />
+  </package>
+</logicalClassDesignerModel>
