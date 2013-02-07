@@ -315,61 +315,48 @@
         </suppliersInternal>
         <targetEnds>
           <association
-            Id="476ba920-a311-45d4-a985-fa9729d75fc2"
+            Id="87e8fede-0298-4c2b-ba79-985f75e2afdd"
             isDerived="false"
             sourceEndRoleName=""
             targetEndRoleName=""
             isLeaf="false"
             isAbstract="false">
-            <classMoniker
-              Id="cc6efae5-1ca5-4bc5-bbf2-fe6faef15de6"
-              LastKnownName="SingleTask"
+            <interfaceMoniker
+              Id="bb918ae6-4516-4017-942c-da622dffe72c"
+              LastKnownName="Task"
               LastKnownLocation="GTDModel.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="850c7dbd-8d24-41c7-bab4-2ada71d87fa0"
+                  Id="357e6331-dd66-473c-9dbc-2e9574ee589d"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
-                  aggregation="Shared"
+                  aggregation="Composite"
                   isComposite="false"
-                  isNavigableOwned="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="31fb9723-21e5-48ad-af47-739f65d3045d"
-                      name="Lower"
-                      value="0" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="0d550e5c-e4e0-4005-bc18-41d8846e8e38"
-                      name="Upper"
-                      value="1" />
-                  </upperValueInternal>
-                </memberEnd>
+                  isNavigableOwned="false" />
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="e8516316-ea3c-4b3d-8b09-1073c042a8cd"
+                  Id="c3a0eb50-ce58-400a-b282-0fcb176f48d2"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
                   isDerived="false"
                   isDerivedUnion="false"
                   aggregation="None"
-                  isComposite="false">
+                  isComposite="true">
                   <lowerValueInternal>
                     <literalString
-                      Id="a36fbc86-0c2d-4f2c-9fde-d73812436ccc"
+                      Id="22f5370c-2c10-4bbf-8f90-6bcea6020f45"
                       name="Lower"
-                      value="1" />
+                      value="*" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
-                      Id="de403708-d82d-49a8-8b07-a02e8a988f89"
+                      Id="88834dae-013e-43fc-9b86-8825f312a2d0"
                       name="Upper"
                       value="*" />
                   </upperValueInternal>
