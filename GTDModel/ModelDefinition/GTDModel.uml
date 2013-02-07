@@ -37,7 +37,7 @@
         <ownedAttributes>
           <property
             Id="5e2c38f6-3efe-494b-94aa-c07a33230502"
-            name="Name"
+            name="Title"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -102,8 +102,26 @@
             isComposite="false">
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="7dfa4a5a-f3e2-41e2-b695-c43f680fc7dc"
-                LastKnownName="Date"
+                Id="2c17fdf9-6392-433a-9c89-1087424e4b7e"
+                LastKnownName="DateTime"
+                LastKnownLocation="GTDModel.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="75859e18-3a43-447d-8d6b-77b5d1b7b6ea"
+            name="CreationDate"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="2c17fdf9-6392-433a-9c89-1087424e4b7e"
+                LastKnownName="DateTime"
                 LastKnownLocation="GTDModel.uml" />
             </type_NamedElement>
           </property>
@@ -577,6 +595,11 @@
           </operation>
         </ownedOperationsInternal>
       </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="2c17fdf9-6392-433a-9c89-1087424e4b7e"
+        name="DateTime" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

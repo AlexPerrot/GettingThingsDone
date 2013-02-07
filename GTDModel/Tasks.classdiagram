@@ -11,10 +11,10 @@
           </generalization>
         </generalsInternal>
         <ownedAttributes>
-          <property Id="f4cae552-cedc-44df-bba1-c5be74cb39b3" name="Name" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="f4cae552-cedc-44df-bba1-c5be74cb39b3" name="Title" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="5e2c38f6-3efe-494b-94aa-c07a33230502" />
             <type_NamedElement>
-              <referencedTypeMoniker Id="4633b7dc-fadc-40c2-abaf-b9c524b80749" LastKnownName="String" />
+              <referencedTypeMoniker Id="e4edada4-613d-49b2-bb8a-6cc7388e64ed" LastKnownName="String" />
             </type_NamedElement>
           </property>
           <property Id="aa923e67-0b2f-42d9-aaf3-a921a412fc58" name="Description" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -32,7 +32,13 @@
           <property Id="9ecbde5f-b602-4857-8eab-ba55d9eeec9e" name="DueDate" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="e1c47f24-5cb7-4059-b0b2-a2fa655e5bde" />
             <type_NamedElement>
-              <referencedTypeMoniker Id="b4ef9de5-d63b-4218-a28f-47c06f0c36bd" LastKnownName="Date" />
+              <referencedTypeMoniker Id="854f82c2-03a6-416b-afe9-03af055e7a7c" LastKnownName="DateTime" />
+            </type_NamedElement>
+          </property>
+          <property Id="8491fdab-9379-4085-b4a0-856f4a98d9dc" name="CreationDate" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="75859e18-3a43-447d-8d6b-77b5d1b7b6ea" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="d61a028b-74cf-468e-bfcd-2f921acb881a" LastKnownName="DateTime" />
             </type_NamedElement>
           </property>
         </ownedAttributes>
@@ -125,11 +131,6 @@
     <packageHasNamedElement>
       <referencedType Id="a563a90a-ddd8-46da-b960-8e24eeda426f" name="Boolean" isAbstract="false" isLeaf="false" cachedFullName="Boolean">
         <elementDefinition Id="8943dc84-709e-4f62-b15a-a3273aa6f165" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="b4ef9de5-d63b-4218-a28f-47c06f0c36bd" name="Date" isAbstract="false" isLeaf="false" cachedFullName="Date">
-        <elementDefinition Id="7dfa4a5a-f3e2-41e2-b695-c43f680fc7dc" />
       </referencedType>
     </packageHasNamedElement>
     <logicalClassDesignerModelHasTypes>
@@ -286,6 +287,21 @@
         </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="e4edada4-613d-49b2-bb8a-6cc7388e64ed" name="String" isAbstract="false" isLeaf="false" cachedFullName="String">
+        <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="d61a028b-74cf-468e-bfcd-2f921acb881a" name="DateTime" isAbstract="false" isLeaf="false" cachedFullName="DateTime">
+        <elementDefinition Id="2c17fdf9-6392-433a-9c89-1087424e4b7e" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="854f82c2-03a6-416b-afe9-03af055e7a7c" name="DateTime" isAbstract="false" isLeaf="false" cachedFullName="DateTime">
+        <elementDefinition Id="2c17fdf9-6392-433a-9c89-1087424e4b7e" />
+      </referencedType>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="4e07cf73-9c52-4c91-948d-46b1368764d3" name="GTDModel">
     <elementDefinition Id="68ed9b68-d9ba-4c27-8db7-793801948951" />
