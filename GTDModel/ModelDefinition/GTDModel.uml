@@ -328,9 +328,22 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
                   direction="In"
                   isUnique="false">
                   <type_NamedElement>
-                    <interfaceMoniker
-                      Id="c1aa25aa-5444-49c2-817c-088e1441ec4b"
-                      LastKnownName="TaskVisitor"
+                    <undefinedTypeMoniker
+                      Id="782fed49-ea99-4476-8221-699e667db297"
+                      LastKnownName="GTDModel::TaskVisitor&lt;T&gt;"
+                      LastKnownLocation="GTDModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="dd371b89-623c-4172-8842-e99f2b8d79f7"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9d66edcd-3538-47f4-bdc9-b284ba34b883"
+                      LastKnownName="T"
                       LastKnownLocation="GTDModel.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -446,9 +459,22 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
                   direction="In"
                   isUnique="false">
                   <type_NamedElement>
-                    <interfaceMoniker
-                      Id="c1aa25aa-5444-49c2-817c-088e1441ec4b"
-                      LastKnownName="TaskVisitor"
+                    <undefinedTypeMoniker
+                      Id="782fed49-ea99-4476-8221-699e667db297"
+                      LastKnownName="GTDModel::TaskVisitor&lt;T&gt;"
+                      LastKnownLocation="GTDModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c409440b-5c2e-4566-9abd-51df9b14566f"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9d66edcd-3538-47f4-bdc9-b284ba34b883"
+                      LastKnownName="T"
                       LastKnownLocation="GTDModel.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -513,14 +539,27 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="6fe9d83f-cdb3-49f1-ad19-b661384cfe4c"
+                  Id="94458212-30b3-4e09-82c1-2955f2bc3ce7"
                   name="v"
                   direction="In"
                   isUnique="false">
                   <type_NamedElement>
-                    <interfaceMoniker
-                      Id="c1aa25aa-5444-49c2-817c-088e1441ec4b"
-                      LastKnownName="TaskVisitor"
+                    <undefinedTypeMoniker
+                      Id="782fed49-ea99-4476-8221-699e667db297"
+                      LastKnownName="GTDModel::TaskVisitor&lt;T&gt;"
+                      LastKnownLocation="GTDModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cba98e60-fbb3-446d-8f6d-5dc5462efc0d"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9d66edcd-3538-47f4-bdc9-b284ba34b883"
+                      LastKnownName="T"
                       LastKnownLocation="GTDModel.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -636,9 +675,22 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
                   direction="In"
                   isUnique="false">
                   <type_NamedElement>
-                    <interfaceMoniker
-                      Id="c1aa25aa-5444-49c2-817c-088e1441ec4b"
-                      LastKnownName="TaskVisitor"
+                    <undefinedTypeMoniker
+                      Id="782fed49-ea99-4476-8221-699e667db297"
+                      LastKnownName="GTDModel::TaskVisitor&lt;T&gt;"
+                      LastKnownLocation="GTDModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="88c008f8-c21b-480f-9c3c-126d61c3c71b"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9d66edcd-3538-47f4-bdc9-b284ba34b883"
+                      LastKnownName="T"
                       LastKnownLocation="GTDModel.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -757,9 +809,22 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
                   direction="In"
                   isUnique="false">
                   <type_NamedElement>
-                    <interfaceMoniker
-                      Id="c1aa25aa-5444-49c2-817c-088e1441ec4b"
-                      LastKnownName="TaskVisitor"
+                    <undefinedTypeMoniker
+                      Id="782fed49-ea99-4476-8221-699e667db297"
+                      LastKnownName="GTDModel::TaskVisitor&lt;T&gt;"
+                      LastKnownLocation="GTDModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8bf86e4e-3726-43ab-8b9a-efbb22fc2354"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9d66edcd-3538-47f4-bdc9-b284ba34b883"
+                      LastKnownName="T"
                       LastKnownLocation="GTDModel.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -873,9 +938,22 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
                   direction="In"
                   isUnique="false">
                   <type_NamedElement>
-                    <interfaceMoniker
-                      Id="c1aa25aa-5444-49c2-817c-088e1441ec4b"
-                      LastKnownName="TaskVisitor"
+                    <undefinedTypeMoniker
+                      Id="782fed49-ea99-4476-8221-699e667db297"
+                      LastKnownName="GTDModel::TaskVisitor&lt;T&gt;"
+                      LastKnownLocation="GTDModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="77ecc7bc-a9ae-4849-942a-b6c7ed155d1c"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9d66edcd-3538-47f4-bdc9-b284ba34b883"
+                      LastKnownName="T"
                       LastKnownLocation="GTDModel.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -896,6 +974,26 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
         name="TaskVisitor"
         isAbstract="false"
         isLeaf="false">
+        <ownedRedefinableTemplateSignatureInternal>
+          <redefinableTemplateSignature
+            Id="87a7f4b6-343b-43f7-a00e-efdbcbb29c45"
+            parameters=""
+            isLeaf="false">
+            <ownedParameters>
+              <classifierTemplateParameter
+                Id="7d5093e7-f43e-44e0-adc3-9a854c44d1b0">
+                <ownedParameterableElement>
+                  <class
+                    Id="e9d18cfb-029d-492d-92a1-2fc6b57f294f"
+                    name="T"
+                    isAbstract="false"
+                    isLeaf="false"
+                    isActiveClass="false" />
+                </ownedParameterableElement>
+              </classifierTemplateParameter>
+            </ownedParameters>
+          </redefinableTemplateSignature>
+        </ownedRedefinableTemplateSignatureInternal>
         <ownedOperations>
           <operation
             Id="e55a7ced-c2e0-47d2-8815-91d55d1d4d1f"
@@ -908,7 +1006,7 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="32ae7785-8f76-4dfd-89da-082b3257f10d"
+                  Id="7f378ef8-5304-460d-9ead-33d646431b9e"
                   name="list"
                   direction="In"
                   isUnique="false">
@@ -916,6 +1014,19 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
                     <interfaceMoniker
                       Id="09113a15-402d-4b09-9cc0-b6ae01adb811"
                       LastKnownName="TaskList"
+                      LastKnownLocation="GTDModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="fc60f332-554d-427b-bd11-d97782d776a9"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9d66edcd-3538-47f4-bdc9-b284ba34b883"
+                      LastKnownName="T"
                       LastKnownLocation="GTDModel.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -933,7 +1044,7 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="e73cb1f9-c241-47d9-82da-4c1377cf03d8"
+                  Id="df2c6ed2-00d0-4702-9d2d-3e33f9954598"
                   name="task"
                   direction="In"
                   isUnique="false">
@@ -941,6 +1052,19 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
                     <classMoniker
                       Id="cc6efae5-1ca5-4bc5-bbf2-fe6faef15de6"
                       LastKnownName="SingleTask"
+                      LastKnownLocation="GTDModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="38daeaa4-ad77-42cd-95dc-d5cc4764a9e1"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9d66edcd-3538-47f4-bdc9-b284ba34b883"
+                      LastKnownName="T"
                       LastKnownLocation="GTDModel.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -958,7 +1082,7 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="d516baca-5e8c-4469-9d8b-f2bf5a3d78da"
+                  Id="290ead56-eca2-4dea-8398-8e7103201e1e"
                   name="project"
                   direction="In"
                   isUnique="false">
@@ -970,10 +1094,28 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d725cc5a-2ddc-4126-a2a9-2c31c7454fc6"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="9d66edcd-3538-47f4-bdc9-b284ba34b883"
+                      LastKnownName="T"
+                      LastKnownLocation="GTDModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
         </ownedOperations>
       </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="782fed49-ea99-4476-8221-699e667db297"
+        name="GTDModel::TaskVisitor&lt;T&gt;" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
