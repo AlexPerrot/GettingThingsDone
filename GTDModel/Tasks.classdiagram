@@ -1,5 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="452e3446-97ef-480a-ae1b-c27260e4e4a1" name="Tasks" linkedPackageId="4e07cf73-9c52-4c91-948d-46b1368764d3" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <ownedCommentsInternal>
+    <comment Id="d5e00d15-c62a-4aa1-85ad-53259db4bf5c">
+      <elementDefinition Id="1c3c3784-ccb1-44ec-8cb7-94a40ebd713f" />
+      <body>En lisant le bouquin de GTD, j'ai préférer revenir à ce double composite.
+J'explique : bien qu'un projet semble être une liste de taches, il ne fait que se comporter comme un truc dans lequel y'a des taches et n'est pas une liste de taches au sens GTD.
+Un projet est en fait une tache qui necessite plus d'une action. Donc projet hérite de tache et gère ses taches avec une liste (au sens structure de données).</body>
+      <annotatedElements>
+        <classMoniker Id="97e94b54-10b1-465e-b355-4521509f9a83" LastKnownName="Project" />
+      </annotatedElements>
+    </comment>
+    <comment Id="19cb91be-173e-4f91-b710-e70de637a17c">
+      <elementDefinition Id="5d93b1c6-bdf2-470a-87f2-0c95bf878fbd" />
+      <body>Cette classe décrit le système général de GTD, avec la boite de reception et les listes de l'utilisateur. On ajoutera surement le calendrier ici.</body>
+      <annotatedElements>
+        <classMoniker Id="d3f7faed-e528-4f67-a344-26398b983400" LastKnownName="GTDSystem" />
+      </annotatedElements>
+    </comment>
+    <comment Id="eabf50d9-65cd-4d13-b0f3-97c6fc05a603">
+      <elementDefinition Id="532339d5-46e0-4c2c-9bcb-3ffcba5b1a86" />
+      <body>La liste dynamique se construit avec une liste cible (statique ou dynamique) et un filtre (à définir).</body>
+      <annotatedElements>
+        <classMoniker Id="e7897031-beee-4a0e-bc29-8fd2a2670c8f" LastKnownName="DynamicList" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <Interface Id="12b96771-bf5b-4333-8861-02f86cea1ea6" name="Task" isAbstract="false" isLeaf="false">
@@ -82,26 +107,6 @@
           </association>
         </targetEnds>
         <ownedOperations>
-          <operation Id="56bb8bf4-1414-493a-a012-f9e18b5b6cdd" name="AddItem" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="80a52a40-eb4f-43e6-ba07-f74b96d4e014" />
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="6ab43165-7e85-495c-aed7-c4b590bc9121" name="GTDItem" direction="In" isUnique="false">
-                  <elementDefinition Id="b908891c-e940-4de5-ab60-401590023a0d" />
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
-          <operation Id="fe03ad94-9610-4d3b-a67b-07900e3ac7b2" name="RemoveItem" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="ef133f6c-0d0b-4c82-a2df-f8cc9ec3f2d4" />
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="b95d9f33-0c7a-4667-a015-4008022d52fb" name="GTDItem" direction="In" isUnique="false">
-                  <elementDefinition Id="235f839d-2d92-4d15-b96b-e25d83121bda" />
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
           <operation Id="80a327c6-e12e-4022-86a6-9f71c577033e" name="GetEnumerator" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="8ee20f2c-a3e2-4bc4-8a9f-3b26bd0b8421" />
             <ownedParameters>
@@ -137,51 +142,82 @@
       <class Id="2fd54d1b-5874-464c-a8ad-9e25b93bc496" name="SingleTask" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="cc6efae5-1ca5-4bc5-bbf2-fe6faef15de6" />
         <suppliersInternal>
-          <interfaceRealization Id="ec494daa-ca8e-4bdb-978d-7decb015244e">
+          <interfaceRealization Id="ab1f441c-a078-4226-a9ee-72e9aa84caa6">
             <interfaceMoniker Id="12b96771-bf5b-4333-8861-02f86cea1ea6" LastKnownName="Task" />
-            <elementDefinition Id="13fde509-844a-4e67-9315-0d3d2fb131c4" />
+            <elementDefinition Id="50c6964f-fb1a-4803-b059-b2be6a2deb61" />
           </interfaceRealization>
         </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation Id="b1b4bcab-2f07-4e0e-b125-362870548a41" name="accept" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="92575389-b56b-48d1-9bc9-737efa8af975" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="2844204b-4b1c-4e58-bc77-627eda629f4a" name="v" direction="In" isUnique="false">
+                  <elementDefinition Id="4a357e53-8588-4739-ba4f-d709cd054f38" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="d3c540d2-3041-4b47-a5c1-39222bbff937" LastKnownName="TaskVisitor" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
       <class Id="97e94b54-10b1-465e-b355-4521509f9a83" name="Project" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="18d5ec28-3aeb-449a-be2c-b04aaf703f60" />
         <suppliersInternal>
-          <interfaceRealization Id="f83f3a03-475d-4ef3-82bc-e1879210f08e">
-            <interfaceMoniker Id="7e288528-35db-47ed-9e7f-a3e694a50927" LastKnownName="TaskList" />
-            <elementDefinition Id="d72b9ed4-1591-4127-b336-85fabd08c9c8" />
+          <interfaceRealization Id="2fec6812-e2e0-4191-8d4b-d3ef3de81022">
+            <interfaceMoniker Id="12b96771-bf5b-4333-8861-02f86cea1ea6" LastKnownName="Task" />
+            <elementDefinition Id="a9a70dfa-93ae-4378-a1e7-9e144f2c70ac" />
           </interfaceRealization>
         </suppliersInternal>
+        <targetEnds>
+          <association Id="c687ce3d-4106-480c-9a93-75e0f5a3cae4" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+            <interfaceMoniker Id="12b96771-bf5b-4333-8861-02f86cea1ea6" LastKnownName="Task" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="48412b7e-64bb-4bdd-9aad-9a552ece5ea4" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="2bf67d26-31ca-4e84-ac7a-8733bd07c7b6" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="70d09138-9132-4004-908d-ee6d8ae990be" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <lowerValueInternal>
+                    <literalString Id="18b3e4db-f4b0-4db6-a0e7-cea18d1a073f" name="Lower" value="*">
+                      <elementDefinition Id="cf017f99-bbb1-466f-90eb-9d6b902a3422" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="13c8d3bf-0e7d-4cea-a8d5-41a4f25caf37" name="Upper" value="*">
+                      <elementDefinition Id="b4be39d6-d46e-4efe-a7cc-573d2dea4b7e" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="cd3b9648-494b-46a4-841d-b047412af8a2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="6651b0b9-ef70-4172-b852-87266ad15012" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="f1fa4dbb-ada5-412d-9210-941ebdff0d94" name="Tasks" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="f83c88f2-19ca-4ae2-a645-55ce695ff911" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="6a222136-6b03-4a21-9403-ab79373d60c0" LastKnownName="List&lt;Task&gt;" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation Id="d55e86e2-167d-4503-9969-58a6800e3ea0" name="AddItem" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="92b8b5cd-30ec-4b41-a7b3-cd7913e277f3" />
+          <operation Id="38f40ad2-79b1-4cdc-b2b3-b0c4ade38a3b" name="accept" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="0da258ef-7167-4ac4-b95c-fb84250f7c36" />
             <ownedParameters>
               <operationHasOwnedParameters>
-                <parameter Id="7b803203-df7c-4dae-813b-f329b1783b57" name="GTDItem" direction="In" isUnique="false">
-                  <elementDefinition Id="6cb2e93f-f0bd-411d-9f73-c42a42cc077e" />
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
-          <operation Id="a2235a0d-97b3-4b55-9460-fce32e070c66" name="RemoveItem" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="866ba3b1-7a43-4a79-92be-5409b2ac7660" />
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="d2982e5c-6bef-4e7d-b35f-03c1191fdfb5" name="GTDItem" direction="In" isUnique="false">
-                  <elementDefinition Id="5e3c16f9-3a4e-4694-93a6-7df01399f666" />
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
-          <operation Id="9d186462-5ace-4b45-878f-d3b8e914a7ff" name="GetEnumerator" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="6f0b9c4d-4e2b-409f-b4ae-76d0ce2a12fa" />
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="af03272b-f5d2-48f4-9bdb-0609c5889262" direction="Return">
-                  <elementDefinition Id="b1727a54-e920-456e-bab9-4bcc732cc7ac" />
+                <parameter Id="4097d194-481c-4f79-9107-1cffdd1d8591" name="v" direction="In" isUnique="false">
+                  <elementDefinition Id="43d0b253-007e-473e-b583-6d67c6d3e0fd" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="42f6bdad-9eaf-4a51-a039-5034c1dd977d" LastKnownName="IEnumerator&lt;Task&gt;" />
+                    <referencedTypeMoniker Id="d3c540d2-3041-4b47-a5c1-39222bbff937" LastKnownName="TaskVisitor" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
@@ -193,6 +229,21 @@
     <logicalClassDesignerModelHasTypes>
       <Interface Id="069a3da1-3d80-434b-be01-3634b386dffb" name="GTDItem" isAbstract="false" isLeaf="false">
         <elementDefinition Id="f55c7859-6cf3-4b0f-b0e4-555654157246" />
+        <ownedOperations>
+          <operation Id="c1f66cfd-d503-49c0-bfed-7372227b6bab" name="accept" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="a592fcb5-0f9e-4dca-9b92-b2de96eaa6f0" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="ab52218f-5ec5-4d3a-b176-45380a236eea" name="v" direction="In" isUnique="false">
+                  <elementDefinition Id="6fe9d83f-cdb3-49f1-ad19-b661384cfe4c" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="d3c540d2-3041-4b47-a5c1-39222bbff937" LastKnownName="TaskVisitor" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperations>
       </Interface>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -205,26 +256,6 @@
           </interfaceRealization>
         </suppliersInternal>
         <ownedOperationsInternal>
-          <operation Id="dac7d8b1-68e7-41e1-acfe-4348c9bebf7b" name="AddItem" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="760db269-49b3-4160-8ae6-edd5373acc96" />
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="1691f739-ff43-4933-bb89-fe6f34f9591c" name="GTDItem" direction="In" isUnique="false">
-                  <elementDefinition Id="016b8a7f-106f-431a-8032-15210be302cb" />
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
-          <operation Id="a65d70b2-7700-4ec5-88ed-c78ce83451d6" name="RemoveItem" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="f369fe55-6e81-4be9-a8cc-74cf17670f98" />
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="29d1b82f-3065-40a0-bffe-3311627d0128" name="GTDItem" direction="In" isUnique="false">
-                  <elementDefinition Id="c8b99bcf-ef1a-4b5f-9be4-a5eb19af4c6e" />
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
           <operation Id="0ff6c928-f503-4ea3-b60e-4a4ed4782b57" name="GetEnumerator" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="6732e0e3-f896-4876-98ad-1c50ac84b035" />
             <ownedParameters>
@@ -233,6 +264,45 @@
                   <elementDefinition Id="004e5fad-9a2e-45e8-9a8a-e1c68a898495" />
                   <type_NamedElement>
                     <referencedTypeMoniker Id="42f6bdad-9eaf-4a51-a039-5034c1dd977d" LastKnownName="IEnumerator&lt;Task&gt;" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="7e05fd23-d1d9-4fc4-a092-26a52a501103" name="AddItem" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="3236fabe-baed-4520-a4c7-71f812a937ba" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="22678745-d00d-4d1c-8658-ee5bbd99c81a" name="item" direction="In" isUnique="false">
+                  <elementDefinition Id="823a351b-1238-4d04-a357-e380ba4bb1e8" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="736d70e2-7962-43cf-bb7c-3cc6606a9e8c" LastKnownName="GTDItem" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="b6600ff4-43ea-44c1-bd3c-a5b12ad89301" name="RemoveItem" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="d56993b3-771b-434a-a6e3-5dbaba597032" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="a3b17b61-051c-4050-b097-37cc56acfd6b" name="item" direction="In" isUnique="false">
+                  <elementDefinition Id="1c5250c7-58f1-4f28-96fa-0ded2003d5e1" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="736d70e2-7962-43cf-bb7c-3cc6606a9e8c" LastKnownName="GTDItem" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="3ba2aa36-9dbe-4d5d-8a31-22901b57bfd1" name="accept" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="14dacc2d-ef54-4fbb-90aa-edd70661fb71" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="1817823e-0c5d-4cbc-bbff-fb12a851cae8" name="v" direction="In" isUnique="false">
+                  <elementDefinition Id="b55d3f0b-b361-4a6b-98ed-98203ced4e47" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="d3c540d2-3041-4b47-a5c1-39222bbff937" LastKnownName="TaskVisitor" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
@@ -250,27 +320,35 @@
             <elementDefinition Id="f2d2c1a9-ac0d-48de-a870-0fcaf63fa965" />
           </interfaceRealization>
         </suppliersInternal>
+        <targetEnds>
+          <association Id="846af748-c56e-4b3b-90eb-cbdceac5b7be" isDerived="false" sourceEndRoleName="" targetEndRoleName="target" isLeaf="false" isAbstract="false">
+            <classMoniker Id="5558a1f1-1781-4f18-8105-c27e245ec5e4" LastKnownName="StaticList" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3b778231-ffa7-4e0d-80c7-0c5e1319c0dd" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString Id="2b275249-f216-490a-9ad5-51f4389f9fcb" name="Lower" value="*">
+                      <elementDefinition Id="bc0da3bb-11c1-4425-8641-8d3d2bb1054e" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="86173abe-15de-4b03-95a5-73564c828c9d" name="Upper" value="*">
+                      <elementDefinition Id="fe037107-f8f5-4bbd-a2d1-98e6789a0fab" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="42ac7ed4-fbb8-409d-b974-39234333fbe8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0988ab32-4132-43a6-b861-700f95bf4d0e" name="target" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="addf8a72-8394-45e4-8a73-7eee44f4edc8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="41c6917d-b3cc-4e3c-934e-6835e8f174ce" />
+          </association>
+        </targetEnds>
         <ownedOperationsInternal>
-          <operation Id="3473cb5e-0e56-4692-ad0b-f9c8713bad04" name="AddItem" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="351216d6-54cf-4b82-9421-aa33e8857a8f" />
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="656c7d07-d374-4ee7-bba5-1d60ef08570a" name="GTDItem" direction="In" isUnique="false">
-                  <elementDefinition Id="8a3cbeae-0322-4fb5-ac9e-d497ce49987f" />
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
-          <operation Id="51d55fb9-67ea-4ead-9674-a32b342e50b5" name="RemoveItem" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <elementDefinition Id="baa0697b-9f3f-4a8a-91b8-602e073ee1f8" />
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter Id="f7e5ad07-3a0b-42c0-9092-1aebb30632fa" name="GTDItem" direction="In" isUnique="false">
-                  <elementDefinition Id="803cc64b-65f5-42ac-bbfe-b4450b983c10" />
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
           <operation Id="0cbb0344-f7bf-4d2c-be46-295a28a22de8" name="GetEnumerator" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="111fb285-f848-4df1-8898-034065c28c55" />
             <ownedParameters>
@@ -279,6 +357,19 @@
                   <elementDefinition Id="0b0c24b6-26c2-47bb-bdeb-4c393e06266c" />
                   <type_NamedElement>
                     <referencedTypeMoniker Id="42f6bdad-9eaf-4a51-a039-5034c1dd977d" LastKnownName="IEnumerator&lt;Task&gt;" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="810bd142-ba71-4765-b001-2da6607260ac" name="accept" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="9ce97f0e-1f70-4cf3-ae97-2770791081fa" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="271d2558-90cd-4916-bb0e-091926c1f426" name="v" direction="In" isUnique="false">
+                  <elementDefinition Id="8612e8ef-4f06-4955-b586-74f887de4005" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="d3c540d2-3041-4b47-a5c1-39222bbff937" LastKnownName="TaskVisitor" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
@@ -300,6 +391,140 @@
     <packageHasNamedElement>
       <referencedType Id="854f82c2-03a6-416b-afe9-03af055e7a7c" name="DateTime" isAbstract="false" isLeaf="false" cachedFullName="DateTime">
         <elementDefinition Id="2c17fdf9-6392-433a-9c89-1087424e4b7e" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="6a222136-6b03-4a21-9403-ab79373d60c0" name="List&lt;Task&gt;" isAbstract="false" isLeaf="false" cachedFullName="List&lt;Task&gt;">
+        <elementDefinition Id="2c954960-9601-4cf8-8af8-9704bd4d9a65" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="d3f7faed-e528-4f67-a344-26398b983400" name="GTDSystem" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e02b192e-eb64-49be-b50e-766b3768af64" />
+        <suppliersInternal>
+          <interfaceRealization Id="1b7ed696-00db-4d0e-a1ef-8b95d55744fc">
+            <interfaceMoniker Id="7e288528-35db-47ed-9e7f-a3e694a50927" LastKnownName="TaskList" />
+            <elementDefinition Id="a0f8b73e-86e5-4e25-872b-50b09f546140" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <property Id="54c2b6f5-680d-4219-a991-ca7c733fc65c" name="Inbox" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="dc580de4-c7ea-4c29-a463-7abdc517bc50" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="06a29a46-793e-41b6-af5b-1ac5a1e2c2c9" LastKnownName="TaskList" />
+            </type_NamedElement>
+          </property>
+          <property Id="fb3231fc-7878-4cc9-8e9f-8b992c760361" name="Lists" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="7b9fd6fc-fb86-4685-8ad4-0bacb8aa105c" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="b9eb12b7-38a5-4e43-976d-fe3fb53dcf2b" LastKnownName="List&lt;TaskList&gt;" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="e46abe4c-1f83-4f90-9b22-b815b4d78b54" name="GetEnumerator" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="6b4da37c-452e-4553-950d-97d0abd43739" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="4302a8eb-9d92-4b0a-9dc7-235eaf0c1ccf" direction="Return">
+                  <elementDefinition Id="6d0144c0-b773-4f84-8407-a84c6b6e73fc" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="42f6bdad-9eaf-4a51-a039-5034c1dd977d" LastKnownName="IEnumerator&lt;Task&gt;" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="7b0f7306-6002-4945-859d-4f84c66fa1d2" name="accept" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="4a154d84-a8b0-40cb-9062-a21865e9b29a" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="8265d8dd-bd0f-4435-b7a4-9e9761074cd4" name="v" direction="In" isUnique="false">
+                  <elementDefinition Id="b1d6fa51-b10a-4f18-a19f-f23ec2d3114f" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="d3c540d2-3041-4b47-a5c1-39222bbff937" LastKnownName="TaskVisitor" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="736d70e2-7962-43cf-bb7c-3cc6606a9e8c" name="GTDItem" isAbstract="false" isLeaf="false" cachedFullName="GTDModel::GTDItem">
+        <elementDefinition Id="f55c7859-6cf3-4b0f-b0e4-555654157246" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="06a29a46-793e-41b6-af5b-1ac5a1e2c2c9" name="TaskList" isAbstract="false" isLeaf="false" cachedFullName="GTDModel::TaskList">
+        <elementDefinition Id="09113a15-402d-4b09-9cc0-b6ae01adb811" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="b9eb12b7-38a5-4e43-976d-fe3fb53dcf2b" name="List&lt;TaskList&gt;" isAbstract="false" isLeaf="false" cachedFullName="List&lt;TaskList&gt;">
+        <elementDefinition Id="881235ff-f4ec-40a8-acc0-a2b1e517f6ed" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="e4cdac65-6113-4f6d-adf9-c0d14bbef2ce" name="TaskVisitor" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c1aa25aa-5444-49c2-817c-088e1441ec4b" />
+        <ownedOperations>
+          <operation Id="4574adb9-47b2-439e-aaf4-ea1cc0a08162" name="visit" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="e55a7ced-c2e0-47d2-8815-91d55d1d4d1f" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="3ee6d7cb-89db-41f4-8094-f543e2deb038" name="list" direction="In" isUnique="false">
+                  <elementDefinition Id="32ae7785-8f76-4dfd-89da-082b3257f10d" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="06a29a46-793e-41b6-af5b-1ac5a1e2c2c9" LastKnownName="TaskList" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="12c6b56c-6b37-4027-8933-5372ca4b1691" name="visit" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="3596ba5d-42cf-4cc7-9e23-8004efe797b7" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e07ba749-170c-4c99-a0e9-d7550620ca7e" name="task" direction="In" isUnique="false">
+                  <elementDefinition Id="e73cb1f9-c241-47d9-82da-4c1377cf03d8" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="73e82f90-2fbf-40d2-8de5-b746599bdb92" LastKnownName="SingleTask" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="a045f487-247d-4bdd-b098-345467399a63" name="visit" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="17d048d3-78aa-4705-a3dd-f48a590e0017" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="3fecb00c-7268-4e02-8a70-8e9c3d1bafc8" name="project" direction="In" isUnique="false">
+                  <elementDefinition Id="d516baca-5e8c-4469-9d8b-f2bf5a3d78da" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="7ab19a62-118f-4a36-9b19-27ec22f24f9f" LastKnownName="Project" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="73e82f90-2fbf-40d2-8de5-b746599bdb92" name="SingleTask" isAbstract="false" isLeaf="false" cachedFullName="GTDModel::SingleTask">
+        <elementDefinition Id="cc6efae5-1ca5-4bc5-bbf2-fe6faef15de6" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="7ab19a62-118f-4a36-9b19-27ec22f24f9f" name="Project" isAbstract="false" isLeaf="false" cachedFullName="GTDModel::Project">
+        <elementDefinition Id="18d5ec28-3aeb-449a-be2c-b04aaf703f60" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="d3c540d2-3041-4b47-a5c1-39222bbff937" name="TaskVisitor" isAbstract="false" isLeaf="false" cachedFullName="GTDModel::TaskVisitor">
+        <elementDefinition Id="c1aa25aa-5444-49c2-817c-088e1441ec4b" />
       </referencedType>
     </packageHasNamedElement>
   </packagedElements>
