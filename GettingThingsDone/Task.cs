@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-interface Task : GTDItem
+public interface Task : GTDItem
 {
     String Title { get; set; }
     String Description { get; set; }

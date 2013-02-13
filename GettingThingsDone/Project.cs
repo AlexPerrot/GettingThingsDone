@@ -16,16 +16,17 @@ using System.Text;
 /// </remarks>
 public class Project : Task
 {
+    private List<Task> tasks;
     private List<Task> Tasks
     {
-        get;
+        get { return tasks; }
     }
 
-    String Title { get; set; }
-    String Description { get; set; }
-    Boolean Done { get; set; }
-    DateTime DueDate { get; set; }
-    DateTime CreationDate { get; }
+    public String Title { get; set; }
+    public String Description { get; set; }
+    public Boolean Done { get; set; }
+    public DateTime DueDate { get; set; }
+    public DateTime CreationDate { get { return new DateTime(0); } }
 
 	public virtual T accept<T>(TaskVisitor<T> v)
 	{

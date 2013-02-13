@@ -9,11 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public interface TaskList  : GTDItem
+public interface TaskList  : GTDItem, IEnumerable<Task>
 {
-	 { get;set; }
+	
 
-	IEnumerator<Task> GetEnumerator();
 
 }
 

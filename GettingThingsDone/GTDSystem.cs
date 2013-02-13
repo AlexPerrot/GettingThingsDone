@@ -29,7 +29,12 @@ public class GTDSystem : TaskList
 		throw new System.NotImplementedException();
 	}
 
-	public virtual T accept(GTDModel::TaskVisitor<T> v)
+    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+
+	public virtual T accept<T>(TaskVisitor<T> v)
 	{
 		throw new System.NotImplementedException();
 	}
