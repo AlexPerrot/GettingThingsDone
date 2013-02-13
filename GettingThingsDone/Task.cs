@@ -1,7 +1,6 @@
 ﻿using System;
 
-namespace GettingThingsDone
-{
+
     interface Task
     {
         String Title { get; set; }
@@ -10,4 +9,4 @@ namespace GettingThingsDone
         DateTime DueDate { get; set; }
         DateTime CreationDate { get; }
     }
-}
+
