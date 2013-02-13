@@ -11,7 +11,7 @@ using System.Text;
 
 public interface GTDItem 
 {
-	T accept(GTDModel::TaskVisitor<T> v);
+	T accept<T>(TaskVisitor<T> v);
 
 }
 
