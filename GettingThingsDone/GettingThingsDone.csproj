@@ -56,7 +56,7 @@
     </ApplicationDefinition>
     <Compile Include="TaskList.cs" />
     <Compile Include="TaskVisitor_T.cs" />
-    <Compile Include="test\Class1.cs" />
+    <Compile Include="test\SingleTaskTest.cs" />
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
