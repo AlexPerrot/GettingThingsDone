@@ -8,12 +8,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace GettingThingsDone.test
 {
     [TestClass]
-    class SingleTaskTest
+    public class SingleTaskTest
     {
         [TestMethod]
         public void testCreation()
         {
             Task st = new SingleTask();
+            Assert.IsNotNull(st);
         }
     }
 }
