@@ -20,7 +20,12 @@ public class Project : Task
     {
         get;
     }
-	
+
+    String Title { get; set; }
+    String Description { get; set; }
+    Boolean Done { get; set; }
+    DateTime DueDate { get; set; }
+    DateTime CreationDate { get; }
 
 	public virtual T accept<T>(TaskVisitor<T> v)
 	{

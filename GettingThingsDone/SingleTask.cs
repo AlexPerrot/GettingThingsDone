@@ -11,6 +11,13 @@ using System.Text;
 
 public class SingleTask : Task
 {
+
+    String Title { get; set; }
+    String Description { get; set; }
+    Boolean Done { get; set; }
+    DateTime DueDate { get; set; }
+    DateTime CreationDate { get; }
+
 	public virtual T accept<T>(TaskVisitor<T> v)
 	{
 		return v.visit(this);
