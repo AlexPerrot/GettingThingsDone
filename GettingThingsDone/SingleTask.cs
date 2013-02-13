@@ -11,9 +11,9 @@ using System.Text;
 
 public class SingleTask : Task
 {
-	public virtual T accept(GTDModel::TaskVisitor<T> v)
+	public virtual T accept<T>(TaskVisitor<T> v)
 	{
-		throw new System.NotImplementedException();
+		return v.visit(this);
 	}
 
 }

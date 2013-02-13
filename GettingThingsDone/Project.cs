@@ -16,20 +16,15 @@ using System.Text;
 /// </remarks>
 public class Project : Task
 {
-	private List<Task> Tasks
-	{
-		get;
-		set;
-	}
+    private List<Task> Tasks
+    {
+        get;
+    }
+	
 
-	public virtual {
-		get;
-		set;
-	}
-
-	public virtual T accept(GTDModel::TaskVisitor<T> v)
+	public virtual T accept<T>(TaskVisitor<T> v)
 	{
-		throw new System.NotImplementedException();
+		return v.visit(this);
 	}
 
 }
