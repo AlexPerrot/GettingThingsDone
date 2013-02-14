@@ -16,8 +16,8 @@ using System.Text;
 /// </remarks>
 public class Project : Task
 {
-    private List<Task> tasks;
-    private List<Task> Tasks
+    private IList<Task> tasks = new List<Task>();
+    public IList<Task> Tasks
     {
         get { return tasks; }
     }
@@ -26,7 +26,17 @@ public class Project : Task
     public String Description { get; set; }
     public Boolean Done { get; set; }
     public DateTimeOffset? DueDate { get; set; }
-    public DateTimeOffset CreationDate { get { return new DateTimeOffset(new DateTime(0)); } }
+    private DateTimeOffset creationDate;
+    public DateTimeOffset CreationDate { get { return creationDate; } }
+
+    public Project(string title, string desc, DateTimeOffset? dueDate, Boolean done, DateTimeOffset creationDate)
+    {
+        this.Title = title;
+        this.Description = desc;
+        this.DueDate = dueDate;
+        this.Done = done;
+        this.creationDate = creationDate;
+    }
 
 	public virtual T accept<T>(TaskVisitor<T> v)
 	{
