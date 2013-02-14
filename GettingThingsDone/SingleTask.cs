@@ -15,9 +15,34 @@ public class SingleTask : Task
     public String Title { get; set; }
     public String Description { get; set; }
     public Boolean Done { get; set; }
-    public DateTime DueDate { get; set; }
-    private DateTime creationDate;
-    public DateTime CreationDate { get { return creationDate; } }
+    public DateTimeOffset? DueDate { get; set; }
+    private DateTimeOffset creationDate;
+    public DateTimeOffset CreationDate { get { return creationDate; } }
+
+    public SingleTask() : this("")
+    {
+        
+    }
+
+    public SingleTask(string title)
+        : this("", "")
+    {
+
+    }
+
+    public SingleTask(string title, string desc) : this(title, desc, null)
+    {
+
+    }
+
+    public SingleTask(string title, string desc, DateTimeOffset? dueDate)
+    {
+        this.creationDate = DateTimeOffset.Now;
+        this.Done = false;
+        this.Title = title;
+        this.Description = desc;
+        this.DueDate = dueDate;
+    }
 
 	public virtual T accept<T>(TaskVisitor<T> v)
 	{

@@ -25,8 +25,8 @@ public class Project : Task
     public String Title { get; set; }
     public String Description { get; set; }
     public Boolean Done { get; set; }
-    public DateTime DueDate { get; set; }
-    public DateTime CreationDate { get { return new DateTime(0); } }
+    public DateTimeOffset? DueDate { get; set; }
+    public DateTimeOffset CreationDate { get { return new DateTimeOffset(new DateTime(0)); } }
 
 	public virtual T accept<T>(TaskVisitor<T> v)
 	{
