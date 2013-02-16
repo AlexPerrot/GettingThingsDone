@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="9762e5ab-3167-43b6-870b-766eabf967b1" name="DataSync" linkedPackageId="4a83249d-dc92-4b48-aa39-7ec6942b5e2f" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <ownedCommentsInternal>
+    <comment Id="51b4254b-5622-40b2-8a55-081a26a288fc">
+      <elementDefinition Id="7c01f4ec-b058-46fd-b514-3127904661a6" />
+      <body>Fournit le connecteur au service de synchronisation des données (connecté ou déconnecté).</body>
+      <annotatedElements>
+        <interfaceMoniker Id="30c8b607-378d-4d3b-85d5-c4b0ea3cfb6b" LastKnownName="DataContextFabric" />
+      </annotatedElements>
+    </comment>
+    <comment Id="34a49a0f-8871-4ec6-bdb7-d6709ab04375">
+      <elementDefinition Id="8a918b2c-3b0e-4950-bf00-11b89a28f9c0" />
+      <body>Fabrique singleton par laquelle on obtient le lien pour la synchronisation des données.</body>
+      <annotatedElements>
+        <classMoniker Id="5ecf1597-6212-4a49-b00f-dbf8e4d276db" LastKnownName="DataContextProvider" />
+      </annotatedElements>
+    </comment>
+    <comment Id="9d3ea66d-28af-447f-897d-6ed1a1bdf129">
+      <elementDefinition Id="7aa44ba8-d4ef-40a0-bd06-65438c8b1717" />
+      <body>Fournit le service de synchronisation des données client en passant par le DataContext utilisé par LINQ pour désigner la destination des données.</body>
+      <annotatedElements>
+        <interfaceMoniker Id="ab79f6d7-27ac-4774-ad71-4aeba352b2c4" LastKnownName="DataSynchronizer" />
+      </annotatedElements>
+    </comment>
+    <comment Id="e29a0dab-675a-4b37-8b69-1869121d9727">
+      <elementDefinition Id="2514c0c9-d838-4724-8724-4a566acb1629" />
+      <body>Classe de synchronisation singleton qui fournit le service de synchronisation. Se base sur des DateTimeOffset pour déterminer les données à synchroniser.</body>
+      <annotatedElements>
+        <classMoniker Id="0d18b9fa-bcab-433b-8026-d12bc1a9536a" LastKnownName="Synchronizer" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <appliedStereotypesInternal>
+    <stereotypeInstance Id="7cee4f6d-59c1-48e7-b4bc-15d391ae322b" name="namespace" profile="CSharpProfile">
+      <elementDefinition Id="df09b974-bf86-46a3-9f6d-46a50ec87af6" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="09f59d0b-cbca-4bbe-9cae-77b869e1aaa0">
+          <propertyInstance Id="d7d5f834-1e84-49b6-a287-a152135cee82" name="BaseName">
+            <elementDefinition Id="86c49128-5e1e-4bf3-a944-5f9c013e60c7" />
+          </propertyInstance>
+          <elementDefinition Id="3fc478b7-b6b6-4e31-8336-1dbc1966cfce" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="c4abbceb-a9e4-4d50-80f0-33f139bafc46">
+          <propertyInstance Id="21dbdefa-4b21-4c4c-b627-a1a2f00b4a6f" name="ClrAttributes">
+            <elementDefinition Id="0c403069-afa3-4dca-849a-be8b0d36b300" />
+          </propertyInstance>
+          <elementDefinition Id="a007ea78-c6f0-4959-a1a8-e0758f610969" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="7857e7fc-8870-40af-b95c-6c02c51008f7">
+          <propertyInstance Id="a8ff5602-d625-4eb4-82d9-487a0b53a868" name="Usings">
+            <elementDefinition Id="8a470cc4-e7a6-48f8-8e0c-ac009859c806" />
+          </propertyInstance>
+          <elementDefinition Id="8eaea573-8d7d-4120-b2bb-cecd491325c3" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+    <stereotypeInstance Id="a9779f9f-0148-4515-bab7-72961758106d" name="TextTemplateBindings" profile="TextTemplateBindings">
+      <elementDefinition Id="4bb28118-9c5c-4227-bf9e-475cc309f04e" />
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="437c9f7f-e87b-4aca-b205-c1f7bf44a373">
+          <propertyInstance Id="562829af-2a28-4bc6-b14b-7ea7bd5e7f63" name="Alias" value="ClassTemplate|EnumTemplate|InterfaceTemplate|StructTemplate">
+            <elementDefinition Id="b68ac8bf-c1ea-42d0-bf62-97f745efee8f" />
+          </propertyInstance>
+          <elementDefinition Id="bbced199-5188-4717-bf28-656982383e2b" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="ba41eb00-3db6-4563-b383-cb47d001ab76">
+          <propertyInstance Id="41e9c4a6-fd3b-406b-ac43-7f77ca580191" name="TemplateFilePath" value="ClassTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4|EnumTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4|InterfaceTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4|StructTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4">
+            <elementDefinition Id="fd46ee8c-a3ae-479c-a9fd-ce6a50f68af2" />
+          </propertyInstance>
+          <elementDefinition Id="c565f816-fcd7-4be4-8df6-8360b286f975" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="5723d457-555a-449f-8d71-769a0d722e34">
+          <propertyInstance Id="f5a3489a-8c19-4521-9a7d-e2d4155b505c" name="ProjectPath" value="ClassTemplate=..\GTDModelLib\GTDModelLib.csproj|EnumTemplate=..\GTDModelLib\GTDModelLib.csproj|InterfaceTemplate=..\GTDModelLib\GTDModelLib.csproj|StructTemplate=..\GTDModelLib\GTDModelLib.csproj">
+            <elementDefinition Id="81cf498d-9918-4533-8d3f-371b5961c174" />
+          </propertyInstance>
+          <elementDefinition Id="9b96b3c3-5dc7-4cd1-81bb-98e805ac62f7" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="8eab2a48-deee-4475-99a0-83f778896946">
+          <propertyInstance Id="538be513-747a-4959-af0d-88b529b79a18" name="TargetDirectory" value="ClassTemplate=GeneratedCode\{PackageStructure}|EnumTemplate=GeneratedCode\{PackageStructure}|InterfaceTemplate=GeneratedCode\{PackageStructure}|StructTemplate=GeneratedCode\{PackageStructure}">
+            <elementDefinition Id="ff9ecb72-b3fa-4aa2-8c5c-fa175d05a059" />
+          </propertyInstance>
+          <elementDefinition Id="734392c1-3d3a-4c5d-b2f6-fc0daff6f805" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="935946e4-5cca-48ef-8bbb-19e97d6cf81a">
+          <propertyInstance Id="9fee467e-cf0b-4c9f-aa3b-c40de2ae240a" name="TargetName" value="ClassTemplate={Name}|EnumTemplate={Name}|InterfaceTemplate={Name}|StructTemplate={Name}">
+            <elementDefinition Id="68a3c2c7-7624-4f32-803e-69c8b1f75405" />
+          </propertyInstance>
+          <elementDefinition Id="0aa01b8c-6e3f-4eb7-bfa8-d454aa657757" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="cfa4b82b-ca17-4cd8-827c-ccf20dad2916">
+          <propertyInstance Id="296d1376-5749-43b6-b516-012f8e52f34a" name="Overwrite" value="ClassTemplate=True|EnumTemplate=True|InterfaceTemplate=True|StructTemplate=True">
+            <elementDefinition Id="c504a912-00ca-4c19-be13-f12a8320401f" />
+          </propertyInstance>
+          <elementDefinition Id="a7e478f1-6e33-437d-bcb0-f2d1fa6e017a" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances Id="fc79d63b-94e4-47a4-979d-3b6c04f0eecd">
+          <propertyInstance Id="3ea62c03-7b32-45ef-ad9a-369c48c1101c" name="Parameters">
+            <elementDefinition Id="634b8760-460d-4cb2-a40f-137b8c2b2a8a" />
+          </propertyInstance>
+          <elementDefinition Id="d9c6cd1f-f1ff-4a20-9d1c-98f7fcfee199" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+  </appliedStereotypesInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="0e09ddce-f952-4a8c-aa02-be4b419c4074">
+      <profileInstance Id="08e29c9d-4091-43d7-8d29-03560597bcb2" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="612c49fb-0fd4-4c21-b2d9-97c311183d59">
+      <profileInstance Id="aacc5f78-d4ae-428d-a940-6a73e3ebf91e" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="fd75afd8-a3aa-498c-93a1-66b50f5ac56b">
+      <profileInstance Id="0a3d81c6-3ea9-4f62-b327-edb18fb695f0" name="CSharpProfile">
+        <elementDefinition Id="baac330e-09b8-4654-af09-b91213dce755" />
+      </profileInstance>
+      <elementDefinition Id="1bed32ff-bb1f-47be-983b-04c08cf547b2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="8a9f3111-e961-4386-85f9-212cb7365529">
+      <profileInstance Id="c6165316-72fd-4161-818d-b451f4e3a2aa" name="TextTemplateBindings">
+        <elementDefinition Id="f0081046-d892-4e68-a313-46c694c39bee" />
+      </profileInstance>
+      <elementDefinition Id="88a51c91-52a0-4483-a3b6-2f1ec802b89b" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="30c8b607-378d-4d3b-85d5-c4b0ea3cfb6b" name="DataContextFabric" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="14b48255-63f9-4f2a-afaa-9f49b9c8603f" />
+        <ownedOperations>
+          <operation Id="aa614b38-7ec1-4ffa-a53c-1d3c4168673d" name="getDataContext" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="c2a4eeae-c0eb-427a-94a6-a646bc2dfec3" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="54621db7-7db9-41af-ba4f-19565b8ea88a" direction="Return">
+                  <elementDefinition Id="14bc7a71-5157-4291-84ed-d936db109e9e" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="6c0182be-9b26-486f-95ab-dba9deafbfd8" LastKnownName="DataContext" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="6c0182be-9b26-486f-95ab-dba9deafbfd8" name="DataContext" isAbstract="false" isLeaf="false" cachedFullName="DataContext">
+        <elementDefinition Id="2e367512-f6db-4ca1-97a7-9ebb5883f182" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="5ecf1597-6212-4a49-b00f-dbf8e4d276db" name="DataContextProvider" isAbstract="false" isLeaf="true" isActiveClass="false">
+        <elementDefinition Id="c844f327-9b73-4d4a-ae02-0b5f144dc191" />
+        <suppliersInternal>
+          <interfaceRealization Id="606197cb-20d6-4224-895a-2bb93eea20ba">
+            <interfaceMoniker Id="30c8b607-378d-4d3b-85d5-c4b0ea3cfb6b" LastKnownName="DataContextFabric" />
+            <elementDefinition Id="af59a6d4-fdd4-48f4-89b2-30e3c898d493" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <property Id="3aee0ed2-331f-4919-b78d-246c9c63637a" name="provider" visibility="Private" isLeaf="false" isStatic="true" isReadOnly="true" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="51811132-0e83-4be8-aabc-cf85b2d281bc" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="cf269235-38fe-470d-ae5b-5106400a5ea1" LastKnownName="DataContextProvider" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="625cff47-6d14-4616-bc84-3f923dc32c90" name="DataContextProvider" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="cbd3593d-9d16-4f48-baf8-7ca3091cc55d" />
+          </operation>
+          <operation Id="e5aa71de-a9b3-47b9-a06f-0d1f2c137f29" name="getInstance" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="af03a488-7bb2-4cd2-a893-3ade51c99cd9" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="a123870f-dbc7-4e1a-927e-b1a28054ad76" direction="Return">
+                  <elementDefinition Id="864b400a-bed0-4f4f-8d40-7cadb8e66d50" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="c277f976-412f-4f1c-9100-b341f0eebb5e" LastKnownName="DataContextProvider" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="712cb773-1a99-42c7-a151-513e32e00a0a" name="getDataContext" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="97bd72a6-8c32-411e-a11d-7a0f6d143756" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="9aa9369c-fc70-4710-b2d3-392bc3ed4d72" direction="Return">
+                  <elementDefinition Id="2f8c9211-8197-43e7-bd3c-b273f9a2a254" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="6c0182be-9b26-486f-95ab-dba9deafbfd8" LastKnownName="DataContext" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="c277f976-412f-4f1c-9100-b341f0eebb5e" name="DataContextProvider" isAbstract="false" isLeaf="false" cachedFullName="GTDModel::DataContextProvider">
+        <elementDefinition Id="c844f327-9b73-4d4a-ae02-0b5f144dc191" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="cf269235-38fe-470d-ae5b-5106400a5ea1" name="DataContextProvider" isAbstract="false" isLeaf="false" cachedFullName="GTDModel::DataContextProvider">
+        <elementDefinition Id="c844f327-9b73-4d4a-ae02-0b5f144dc191" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="ab79f6d7-27ac-4774-ad71-4aeba352b2c4" name="DataSynchronizer" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="26ec6e5e-ced6-4b32-b5ba-9d6ee72e8bef" />
+        <ownedOperations>
+          <operation Id="70585d86-90b8-4c3a-a064-ac2eb0e118b6" name="synchronize" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="530cbe22-d11a-418a-aa45-f77fff73fb52" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="1ba899e5-decc-421a-9eb9-4bf23900e808" name="DataContext" direction="In" isUnique="false">
+                  <elementDefinition Id="86145e82-8720-4e82-a893-0159b2af82f7" />
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="cfd424cd-fe35-462a-9384-60d7c3a98e70" direction="Return">
+                  <elementDefinition Id="d56fa376-0994-48c1-bef6-af61e95afbfc" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="ebd0205b-1661-4b84-b77a-97aee7b6972c" LastKnownName="DateTimeOffset" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="94766cc4-af79-449a-8a90-ceb9faa230ec" name="DateTimeOffset" direction="In" isUnique="false">
+                  <elementDefinition Id="cc845ebd-2f66-43f0-b2e2-1c40b3030fde" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="ebd0205b-1661-4b84-b77a-97aee7b6972c" name="DateTimeOffset" isAbstract="false" isLeaf="false" cachedFullName="DateTimeOffset">
+        <elementDefinition Id="ac6f0d0b-4fe5-4900-9056-08072ac8c04c" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="0d18b9fa-bcab-433b-8026-d12bc1a9536a" name="Synchronizer" isAbstract="false" isLeaf="true" isActiveClass="false">
+        <elementDefinition Id="9a8c72a3-908c-4c3b-803c-5a5c5524b815" />
+        <suppliersInternal>
+          <interfaceRealization Id="35cf2a92-0960-4389-ba35-c2a1f46a4215">
+            <interfaceMoniker Id="ab79f6d7-27ac-4774-ad71-4aeba352b2c4" LastKnownName="DataSynchronizer" />
+            <elementDefinition Id="fccc29bc-a85a-4946-9460-3c3786b99029" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <property Id="d7481886-cf8b-49f7-b738-4239fc972aee" name="synchronizer" visibility="Private" isLeaf="false" isStatic="true" isReadOnly="true" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="e36f2d55-0ac2-413c-98f0-e842e4a56ef5" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="bee3e9c2-8bb8-48a8-ad28-cdcd0ed9672c" LastKnownName="Synchronizer" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="1d5d433c-8b21-4e82-9872-59d409ccd294" name="synchronize" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="e3c79c5f-41a3-403c-9ff5-7b9779dfce90" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="dfb86279-e640-4be1-9577-263627ab6e93" name="DataContext" direction="In" isUnique="false">
+                  <elementDefinition Id="677a3b5c-f710-481c-960f-b13478aa4387" />
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="ff211ca3-e004-41e9-b0b1-18db5020f44d" direction="Return">
+                  <elementDefinition Id="65a7ba40-c346-47c1-acae-301cff8a7ee5" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="ebd0205b-1661-4b84-b77a-97aee7b6972c" LastKnownName="DateTimeOffset" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="a29ec2a3-315f-4679-9b58-65928ffb993c" name="DateTimeOffset" direction="In" isUnique="false">
+                  <elementDefinition Id="8cc3e8fe-2c86-4075-8d0d-82d4897bcb57" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="216875dd-7b50-48ef-af45-470449c4baf2" name="getData" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="82955979-3d4c-4161-a7ea-7e5d1a108663" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="9a8f19a5-a118-41e2-811b-8d26b76546e3" name="DataContext" direction="In" isUnique="false">
+                  <elementDefinition Id="7b357462-b329-4ff5-a8d4-9b2d1de867cf" />
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="2f3e4f73-b9c6-4901-9cb7-81d3406a8701" name="DateTimeOffset" direction="In" isUnique="false">
+                  <elementDefinition Id="20862e1a-3be9-497e-bf41-35afd3c85842" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="50a21a8e-3767-4536-8803-244e087c48f1" name="Synchronizer" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="3759cb4c-60ca-41a6-920b-4da21c7c763c" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="b4586b5a-b51b-49a9-b91d-de9816539580" direction="Return" isUnique="false">
+                  <elementDefinition Id="ca26b086-c147-4eee-aed0-7b23a3a02b94" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="bee3e9c2-8bb8-48a8-ad28-cdcd0ed9672c" LastKnownName="Synchronizer" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="443918ea-532a-4c8e-bb6f-f682c4625355" name="getInstance" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="6165f621-8d37-4928-bfa5-961efacd72eb" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="9face648-560b-4a14-9986-68f1e2034907" direction="Return" isUnique="false">
+                  <elementDefinition Id="4757a627-f2b6-4cdb-8995-beeceffb04ef" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="bee3e9c2-8bb8-48a8-ad28-cdcd0ed9672c" LastKnownName="Synchronizer" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="195e7ecf-6506-4b76-8b0e-68890c802b39" name="setData" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="1f782cf4-d5a9-44e9-ac62-255f2815980e" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="134ce732-453b-48c2-bf28-33e82ef0b077" name="DataContext" direction="In" isUnique="false">
+                  <elementDefinition Id="5c37d513-fe16-4a49-ab79-2ec97e779e09" />
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="8fbaaf9e-def9-4760-bd64-b61ee1aedc20" name="DateTimeOffset" direction="In" isUnique="false">
+                  <elementDefinition Id="287dadb2-b1fe-4923-b66b-7b213712d545" />
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="bee3e9c2-8bb8-48a8-ad28-cdcd0ed9672c" name="Synchronizer" isAbstract="false" isLeaf="false" cachedFullName="GTDModel::Synchronizer">
+        <elementDefinition Id="9a8c72a3-908c-4c3b-803c-5a5c5524b815" />
+      </referencedType>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="4a83249d-dc92-4b48-aa39-7ec6942b5e2f" name="GTDModel">
+    <elementDefinition Id="68ed9b68-d9ba-4c27-8db7-793801948951" />
+  </package>
+</logicalClassDesignerModel>
