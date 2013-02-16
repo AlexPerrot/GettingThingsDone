@@ -20,7 +20,7 @@ public class DynamicList : TaskList
 
     private Func<GTDItem, Boolean> filter;
 
-    public DynamicList(StaticList target, Func<GTDItem, Boolean>) {
+    public DynamicList(StaticList target, Func<GTDItem, Boolean> filter) {
         this.target = target;
         this.filter = filter;
     }
