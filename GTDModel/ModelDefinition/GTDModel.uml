@@ -37,6 +37,88 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
       </annotatedElements>
     </comment>
   </ownedCommentsInternal>
+  <appliedStereotypesInternal>
+    <stereotypeInstance
+      Id="df09b974-bf86-46a3-9f6d-46a50ec87af6"
+      name="namespace"
+      profile="CSharpProfile">
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="3fc478b7-b6b6-4e31-8336-1dbc1966cfce">
+          <propertyInstance
+            Id="86c49128-5e1e-4bf3-a944-5f9c013e60c7"
+            name="BaseName" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="a007ea78-c6f0-4959-a1a8-e0758f610969">
+          <propertyInstance
+            Id="0c403069-afa3-4dca-849a-be8b0d36b300"
+            name="ClrAttributes" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="8eaea573-8d7d-4120-b2bb-cecd491325c3">
+          <propertyInstance
+            Id="8a470cc4-e7a6-48f8-8e0c-ac009859c806"
+            name="Usings" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+    <stereotypeInstance
+      Id="4bb28118-9c5c-4227-bf9e-475cc309f04e"
+      name="TextTemplateBindings"
+      profile="TextTemplateBindings">
+      <propertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="bbced199-5188-4717-bf28-656982383e2b">
+          <propertyInstance
+            Id="b68ac8bf-c1ea-42d0-bf62-97f745efee8f"
+            name="Alias"
+            value="ClassTemplate|EnumTemplate|InterfaceTemplate|StructTemplate" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="c565f816-fcd7-4be4-8df6-8360b286f975">
+          <propertyInstance
+            Id="fd46ee8c-a3ae-479c-a9fd-ce6a50f68af2"
+            name="TemplateFilePath"
+            value="ClassTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4|EnumTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\EnumTemplate.t4|InterfaceTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4|StructTemplate=C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="9b96b3c3-5dc7-4cd1-81bb-98e805ac62f7">
+          <propertyInstance
+            Id="81cf498d-9918-4533-8d3f-371b5961c174"
+            name="ProjectPath"
+            value="ClassTemplate=..\GTDModelLib\GTDModelLib.csproj|EnumTemplate=..\GTDModelLib\GTDModelLib.csproj|InterfaceTemplate=..\GTDModelLib\GTDModelLib.csproj|StructTemplate=..\GTDModelLib\GTDModelLib.csproj" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="734392c1-3d3a-4c5d-b2f6-fc0daff6f805">
+          <propertyInstance
+            Id="ff9ecb72-b3fa-4aa2-8c5c-fa175d05a059"
+            name="TargetDirectory"
+            value="ClassTemplate=GeneratedCode\{PackageStructure}|EnumTemplate=GeneratedCode\{PackageStructure}|InterfaceTemplate=GeneratedCode\{PackageStructure}|StructTemplate=GeneratedCode\{PackageStructure}" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="0aa01b8c-6e3f-4eb7-bfa8-d454aa657757">
+          <propertyInstance
+            Id="68a3c2c7-7624-4f32-803e-69c8b1f75405"
+            name="TargetName"
+            value="ClassTemplate={Name}|EnumTemplate={Name}|InterfaceTemplate={Name}|StructTemplate={Name}" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="a7e478f1-6e33-437d-bcb0-f2d1fa6e017a">
+          <propertyInstance
+            Id="c504a912-00ca-4c19-be13-f12a8320401f"
+            name="Overwrite"
+            value="ClassTemplate=True|EnumTemplate=True|InterfaceTemplate=True|StructTemplate=True" />
+        </stereotypeInstanceHasPropertyInstances>
+        <stereotypeInstanceHasPropertyInstances
+          Id="d9c6cd1f-f1ff-4a20-9d1c-98f7fcfee199">
+          <propertyInstance
+            Id="634b8760-460d-4cb2-a40f-137b8c2b2a8a"
+            name="Parameters" />
+        </stereotypeInstanceHasPropertyInstances>
+      </propertyInstances>
+    </stereotypeInstance>
+  </appliedStereotypesInternal>
   <profileInstances>
     <packageHasProfileInstances
       Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
@@ -49,6 +131,18 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
       <profileInstance
         Id="532ea607-fb19-44b8-8502-3351b05452be"
         name="StandardProfileL3" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="1bed32ff-bb1f-47be-983b-04c08cf547b2">
+      <profileInstance
+        Id="baac330e-09b8-4654-af09-b91213dce755"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="88a51c91-52a0-4483-a3b6-2f1ec802b89b">
+      <profileInstance
+        Id="f0081046-d892-4e68-a313-46c694c39bee"
+        name="TextTemplateBindings" />
     </packageHasProfileInstances>
   </profileInstances>
   <packagedElements>
@@ -302,6 +396,49 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="f0cdeb4f-126c-4229-942e-c59dd2619c96"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3348e03c-aec7-405d-8b75-cd91a19e39df">
+                <propertyInstance
+                  Id="6b794cee-c6ec-41c2-aee9-3e81fa46b3ff"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="77c70097-d523-42e4-8a51-7dbf95c9cc3d">
+                <propertyInstance
+                  Id="adf98792-279c-4ccd-98ff-e8b234c326ee"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1f7d89c2-f70a-42af-a367-c79ebef626de">
+                <propertyInstance
+                  Id="2872e565-823b-4cdf-aabd-0a3a2e8818a1"
+                  name="IsStatic"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7173e89a-f46e-46ae-b25b-1207e200f531">
+                <propertyInstance
+                  Id="5f0894e6-2a5a-458e-88b0-931e6d48ad2e"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="50c2c52a-5470-47ad-9002-a74baa7c8f96">
+                <propertyInstance
+                  Id="3144554d-dc7a-4666-a70f-b4aca60246a4"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
         <suppliersInternal>
           <interfaceRealization
             Id="50c6964f-fb1a-4803-b059-b2be6a2deb61">
@@ -320,6 +457,56 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false">
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a9809bc4-e137-46d6-b9f7-44396734db4f"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="98d18df8-69cb-4c4b-b6bb-e0def44651cc">
+                    <propertyInstance
+                      Id="33788cf9-c5e7-4a16-960c-20a90b19eb3c"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4142c903-3b59-4ffe-b143-6ac6b576b321">
+                    <propertyInstance
+                      Id="272c990f-f9bd-4667-8404-a62d955683e6"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3532d90e-c2d7-417f-a7a5-b104fd9f9046">
+                    <propertyInstance
+                      Id="be4df281-a50b-41a6-9b10-9145e602e65b"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1416980b-c55e-4022-8ee9-0cdf553d740f">
+                    <propertyInstance
+                      Id="7494e4ea-c374-4499-b27b-d8a2f2cdd703"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e7813329-86d8-4152-b04f-28a01fd5a8cf">
+                    <propertyInstance
+                      Id="5e354721-9080-4ace-85e1-8bdad567f429"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="88a028d6-5b31-4ff9-ac47-96c2929e6be3">
+                    <propertyInstance
+                      Id="1cb72d8d-8214-45e8-adad-e0dbfaa64c92"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
@@ -360,6 +547,49 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="02848be4-3fb4-4383-bff6-f99a9bd04cb7"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="29a024ad-46a8-4b11-a295-f571da9c9e0b">
+                <propertyInstance
+                  Id="26ad41f5-cdbf-4543-9806-69931dc660ad"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="41b2d7f3-c330-4e22-87a0-f0f85089b495">
+                <propertyInstance
+                  Id="63ef0741-fc29-4134-add6-a45b53117962"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a9965904-eb22-47ca-ac32-7f405e9b92f9">
+                <propertyInstance
+                  Id="41cca016-54fd-4307-b743-92cd9ca6e256"
+                  name="IsStatic"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fe14ab81-c057-4b33-8b08-76055dc56c25">
+                <propertyInstance
+                  Id="fb7d6f79-4085-4332-87d3-173535cb66e4"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="69a5960c-2276-4e2c-b7f6-0d27d3a170b4">
+                <propertyInstance
+                  Id="447c8c7b-f565-4168-8bf5-e38df66e9fa2"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
         <suppliersInternal>
           <interfaceRealization
             Id="a9a70dfa-93ae-4378-a1e7-9e144f2c70ac">
@@ -434,6 +664,63 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
             isDerivedUnion="false"
             aggregation="None"
             isComposite="false">
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="d92a95f3-f304-47e2-9087-718a95d4717f"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0b65d42e-84d9-42a3-a6e1-bd7168394c2e">
+                    <propertyInstance
+                      Id="7ef9789e-8f1a-4458-8659-53595160e318"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ce46ee71-41a3-4086-ac6a-c2b065b36402">
+                    <propertyInstance
+                      Id="6793dedf-c1ff-4ef3-8412-94ea48c35195"
+                      name="Get"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d3860d54-9840-4a87-8224-2b0266a38a69">
+                    <propertyInstance
+                      Id="1b02869e-0d75-4697-b3ac-f05d71b2bf28"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="871efd2e-46bb-4bbd-acf5-353ce05bcb3f">
+                    <propertyInstance
+                      Id="ebb9f2ad-8ba3-4d5f-b0e0-724cc8950f92"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d6b45c21-beb0-4f9c-8dff-fa92e2a313b8">
+                    <propertyInstance
+                      Id="4eff09f9-e23d-4366-b5da-ecf84b27b881"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fa8f4aef-3bde-49a0-a3df-5832233eaa54">
+                    <propertyInstance
+                      Id="c30ee621-9748-4473-8f14-0bdc398d544c"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="de55a30f-0dd0-4c46-9d65-895411778db3">
+                    <propertyInstance
+                      Id="5b86bf19-6d7a-4864-8ec5-c3182983f428"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
             <type_NamedElement>
               <undefinedTypeMoniker
                 Id="2c954960-9601-4cf8-8af8-9704bd4d9a65"
@@ -451,6 +738,56 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false">
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="4d8ac04e-a1f1-45e7-9d31-865d2598146c"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f48acfe7-1c98-46c2-87bb-4ca6b145859a">
+                    <propertyInstance
+                      Id="ad3bb596-2204-4838-a603-d3fcb9447f7b"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3c5ba08a-dc59-4e82-ad78-817435627e97">
+                    <propertyInstance
+                      Id="240f69b8-d8ab-4d6b-a6fd-fa87f6d79159"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a817e861-dbb2-497b-aaa0-491a72e7c240">
+                    <propertyInstance
+                      Id="f6994237-6383-4a8b-8b93-531fc7cf37c2"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1a350c22-d190-4634-85d2-7ba1aa579001">
+                    <propertyInstance
+                      Id="3d73cf07-740e-4dcb-837d-936f05cbe305"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4b6726b3-26a0-4aa3-a8f6-3dda21458f67">
+                    <propertyInstance
+                      Id="9eb5004c-bcd3-4132-b8fc-dacd75775512"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e4f0034a-9d95-425c-b708-876c79c781ea">
+                    <propertyInstance
+                      Id="2afdf087-4670-408d-8955-36f61e940da1"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
