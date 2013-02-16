@@ -24,9 +24,9 @@ public class GTDSystem : TaskList
 		set;
 	}
 
-	public virtual IEnumerator<Task> GetEnumerator()
+	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
-		throw new System.NotImplementedException();
+		return Lists.GetEnumerator();
 	}
 
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
@@ -36,8 +36,8 @@ public class GTDSystem : TaskList
 
 	public virtual T accept<T>(TaskVisitor<T> v)
 	{
-		throw new System.NotImplementedException();
-	}
+        return v.visit(this);
+    }
 
 }
 

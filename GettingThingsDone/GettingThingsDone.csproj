@@ -54,8 +54,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="TaskList.cs" />
-    <Compile Include="TaskVisitor_T.cs" />
+    <Compile Include="src\model\TaskList.cs" />
+    <Compile Include="src\model\TaskVisitor_T.cs" />
     <Compile Include="test\SingleTaskTest.cs" />
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
@@ -69,16 +69,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DynamicList.cs" />
-    <Compile Include="GTDItem.cs" />
-    <Compile Include="GTDSystem.cs" />
+    <Compile Include="src\model\DynamicList.cs" />
+    <Compile Include="src\model\GTDItem.cs" />
+    <Compile Include="src\model\GTDSystem.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Project.cs" />
-    <Compile Include="SingleTask.cs" />
-    <Compile Include="StaticList.cs" />
-    <Compile Include="Task.cs" />
+    <Compile Include="src\model\Project.cs" />
+    <Compile Include="src\model\SingleTask.cs" />
+    <Compile Include="src\model\StaticList.cs" />
+    <Compile Include="src\model\Task.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

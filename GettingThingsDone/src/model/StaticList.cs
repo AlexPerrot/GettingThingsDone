@@ -11,7 +11,7 @@ using System.Text;
 
 public class StaticList : TaskList
 {
-	public virtual IEnumerator<Task> GetEnumerator()
+	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
 		throw new System.NotImplementedException();
 	}

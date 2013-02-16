@@ -18,7 +18,7 @@ public class DynamicList : TaskList
 		set;
 	}
 
-	public virtual IEnumerator<Task> GetEnumerator()
+	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
 		throw new System.NotImplementedException();
 	}
