@@ -18,9 +18,16 @@ public class DynamicList : TaskList
 		set;
 	}
 
+    private Func<GTDItem, Boolean> filter;
+
+    public DynamicList(StaticList target, Func<GTDItem, Boolean>) {
+        this.target = target;
+        this.filter = filter;
+    }
+
 	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
-		throw new System.NotImplementedException();
+		return target.Where(filter).GetEnumerator();
 	}
 
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
