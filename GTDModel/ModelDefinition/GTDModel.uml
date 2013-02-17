@@ -36,46 +36,6 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
           LastKnownLocation="GTDModel.uml" />
       </annotatedElements>
     </comment>
-    <comment
-      Id="7c01f4ec-b058-46fd-b514-3127904661a6">
-      <body>Fournit le connecteur au service de synchronisation des données (connecté ou déconnecté).</body>
-      <annotatedElements>
-        <interfaceMoniker
-          Id="14b48255-63f9-4f2a-afaa-9f49b9c8603f"
-          LastKnownName="DataContextFabric"
-          LastKnownLocation="GTDModel.uml" />
-      </annotatedElements>
-    </comment>
-    <comment
-      Id="8a918b2c-3b0e-4950-bf00-11b89a28f9c0">
-      <body>Fabrique singleton par laquelle on obtient le lien pour la synchronisation des données.</body>
-      <annotatedElements>
-        <classMoniker
-          Id="c844f327-9b73-4d4a-ae02-0b5f144dc191"
-          LastKnownName="DataContextProvider"
-          LastKnownLocation="GTDModel.uml" />
-      </annotatedElements>
-    </comment>
-    <comment
-      Id="7aa44ba8-d4ef-40a0-bd06-65438c8b1717">
-      <body>Fournit le service de synchronisation des données client en passant par le DataContext utilisé par LINQ pour désigner la destination des données.</body>
-      <annotatedElements>
-        <interfaceMoniker
-          Id="26ec6e5e-ced6-4b32-b5ba-9d6ee72e8bef"
-          LastKnownName="DataSynchronizer"
-          LastKnownLocation="GTDModel.uml" />
-      </annotatedElements>
-    </comment>
-    <comment
-      Id="2514c0c9-d838-4724-8724-4a566acb1629">
-      <body>Classe de synchronisation singleton qui fournit le service de synchronisation. Se base sur des DateTimeOffset pour déterminer les données à synchroniser.</body>
-      <annotatedElements>
-        <classMoniker
-          Id="9a8c72a3-908c-4c3b-803c-5a5c5524b815"
-          LastKnownName="Synchronizer"
-          LastKnownLocation="GTDModel.uml" />
-      </annotatedElements>
-    </comment>
   </ownedCommentsInternal>
   <appliedStereotypesInternal>
     <stereotypeInstance
