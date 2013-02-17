@@ -29,6 +29,11 @@ public class Project : Task
     private DateTimeOffset creationDate;
     public DateTimeOffset CreationDate { get { return creationDate; } }
 
+    public Project() : this("", "", null, false, DateTimeOffset.Now)
+    {
+
+    }
+
     public Project(string title, string desc, DateTimeOffset? dueDate, Boolean done, DateTimeOffset creationDate)
     {
         this.Title = title;

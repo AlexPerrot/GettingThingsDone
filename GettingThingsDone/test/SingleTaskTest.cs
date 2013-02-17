@@ -59,4 +59,38 @@ namespace GettingThingsDone.test
             Assert.AreEqual(false, task.DueDate.HasValue);
         }
     }
+
+    [TestClass]
+    public class ProjectTest
+    {
+        private static Project projet;
+        private static Task task1;
+        private static Task task2;
+
+        [TestInitialize]
+        public void setUp()
+        {
+            projet = new Project();
+            task1 = new SingleTask("Tache 1", "C'est la tache 1");
+            task2 = new SingleTask("Tache 2", "C'est la tache 2", DateTimeOffset.MaxValue);
+        }
+
+        [TestMethod]
+        public void testNotNull()
+        {
+            Assert.IsNotNull(projet);
+            Assert.IsNotNull(task1);
+            Assert.IsNotNull(task2);
+        }
+
+        [TestMethod]
+        public void testAddTask()
+        {
+            Assert.IsTrue(projet.Tasks.Count == 0);
+            projet.Tasks.Add(task1);
+            Assert.IsTrue(projet.Tasks.Count == 1);
+            projet.Tasks.Add(task2);
+            Assert.IsTrue(projet.Tasks.Count == 2);
+        }
+    }
 }
