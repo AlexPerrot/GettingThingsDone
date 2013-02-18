@@ -11,7 +11,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
+        <ListBox Name="List" />
         <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask"/>
     </Grid>
 </Window>

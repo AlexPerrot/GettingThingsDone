@@ -30,7 +30,7 @@ namespace GettingThingsDone
         private void CreateTask(object sender, RoutedEventArgs e)
         {
             Task t = TaskCreationWindow.GetNewTask();
-            System.Console.WriteLine(t);
+            List.Items.Add(t);
         }
     }
 }
