@@ -13,5 +13,9 @@ namespace GettingThingsDone
     /// </summary>
     public partial class App : Application
     {
+
+        private GTDSystem gtd = new GTDSystem();
+        public GTDSystem GTD { get { return gtd; } }
+
     }
 }
