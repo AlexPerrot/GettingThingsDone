@@ -27,12 +27,15 @@ namespace GettingThingsDone
         public static Task GetNewTask()
         {
             TaskCreationWindow win = new TaskCreationWindow();
-            win.ShowDialog();
-            return win.CreationPanel.CreateTask();
+            if (win.ShowDialog().Value)
+                return win.CreationPanel.CreateTask();
+            else
+                return null;
         }
         
         private void OkButtonClick(object sender, RoutedEventArgs e)
         {
+            DialogResult = true;
             this.Close();
         }
     }
