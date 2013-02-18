@@ -10,27 +10,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace GettingThingsDone
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour TaskCreationWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TaskCreationWindow : Window
     {
-        public MainWindow()
+        public TaskCreationWindow()
         {
             InitializeComponent();
-            //Window login = new LoginWindow();
-            //login.Show();
         }
 
-        private void CreateTask(object sender, RoutedEventArgs e)
+        public static Task GetNewTask()
         {
-            Task t = TaskCreationWindow.GetNewTask();
-            List.Items.Add(t);
+            TaskCreationWindow win = new TaskCreationWindow();
+            win.ShowDialog();
+            return win.CreationPanel.CreateTask();
+        }
+        
+        private void OkButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
