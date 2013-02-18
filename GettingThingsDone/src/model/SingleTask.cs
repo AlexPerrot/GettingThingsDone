@@ -44,6 +44,11 @@ public class SingleTask : Task
         this.DueDate = dueDate;
     }
 
+    public override string ToString()
+    {
+        return "SingleTask : " + Title + "\n" + Description;
+    }
+
 	public virtual T accept<T>(TaskVisitor<T> v)
 	{
 		return v.visit(this);
