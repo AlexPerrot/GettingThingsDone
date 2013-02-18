@@ -24,5 +24,15 @@ namespace GettingThingsDone.src.view
         {
             InitializeComponent();
         }
+
+        private void DueDateChecked(object sender, RoutedEventArgs e)
+        {
+            DueDatePicker.IsEnabled = true;
+        }
+
+        private void DueDateUnchecked(object sender, RoutedEventArgs e)
+        {
+            DueDatePicker.IsEnabled = false;
+        }
     }
 }
