@@ -34,5 +34,13 @@ namespace GettingThingsDone.src.view
         {
             DueDatePicker.IsEnabled = false;
         }
+
+        public Task CreateTask()
+        {
+            if (DueDateBox.IsChecked.Value)
+                return new SingleTask(TitleText.Text, DescText.Text, DueDatePicker.SelectedDate.Value);
+            else
+                return new SingleTask(TitleText.Text, DescText.Text);
+        }
     }
 }

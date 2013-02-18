@@ -26,5 +26,11 @@ namespace GettingThingsDone
             Window login = new LoginWindow();
             login.Show();
         }
+
+        private void CreateTask(object sender, RoutedEventArgs e)
+        {
+            Task t = TaskCreation.CreateTask();
+            System.Console.WriteLine(t);
+        }
     }
 }

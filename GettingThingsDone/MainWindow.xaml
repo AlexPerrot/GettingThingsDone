@@ -4,6 +4,14 @@
         xmlns:local="clr-namespace:GettingThingsDone.src.view"
         Title="Getting Things Done" Height="350" Width="525">
     <Grid>
-        <local:TaskCreationPanel/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <local:TaskCreationPanel x:Name="TaskCreation" Grid.Row="0"/>
+        <Button Content="Créer la tâche" Grid.Row="1" Click="CreateTask"/>
     </Grid>
 </Window>
