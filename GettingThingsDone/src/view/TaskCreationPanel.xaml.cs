@@ -35,6 +35,24 @@ namespace GettingThingsDone.src.view
             DueDatePicker.IsEnabled = false;
         }
 
+        public void LoadFromTask(SingleTask task)
+        {
+            TitleText.Text = task.Title;
+            DescText.Text = task.Description;
+            DueDateBox.IsChecked = task.DueDate.HasValue;
+            DueDatePicker.SelectedDate = new DateTime?(task.DueDate.Value.DateTime);
+        }
+
+        public void WriteToTask(SingleTask task)
+        {
+            task.Title = TitleText.Text;
+            task.Description = DescText.Text;
+            if (DueDateBox.IsChecked.Value)
+                task.DueDate = new DateTimeOffset(DueDatePicker.SelectedDate.Value);
+            else
+                task.DueDate = new DateTimeOffset?();
+        }
+
         public Task CreateTask()
         {
             if (DueDateBox.IsChecked.Value)
