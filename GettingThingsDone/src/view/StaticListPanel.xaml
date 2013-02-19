@@ -7,10 +7,12 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
-            <StackPanel Orientation="Horizontal">
+            <Border BorderBrush="DarkBlue" BorderThickness="5" CornerRadius="3">
+            <StackPanel Orientation="Horizontal" Background="Honeydew" >
                 <CheckBox Content="" IsChecked="{Binding Done, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label Content="{Binding Title}" VerticalAlignment="Center"/>
+                <Label Content="{Binding Title}" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="12"/>
             </StackPanel>
+            </Border>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -21,7 +23,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Content="{Binding Name}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <ListBox x:Name="List" ItemsSource="{Binding List}" ItemTemplate="{DynamicResource TaskDT}" Grid.Column="0" Grid.Row="1"/>
+        <Label Content="{Binding Name}" FontSize="16" Foreground="AntiqueWhite" Background="SaddleBrown" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+        <ListBox x:Name="List" ItemsSource="{Binding List}" ItemTemplate="{DynamicResource TaskDT}" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Stretch"/>
     </Grid>
 </UserControl>
