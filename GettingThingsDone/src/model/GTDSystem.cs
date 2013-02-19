@@ -52,7 +52,12 @@ public class GTDSystem : TaskList
 
 	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
-		return Lists.GetEnumerator();
+        yield return Inbox;
+        yield return Today;
+        yield return Tomorrow;
+        yield return Someday;
+        foreach (GTDItem item in Lists)
+            yield return item;
 	}
 
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
