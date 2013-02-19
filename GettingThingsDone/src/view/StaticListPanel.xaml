@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="GettingThingsDone.src.view.StaticListPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate x:Key="TaskDT">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Content="" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Content="{Binding Title}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Content="{Binding Name}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <ListBox x:Name="List" ItemsSource="{Binding List}" ItemTemplate="{DynamicResource TaskDT}" Grid.Column="0" Grid.Row="1"/>
+    </Grid>
+</UserControl>
