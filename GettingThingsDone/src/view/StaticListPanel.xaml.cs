@@ -24,5 +24,10 @@ namespace GettingThingsDone.src.view
         {
             InitializeComponent();
         }
+
+        private void StackPanel_MouseMove_1(object sender, MouseEventArgs e)
+        {
+            System.Console.WriteLine("Mouse on : " + DataContext);
+        }
     }
 }
