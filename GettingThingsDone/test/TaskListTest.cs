@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace GettingThingsDone.test
 {
     [TestClass]
-    public class ListClassTest
+    public class TaskListTest
     {
         StaticList List;
         String ListName = "List";
@@ -43,6 +43,39 @@ namespace GettingThingsDone.test
             Assert.IsTrue(List.list.Contains(item));
             List.RemoveItem(item);
             Assert.IsFalse(List.list.Contains(item));
+        }
+
+        [TestMethod]
+        public void StaticListToString()
+        {
+            Assert.AreEqual(List.ToString(), ListName);
+        }
+    }
+
+    [TestClass]
+    public class GTDSystemTest
+    {
+        GTDSystem system;
+
+        [TestInitialize]
+        public void setUp()
+        {
+            system = new GTDSystem();
+        }
+
+        [TestMethod]
+        public void CreationGTDSystem()
+        {
+            Assert.IsNotNull(system.Today);
+            Assert.IsNotNull(system.Tomorrow);
+            Assert.IsNotNull(system.Someday);
+            Assert.IsNotNull(system.Waiting);
+            Assert.IsNotNull(system.Contexts);
+            Assert.IsNotNull(system.Inbox);
+            Assert.AreEqual(system.Today.Name, "Today");
+            Assert.AreEqual(system.Tomorrow.Name, "Tomorrow");
+            Assert.AreEqual(system.Someday.Name, "Someday");
+            Assert.AreEqual(system.Waiting.Name, "Waiting");
         }
     }
 }

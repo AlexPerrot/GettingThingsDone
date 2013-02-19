@@ -18,6 +18,9 @@ public class SingleTask : Task
     public DateTimeOffset? DueDate { get; set; }
     private DateTimeOffset creationDate;
     public DateTimeOffset CreationDate { get { return creationDate; } }
+    public DateTimeOffset Reminder { get; set; }
+    public String Context { get; set; }
+
 
     public SingleTask() : this("")
     {
