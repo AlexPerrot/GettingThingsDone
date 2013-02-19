@@ -1,5 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="9762e5ab-3167-43b6-870b-766eabf967b1" name="DataSync" linkedPackageId="4a83249d-dc92-4b48-aa39-7ec6942b5e2f" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <ownedCommentsInternal>
+    <comment Id="dc7ad0b4-6ce4-4ec3-b9e7-8a999266d72f">
+      <elementDefinition Id="070d99da-b5fa-4341-be89-58e48d299a7d" />
+      <body>Permet d'accéder à la base de données selon le patron de conception "fabrique".</body>
+      <annotatedElements>
+        <interfaceMoniker Id="69407129-2489-40bf-b7f5-ea44c754defa" LastKnownName="LocalDataContextProvider" />
+      </annotatedElements>
+    </comment>
+    <comment Id="eb74b7c1-e653-4cce-85ef-03694be6a0c2">
+      <elementDefinition Id="92ac654d-9faf-4e5f-a92a-911334e20ecc" />
+      <body>Singleton pour l'accés au tunnel de connection à la base de données locale.</body>
+      <annotatedElements>
+        <classMoniker Id="a3854e33-8ae2-4c7c-950d-28c389c9eb66" LastKnownName="LocalDatabaseProvider" />
+      </annotatedElements>
+    </comment>
+    <comment Id="dd2f34ea-5a54-4ce4-abd6-9a0f5c03af56">
+      <elementDefinition Id="086679d9-4263-4f69-aa3e-bf56a12980f2" />
+      <body>Proxy pour l'écriture et la lecture des données de taches contenues dans la base de données locale.</body>
+      <annotatedElements>
+        <interfaceMoniker Id="e7e36666-b70f-41b7-8fb9-e151c25b0018" LastKnownName="LocalDataTaskIO" />
+      </annotatedElements>
+    </comment>
+    <comment Id="b559305a-0851-4800-901d-80a34cd8a490">
+      <elementDefinition Id="9533e7e0-a9e0-4fa4-83c1-8489e06a3d81" />
+      <body>Chargé de l'enregistrement des taches dans la bdd locale et de la récupération de taches dans la bdd locale.</body>
+      <annotatedElements>
+        <classMoniker Id="fbc079e2-98b1-4613-86db-de16c0aef16b" LastKnownName="TasksIO" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
   <appliedStereotypesInternal>
     <stereotypeInstance Id="7cee4f6d-59c1-48e7-b4bc-15d391ae322b" name="namespace" profile="CSharpProfile">
       <elementDefinition Id="df09b974-bf86-46a3-9f6d-46a50ec87af6" />
@@ -72,6 +102,258 @@
       </propertyInstances>
     </stereotypeInstance>
   </appliedStereotypesInternal>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="69407129-2489-40bf-b7f5-ea44c754defa" name="LocalDataContextProvider" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="82673de7-124d-4dd8-b350-e603466dde7c" />
+        <ownedOperations>
+          <operation Id="2941a862-dd69-408c-94ad-7b3004c84239" name="getDataContext" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="bcd3de55-6989-4892-add3-24e60f83128b" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="1ce4c7a2-8de5-427c-a14f-56fdda1fb223" direction="Return" isUnique="false">
+                  <elementDefinition Id="962ddfc5-d8b1-4c04-817f-bf6e76debf00" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="6c3b692a-ddfb-43d3-a397-42bca60a23ae" LastKnownName="DataContext" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a3854e33-8ae2-4c7c-950d-28c389c9eb66" name="LocalDatabaseProvider" isAbstract="false" isLeaf="true" isActiveClass="false">
+        <elementDefinition Id="7661b8f8-75b9-4d66-a1b7-22587bb97687" />
+        <suppliersInternal>
+          <interfaceRealization Id="27d947d7-0ff7-41ae-9ea2-e59138115f1f">
+            <interfaceMoniker Id="69407129-2489-40bf-b7f5-ea44c754defa" LastKnownName="LocalDataContextProvider" />
+            <elementDefinition Id="d4cf2dc7-ac0c-4716-8c37-d4500ffa3a47" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <property Id="558a858f-6ade-4a6c-9b9b-894f1920868a" name="db" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="fd3ccf20-e61e-408d-8064-d21b42b7bf4f" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="6882df15-0daf-4213-93ba-9743b0bbd544" LastKnownName="DataClassesDataContext" />
+            </type_NamedElement>
+          </property>
+          <property Id="223ef5de-2f7c-4a8e-96fc-7859a2bcdb9b" name="instance" visibility="Private" isLeaf="false" isStatic="true" isReadOnly="true" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="3a052204-a65c-437e-8581-6752cd5e4cfe" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="dbc40c68-5ef0-4208-a4e7-9b0d0ca0eca2" LastKnownName="LocalDatabaseProvider" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="ce85b127-259d-4e95-bacd-ccc066479701" name="getDataContext" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="82f7c694-a87e-4888-97b0-3d502a1c5fbc" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="c9655899-9100-4712-8ccc-2ef372146849" direction="Return" isUnique="false">
+                  <elementDefinition Id="a35d7698-e4dc-4798-900d-e98d378a7286" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="6c3b692a-ddfb-43d3-a397-42bca60a23ae" LastKnownName="DataContext" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="a6769191-0101-4b18-b787-e0e8423a042d" name="LocalDatabaseProvider" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="e167a4ae-56d5-4c68-a9e4-172d14808cd4" />
+          </operation>
+          <operation Id="63bca08c-0242-4f21-947e-88afa293e4eb" name="getInstance" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="22259e73-3918-48d1-be83-6149b2126619" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="52bf419a-a80e-4601-b810-f1c5dedd59c7" direction="Return" isUnique="false">
+                  <elementDefinition Id="f802acc6-e915-4b11-bc2a-6e07aefb3ad4" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="dbc40c68-5ef0-4208-a4e7-9b0d0ca0eca2" LastKnownName="LocalDatabaseProvider" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="6882df15-0daf-4213-93ba-9743b0bbd544" name="DataClassesDataContext" isAbstract="false" isLeaf="false" cachedFullName="DataClassesDataContext">
+        <elementDefinition Id="f891cb70-4cb3-42d3-b5fa-0cbf75cc0110" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="6c3b692a-ddfb-43d3-a397-42bca60a23ae" name="DataContext" isAbstract="false" isLeaf="false" cachedFullName="DataContext">
+        <elementDefinition Id="2e367512-f6db-4ca1-97a7-9ebb5883f182" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="dbc40c68-5ef0-4208-a4e7-9b0d0ca0eca2" name="LocalDatabaseProvider" isAbstract="false" isLeaf="false" cachedFullName="GTDModel::LocalDatabaseProvider">
+        <elementDefinition Id="7661b8f8-75b9-4d66-a1b7-22587bb97687" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="e7e36666-b70f-41b7-8fb9-e151c25b0018" name="LocalDataTaskIO" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d62f40c5-7d1d-4449-b337-22d9a448c49c" />
+        <ownedOperations>
+          <operation Id="86e3cb7c-fa6f-4860-b5fe-fb75bce70608" name="saveTask" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="8b935f47-3405-4cc6-a55e-922723cb8d2e" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="14c1a620-a741-46df-b8f5-fc2900ed1c82" name="t" direction="In" isUnique="false">
+                  <elementDefinition Id="7e6975a3-287b-40ec-bfcd-0778122e1d8f" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cc4dc761-22bd-4bdd-821b-4c4b4805c041" LastKnownName="Task" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="f34a450d-449b-439b-98a6-c75da623b771" direction="Return" isUnique="false">
+                  <elementDefinition Id="50b53c4d-b825-49db-be20-b0e0c5bb8579" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="9f729ae4-a20b-43f0-8038-f0b8e1d368c0" LastKnownName="int" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="d4dd3f4b-c8e0-4cc4-9358-6ac79f79b4f0" name="saveTask" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="6c9da53e-c7ce-4886-902b-6f57f27becf5" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="6a647bb4-0d3c-400a-9f18-766f3a137ed9" name="t" direction="In" isUnique="false">
+                  <elementDefinition Id="cdc6d8fc-d90b-45bb-b53d-0a66e19514e0" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cc4dc761-22bd-4bdd-821b-4c4b4805c041" LastKnownName="Task" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="de05625f-860d-4173-9a30-fd9748dc0532" name="id" direction="In" isUnique="false">
+                  <elementDefinition Id="dfeaf696-d04f-4c13-8599-b781bc303d8a" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="9f729ae4-a20b-43f0-8038-f0b8e1d368c0" LastKnownName="int" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="cd6a1e4c-91eb-4d64-a47a-532589428663" direction="Return" isUnique="false">
+                  <elementDefinition Id="007fd82e-a4f8-4312-89fb-3312217cbe76" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="9f729ae4-a20b-43f0-8038-f0b8e1d368c0" LastKnownName="int" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="fbc079e2-98b1-4613-86db-de16c0aef16b" name="TasksIO" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d4680751-36b5-4afa-becc-4f0055963d21" />
+        <suppliersInternal>
+          <interfaceRealization Id="d328826f-216f-4a59-a5b9-13187727658f">
+            <interfaceMoniker Id="e7e36666-b70f-41b7-8fb9-e151c25b0018" LastKnownName="LocalDataTaskIO" />
+            <elementDefinition Id="8a395b09-862b-4cf9-a0d9-afc02a613849" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <property Id="c42ef7aa-19f9-4f9e-8b7c-c9a9c058170e" name="instance" visibility="Private" isLeaf="false" isStatic="true" isReadOnly="true" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="7242686d-2228-4fd3-8f3f-fb8dda0837d0" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="13e7118c-7108-4548-bf41-71c43727e315" LastKnownName="TasksIO" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="1cd11c82-f426-41e9-a6a0-e75993a9701c" name="saveTask" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="a6d4b3e8-d989-46dd-a862-86eda945621a" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="4bda26a9-d7bb-46d0-8486-bdb54158006b" name="t" direction="In" isUnique="false">
+                  <elementDefinition Id="f6892ad0-1b36-4d25-a92d-b5f9c3875e29" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cc4dc761-22bd-4bdd-821b-4c4b4805c041" LastKnownName="Task" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="0a07af90-d7b7-4d0d-aee5-ef902bfd3395" direction="Return" isUnique="false">
+                  <elementDefinition Id="46aff802-12dc-4f8a-b482-95a99e471b09" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="9f729ae4-a20b-43f0-8038-f0b8e1d368c0" LastKnownName="int" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="a11f08eb-dd21-4489-b035-ae65066b8124" name="saveTask" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="851f7e53-fc10-4fe9-aa66-97911d68b7ad" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="f7fef43e-cae8-4c17-ae9b-dbd589f60317" name="id" direction="In" isUnique="false">
+                  <elementDefinition Id="891ef7b6-1c4d-495e-a4bb-a67fa131daf2" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="cc4dc761-22bd-4bdd-821b-4c4b4805c041" LastKnownName="Task" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="d3feaeb2-9228-4415-a9ae-124eee6bcd1a" name="id" direction="In" isUnique="false">
+                  <elementDefinition Id="8ca6cf73-afbf-47ef-8b06-3218156289cf" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="9f729ae4-a20b-43f0-8038-f0b8e1d368c0" LastKnownName="int" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="57e30465-9338-4668-af32-bee093e4ce45" direction="Return" isUnique="false">
+                  <elementDefinition Id="942ea81d-3fb3-4574-a84d-fd9f42845303" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="9f729ae4-a20b-43f0-8038-f0b8e1d368c0" LastKnownName="int" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="4e0bef90-5c0e-4e27-8e63-73c8cbd7be5f" name="getInstance" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="3705b0f7-4a22-491f-bc9b-52eb31548bb5" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="43457659-9aaa-40f7-87f0-e7323148112c" direction="Return" isUnique="false">
+                  <elementDefinition Id="1be66a43-e472-4826-bc88-9a1ef9dd5bbe" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="13e7118c-7108-4548-bf41-71c43727e315" LastKnownName="TasksIO" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="54e9d112-0604-409e-a609-d0e40a84b799" name="TasksIO" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="4cade400-3e98-4a02-ae6f-5d115d40d77b" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="13e7118c-7108-4548-bf41-71c43727e315" name="TasksIO" isAbstract="false" isLeaf="false" cachedFullName="GTDModel::TasksIO">
+        <elementDefinition Id="d4680751-36b5-4afa-becc-4f0055963d21" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="cc4dc761-22bd-4bdd-821b-4c4b4805c041" name="Task" isAbstract="false" isLeaf="false" cachedFullName="GTDModel::Task">
+        <elementDefinition Id="bb918ae6-4516-4017-942c-da622dffe72c" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="9f729ae4-a20b-43f0-8038-f0b8e1d368c0" name="int" isAbstract="false" isLeaf="false" cachedFullName="int">
+        <elementDefinition Id="4acad67d-3db5-418b-8cad-64ae4fa564cf" />
+      </referencedType>
+    </packageHasNamedElement>
+  </packagedElements>
   <package Id="4a83249d-dc92-4b48-aa39-7ec6942b5e2f" name="GTDModel">
     <elementDefinition Id="68ed9b68-d9ba-4c27-8db7-793801948951" />
     <profileInstances>
