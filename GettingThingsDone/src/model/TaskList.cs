@@ -9,10 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public interface TaskList  : GTDItem, IEnumerable<GTDItem>
+public interface TaskList : GTDItem, IEnumerable<GTDItem>
 {
-	
-
+   String Name { get; set; }
 
 }
 

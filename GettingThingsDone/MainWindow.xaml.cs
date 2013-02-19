@@ -23,8 +23,15 @@ namespace GettingThingsDone
         public MainWindow()
         {
             InitializeComponent();
-            Window login = new LoginWindow();
-            login.Show();
+            //Window login = new LoginWindow();
+            //login.Show();
+        }
+
+        private void CreateTask(object sender, RoutedEventArgs e)
+        {
+            Task t = TaskCreationWindow.GetNewTask();
+            if (t!=null)
+                List.Items.Add(t);
         }
     }
 }
