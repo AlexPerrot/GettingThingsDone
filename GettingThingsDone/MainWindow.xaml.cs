@@ -32,7 +32,6 @@ namespace GettingThingsDone
             if (t!=null)
                 ((App)App.Current).GTD.Inbox.AddItem(t);
             System.Console.WriteLine(((App)App.Current).GTD.Inbox.List.Count);
-            List.Items.Refresh();
         }
     }
 }

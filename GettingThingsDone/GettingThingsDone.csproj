@@ -74,6 +74,9 @@
     <Compile Include="src\view\TaskCreationPanel.xaml.cs">
       <DependentUpon>TaskCreationPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="src\view\StaticListPanel.xaml.cs">
+      <DependentUpon>StaticListPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TaskCreationWindow.xaml.cs">
       <DependentUpon>TaskCreationWindow.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="src\view\TaskCreationPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\view\StaticListPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

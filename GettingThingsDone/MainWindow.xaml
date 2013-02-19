@@ -20,7 +20,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="List" ItemsSource="{Binding Inbox.List}" ItemTemplate="{DynamicResource DataTemplate1}"/>
+        <local:StaticListPanel DataContext="{Binding Inbox}" VerticalAlignment="Stretch"/>
         <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask"/>
     </Grid>
 </Window>
