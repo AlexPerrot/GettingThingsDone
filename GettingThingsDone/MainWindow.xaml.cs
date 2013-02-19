@@ -23,15 +23,16 @@ namespace GettingThingsDone
         public MainWindow()
         {
             InitializeComponent();
-            //Window login = new LoginWindow();
-            //login.Show();
+            DataContext = ((App)App.Current).GTD;
         }
 
         private void CreateTask(object sender, RoutedEventArgs e)
         {
             Task t = TaskCreationWindow.GetNewTask();
             if (t!=null)
-                List.Items.Add(t);
+                ((App)App.Current).GTD.Inbox.AddItem(t);
+            System.Console.WriteLine(((App)App.Current).GTD.Inbox.List.Count);
+            List.Items.Refresh();
         }
     }
 }

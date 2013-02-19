@@ -11,7 +11,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListBox Name="List" />
+        <ListBox Name="List" ItemsSource="{Binding Inbox.List}"/>
         <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask"/>
     </Grid>
 </Window>

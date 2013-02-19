@@ -12,6 +12,5 @@ using System.Text;
 public interface TaskList : GTDItem, IEnumerable<GTDItem>
 {
    String Name { get; set; }
-
 }
 

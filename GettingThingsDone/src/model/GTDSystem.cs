@@ -14,9 +14,9 @@ public class GTDSystem : TaskList
 {
 
     public string Name { get; set; }
-    private TaskList inbox = new StaticList("Inbox");
+    private StaticList inbox = new StaticList("Inbox");
     
-    public virtual TaskList Inbox
+    public virtual StaticList Inbox
 	{
         get { return inbox; }
 	}
