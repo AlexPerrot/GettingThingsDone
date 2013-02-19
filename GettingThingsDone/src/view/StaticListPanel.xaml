@@ -8,7 +8,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
             <StackPanel Orientation="Horizontal">
-                <CheckBox Content="" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <CheckBox Content="" IsChecked="{Binding Done, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <Label Content="{Binding Title}" VerticalAlignment="Center"/>
             </StackPanel>
         </DataTemplate>

@@ -31,7 +31,7 @@ namespace GettingThingsDone
             Task t = TaskCreationWindow.GetNewTask();
             if (t!=null)
                 ((App)App.Current).GTD.Inbox.AddItem(t);
-            System.Console.WriteLine(((App)App.Current).GTD.Inbox.List.Count);
+            System.Console.WriteLine(((App)App.Current).GTD.Inbox.List.Count(item => ((SingleTask)item).Done));
         }
     }
 }
