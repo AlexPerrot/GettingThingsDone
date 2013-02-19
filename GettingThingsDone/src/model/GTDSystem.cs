@@ -56,6 +56,8 @@ public class GTDSystem : TaskList
         yield return Today;
         yield return Tomorrow;
         yield return Someday;
+        foreach (GTDItem item in contexts)
+            yield return item;
         foreach (GTDItem item in Lists)
             yield return item;
 	}
