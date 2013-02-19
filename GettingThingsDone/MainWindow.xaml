@@ -3,15 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:GettingThingsDone.src.view"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="GettingThingsDone.MainWindow"
-        Title="Getting Things Done" Height="350" Width="525">
-    <Window.Resources>
-        <DataTemplate x:Key="DataTemplate1">
-            <StackPanel Orientation="Horizontal">
-                <CheckBox Content="" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label Content="{Binding Title}" VerticalAlignment="Center"/>
-            </StackPanel>
-        </DataTemplate>
-    </Window.Resources>
+        Title="Getting Things Done" Height="350" Width="525" Loaded="Window_Loaded_1">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -20,7 +12,9 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <local:StaticListPanel DataContext="{Binding Inbox}" VerticalAlignment="Stretch"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Horizontal" Name="ContextsPanel"/>
+        </ScrollViewer>
         <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask"/>
     </Grid>
 </Window>
