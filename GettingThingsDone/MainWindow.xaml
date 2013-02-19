@@ -1,8 +1,17 @@
-﻿<Window x:Class="GettingThingsDone.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:GettingThingsDone.src.view"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="GettingThingsDone.MainWindow"
         Title="Getting Things Done" Height="350" Width="525">
+    <Window.Resources>
+        <DataTemplate x:Key="DataTemplate1">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Content="" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Content="{Binding Title}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -11,7 +20,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListBox Name="List" ItemsSource="{Binding Inbox.List}"/>
+        <ListBox x:Name="List" ItemsSource="{Binding Inbox.List}" ItemTemplate="{DynamicResource DataTemplate1}"/>
         <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask"/>
     </Grid>
 </Window>
