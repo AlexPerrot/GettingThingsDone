@@ -11,9 +11,17 @@ using System.Text;
 
 public class StaticList : TaskList
 {
+    public List<GTDItem> list = new List<GTDItem>();
+    public String Name { get; set; }
+
+    public StaticList(String name)
+    {
+        this.Name = name;
+    }
+
 	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
-		throw new System.NotImplementedException();
+        return list.GetEnumerator();
 	}
 
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
@@ -23,18 +31,18 @@ public class StaticList : TaskList
 
 	public virtual void AddItem(GTDItem item)
 	{
-		throw new System.NotImplementedException();
-	}
+        list.Add(item);
+    }
 
 	public virtual void RemoveItem(GTDItem item)
 	{
-		throw new System.NotImplementedException();
+        list.Remove(item);
 	}
 
 	public virtual T accept<T>(TaskVisitor<T> v)
 	{
-		throw new System.NotImplementedException();
-	}
+        return v.visit(this);
+    }
 
 }
 

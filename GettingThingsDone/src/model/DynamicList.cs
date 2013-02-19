@@ -12,6 +12,8 @@ using System.Text;
 /// <remarks>La liste dynamique se construit avec une liste cible (statique ou dynamique) et un filtre (à définir).</remarks>
 public class DynamicList : TaskList
 {
+    public string Name { get; set; }
+
 	public virtual StaticList target
 	{
 		get;

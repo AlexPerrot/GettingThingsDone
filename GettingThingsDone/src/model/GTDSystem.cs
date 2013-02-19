@@ -12,19 +12,38 @@ using System.Text;
 /// <remarks>Cette classe décrit le système général de GTD, avec la boite de reception et les listes de l'utilisateur. On ajoutera surement le calendrier ici.</remarks>
 public class GTDSystem : TaskList
 {
-    private TaskList inbox = new StaticList();
+
+    public string Name { get; set; }
+    private TaskList inbox = new StaticList("Inbox");
     
     public virtual TaskList Inbox
 	{
         get { return inbox; }
 	}
 
-    private TaskList someday = new StaticList();
+    private TaskList today = new StaticList("Today");
+    public TaskList Today { get { return today; } }
+
+    private TaskList tomorrow = new StaticList("Tomorrow");
+    public TaskList Tomorrow { get { return tomorrow; } }
+
+    private TaskList someday = new StaticList("Someday");
     public TaskList Someday { get { return someday; } }
 
-    private TaskList waiting = new StaticList();
+    private TaskList waiting = new StaticList("Waiting");
     public TaskList Waiting { get { return waiting; } }
 
+    private List<StaticList> contexts = new List<StaticList>() 
+        {
+            new StaticList("Work"),
+            new StaticList("Home"),
+            new StaticList("Phone"),
+            new StaticList("Computer"),
+            new StaticList("Errands")
+        };
+
+    public List<StaticList> Contexts { get { return contexts; } }
+    
 	public virtual List<TaskList> Lists
 	{
 		get;
