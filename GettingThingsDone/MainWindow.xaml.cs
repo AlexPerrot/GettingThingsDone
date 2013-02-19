@@ -40,13 +40,13 @@ namespace GettingThingsDone
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            foreach (StaticList l in ((App)App.Current).GTD)
-            {
-                StaticListPanel panel = new StaticListPanel();
-                panel.DataContext = l;
-                panel.Width = 100;
-                ContextsPanel.Children.Add(panel);
-            }
+            //foreach (StaticList l in ((App)App.Current).GTD)
+            //{
+            //    StaticListPanel panel = new StaticListPanel();
+            //    panel.DataContext = l;
+            //    panel.Width = 100;
+            //    ContextsPanel.Children.Add(panel);
+            //}
         }
     }
 }

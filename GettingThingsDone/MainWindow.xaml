@@ -4,6 +4,11 @@
         xmlns:local="clr-namespace:GettingThingsDone.src.view"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="GettingThingsDone.MainWindow"
         Title="Getting Things Done" Height="350" Width="525" Loaded="Window_Loaded_1">
+    <Window.Resources>
+        <DataTemplate x:Key="ListTemplate">
+            <local:StaticListPanel Width="100"/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -13,7 +18,15 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <ScrollViewer HorizontalScrollBarVisibility="Auto">
-        <StackPanel Orientation="Horizontal" Name="ContextsPanel"/>
+            <StackPanel Orientation="Horizontal" Name="ContextsPanel">
+                <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=ListTemplate}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </StackPanel>
         </ScrollViewer>
         <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask"/>
     </Grid>

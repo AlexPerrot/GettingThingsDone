@@ -43,12 +43,6 @@ public class GTDSystem : TaskList
         };
 
     public List<StaticList> Contexts { get { return contexts; } }
-    
-	public virtual List<TaskList> Lists
-	{
-		get;
-		set;
-	}
 
 	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
@@ -57,8 +51,6 @@ public class GTDSystem : TaskList
         yield return Tomorrow;
         yield return Someday;
         foreach (GTDItem item in contexts)
-            yield return item;
-        foreach (GTDItem item in Lists)
             yield return item;
 	}
 
