@@ -7,10 +7,16 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
-            <Border BorderBrush="DarkBlue" BorderThickness="5" CornerRadius="3">
-            <StackPanel Orientation="Horizontal" Background="Honeydew" >
-                <CheckBox Content="" IsChecked="{Binding Done, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label Content="{Binding Title}" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="12"/>
+            <Border BorderBrush="Black" BorderThickness="2" >
+                <StackPanel Orientation="Horizontal" >
+                    <StackPanel.Background>
+                        <LinearGradientBrush StartPoint="0.500,0" EndPoint="0.500,0.900">
+                            <GradientStop Color="RoyalBlue" Offset="0"/>
+                            <GradientStop Color="DarkBlue" Offset="0.900"/>
+                        </LinearGradientBrush>
+                    </StackPanel.Background>
+                <CheckBox Margin="3" Content="" IsChecked="{Binding Done, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Content="{Binding Title}" Foreground="AntiqueWhite" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="12"/>
             </StackPanel>
             </Border>
         </DataTemplate>
