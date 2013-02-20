@@ -46,5 +46,9 @@ public class StaticList : TaskList
         return v.visit(this);
     }
 
+    public override string ToString()
+    {
+        return this.Name;
+    }
 }
 
