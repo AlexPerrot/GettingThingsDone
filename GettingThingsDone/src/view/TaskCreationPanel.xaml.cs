@@ -48,7 +48,7 @@ namespace GettingThingsDone.src.view
         {
             task.Title = TitleText.Text;
             task.Description = DescText.Text;
-            if (DueDateBox.IsChecked.Value)
+            if (DueDateBox.IsChecked.Value && DueDatePicker.SelectedDate.HasValue)
                 task.DueDate = new DateTimeOffset(DueDatePicker.SelectedDate.Value);
             else
                 task.DueDate = new DateTimeOffset?();
