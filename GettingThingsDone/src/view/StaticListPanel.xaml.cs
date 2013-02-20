@@ -38,7 +38,10 @@ namespace GettingThingsDone.src.view
                 SingleTask task = (sender as StackPanel).DataContext as SingleTask;
                 editWin.CreationPanel.LoadFromTask(task);
                 if (editWin.ShowDialog().Value)
+                {
                     editWin.CreationPanel.WriteToTask(task);
+                    this.List.Items.Refresh();
+                }
             }
         }
     }
