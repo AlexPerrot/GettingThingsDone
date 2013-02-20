@@ -40,7 +40,8 @@ namespace GettingThingsDone.src.view
             TitleText.Text = task.Title;
             DescText.Text = task.Description;
             DueDateBox.IsChecked = task.DueDate.HasValue;
-            DueDatePicker.SelectedDate = new DateTime?(task.DueDate.Value.DateTime);
+            if (task.DueDate.HasValue)
+             DueDatePicker.SelectedDate = new DateTime?(task.DueDate.Value.DateTime);
         }
 
         public void WriteToTask(SingleTask task)
@@ -59,6 +60,11 @@ namespace GettingThingsDone.src.view
                 return new SingleTask(TitleText.Text, DescText.Text, DueDatePicker.SelectedDate.Value);
             else
                 return new SingleTask(TitleText.Text, DescText.Text);
+        }
+
+        private void PanelLoaded(object sender, RoutedEventArgs e)
+        {
+            TitleText.Focus();
         }
     }
 }

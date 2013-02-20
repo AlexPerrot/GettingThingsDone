@@ -14,36 +14,26 @@ public class GTDSystem : TaskList
 {
 
     public string Name { get; set; }
-    private TaskList inbox = new StaticList("Inbox");
+    private StaticList inbox = new StaticList("Inbox");
     
-    public virtual TaskList Inbox
+    public virtual StaticList Inbox
 	{
         get { return inbox; }
 	}
 
-    private TaskList today;
+    private TaskList today = new StaticList("Today");
     public TaskList Today { get { return today; } }
 
-    private TaskList tomorrow;
+    private TaskList tomorrow = new StaticList("Tomorrow");
     public TaskList Tomorrow { get { return tomorrow; } }
 
-    private TaskList someday;
+    private TaskList someday = new StaticList("Someday");
     public TaskList Someday { get { return someday; } }
 
-    private TaskList waiting;
+    private TaskList waiting = new StaticList("Waiting");
     public TaskList Waiting { get { return waiting; } }
 
-    private List<StaticList> contexts;
-
-    public List<StaticList> Contexts { get { return contexts; } }
-
-    public GTDSystem()
-    {
-        today = new StaticList("Today");
-        tomorrow = new StaticList("Tomorrow");
-        someday = new StaticList("Someday");
-        waiting = new StaticList("Waiting");
-        contexts = new List<StaticList>() 
+    private List<StaticList> contexts = new List<StaticList>() 
         {
             new StaticList("Work"),
             new StaticList("Home"),
@@ -51,16 +41,17 @@ public class GTDSystem : TaskList
             new StaticList("Computer"),
             new StaticList("Errands")
         };
-    }
-	public virtual List<TaskList> Lists
-	{
-		get;
-		set;
-	}
+
+    public List<StaticList> Contexts { get { return contexts; } }
 
 	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
-		return Lists.GetEnumerator();
+        yield return Inbox;
+        yield return Today;
+        yield return Tomorrow;
+        yield return Someday;
+        foreach (GTDItem item in contexts)
+            yield return item;
 	}
 
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
