@@ -227,7 +227,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Title
 		{
 			get
@@ -247,7 +247,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(MAX)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
 		public string Description
 		{
 			get
@@ -267,7 +267,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int Owner
 		{
 			get
@@ -291,7 +291,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Lists_Tasks", Storage="_Lists_Tasks", ThisKey="Id", OtherKey="List_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Lists_Tasks", Storage="_Lists_Tasks", ThisKey="Id,Owner", OtherKey="List_id,Owner")]
 		public EntitySet<Lists_Tasks> Lists_Tasks
 		{
 			get
@@ -304,7 +304,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Projects_Lists", Storage="_Projects_Lists", ThisKey="Id", OtherKey="List_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Projects_Lists", Storage="_Projects_Lists", ThisKey="Id,Owner", OtherKey="List_id,Owner")]
 		public EntitySet<Projects_Lists> Projects_Lists
 		{
 			get
@@ -317,7 +317,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Tasks_Lists", Storage="_Tasks_Lists", ThisKey="Id", OtherKey="List_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Tasks_Lists", Storage="_Tasks_Lists", ThisKey="Id,Owner", OtherKey="List_id,Owner")]
 		public EntitySet<Tasks_Lists> Tasks_Lists
 		{
 			get
@@ -433,6 +433,8 @@ namespace GettingThingsDone
 		
 		private int _Task_id;
 		
+		private int _Owner;
+		
 		private EntityRef<Lists> _Lists;
 		
 		private EntityRef<Tasks> _Tasks;
@@ -447,6 +449,8 @@ namespace GettingThingsDone
     partial void OnList_idChanged();
     partial void OnTask_idChanging(int value);
     partial void OnTask_idChanged();
+    partial void OnOwnerChanging(int value);
+    partial void OnOwnerChanged();
     #endregion
 		
 		public Lists_Tasks()
@@ -524,7 +528,31 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Lists_Tasks", Storage="_Lists", ThisKey="List_id", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL")]
+		public int Owner
+		{
+			get
+			{
+				return this._Owner;
+			}
+			set
+			{
+				if ((this._Owner != value))
+				{
+					if ((this._Lists.HasLoadedOrAssignedValue || this._Tasks.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOwnerChanging(value);
+					this.SendPropertyChanging();
+					this._Owner = value;
+					this.SendPropertyChanged("Owner");
+					this.OnOwnerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Lists_Tasks", Storage="_Lists", ThisKey="List_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
 		public Lists Lists
 		{
 			get
@@ -548,17 +576,19 @@ namespace GettingThingsDone
 					{
 						value.Lists_Tasks.Add(this);
 						this._List_id = value.Id;
+						this._Owner = value.Owner;
 					}
 					else
 					{
 						this._List_id = default(int);
+						this._Owner = default(int);
 					}
 					this.SendPropertyChanged("Lists");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Lists_Tasks", Storage="_Tasks", ThisKey="Task_id", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Lists_Tasks", Storage="_Tasks", ThisKey="Task_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
 		public Tasks Tasks
 		{
 			get
@@ -582,10 +612,12 @@ namespace GettingThingsDone
 					{
 						value.Lists_Tasks.Add(this);
 						this._Task_id = value.Id;
+						this._Owner = value.Owner;
 					}
 					else
 					{
 						this._Task_id = default(int);
+						this._Owner = default(int);
 					}
 					this.SendPropertyChanged("Tasks");
 				}
@@ -675,7 +707,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Title
 		{
 			get
@@ -695,7 +727,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(50)")]
 		public string Description
 		{
 			get
@@ -715,7 +747,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int Owner
 		{
 			get
@@ -739,7 +771,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Lists", Storage="_Projects_Lists", ThisKey="Id", OtherKey="Project_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Lists", Storage="_Projects_Lists", ThisKey="Id,Owner", OtherKey="Project_id,Owner")]
 		public EntitySet<Projects_Lists> Projects_Lists
 		{
 			get
@@ -752,7 +784,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Tasks", Storage="_Projects_Tasks", ThisKey="Id", OtherKey="Project_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Tasks", Storage="_Projects_Tasks", ThisKey="Id,Owner", OtherKey="Project_id,Owner")]
 		public EntitySet<Projects_Tasks> Projects_Tasks
 		{
 			get
@@ -856,6 +888,8 @@ namespace GettingThingsDone
 		
 		private int _List_id;
 		
+		private int _Owner;
+		
 		private EntityRef<Lists> _Lists;
 		
 		private EntityRef<Projects> _Projects;
@@ -870,6 +904,8 @@ namespace GettingThingsDone
     partial void OnProject_idChanged();
     partial void OnList_idChanging(int value);
     partial void OnList_idChanged();
+    partial void OnOwnerChanging(int value);
+    partial void OnOwnerChanged();
     #endregion
 		
 		public Projects_Lists()
@@ -947,7 +983,31 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Projects_Lists", Storage="_Lists", ThisKey="List_id", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL")]
+		public int Owner
+		{
+			get
+			{
+				return this._Owner;
+			}
+			set
+			{
+				if ((this._Owner != value))
+				{
+					if ((this._Lists.HasLoadedOrAssignedValue || this._Projects.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOwnerChanging(value);
+					this.SendPropertyChanging();
+					this._Owner = value;
+					this.SendPropertyChanged("Owner");
+					this.OnOwnerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Projects_Lists", Storage="_Lists", ThisKey="List_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
 		public Lists Lists
 		{
 			get
@@ -971,17 +1031,19 @@ namespace GettingThingsDone
 					{
 						value.Projects_Lists.Add(this);
 						this._List_id = value.Id;
+						this._Owner = value.Owner;
 					}
 					else
 					{
 						this._List_id = default(int);
+						this._Owner = default(int);
 					}
 					this.SendPropertyChanged("Lists");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Lists", Storage="_Projects", ThisKey="Project_id", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Lists", Storage="_Projects", ThisKey="Project_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
 		public Projects Projects
 		{
 			get
@@ -1005,10 +1067,12 @@ namespace GettingThingsDone
 					{
 						value.Projects_Lists.Add(this);
 						this._Project_id = value.Id;
+						this._Owner = value.Owner;
 					}
 					else
 					{
 						this._Project_id = default(int);
+						this._Owner = default(int);
 					}
 					this.SendPropertyChanged("Projects");
 				}
@@ -1048,6 +1112,8 @@ namespace GettingThingsDone
 		
 		private int _Task_id;
 		
+		private int _Owner;
+		
 		private EntityRef<Projects> _Projects;
 		
 		private EntityRef<Tasks> _Tasks;
@@ -1062,6 +1128,8 @@ namespace GettingThingsDone
     partial void OnProject_idChanged();
     partial void OnTask_idChanging(int value);
     partial void OnTask_idChanged();
+    partial void OnOwnerChanging(int value);
+    partial void OnOwnerChanged();
     #endregion
 		
 		public Projects_Tasks()
@@ -1139,7 +1207,31 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Tasks", Storage="_Projects", ThisKey="Project_id", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL")]
+		public int Owner
+		{
+			get
+			{
+				return this._Owner;
+			}
+			set
+			{
+				if ((this._Owner != value))
+				{
+					if ((this._Projects.HasLoadedOrAssignedValue || this._Tasks.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOwnerChanging(value);
+					this.SendPropertyChanging();
+					this._Owner = value;
+					this.SendPropertyChanged("Owner");
+					this.OnOwnerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Tasks", Storage="_Projects", ThisKey="Project_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
 		public Projects Projects
 		{
 			get
@@ -1163,17 +1255,19 @@ namespace GettingThingsDone
 					{
 						value.Projects_Tasks.Add(this);
 						this._Project_id = value.Id;
+						this._Owner = value.Owner;
 					}
 					else
 					{
 						this._Project_id = default(int);
+						this._Owner = default(int);
 					}
 					this.SendPropertyChanged("Projects");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Projects_Tasks", Storage="_Tasks", ThisKey="Task_id", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Projects_Tasks", Storage="_Tasks", ThisKey="Task_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
 		public Tasks Tasks
 		{
 			get
@@ -1197,10 +1291,12 @@ namespace GettingThingsDone
 					{
 						value.Projects_Tasks.Add(this);
 						this._Task_id = value.Id;
+						this._Owner = value.Owner;
 					}
 					else
 					{
 						this._Task_id = default(int);
+						this._Owner = default(int);
 					}
 					this.SendPropertyChanged("Tasks");
 				}
@@ -1246,6 +1342,8 @@ namespace GettingThingsDone
 		
 		private int _Owner;
 		
+		private bool _Done;
+		
 		private EntitySet<Lists_Tasks> _Lists_Tasks;
 		
 		private EntitySet<Projects_Tasks> _Projects_Tasks;
@@ -1274,6 +1372,8 @@ namespace GettingThingsDone
     partial void OnCreationDateChanged();
     partial void OnOwnerChanging(int value);
     partial void OnOwnerChanged();
+    partial void OnDoneChanging(bool value);
+    partial void OnDoneChanged();
     #endregion
 		
 		public Tasks()
@@ -1387,7 +1487,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int Owner
 		{
 			get
@@ -1411,7 +1511,27 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Lists_Tasks", Storage="_Lists_Tasks", ThisKey="Id", OtherKey="Task_id")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Done", DbType="Bit NOT NULL")]
+		public bool Done
+		{
+			get
+			{
+				return this._Done;
+			}
+			set
+			{
+				if ((this._Done != value))
+				{
+					this.OnDoneChanging(value);
+					this.SendPropertyChanging();
+					this._Done = value;
+					this.SendPropertyChanged("Done");
+					this.OnDoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Lists_Tasks", Storage="_Lists_Tasks", ThisKey="Id,Owner", OtherKey="Task_id,Owner")]
 		public EntitySet<Lists_Tasks> Lists_Tasks
 		{
 			get
@@ -1424,7 +1544,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Projects_Tasks", Storage="_Projects_Tasks", ThisKey="Id", OtherKey="Task_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Projects_Tasks", Storage="_Projects_Tasks", ThisKey="Id,Owner", OtherKey="Task_id,Owner")]
 		public EntitySet<Projects_Tasks> Projects_Tasks
 		{
 			get
@@ -1437,7 +1557,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Lists", Storage="_Tasks_Lists", ThisKey="Id", OtherKey="Task_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Lists", Storage="_Tasks_Lists", ThisKey="Id,Owner", OtherKey="Task_id,Owner")]
 		public EntitySet<Tasks_Lists> Tasks_Lists
 		{
 			get
@@ -1450,7 +1570,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Tasks", Storage="_Tasks_Tasks", ThisKey="Id", OtherKey="Predecessor")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Tasks", Storage="_Tasks_Tasks", ThisKey="Id,Owner", OtherKey="Predecessor_Id,Predecessor_Owner")]
 		public EntitySet<Tasks_Tasks> Tasks_Tasks
 		{
 			get
@@ -1463,7 +1583,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Tasks1", Storage="_Tasks_Tasks1", ThisKey="Id", OtherKey="Successor")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Tasks1", Storage="_Tasks_Tasks1", ThisKey="Id,Owner", OtherKey="Successor_Id,Successor_Owner")]
 		public EntitySet<Tasks_Tasks> Tasks_Tasks1
 		{
 			get
@@ -1603,6 +1723,8 @@ namespace GettingThingsDone
 		
 		private int _List_id;
 		
+		private int _Owner;
+		
 		private EntityRef<Lists> _Lists;
 		
 		private EntityRef<Tasks> _Tasks;
@@ -1617,6 +1739,8 @@ namespace GettingThingsDone
     partial void OnTask_idChanged();
     partial void OnList_idChanging(int value);
     partial void OnList_idChanged();
+    partial void OnOwnerChanging(int value);
+    partial void OnOwnerChanged();
     #endregion
 		
 		public Tasks_Lists()
@@ -1694,7 +1818,31 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Tasks_Lists", Storage="_Lists", ThisKey="List_id", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL")]
+		public int Owner
+		{
+			get
+			{
+				return this._Owner;
+			}
+			set
+			{
+				if ((this._Owner != value))
+				{
+					if ((this._Lists.HasLoadedOrAssignedValue || this._Tasks.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOwnerChanging(value);
+					this.SendPropertyChanging();
+					this._Owner = value;
+					this.SendPropertyChanged("Owner");
+					this.OnOwnerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Tasks_Lists", Storage="_Lists", ThisKey="List_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
 		public Lists Lists
 		{
 			get
@@ -1718,17 +1866,19 @@ namespace GettingThingsDone
 					{
 						value.Tasks_Lists.Add(this);
 						this._List_id = value.Id;
+						this._Owner = value.Owner;
 					}
 					else
 					{
 						this._List_id = default(int);
+						this._Owner = default(int);
 					}
 					this.SendPropertyChanged("Lists");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Lists", Storage="_Tasks", ThisKey="Task_id", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Lists", Storage="_Tasks", ThisKey="Task_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
 		public Tasks Tasks
 		{
 			get
@@ -1752,10 +1902,12 @@ namespace GettingThingsDone
 					{
 						value.Tasks_Lists.Add(this);
 						this._Task_id = value.Id;
+						this._Owner = value.Owner;
 					}
 					else
 					{
 						this._Task_id = default(int);
+						this._Owner = default(int);
 					}
 					this.SendPropertyChanged("Tasks");
 				}
@@ -1791,9 +1943,13 @@ namespace GettingThingsDone
 		
 		private int _Id;
 		
-		private int _Predecessor;
+		private int _Predecessor_Id;
 		
-		private int _Successor;
+		private int _Successor_Id;
+		
+		private int _Predecessor_Owner;
+		
+		private int _Successor_Owner;
 		
 		private EntityRef<Tasks> _Tasks;
 		
@@ -1805,10 +1961,14 @@ namespace GettingThingsDone
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnPredecessorChanging(int value);
-    partial void OnPredecessorChanged();
-    partial void OnSuccessorChanging(int value);
-    partial void OnSuccessorChanged();
+    partial void OnPredecessor_IdChanging(int value);
+    partial void OnPredecessor_IdChanged();
+    partial void OnSuccessor_IdChanging(int value);
+    partial void OnSuccessor_IdChanged();
+    partial void OnPredecessor_OwnerChanging(int value);
+    partial void OnPredecessor_OwnerChanged();
+    partial void OnSuccessor_OwnerChanging(int value);
+    partial void OnSuccessor_OwnerChanged();
     #endregion
 		
 		public Tasks_Tasks()
@@ -1838,55 +1998,103 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Predecessor", DbType="Int NOT NULL")]
-		public int Predecessor
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Predecessor_Id", DbType="Int NOT NULL")]
+		public int Predecessor_Id
 		{
 			get
 			{
-				return this._Predecessor;
+				return this._Predecessor_Id;
 			}
 			set
 			{
-				if ((this._Predecessor != value))
+				if ((this._Predecessor_Id != value))
 				{
 					if (this._Tasks.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnPredecessorChanging(value);
+					this.OnPredecessor_IdChanging(value);
 					this.SendPropertyChanging();
-					this._Predecessor = value;
-					this.SendPropertyChanged("Predecessor");
-					this.OnPredecessorChanged();
+					this._Predecessor_Id = value;
+					this.SendPropertyChanged("Predecessor_Id");
+					this.OnPredecessor_IdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Successor", DbType="Int NOT NULL")]
-		public int Successor
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Successor_Id", DbType="Int NOT NULL")]
+		public int Successor_Id
 		{
 			get
 			{
-				return this._Successor;
+				return this._Successor_Id;
 			}
 			set
 			{
-				if ((this._Successor != value))
+				if ((this._Successor_Id != value))
 				{
 					if (this._Tasks1.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnSuccessorChanging(value);
+					this.OnSuccessor_IdChanging(value);
 					this.SendPropertyChanging();
-					this._Successor = value;
-					this.SendPropertyChanged("Successor");
-					this.OnSuccessorChanged();
+					this._Successor_Id = value;
+					this.SendPropertyChanged("Successor_Id");
+					this.OnSuccessor_IdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Tasks", Storage="_Tasks", ThisKey="Predecessor", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Predecessor_Owner", DbType="Int NOT NULL")]
+		public int Predecessor_Owner
+		{
+			get
+			{
+				return this._Predecessor_Owner;
+			}
+			set
+			{
+				if ((this._Predecessor_Owner != value))
+				{
+					if (this._Tasks.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPredecessor_OwnerChanging(value);
+					this.SendPropertyChanging();
+					this._Predecessor_Owner = value;
+					this.SendPropertyChanged("Predecessor_Owner");
+					this.OnPredecessor_OwnerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Successor_Owner", DbType="Int NOT NULL")]
+		public int Successor_Owner
+		{
+			get
+			{
+				return this._Successor_Owner;
+			}
+			set
+			{
+				if ((this._Successor_Owner != value))
+				{
+					if (this._Tasks1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSuccessor_OwnerChanging(value);
+					this.SendPropertyChanging();
+					this._Successor_Owner = value;
+					this.SendPropertyChanged("Successor_Owner");
+					this.OnSuccessor_OwnerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Tasks", Storage="_Tasks", ThisKey="Predecessor_Id,Predecessor_Owner", OtherKey="Id,Owner", IsForeignKey=true)]
 		public Tasks Tasks
 		{
 			get
@@ -1909,18 +2117,20 @@ namespace GettingThingsDone
 					if ((value != null))
 					{
 						value.Tasks_Tasks.Add(this);
-						this._Predecessor = value.Id;
+						this._Predecessor_Id = value.Id;
+						this._Predecessor_Owner = value.Owner;
 					}
 					else
 					{
-						this._Predecessor = default(int);
+						this._Predecessor_Id = default(int);
+						this._Predecessor_Owner = default(int);
 					}
 					this.SendPropertyChanged("Tasks");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Tasks1", Storage="_Tasks1", ThisKey="Successor", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Tasks1", Storage="_Tasks1", ThisKey="Successor_Id,Successor_Owner", OtherKey="Id,Owner", IsForeignKey=true)]
 		public Tasks Tasks1
 		{
 			get
@@ -1943,11 +2153,13 @@ namespace GettingThingsDone
 					if ((value != null))
 					{
 						value.Tasks_Tasks1.Add(this);
-						this._Successor = value.Id;
+						this._Successor_Id = value.Id;
+						this._Successor_Owner = value.Owner;
 					}
 					else
 					{
-						this._Successor = default(int);
+						this._Successor_Id = default(int);
+						this._Successor_Owner = default(int);
 					}
 					this.SendPropertyChanged("Tasks1");
 				}
@@ -2037,7 +2249,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Username
 		{
 			get
@@ -2057,7 +2269,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Password
 		{
 			get
@@ -2077,7 +2289,7 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mail", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mail", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Mail
 		{
 			get

@@ -113,31 +113,31 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Users.sql">
-      <AnsiNulls>Off</AnsiNulls>
+      <AnsiNulls>On</AnsiNulls>
     </Build>
     <Build Include="dbo\Tables\Tasks.sql">
       <AnsiNulls>Off</AnsiNulls>
     </Build>
     <Build Include="dbo\Tables\Tasks_Tasks.sql">
-      <AnsiNulls>Off</AnsiNulls>
+      <AnsiNulls>On</AnsiNulls>
     </Build>
     <Build Include="dbo\Tables\Lists.sql">
-      <AnsiNulls>Off</AnsiNulls>
+      <AnsiNulls>On</AnsiNulls>
     </Build>
     <Build Include="dbo\Tables\Lists_Tasks.sql">
-      <AnsiNulls>Off</AnsiNulls>
+      <AnsiNulls>On</AnsiNulls>
     </Build>
     <Build Include="dbo\Tables\Projects.sql">
-      <AnsiNulls>Off</AnsiNulls>
+      <AnsiNulls>On</AnsiNulls>
     </Build>
     <Build Include="dbo\Tables\Projects_Tasks.sql">
-      <AnsiNulls>Off</AnsiNulls>
+      <AnsiNulls>On</AnsiNulls>
     </Build>
     <Build Include="dbo\Tables\Projects_Lists.sql">
-      <AnsiNulls>Off</AnsiNulls>
+      <AnsiNulls>On</AnsiNulls>
     </Build>
     <Build Include="dbo\Tables\Tasks_Lists.sql">
-      <AnsiNulls>Off</AnsiNulls>
+      <AnsiNulls>On</AnsiNulls>
     </Build>
     <Build Include="dbo\Tables\Users_tracking.sql">
       <AnsiNulls>On</AnsiNulls>

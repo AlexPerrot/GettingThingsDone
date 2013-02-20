@@ -2,10 +2,13 @@
     [Id]      INT NOT NULL,
     [List_id] INT NOT NULL,
     [Task_id] INT NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_Lists_Tasks_List] FOREIGN KEY ([List_id]) REFERENCES [dbo].[Lists] ([Id]),
-    CONSTRAINT [FK_Lists_Tasks_Tasks] FOREIGN KEY ([Task_id]) REFERENCES [dbo].[Tasks] ([Id])
+    [Owner]   INT NOT NULL,
+    CONSTRAINT [PK__Lists_Ta__3214EC070F975522] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Lists_Tasks_Lists] FOREIGN KEY ([List_id], [Owner]) REFERENCES [dbo].[Lists] ([Id], [Owner]),
+    CONSTRAINT [FK_Lists_Tasks_Tasks] FOREIGN KEY ([Task_id], [Owner]) REFERENCES [dbo].[Tasks] ([Id], [Owner])
 );
+
+
 
 
 

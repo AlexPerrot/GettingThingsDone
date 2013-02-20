@@ -1,10 +1,12 @@
 ﻿CREATE TABLE [dbo].[Users] (
-    [Id]       INT          NOT NULL,
-    [Username] VARCHAR (50) NOT NULL,
-    [Password] VARCHAR (50) NOT NULL,
-    [Mail]     VARCHAR (50) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
+    [Id]       INT           NOT NULL,
+    [Username] NVARCHAR (50) NOT NULL,
+    [Password] NVARCHAR (50) NOT NULL,
+    [Mail]     NVARCHAR (50) NOT NULL,
+    CONSTRAINT [PK__Users__3214EC072A4B4B5E] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 
 
 

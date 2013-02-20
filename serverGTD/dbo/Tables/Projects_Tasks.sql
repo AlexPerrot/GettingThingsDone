@@ -2,10 +2,13 @@
     [Id]         INT NOT NULL,
     [Project_id] INT NOT NULL,
     [Task_id]    INT NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_Projects_Tasks_Projects] FOREIGN KEY ([Project_id]) REFERENCES [dbo].[Projects] ([Id]),
-    CONSTRAINT [FK_Projects_Tasks_Tasks] FOREIGN KEY ([Task_id]) REFERENCES [dbo].[Tasks] ([Id])
+    [Owner]      INT NOT NULL,
+    CONSTRAINT [PK__Projects__3214EC071B0907CE] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Projects_Tasks_Projects] FOREIGN KEY ([Project_id], [Owner]) REFERENCES [dbo].[Projects] ([Id], [Owner]),
+    CONSTRAINT [FK_Projects_Tasks_Tasks] FOREIGN KEY ([Task_id], [Owner]) REFERENCES [dbo].[Tasks] ([Id], [Owner])
 );
+
+
 
 
 

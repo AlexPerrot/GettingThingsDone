@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [Users_update]
 	@P_1 Int,
-	@P_2 VarChar(50),
-	@P_3 VarChar(50),
-	@P_4 VarChar(50),
+	@P_2 NVarChar(50),
+	@P_3 NVarChar(50),
+	@P_4 NVarChar(50),
 	@sync_force_write Int,
 	@sync_min_timestamp BigInt,
 	@sync_row_count Int OUTPUT

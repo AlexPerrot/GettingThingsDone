@@ -5,15 +5,15 @@
 AS
 BEGIN
 -- use a temp table to store the list of PKs that successfully got updated/inserted
-DECLARE @changed TABLE ([Id] int, PRIMARY KEY ([Id]));
+DECLARE @changed TABLE ([Id] int, [Owner] int, PRIMARY KEY ([Id], [Owner]));
 
 -- update/insert into the base table
 MERGE [Tasks] AS base USING
 -- join done here against the side table to get the local timestamp for concurrency check
-(SELECT p.*, t.local_update_peer_timestamp FROM @changeTable p LEFT JOIN [Tasks_tracking] t ON p.[Id] = t.[Id]) AS changes ON changes.[Id] = base.[Id]
+(SELECT p.*, t.local_update_peer_timestamp FROM @changeTable p LEFT JOIN [Tasks_tracking] t ON p.[Id] = t.[Id] AND p.[Owner] = t.[Owner]) AS changes ON changes.[Id] = base.[Id] AND changes.[Owner] = base.[Owner]
 WHEN NOT MATCHED BY TARGET AND changes.local_update_peer_timestamp <= @sync_min_timestamp OR changes.local_update_peer_timestamp IS NULL THEN
 INSERT ([Id], [Title], [Description], [DueDate], [CreationDate], [Owner]) VALUES (changes.[Id], changes.[Title], changes.[Description], changes.[DueDate], changes.[CreationDate], changes.[Owner])
-OUTPUT INSERTED.[Id] INTO @changed; -- populates the temp table with successful PKs
+OUTPUT INSERTED.[Id], INSERTED.[Owner] INTO @changed; -- populates the temp table with successful PKs
 
 UPDATE side SET
 update_scope_local_id = @sync_scope_local_id, 
@@ -26,6 +26,6 @@ scope_create_peer_timestamp = changes.sync_create_peer_timestamp,
 local_create_peer_key = 0
 FROM 
 [Tasks_tracking] side JOIN 
-(SELECT p.[Id], p.sync_update_peer_timestamp, p.sync_update_peer_key, p.sync_create_peer_key, p.sync_create_peer_timestamp FROM @changed t JOIN @changeTable p ON p.[Id] = t.[Id]) AS changes ON changes.[Id] = side.[Id]
-SELECT [Id] FROM @changeTable t WHERE NOT EXISTS (SELECT [Id] from @changed i WHERE t.[Id] = i.[Id])
+(SELECT p.[Id], p.[Owner], p.sync_update_peer_timestamp, p.sync_update_peer_key, p.sync_create_peer_key, p.sync_create_peer_timestamp FROM @changed t JOIN @changeTable p ON p.[Id] = t.[Id] AND p.[Owner] = t.[Owner]) AS changes ON changes.[Id] = side.[Id] AND changes.[Owner] = side.[Owner]
+SELECT [Id], [Owner] FROM @changeTable t WHERE NOT EXISTS (SELECT [Id], [Owner] from @changed i WHERE t.[Id] = i.[Id] AND t.[Owner] = i.[Owner])
 END

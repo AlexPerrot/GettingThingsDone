@@ -12,7 +12,7 @@ MERGE [Projects_Lists] AS base USING
 -- join done here against the side table to get the local timestamp for concurrency check
 (SELECT p.*, t.update_scope_local_id, t.scope_update_peer_key, t.local_update_peer_timestamp FROM @changeTable p LEFT JOIN [Projects_Lists_tracking] t ON p.[Id] = t.[Id]) as changes ON changes.[Id] = base.[Id]
 WHEN MATCHED AND (changes.update_scope_local_id = @sync_scope_local_id AND changes.scope_update_peer_key = changes.sync_update_peer_key) OR changes.local_update_peer_timestamp <= @sync_min_timestamp THEN
-UPDATE SET [Project_id] = changes.[Project_id], [List_id] = changes.[List_id]
+UPDATE SET [Project_id] = changes.[Project_id], [List_id] = changes.[List_id], [Owner] = changes.[Owner]
 OUTPUT INSERTED.[Id] into @changed; -- populates the temp table with successful PKs
 
 UPDATE side SET
