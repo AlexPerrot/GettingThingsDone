@@ -91,6 +91,7 @@
     <Compile Include="TaskCreationWindow.xaml.cs">
       <DependentUpon>TaskCreationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="test\TaskListTest.cs" />
     <Compile Include="test\SingleTaskTest.cs" />
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>

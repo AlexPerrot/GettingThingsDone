@@ -21,19 +21,29 @@ public class GTDSystem : TaskList
         get { return inbox; }
 	}
 
-    private TaskList today = new StaticList("Today");
+    private TaskList today;
     public TaskList Today { get { return today; } }
 
-    private TaskList tomorrow = new StaticList("Tomorrow");
+    private TaskList tomorrow;
     public TaskList Tomorrow { get { return tomorrow; } }
 
-    private TaskList someday = new StaticList("Someday");
+    private TaskList someday;
     public TaskList Someday { get { return someday; } }
 
-    private TaskList waiting = new StaticList("Waiting");
+    private TaskList waiting;
     public TaskList Waiting { get { return waiting; } }
 
-    private List<StaticList> contexts = new List<StaticList>() 
+    private List<StaticList> contexts;
+
+    public List<StaticList> Contexts { get { return contexts; } }
+
+    public GTDSystem()
+    {
+        today = new StaticList("Today");
+        tomorrow = new StaticList("Tomorrow");
+        someday = new StaticList("Someday");
+        waiting = new StaticList("Waiting");
+        contexts = new List<StaticList>() 
         {
             new StaticList("Work"),
             new StaticList("Home"),
@@ -41,9 +51,7 @@ public class GTDSystem : TaskList
             new StaticList("Computer"),
             new StaticList("Errands")
         };
-
-    public List<StaticList> Contexts { get { return contexts; } }
-    
+    }
 	public virtual List<TaskList> Lists
 	{
 		get;
