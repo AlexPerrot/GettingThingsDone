@@ -83,6 +83,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </Compile>
+    <Compile Include="src\data\LocalDatabaseProvider.cs" />
+    <Compile Include="src\data\GTDItemSave.cs" />
+    <Compile Include="src\data\TaskVisitor_T.cs" />
     <Compile Include="src\model\TaskList.cs" />
     <Compile Include="src\model\TaskVisitor_T.cs" />
     <Compile Include="src\view\TaskCreationPanel.xaml.cs">
@@ -149,6 +152,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </None>
@@ -191,9 +195,7 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\data\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
