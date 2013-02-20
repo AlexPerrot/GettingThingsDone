@@ -6,39 +6,46 @@
   <MessageClass Name="Error" Label="Erreur" Option="Afficher les erreurs" />
   <MessageClass Name="Property" Label="Propriété" Option="Afficher les métadonnées" />
   <MessageClass Name="Diagnostic" Label="Message" Option="Afficher les messages de diagnostic" />
-  <Message Timestamp="2013-02-13T14:28:10" Importance="High" Text="Génération du code ou transformation du texte démarrées." />
-  <Message Timestamp="2013-02-13T14:28:10" Importance="Diagnostic" Text="Nom = ClassTemplate" />
-  <Message Timestamp="2013-02-13T14:28:10" Importance="Diagnostic" Text="Remplacer = True" />
-  <Message Timestamp="2013-02-13T14:28:10" Importance="Diagnostic" Text="ProjectPath = ..\GTDModelLib\GTDModelLib.csproj" />
-  <Message Timestamp="2013-02-13T14:28:10" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
-  <Message Timestamp="2013-02-13T14:28:10" Importance="Diagnostic" Text="TargetName = {Name}" />
-  <Message Timestamp="2013-02-13T14:28:10" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
-  <Message Timestamp="2013-02-13T14:28:10" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
-  <Message Timestamp="2013-02-13T14:28:10" Importance="Medium" Text="La liaison de modèle de texte 'ClassTemplate' de GTDModel appliquera ClassTemplate.t4 à 'GTDModel::GTDSystem' -  (Class), 'GTDModel::StaticList' -  (Class), 'GTDModel::DynamicList' -  (Class) " />
-  <Message Timestamp="2013-02-13T14:28:10" Importance="Medium" Text="'GTDModel::GTDSystem' -  (Class) : réussite (fichier créé) - C:\Users\Alexandre\Documents\PED\GTDModelLib\GeneratedCode\GTDSystem.cs" />
-  <Message Timestamp="2013-02-13T14:28:11" Importance="Medium" Text="'GTDModel::StaticList' -  (Class) : réussite (fichier créé) - C:\Users\Alexandre\Documents\PED\GTDModelLib\GeneratedCode\StaticList.cs" />
-  <Message Timestamp="2013-02-13T14:28:11" Importance="Medium" Text="'GTDModel::DynamicList' -  (Class) : réussite (fichier créé) - C:\Users\Alexandre\Documents\PED\GTDModelLib\GeneratedCode\DynamicList.cs" />
-  <Message Timestamp="2013-02-13T14:28:11" Importance="Diagnostic" Text="Nom = InterfaceTemplate" />
-  <Message Timestamp="2013-02-13T14:28:11" Importance="Diagnostic" Text="Remplacer = True" />
-  <Message Timestamp="2013-02-13T14:28:11" Importance="Diagnostic" Text="ProjectPath = ..\GTDModelLib\GTDModelLib.csproj" />
-  <Message Timestamp="2013-02-13T14:28:11" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
-  <Message Timestamp="2013-02-13T14:28:11" Importance="Diagnostic" Text="TargetName = {Name}" />
-  <Message Timestamp="2013-02-13T14:28:11" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4" />
-  <Message Timestamp="2013-02-13T14:28:11" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4" />
-  <Message Timestamp="2013-02-13T14:28:11" Importance="Medium" Text="La liaison de modèle de texte 'InterfaceTemplate' de GTDModel appliquera InterfaceTemplate.t4 à 'GTDModel::TaskVisitor' -  (Interface), 'GTDModel::GTDItem' -  (Interface), 'GTDModel::TaskList' -  (Interface) " />
-  <Message Timestamp="2013-02-13T14:28:11" Importance="Medium" Text="'GTDModel::TaskVisitor' -  (Interface) : réussite (fichier créé) - C:\Users\Alexandre\Documents\PED\GTDModelLib\GeneratedCode\TaskVisitor_T.cs" />
-  <Message Timestamp="2013-02-13T14:28:11" Importance="Medium" Text="'GTDModel::GTDItem' -  (Interface) : réussite (fichier créé) - C:\Users\Alexandre\Documents\PED\GTDModelLib\GeneratedCode\GTDItem.cs" />
-  <Message Timestamp="2013-02-13T14:28:12" Importance="Medium" Text="'GTDModel::TaskList' -  (Interface) : réussite (fichier créé) - C:\Users\Alexandre\Documents\PED\GTDModelLib\GeneratedCode\TaskList.cs" />
-  <Message Timestamp="2013-02-13T14:28:12" Importance="Diagnostic" Text="Nom = StructTemplate" />
-  <Message Timestamp="2013-02-13T14:28:12" Importance="Diagnostic" Text="Remplacer = True" />
-  <Message Timestamp="2013-02-13T14:28:12" Importance="Diagnostic" Text="ProjectPath = ..\GTDModelLib\GTDModelLib.csproj" />
-  <Message Timestamp="2013-02-13T14:28:12" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
-  <Message Timestamp="2013-02-13T14:28:12" Importance="Diagnostic" Text="TargetName = {Name}" />
-  <Message Timestamp="2013-02-13T14:28:12" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
-  <Message Timestamp="2013-02-13T14:28:12" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
-  <Message Timestamp="2013-02-13T14:28:12" Importance="Medium" Text="La liaison de modèle de texte 'StructTemplate' de GTDModel appliquera StructTemplate.t4 à 'GTDModel::GTDSystem' -  (Class), 'GTDModel::StaticList' -  (Class), 'GTDModel::DynamicList' -  (Class) " />
-  <Message Timestamp="2013-02-13T14:28:12" Importance="Diagnostic" Text="'GTDModel::GTDSystem' -  (Class) : aucun fichier n'a été généré, car la méthode 'AppliesToElement' du modèle 'StructTemplate.t4' a été évaluée comme false." />
-  <Message Timestamp="2013-02-13T14:28:12" Importance="Diagnostic" Text="'GTDModel::StaticList' -  (Class) : aucun fichier n'a été généré, car la méthode 'AppliesToElement' du modèle 'StructTemplate.t4' a été évaluée comme false." />
-  <Message Timestamp="2013-02-13T14:28:12" Importance="Diagnostic" Text="'GTDModel::DynamicList' -  (Class) : aucun fichier n'a été généré, car la méthode 'AppliesToElement' du modèle 'StructTemplate.t4' a été évaluée comme false." />
-  <Message Timestamp="2013-02-13T14:28:12" Importance="High" Text="Génération du code terminée. Erreurs : 0. Avertissements : 0." />
+  <Message Timestamp="2013-02-20T17:38:22" Importance="High" Text="Génération du code ou transformation du texte démarrées." />
+  <Message Timestamp="2013-02-20T17:38:22" Importance="Diagnostic" Text="Nom = ClassTemplate" />
+  <Message Timestamp="2013-02-20T17:38:22" Importance="Diagnostic" Text="Remplacer = True" />
+  <Message Timestamp="2013-02-20T17:38:22" Importance="Diagnostic" Text="ProjectPath = ..\GTDModelLib\GTDModelLib.csproj" />
+  <Message Timestamp="2013-02-20T17:38:22" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2013-02-20T17:38:22" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2013-02-20T17:38:22" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
+  <Message Timestamp="2013-02-20T17:38:22" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
+  <Message Timestamp="2013-02-20T17:38:22" Importance="Medium" Text="La liaison de modèle de texte 'ClassTemplate' de GTDModel appliquera ClassTemplate.t4 à 'GTDModel::LocalDatabaseProvider' -  (Class), 'GTDModel::TasksIO' -  (Class) " />
+  <Error Timestamp="2013-02-20T17:38:26" Importance="High" Text="Impossible de créer le projet suivant, car un autre projet existe peut-être au même emplacement ou la solution contient un projet portant le même nom : C:\Users\admin\GettingThingsDone\GTDModelLib\GTDModelLib.csproj" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="'GTDModel::LocalDatabaseProvider' -  (Class) : aucun fichier n'a été généré, car la méthode 'AppliesToElement' du modèle 'ClassTemplate.t4' a été évaluée comme false." />
+  <Error Timestamp="2013-02-20T17:38:26" Importance="High" Text="Impossible de créer le projet suivant, car un autre projet existe peut-être au même emplacement ou la solution contient un projet portant le même nom : C:\Users\admin\GettingThingsDone\GTDModelLib\GTDModelLib.csproj" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="'GTDModel::TasksIO' -  (Class) : aucun fichier n'a été généré, car la méthode 'AppliesToElement' du modèle 'ClassTemplate.t4' a été évaluée comme false." />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="Nom = InterfaceTemplate" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="Remplacer = True" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="ProjectPath = ..\GTDModelLib\GTDModelLib.csproj" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\InterfaceTemplate.t4" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Medium" Text="La liaison de modèle de texte 'InterfaceTemplate' de GTDModel appliquera InterfaceTemplate.t4 à 'GTDModel::TaskVisitor' -  (Interface), 'GTDModel::LocalDataTaskIO' -  (Interface) " />
+  <Error Timestamp="2013-02-20T17:38:26" Importance="High" Text="Impossible de créer le projet suivant, car un autre projet existe peut-être au même emplacement ou la solution contient un projet portant le même nom : C:\Users\admin\GettingThingsDone\GTDModelLib\GTDModelLib.csproj" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="'GTDModel::TaskVisitor' -  (Interface) : aucun fichier n'a été généré, car la méthode 'AppliesToElement' du modèle 'InterfaceTemplate.t4' a été évaluée comme false." />
+  <Error Timestamp="2013-02-20T17:38:26" Importance="High" Text="Impossible de créer le projet suivant, car un autre projet existe peut-être au même emplacement ou la solution contient un projet portant le même nom : C:\Users\admin\GettingThingsDone\GTDModelLib\GTDModelLib.csproj" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="'GTDModel::LocalDataTaskIO' -  (Interface) : aucun fichier n'a été généré, car la méthode 'AppliesToElement' du modèle 'InterfaceTemplate.t4' a été évaluée comme false." />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="Nom = StructTemplate" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="Remplacer = True" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="ProjectPath = ..\GTDModelLib\GTDModelLib.csproj" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 11.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+  <Message Timestamp="2013-02-20T17:38:26" Importance="Medium" Text="La liaison de modèle de texte 'StructTemplate' de GTDModel appliquera StructTemplate.t4 à 'GTDModel::LocalDatabaseProvider' -  (Class), 'GTDModel::TasksIO' -  (Class) " />
+  <Message Timestamp="2013-02-20T17:38:27" Importance="Diagnostic" Text="'GTDModel::LocalDatabaseProvider' -  (Class) : aucun fichier n'a été généré, car la méthode 'AppliesToElement' du modèle 'StructTemplate.t4' a été évaluée comme false." />
+  <Message Timestamp="2013-02-20T17:38:27" Importance="Diagnostic" Text="'GTDModel::TasksIO' -  (Class) : aucun fichier n'a été généré, car la méthode 'AppliesToElement' du modèle 'StructTemplate.t4' a été évaluée comme false." />
+  <Message Timestamp="2013-02-20T17:38:28" Importance="Diagnostic" Text="La sélection comprenait 5 éléments qui n'étaient pas liés à un modèle." />
+  <Message Timestamp="2013-02-20T17:38:28" Importance="Diagnostic" Text="'086679d9-4263-4f69-aa3e-bf56a12980f2' -  (Comment) : aucun modèle lié." />
+  <Message Timestamp="2013-02-20T17:38:28" Importance="Diagnostic" Text="'GTDModel::' -  (InterfaceRealization) : aucun modèle lié." />
+  <Message Timestamp="2013-02-20T17:38:28" Importance="Diagnostic" Text="'GTDModel::' -  (InterfaceRealization) : aucun modèle lié." />
+  <Message Timestamp="2013-02-20T17:38:28" Importance="Diagnostic" Text="'9533e7e0-a9e0-4fa4-83c1-8489e06a3d81' -  (Comment) : aucun modèle lié." />
+  <Message Timestamp="2013-02-20T17:38:28" Importance="Diagnostic" Text="'3d43191b-5cdf-44ff-9da6-d303f4e56a49' -  (Comment) : aucun modèle lié." />
+  <Message Timestamp="2013-02-20T17:38:28" Importance="High" Text="Génération du code terminée. Erreurs : 4. Avertissements : 0." />
 </Log>
