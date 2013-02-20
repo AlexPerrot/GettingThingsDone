@@ -17,6 +17,7 @@
                     </StackPanel.Background>
                 <CheckBox Margin="3" Content="" IsChecked="{Binding Done, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <Label Name="TaskTitle" Content="{Binding Title}" Foreground="AntiqueWhite" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="12"/>
+                    <Button Name="DelButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" Click="DelButton_Click_1" HorizontalAlignment="Right"/>
             </StackPanel>
             </Border>
         </DataTemplate>
