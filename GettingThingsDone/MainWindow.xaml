@@ -6,7 +6,7 @@
         Title="Getting Things Done" Height="350" Width="700" Loaded="Window_Loaded_1">
     <Window.Resources>
         <DataTemplate x:Key="ListTemplate">
-            <Border BorderBrush="Black" BorderThickness="3" Margin="5">
+            <Border BorderBrush="Black" BorderThickness="3" Margin="5" CornerRadius="2">
                 <local:StaticListPanel Width="100"/>
             </Border>
         </DataTemplate>
