@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:GettingThingsDone.src.view"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="GettingThingsDone.MainWindow"
-        Title="Getting Things Done" Height="350" Width="700" Loaded="Window_Loaded_1">
+        Title="Getting Things Done" Height="350" Width="700">
     <Window.Resources>
         <DataTemplate x:Key="ListTemplate">
             <Border BorderBrush="Black" BorderThickness="3" Margin="5" CornerRadius="2">

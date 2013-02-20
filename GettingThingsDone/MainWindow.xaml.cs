@@ -25,9 +25,6 @@ namespace GettingThingsDone
         {
             InitializeComponent();
             DataContext = ((App)App.Current).GTD;
-            System.Console.WriteLine("coucou");
-            
-            System.Console.WriteLine("ok");
         }
 
         private void CreateTask(object sender, RoutedEventArgs e)
@@ -35,18 +32,7 @@ namespace GettingThingsDone
             Task t = TaskCreationWindow.GetNewTask();
             if (t!=null)
                 ((App)App.Current).GTD.Inbox.AddItem(t);
-            System.Console.WriteLine(((App)App.Current).GTD.Inbox.List.Count(item => ((SingleTask)item).Done));
         }
 
-        private void Window_Loaded_1(object sender, RoutedEventArgs e)
-        {
-            //foreach (StaticList l in ((App)App.Current).GTD)
-            //{
-            //    StaticListPanel panel = new StaticListPanel();
-            //    panel.DataContext = l;
-            //    panel.Width = 100;
-            //    ContextsPanel.Children.Add(panel);
-            //}
-        }
     }
 }

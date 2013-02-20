@@ -25,11 +25,6 @@ namespace GettingThingsDone.src.view
             InitializeComponent();
         }
 
-        private void StackPanel_MouseMove_1(object sender, MouseEventArgs e)
-        {
-            System.Console.WriteLine("Mouse on : " + DataContext);
-        }
-
         private void StackPanel_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
         {
             if (e.ClickCount == 2)
