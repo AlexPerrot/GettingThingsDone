@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [Users_insert]
 	@P_1 Int,
-	@P_2 VarChar(50),
-	@P_3 VarChar(50),
-	@P_4 VarChar(50),
+	@P_2 NVarChar(50),
+	@P_3 NVarChar(50),
+	@P_4 NVarChar(50),
 	@sync_row_count Int OUTPUT
 AS
 BEGIN

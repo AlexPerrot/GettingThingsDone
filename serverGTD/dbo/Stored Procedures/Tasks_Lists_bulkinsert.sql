@@ -12,7 +12,7 @@ MERGE [Tasks_Lists] AS base USING
 -- join done here against the side table to get the local timestamp for concurrency check
 (SELECT p.*, t.local_update_peer_timestamp FROM @changeTable p LEFT JOIN [Tasks_Lists_tracking] t ON p.[Id] = t.[Id]) AS changes ON changes.[Id] = base.[Id]
 WHEN NOT MATCHED BY TARGET AND changes.local_update_peer_timestamp <= @sync_min_timestamp OR changes.local_update_peer_timestamp IS NULL THEN
-INSERT ([Id], [Task_id], [List_id]) VALUES (changes.[Id], changes.[Task_id], changes.[List_id])
+INSERT ([Id], [Task_id], [List_id], [Owner]) VALUES (changes.[Id], changes.[Task_id], changes.[List_id], changes.[Owner])
 OUTPUT INSERTED.[Id] INTO @changed; -- populates the temp table with successful PKs
 
 UPDATE side SET

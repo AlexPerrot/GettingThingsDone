@@ -1,11 +1,15 @@
 ﻿CREATE TABLE [dbo].[Tasks_Tasks] (
-    [Id]          INT NOT NULL,
-    [Predecessor] INT NOT NULL,
-    [Successor]   INT NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_Tasks_Tasks_Tasks] FOREIGN KEY ([Predecessor]) REFERENCES [dbo].[Tasks] ([Id]),
-    CONSTRAINT [FK_Tasks_Tasks_Tasks2] FOREIGN KEY ([Successor]) REFERENCES [dbo].[Tasks] ([Id])
+    [Id]                INT NOT NULL,
+    [Predecessor_Id]    INT NOT NULL,
+    [Successor_Id]      INT NOT NULL,
+    [Predecessor_Owner] INT NOT NULL,
+    [Successor_Owner]   INT NOT NULL,
+    CONSTRAINT [PK__Tasks_Ta__3214EC07267ABA7A] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Tasks_Tasks_P] FOREIGN KEY ([Predecessor_Id], [Predecessor_Owner]) REFERENCES [dbo].[Tasks] ([Id], [Owner]),
+    CONSTRAINT [FK_Tasks_Tasks_S] FOREIGN KEY ([Successor_Id], [Successor_Owner]) REFERENCES [dbo].[Tasks] ([Id], [Owner])
 );
+
+
 
 
 
