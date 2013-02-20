@@ -5,9 +5,12 @@
     [DueDate]      DATETIMEOFFSET (7) NULL,
     [CreationDate] DATETIMEOFFSET (7) NOT NULL,
     [Owner]        INT                NOT NULL,
+    [Done]         BIT                CONSTRAINT [DF_Tasks_Done] DEFAULT ((0)) NOT NULL,
     CONSTRAINT [PK__Tasks__3214EC071ED998B2] PRIMARY KEY CLUSTERED ([Id] ASC, [Owner] ASC),
     CONSTRAINT [FK_Tasks_Users] FOREIGN KEY ([Owner]) REFERENCES [dbo].[Users] ([Id])
 );
+
+
 
 
 

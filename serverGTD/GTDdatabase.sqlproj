@@ -116,7 +116,7 @@
       <AnsiNulls>On</AnsiNulls>
     </Build>
     <Build Include="dbo\Tables\Tasks.sql">
-      <AnsiNulls>On</AnsiNulls>
+      <AnsiNulls>Off</AnsiNulls>
     </Build>
     <Build Include="dbo\Tables\Tasks_Tasks.sql">
       <AnsiNulls>On</AnsiNulls>
