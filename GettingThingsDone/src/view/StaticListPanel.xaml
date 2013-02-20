@@ -8,7 +8,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
             <Border BorderBrush="Black" BorderThickness="2" >
-                <StackPanel Orientation="Horizontal" MouseMove="StackPanel_MouseMove_1">
+                <StackPanel Orientation="Horizontal" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown_1">
                     <StackPanel.Background>
                         <LinearGradientBrush StartPoint="0.500,0" EndPoint="0.500,0.900">
                             <GradientStop Color="RoyalBlue" Offset="0"/>
@@ -16,7 +16,7 @@
                         </LinearGradientBrush>
                     </StackPanel.Background>
                 <CheckBox Margin="3" Content="" IsChecked="{Binding Done, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label Content="{Binding Title}" Foreground="AntiqueWhite" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="12"/>
+                <Label Name="TaskTitle" Content="{Binding Title}" Foreground="AntiqueWhite" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="12"/>
             </StackPanel>
             </Border>
         </DataTemplate>
