@@ -39,5 +39,12 @@ namespace GettingThingsDone.src.view
                 }
             }
         }
+
+        private void DelButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            SingleTask task = (sender as Button).DataContext as SingleTask;
+            StaticList list = DataContext as StaticList;
+            list.List.Remove(task);
+        }
     }
 }
