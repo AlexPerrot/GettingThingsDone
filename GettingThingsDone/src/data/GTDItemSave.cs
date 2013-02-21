@@ -46,6 +46,9 @@ namespace GettingThingsDone.data
             newTask.Owner = 42; //TODO: simplify the client database. This identifier is useless in local mode.
             //TODO: save task.context and task.reminder (add context to the Tasks table in both databases).
 
+            local.Tasks.InsertOnSubmit(newTask);
+            local.SubmitChanges();
+
             return task;
         }
 
