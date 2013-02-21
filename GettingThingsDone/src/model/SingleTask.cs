@@ -15,7 +15,12 @@ public class SingleTask : Task
 
     public String Title { get; set; }
     public String Description { get; set; }
-    public Boolean Done { get; set; }
+    public Boolean Done {
+        get { return dbProxy.Done; }
+        set { dbProxy.Done = value;
+        (App.Current as App).DB.SubmitChanges();
+        }
+    }
     public DateTimeOffset? DueDate { get; set; }
     private DateTimeOffset creationDate;
     public DateTimeOffset CreationDate { get { return creationDate; } }
@@ -43,7 +48,6 @@ public class SingleTask : Task
     public SingleTask(string title, string desc, DateTimeOffset? dueDate)
     {
         this.creationDate = DateTimeOffset.Now;
-        this.Done = false;
         this.Title = title;
         this.Description = desc;
         this.DueDate = dueDate;
@@ -54,7 +58,9 @@ public class SingleTask : Task
         dbProxy.DueDate = DueDate;
         dbProxy.Title = Title;
         dbProxy.Users = (App.Current as App).Admin;
+        dbProxy.Done = false;
 
+       
 
         (App.Current as App).DB.Tasks.InsertOnSubmit(dbProxy);
         (App.Current as App).DB.SubmitChanges();
