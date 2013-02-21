@@ -7,13 +7,13 @@
 
 namespace GettingThingsDone.data
 {
-    public interface TaskVisitor<T> 
+    public interface TaskVisitor
     {
-        T visit(TaskList list);
+        void visit(TaskList list);
 
-        T visit(SingleTask task);
+        void visit(SingleTask task);
 
-        T visit(Project project);
+        void visit(Project project);
     }
 }
 

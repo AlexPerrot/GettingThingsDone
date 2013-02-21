@@ -11,9 +11,10 @@ using System.Data.Linq;
 namespace GettingThingsDone.data
 {
     /// <remarks>Chargé de l'enregistrement des taches dans la bdd locale et de la récupération de taches dans la bdd locale.</remarks>
-    public class GTDItemSave : TaskVisitor<GTDItem>
+    public class GTDItemSave : TaskVisitor
     {
-        private static Lazy<GTDItemSave> lazy { get; set; }
+        private static readonly Lazy<GTDItemSave> lazy =
+            new Lazy<GTDItemSave>(() => new GTDItemSave());
 
         public static GTDItemSave Instance
         {
@@ -22,45 +23,39 @@ namespace GettingThingsDone.data
 
         private GTDItemSave() {}
 
-        public GTDItem visit(TaskList list)
+        public void visit(TaskList list)
         {
-            DataClassesDataContext local = LocalDatabaseProvider.Instance;
+            DataClassesDataContext local = new DataClassesDataContext();
 
             Lists newList = new Lists();
             newList.Title = list.Name;
             /*newList.Description = list.description;
             newList.CreationDate = DateTime.Now;*/
-
-            return list;
         }
 
-        public GTDItem visit(SingleTask task)
+        public void visit(SingleTask task)
         {
-            DataClassesDataContext local = LocalDatabaseProvider.Instance;
+            DataClassesDataContext local = new DataClassesDataContext();
 
             Tasks newTask = new Tasks();
             newTask.Title = task.Title;
             newTask.Description = task.Description;
             newTask.CreationDate = DateTime.Now;
             newTask.DueDate = task.DueDate;
-            newTask.Owner = 42; //TODO: simplify the client database. This identifier is useless in local mode.
+            newTask.Owner = 0; //TODO: simplify the client database. This identifier is useless in local mode.
             //TODO: save task.context and task.reminder (add context to the Tasks table in both databases).
 
             local.Tasks.InsertOnSubmit(newTask);
             local.SubmitChanges();
-
-            return task;
         }
 
-        public GTDItem visit(Project project)
+        public void visit(Project project)
         {
-            DataClassesDataContext local = LocalDatabaseProvider.Instance;
+            DataClassesDataContext local = new DataClassesDataContext();
 
             Projects newProject = new Projects();
             newProject.Title = project.Title;
             newProject.Description = project.Description;
-
-            return project;
         }
 
     }

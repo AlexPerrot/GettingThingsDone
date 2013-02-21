@@ -10,18 +10,14 @@ using System.Data.Linq;
 
 namespace GettingThingsDone.data
 {
-    /// <remarks>C'est du Singleton à instantiation différée par paresse, et thread safe.</remarks>
     public sealed class LocalDatabaseProvider
     {
-        private Lazy<DataClassesDataContext> db =
-            new Lazy<DataClassesDataContext>(() => new DataClassesDataContext());
-
         private static Lazy<LocalDatabaseProvider> lazy =
         new Lazy<LocalDatabaseProvider>(() => new LocalDatabaseProvider());
 
         private DataClassesDataContext getDataContext()
         {
-            return db.Value;
+            return new DataClassesDataContext();
         }
 
         public static DataClassesDataContext Instance
