@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvisionClient", "Provisio
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GTDdatabase", "serverGTD\GTDdatabase.sqlproj", "{DF64E6DA-22AA-4735-ABBC-7CA3EAA367B7}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GTDlocaldatabase", "GTDlocaldatabase\GTDlocaldatabase.sqlproj", "{51A9064E-3646-4025-9FFA-9D6479BAF0A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,12 @@ Global
 		{DF64E6DA-22AA-4735-ABBC-7CA3EAA367B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF64E6DA-22AA-4735-ABBC-7CA3EAA367B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DF64E6DA-22AA-4735-ABBC-7CA3EAA367B7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{51A9064E-3646-4025-9FFA-9D6479BAF0A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51A9064E-3646-4025-9FFA-9D6479BAF0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51A9064E-3646-4025-9FFA-9D6479BAF0A0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{51A9064E-3646-4025-9FFA-9D6479BAF0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51A9064E-3646-4025-9FFA-9D6479BAF0A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51A9064E-3646-4025-9FFA-9D6479BAF0A0}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
