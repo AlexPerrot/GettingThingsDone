@@ -30,7 +30,7 @@ namespace GettingThingsDone
         public App()
             : base()
         {
-            admin = db.Users.Single(item => item.Username == "admin");
+            admin = this.DB.Users.Single(item => item.Username == "admin");
         }
     }
 }
