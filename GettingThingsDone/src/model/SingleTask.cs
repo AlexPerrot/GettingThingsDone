@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GettingThingsDone;
 
 public class SingleTask : Task
 {
@@ -21,6 +22,7 @@ public class SingleTask : Task
     public DateTimeOffset Reminder { get; set; }
     public String Context { get; set; }
 
+    private GettingThingsDone.Tasks dbProxy;
 
     public SingleTask() : this("")
     {
@@ -45,6 +47,17 @@ public class SingleTask : Task
         this.Title = title;
         this.Description = desc;
         this.DueDate = dueDate;
+
+        this.dbProxy = new Tasks();
+        dbProxy.CreationDate = creationDate;
+        dbProxy.Description = Description;
+        dbProxy.DueDate = DueDate;
+        dbProxy.Title = Title;
+        dbProxy.Users = (App.Current as App).Admin;
+
+
+        (App.Current as App).DB.Tasks.InsertOnSubmit(dbProxy);
+        (App.Current as App).DB.SubmitChanges();
     }
 
     public override string ToString()
