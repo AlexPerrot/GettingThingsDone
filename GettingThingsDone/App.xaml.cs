@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using GettingThingsDone.Properties;
 using GettingThingsDone;
+using GettingThingsDone.data;
 
 namespace GettingThingsDone
 {
@@ -20,8 +21,7 @@ namespace GettingThingsDone
         private GTDSystem gtd = new GTDSystem();
         public GTDSystem GTD { get { return gtd; } }
 
-        private GettingThingsDone.DataClassesDataContext db = new DataClassesDataContext(Settings.Default.gtdLocalConnectionString);
-        public GettingThingsDone.DataClassesDataContext DB { get { return db; } }
+        public GettingThingsDone.DataClassesDataContext DB { get { return LocalDatabaseProvider.Instance; } }
 
         private Users admin;
         public Users Admin { get { return admin; } }
