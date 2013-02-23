@@ -30,7 +30,7 @@ namespace GettingThingsDone.src.data
             dc.Tasks.InsertOnSubmit(dbTask);
             dc.SubmitChanges();
 
-            return new DBSingleTask(dbTask);
+            return new DBSingleTask(dbTask, this.dbProvider);
         }
 
         public IProject makeProject(string title)

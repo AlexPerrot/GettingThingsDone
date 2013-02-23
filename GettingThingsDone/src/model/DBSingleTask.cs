@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GettingThingsDone.src.model;
 
-namespace GettingThingsDone.src.model
+namespace GettingThingsDone.src.data
 {
     class DBSingleTask : ISingleTask
     {
@@ -17,6 +18,7 @@ namespace GettingThingsDone.src.model
             set
             {
                 dbTask.Title = value;
+                submitChanges();
             }
         }
 
@@ -29,6 +31,7 @@ namespace GettingThingsDone.src.model
             set
             {
                 dbTask.Description = value;
+                submitChanges();
             }
         }
 
@@ -41,6 +44,7 @@ namespace GettingThingsDone.src.model
             set
             {
                 dbTask.Done = value;
+                submitChanges();
             }
         }
 
@@ -53,6 +57,7 @@ namespace GettingThingsDone.src.model
             set
             {
                 dbTask.DueDate = value;
+                submitChanges();
             }
         }
 
@@ -67,10 +72,17 @@ namespace GettingThingsDone.src.model
         }
 
         private Tasks dbTask;
+        private IDatabaseProvider dbProvider;
 
-        public DBSingleTask(Tasks dbTask)
+        public DBSingleTask(Tasks dbTask, IDatabaseProvider dbProvider)
         {
             this.dbTask = dbTask;
+            this.dbProvider = dbProvider;
+        }
+
+        private void submitChanges()
+        {
+            this.dbProvider.Database.SubmitChanges();
         }
     }
 }
