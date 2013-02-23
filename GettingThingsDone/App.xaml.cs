@@ -10,6 +10,7 @@ using GettingThingsDone.Properties;
 using GettingThingsDone;
 using GettingThingsDone.data;
 using GettingThingsDone.src.model;
+using GettingThingsDone.src.data;
 
 namespace GettingThingsDone
 {
@@ -27,7 +28,7 @@ namespace GettingThingsDone
         private Users admin;
         public Users Admin { get { return admin; } }
 
-        private IGTDFactory factory = new DBGTDFactory();
+        private IGTDFactory factory = new DBGTDFactory(new LocalDatabaseProvider());
         public IGTDFactory Factory { get { return factory; } }
 
         public App()

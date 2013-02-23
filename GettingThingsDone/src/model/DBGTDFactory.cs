@@ -3,15 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Linq;
+using GettingThingsDone.src.model;
 
-namespace GettingThingsDone.src.model
+namespace GettingThingsDone.src.data
 {
     class DBGTDFactory : IGTDFactory
     {
+        private IDatabaseProvider dbProvider;
+
+        public DBGTDFactory(IDatabaseProvider dbProvider)
+        {
+            this.dbProvider = dbProvider;
+        }
 
         public ISingleTask makeTask(string title, string description, DateTimeOffset? DueDate)
         {
-            DataClassesDataContext dc = (App.Current as App).DB;
+            DataClassesDataContext dc = dbProvider.Database;
 
             Tasks dbTask = new Tasks();
             dbTask.CreationDate = DateTimeOffset.Now;
