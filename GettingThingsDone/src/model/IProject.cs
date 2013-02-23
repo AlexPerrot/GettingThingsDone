@@ -8,7 +8,7 @@ namespace GettingThingsDone.src.model
 {
     public interface IProject : Task
     {
-        public IList<Task> Tasks { get; }
+        IList<Task> Tasks { get; }
 
     }
 }
