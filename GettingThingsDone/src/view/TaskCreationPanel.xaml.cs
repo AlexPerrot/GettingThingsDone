@@ -36,7 +36,7 @@ namespace GettingThingsDone.src.view
             DueDatePicker.IsEnabled = false;
         }
 
-        public void LoadFromTask(SingleTask task)
+        public void LoadFromTask(ISingleTask task)
         {
             TitleText.Text = task.Title;
             DescText.Text = task.Description;
@@ -45,7 +45,7 @@ namespace GettingThingsDone.src.view
              DueDatePicker.SelectedDate = new DateTime?(task.DueDate.Value.DateTime);
         }
 
-        public void WriteToTask(SingleTask task)
+        public void WriteToTask(ISingleTask task)
         {
             task.Title = TitleText.Text;
             task.Description = DescText.Text;
@@ -58,7 +58,7 @@ namespace GettingThingsDone.src.view
         public Task CreateTask()
         {
             IGTDFactory factory = (App.Current as App).Factory;
-            return factory.makeTask(TitleText.Text, DescText.Text, DueDatePicker.SelectedDate.Value);
+            return factory.makeTask(TitleText.Text, DescText.Text, DueDatePicker.SelectedDate);
         }
 
         private void PanelLoaded(object sender, RoutedEventArgs e)

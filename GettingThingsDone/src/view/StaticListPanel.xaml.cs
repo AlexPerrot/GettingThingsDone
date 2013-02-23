@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GettingThingsDone.src.model;
 
 namespace GettingThingsDone.src.view
 {
@@ -30,7 +31,7 @@ namespace GettingThingsDone.src.view
             if (e.ClickCount == 2)
             {
                 TaskCreationWindow editWin = new TaskCreationWindow();
-                SingleTask task = (sender as StackPanel).DataContext as SingleTask;
+                ISingleTask task = (sender as StackPanel).DataContext as ISingleTask;
                 editWin.CreationPanel.LoadFromTask(task);
                 if (editWin.ShowDialog().Value)
                 {
