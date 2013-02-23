@@ -13,14 +13,16 @@ namespace GettingThingsDone.src.data
         {
             get
             {
-                return dbTask.Title;
+                DataClassesDataContext db = dbProvider.Database;
+                Tasks t = db.Tasks.Single(x => x.Id == id);
+                return t.Title;
             }
             set
             {
-                DataClassesDataContext dc = dbProvider.Database;
-                dc.Tasks.Attach(dbTask);
-                dbTask.Title = value;
-                dc.SubmitChanges();
+                DataClassesDataContext db = dbProvider.Database;
+                Tasks t = db.Tasks.Single(x => x.Id == id);
+                t.Title = value;
+                db.SubmitChanges();
             }
         }
 
@@ -28,14 +30,16 @@ namespace GettingThingsDone.src.data
         {
             get
             {
-               return dbTask.Description;
+                DataClassesDataContext db = dbProvider.Database;
+                Tasks t = db.Tasks.Single(x => x.Id == id);
+                return t.Description;
             }
             set
             {
-                DataClassesDataContext dc = dbProvider.Database;
-                dc.Tasks.Attach(dbTask);
-                dbTask.Description = value;
-                dc.SubmitChanges();
+                DataClassesDataContext db = dbProvider.Database;
+                Tasks t = db.Tasks.Single(x => x.Id == id);
+                t.Description = value;
+                db.SubmitChanges();
             }
         }
 
@@ -43,14 +47,16 @@ namespace GettingThingsDone.src.data
         {
             get
             {
-                return dbTask.Done;
+                DataClassesDataContext db = dbProvider.Database;
+                Tasks t = db.Tasks.Single(x => x.Id == id);
+                return t.Done;
             }
             set
             {
-                DataClassesDataContext dc = dbProvider.Database;
-                dc.Tasks.Attach(dbTask);
-                dbTask.Done = value;
-                dc.SubmitChanges();
+                DataClassesDataContext db = dbProvider.Database;
+                Tasks t = db.Tasks.Single(x => x.Id == id);
+                t.Done = value;
+                db.SubmitChanges();
             }
         }
 
@@ -58,20 +64,27 @@ namespace GettingThingsDone.src.data
         {
             get
             {
-                return dbTask.DueDate;
+                DataClassesDataContext db = dbProvider.Database;
+                Tasks t = db.Tasks.Single(x => x.Id == id);
+                return t.DueDate;
             }
             set
             {
-                DataClassesDataContext dc = dbProvider.Database;
-                dc.Tasks.Attach(dbTask);
-                dbTask.DueDate = value;
-                dc.SubmitChanges();
+                DataClassesDataContext db = dbProvider.Database;
+                Tasks t = db.Tasks.Single(x => x.Id == id);
+                t.DueDate = value;
+                db.SubmitChanges();
             }
         }
 
         public DateTimeOffset CreationDate
         {
-            get { return dbTask.CreationDate; }
+            get
+            {
+                DataClassesDataContext db = dbProvider.Database;
+                Tasks t = db.Tasks.Single(x => x.Id == id);
+                return t.CreationDate;
+            }
         }
 
         public T accept<T>(TaskVisitor<T> v)
@@ -79,12 +92,12 @@ namespace GettingThingsDone.src.data
             return v.visit(this);
         }
 
-        private Tasks dbTask;
+        private int id;
         private IDatabaseProvider dbProvider;
 
         public DBSingleTask(Tasks dbTask, IDatabaseProvider dbProvider)
         {
-            this.dbTask = dbTask;
+            this.id = dbTask.Id;
             this.dbProvider = dbProvider;
         }
 
