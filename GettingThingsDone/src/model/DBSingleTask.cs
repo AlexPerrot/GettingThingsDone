@@ -17,8 +17,10 @@ namespace GettingThingsDone.src.data
             }
             set
             {
+                DataClassesDataContext dc = dbProvider.Database;
+                dc.Tasks.Attach(dbTask);
                 dbTask.Title = value;
-                submitChanges();
+                dc.SubmitChanges();
             }
         }
 
@@ -30,8 +32,10 @@ namespace GettingThingsDone.src.data
             }
             set
             {
+                DataClassesDataContext dc = dbProvider.Database;
+                dc.Tasks.Attach(dbTask);
                 dbTask.Description = value;
-                submitChanges();
+                dc.SubmitChanges();
             }
         }
 
@@ -43,8 +47,10 @@ namespace GettingThingsDone.src.data
             }
             set
             {
+                DataClassesDataContext dc = dbProvider.Database;
+                dc.Tasks.Attach(dbTask);
                 dbTask.Done = value;
-                submitChanges();
+                dc.SubmitChanges();
             }
         }
 
@@ -56,8 +62,10 @@ namespace GettingThingsDone.src.data
             }
             set
             {
+                DataClassesDataContext dc = dbProvider.Database;
+                dc.Tasks.Attach(dbTask);
                 dbTask.DueDate = value;
-                submitChanges();
+                dc.SubmitChanges();
             }
         }
 
