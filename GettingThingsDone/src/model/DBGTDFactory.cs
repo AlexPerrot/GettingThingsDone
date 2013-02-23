@@ -11,7 +11,7 @@ namespace GettingThingsDone.src.model
 
         public ISingleTask makeTask(string title, string description, DateTimeOffset? DueDate)
         {
-            DataClassesDataContext dc = new DataClassesDataContext();
+            DataClassesDataContext dc = (App.Current as App).DB;
 
             Tasks dbTask = new Tasks();
             dbTask.CreationDate = DateTimeOffset.Now;
