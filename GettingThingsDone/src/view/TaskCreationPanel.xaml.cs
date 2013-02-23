@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GettingThingsDone.src.model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,10 +57,8 @@ namespace GettingThingsDone.src.view
 
         public Task CreateTask()
         {
-            if (DueDateBox.IsChecked.Value)
-                return new SingleTask(TitleText.Text, DescText.Text, DueDatePicker.SelectedDate.Value);
-            else
-                return new SingleTask(TitleText.Text, DescText.Text);
+            IGTDFactory factory = (App.Current as App).Factory;
+            return factory.makeTask(TitleText.Text, DescText.Text, DueDatePicker.SelectedDate.Value);
         }
 
         private void PanelLoaded(object sender, RoutedEventArgs e)

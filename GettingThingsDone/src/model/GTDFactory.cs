@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GettingThingsDone.src.model
 {
-    interface GTDFactory
+    public interface IGTDFactory
     {
         ISingleTask makeTask(string title, string description, DateTimeOffset? DueDate);
         IProject makeProject(string title);
