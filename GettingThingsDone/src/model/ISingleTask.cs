@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GettingThingsDone.src.model
 {
-    interface ISingleTask
+    interface ISingleTask : Task
     {
+        // rien de spécifique à la ISingleTask pour le moment
     }
 }

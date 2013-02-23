@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace GettingThingsDone.src.model
 {
-    interface IProject
+    interface IProject : Task
     {
+        public IList<Task> Tasks { get; }
+
     }
 }

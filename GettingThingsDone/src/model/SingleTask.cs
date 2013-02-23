@@ -10,8 +10,9 @@ using System.Linq;
 using System.Text;
 using GettingThingsDone;
 using GettingThingsDone.data;
+using GettingThingsDone.src.model;
 
-public class SingleTask : Task
+public class SingleTask : ISingleTask
 {
 
     public String Title { get; set; }
