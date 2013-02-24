@@ -8,25 +8,14 @@
 using System;
 using System.Data.Linq;
 
-namespace GettingThingsDone.data
+namespace GettingThingsDone.src.data
 {
-    public sealed class LocalDatabaseProvider
+    public sealed class LocalDatabaseProvider : IDatabaseProvider
     {
-        private static Lazy<LocalDatabaseProvider> lazy =
-        new Lazy<LocalDatabaseProvider>(() => new LocalDatabaseProvider());
-
-        private DataClassesDataContext getDataContext()
+        public DataClassesDataContext Database
         {
-            return new DataClassesDataContext();
+            get { return new DataClassesDataContext(); }
         }
-
-        public static DataClassesDataContext Instance
-        {
-            get { return lazy.Value.getDataContext(); }
-        }
-
-        private LocalDatabaseProvider() {}
-
     }
 }
 

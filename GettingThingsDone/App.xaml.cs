@@ -9,6 +9,8 @@ using System.Windows;
 using GettingThingsDone.Properties;
 using GettingThingsDone;
 using GettingThingsDone.data;
+using GettingThingsDone.src.model;
+using GettingThingsDone.src.data;
 
 namespace GettingThingsDone
 {
@@ -18,19 +20,27 @@ namespace GettingThingsDone
     public partial class App : Application
     {
 
-        private GTDSystem gtd = new GTDSystem();
+        private GTDSystem gtd;
         public GTDSystem GTD { get { return gtd; } }
 
-        public GettingThingsDone.DataClassesDataContext DB { get { return LocalDatabaseProvider.Instance; } }
+        public GettingThingsDone.DataClassesDataContext DB { get { return new DataClassesDataContext(); } }
 
         private Users admin;
         public Users Admin { get { return admin; } }
 
+        private IGTDFactory factory = new DBGTDFactory(new LocalDatabaseProvider());
+        public IGTDFactory Factory { get { return factory; } }
 
         public App()
             : base()
         {
+            gtd = Factory.makeSystem();
             admin = this.DB.Users.Single(item => item.Username == "admin");
+        }
+
+        private void Application_Exit_1(object sender, ExitEventArgs e)
+        {
+            DB.SubmitChanges();
         }
     }
 }

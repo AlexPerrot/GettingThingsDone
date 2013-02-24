@@ -83,9 +83,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </Compile>
+    <Compile Include="src\data\IDatabaseProvider.cs" />
     <Compile Include="src\data\LocalDatabaseProvider.cs" />
     <Compile Include="src\data\GTDItemSave.cs" />
     <Compile Include="src\data\TaskVisitor_T.cs" />
+    <Compile Include="src\data\DBGTDFactory.cs" />
+    <Compile Include="src\model\DBSingleTask.cs" />
+    <Compile Include="src\model\IGTDFactory.cs" />
+    <Compile Include="src\model\IProject.cs" />
+    <Compile Include="src\model\ISingleTask.cs" />
     <Compile Include="src\model\TaskList.cs" />
     <Compile Include="src\model\TaskVisitor_T.cs" />
     <Compile Include="src\view\TaskCreationPanel.xaml.cs">

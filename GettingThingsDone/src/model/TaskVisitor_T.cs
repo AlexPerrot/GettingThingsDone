@@ -8,14 +8,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GettingThingsDone.src.model;
 
 public interface TaskVisitor<T> 
 {
 	T visit(TaskList list);
 
-	T visit(SingleTask task);
+	T visit(ISingleTask task);
 
-	T visit(Project project);
+	T visit(IProject project);
 
 }
 
