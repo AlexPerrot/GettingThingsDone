@@ -37,5 +37,19 @@ namespace GettingThingsDone.src.data
         {
             throw new NotImplementedException();
         }
+
+        public GTDSystem makeSystem()
+        {
+            GTDSystem sys = new GTDSystem();
+
+            DataClassesDataContext db = dbProvider.Database;
+            foreach (Tasks t in db.Tasks)
+            {
+                ISingleTask st = new DBSingleTask(t, dbProvider);
+                sys.Inbox.List.Add(st);
+            }
+
+            return sys;
+        }
     }
 }
