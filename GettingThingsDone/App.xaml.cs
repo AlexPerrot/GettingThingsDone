@@ -20,7 +20,7 @@ namespace GettingThingsDone
     public partial class App : Application
     {
 
-        private GTDSystem gtd = new GTDSystem();
+        private GTDSystem gtd;
         public GTDSystem GTD { get { return gtd; } }
 
         public GettingThingsDone.DataClassesDataContext DB { get { return new DataClassesDataContext(); } }
@@ -34,6 +34,7 @@ namespace GettingThingsDone
         public App()
             : base()
         {
+            gtd = Factory.makeSystem();
             admin = this.DB.Users.Single(item => item.Username == "admin");
         }
 
