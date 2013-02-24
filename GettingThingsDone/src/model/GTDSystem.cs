@@ -44,13 +44,13 @@ public class GTDSystem : TaskList
 
     public List<StaticList> Contexts { get { return contexts; } }
 
-	public virtual IEnumerator<GTDItem> GetEnumerator()
+	public virtual IEnumerator<TaskList> GetEnumerator()
 	{
         yield return Inbox;
         yield return Today;
         yield return Tomorrow;
         yield return Someday;
-        foreach (GTDItem item in contexts)
+        foreach (TaskList item in contexts)
             yield return item;
 	}
 
@@ -64,5 +64,10 @@ public class GTDSystem : TaskList
         return v.visit(this);
     }
 
+    public void removeTask(Task t)
+    {
+        foreach (TaskList l in this)
+            l.removeTask(t);
+    }
 }
 
