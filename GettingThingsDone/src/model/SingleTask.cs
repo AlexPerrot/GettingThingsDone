@@ -78,5 +78,6 @@ public class SingleTask : ISingleTask
 		v.visit(this);
 	}
 
+    public void Delete() { }
 }
 

@@ -49,5 +49,6 @@ public class Project : IProject
 		return v.visit(this);
 	}
 
+    public void Delete() { }
 }
 

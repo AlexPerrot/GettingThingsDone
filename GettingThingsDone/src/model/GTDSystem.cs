@@ -44,7 +44,7 @@ public class GTDSystem : TaskList
 
     public List<StaticList> Contexts { get { return contexts; } }
 
-	public virtual IEnumerator<TaskList> GetEnumerator()
+	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
         yield return Inbox;
         yield return Today;
@@ -68,6 +68,7 @@ public class GTDSystem : TaskList
     {
         foreach (TaskList l in this)
             l.removeTask(t);
+        t.Delete();
     }
 }
 

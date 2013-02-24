@@ -105,5 +105,13 @@ namespace GettingThingsDone.src.data
         {
             this.dbProvider.Database.SubmitChanges();
         }
+
+        public void Delete()
+        {
+            DataClassesDataContext db = dbProvider.Database;
+            Tasks t = db.Tasks.Single(x => x.Id == this.id);
+            db.Tasks.DeleteOnSubmit(t);
+            db.SubmitChanges();
+        }
     }
 }
