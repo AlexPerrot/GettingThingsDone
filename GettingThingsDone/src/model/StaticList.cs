@@ -50,5 +50,10 @@ public class StaticList : TaskList
     {
         return this.Name;
     }
+
+    public void removeTask(Task t)
+    {
+        list.Remove(t);
+    }
 }
 

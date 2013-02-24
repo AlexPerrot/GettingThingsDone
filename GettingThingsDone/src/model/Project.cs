@@ -8,13 +8,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GettingThingsDone.src.model;
 
 /// <remarks>
 /// En lisant le bouquin de GTD, j'ai préférer revenir à ce double composite.
 /// J'explique : bien qu'un projet semble être une liste de taches, il ne fait que se comporter comme un truc dans lequel y'a des taches et n'est pas une liste de taches au sens GTD.
 /// Un projet est en fait une tache qui necessite plus d'une action. Donc projet hérite de tache et gère ses taches avec une liste (au sens structure de données).
 /// </remarks>
-public class Project : Task
+public class Project : IProject
 {
     private IList<Task> tasks = new List<Task>();
     public IList<Task> Tasks
@@ -48,5 +49,6 @@ public class Project : Task
 		return v.visit(this);
 	}
 
+    public void Delete() { }
 }
 

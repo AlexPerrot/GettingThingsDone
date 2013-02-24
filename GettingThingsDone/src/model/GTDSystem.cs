@@ -50,7 +50,7 @@ public class GTDSystem : TaskList
         yield return Today;
         yield return Tomorrow;
         yield return Someday;
-        foreach (GTDItem item in contexts)
+        foreach (TaskList item in contexts)
             yield return item;
 	}
 
@@ -64,5 +64,11 @@ public class GTDSystem : TaskList
         return v.visit(this);
     }
 
+    public void removeTask(Task t)
+    {
+        foreach (TaskList l in this)
+            l.removeTask(t);
+        t.Delete();
+    }
 }
 
