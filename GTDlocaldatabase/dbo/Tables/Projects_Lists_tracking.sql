@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[Projects_Lists_tracking] (
     [Id]                          INT        NOT NULL,
+    [Owner]                       INT        NOT NULL,
     [update_scope_local_id]       INT        NULL,
     [scope_update_peer_key]       INT        NULL,
     [scope_update_peer_timestamp] BIGINT     NULL,
@@ -13,11 +14,15 @@
     [sync_row_is_tombstone]       INT        NOT NULL,
     [restore_timestamp]           BIGINT     NULL,
     [last_change_datetime]        DATETIME   NULL,
-    CONSTRAINT [PK_Projects_Lists_tracking] PRIMARY KEY CLUSTERED ([Id] ASC)
+    CONSTRAINT [PK_Projects_Lists_tracking] PRIMARY KEY CLUSTERED ([Id] ASC, [Owner] ASC)
 );
+
+
 
 
 GO
 CREATE NONCLUSTERED INDEX [local_update_peer_timestamp_index]
-    ON [dbo].[Projects_Lists_tracking]([local_update_peer_timestamp] ASC, [Id] ASC);
+    ON [dbo].[Projects_Lists_tracking]([local_update_peer_timestamp] ASC, [Id] ASC, [Owner] ASC);
+
+
 
