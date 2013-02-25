@@ -117,17 +117,6 @@
     <Build Include="dbo\Stored Procedures\Tasks_Tasks_bulkdelete.sql" />
     <Build Include="dbo\Stored Procedures\Tasks_selectrow.sql" />
     <Build Include="dbo\Stored Procedures\Tasks_selectchanges.sql" />
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_updatemetadata.sql" />
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_update.sql" />
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_selectrow.sql" />
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_selectchanges.sql" />
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_insertmetadata.sql" />
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_insert.sql" />
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_deletemetadata.sql" />
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_delete.sql" />
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_bulkupdate.sql" />
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_bulkinsert.sql" />
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_bulkdelete.sql" />
     <Build Include="dbo\Stored Procedures\Tasks_insertmetadata.sql" />
     <Build Include="dbo\Stored Procedures\Tasks_insert.sql" />
     <Build Include="dbo\Stored Procedures\Tasks_deletemetadata.sql" />
@@ -192,7 +181,6 @@
     <Build Include="dbo\Stored Procedures\Lists_bulkdelete.sql" />
     <Build Include="dbo\User Defined Types\Users_BulkType.sql" />
     <Build Include="dbo\User Defined Types\Tasks_Tasks_BulkType.sql" />
-    <Build Include="dbo\User Defined Types\Tasks_Lists_BulkType.sql" />
     <Build Include="dbo\User Defined Types\Tasks_BulkType.sql" />
     <Build Include="dbo\User Defined Types\Projects_Tasks_BulkType.sql" />
     <Build Include="dbo\User Defined Types\Projects_Lists_BulkType.sql" />
