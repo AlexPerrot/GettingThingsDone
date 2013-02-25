@@ -96,7 +96,10 @@
     <Compile Include="src\model\ISingleTask.cs" />
     <Compile Include="src\model\IStaticList.cs" />
     <Compile Include="src\model\TaskList.cs" />
+    <Compile Include="src\model\visitor\AllISingleTasks.cs" />
+    <Compile Include="src\model\visitor\AllTasks.cs" />
     <Compile Include="src\model\visitor\GTDVisitor.cs" />
+    <Compile Include="src\model\visitor\SubLists.cs" />
     <Compile Include="src\model\visitor\VoidVisitor.cs" />
     <Compile Include="src\view\TaskCreationPanel.xaml.cs">
       <DependentUpon>TaskCreationPanel.xaml</DependentUpon>
