@@ -296,50 +296,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_updatemetadata.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_update.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_selectrow.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_selectchanges.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_insertmetadata.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_insert.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_deletemetadata.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_delete.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_bulkupdate.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_bulkinsert.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Stored Procedures\Tasks_Lists_bulkdelete.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <Build Include="dbo\Stored Procedures\Tasks_insertmetadata.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
@@ -589,7 +545,6 @@
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="dbo\User Defined Types\Tasks_Tasks_BulkType.sql" />
-    <Build Include="dbo\User Defined Types\Tasks_Lists_BulkType.sql" />
     <Build Include="dbo\User Defined Types\Tasks_BulkType.sql" />
     <Build Include="dbo\User Defined Types\Projects_Tasks_BulkType.sql" />
     <Build Include="dbo\User Defined Types\Projects_Lists_BulkType.sql" />
