@@ -1,11 +1,15 @@
 ﻿CREATE TABLE [dbo].[Lists] (
-    [Id]          INT            NOT NULL,
+    [Id]          INT            IDENTITY (1, 1) NOT NULL,
     [Title]       NVARCHAR (50)  NOT NULL,
     [Description] NVARCHAR (MAX) NULL,
     [Owner]       INT            NOT NULL,
     CONSTRAINT [PK__Lists__3214EC070BC6C43E] PRIMARY KEY CLUSTERED ([Id] ASC, [Owner] ASC),
     CONSTRAINT [FK_Lists_Users] FOREIGN KEY ([Owner]) REFERENCES [dbo].[Users] ([Id])
 );
+
+
+
+
 
 
 

@@ -119,7 +119,7 @@
       <AnsiNulls>On</AnsiNulls>
     </Build>
     <Build Include="dbo\Tables\Tasks.sql">
-      <AnsiNulls>Off</AnsiNulls>
+      <AnsiNulls>On</AnsiNulls>
     </Build>
     <Build Include="dbo\Tables\Tasks_Tasks.sql">
       <AnsiNulls>On</AnsiNulls>
@@ -141,6 +141,7 @@
     </Build>
     <Build Include="dbo\Tables\Tasks_Lists.sql">
       <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
     </Build>
     <Build Include="dbo\Tables\Users_tracking.sql">
       <AnsiNulls>On</AnsiNulls>

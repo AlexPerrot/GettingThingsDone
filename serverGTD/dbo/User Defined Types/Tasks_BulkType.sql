@@ -5,11 +5,14 @@
     [DueDate]                    DATETIMEOFFSET (7) NULL,
     [CreationDate]               DATETIMEOFFSET (7) NULL,
     [Owner]                      INT                NOT NULL,
+    [Done]                       BIT                NULL,
     [sync_update_peer_timestamp] BIGINT             NULL,
     [sync_update_peer_key]       INT                NULL,
     [sync_create_peer_timestamp] BIGINT             NULL,
     [sync_create_peer_key]       INT                NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC, [Owner] ASC));
+
+
 
 
 
