@@ -9,8 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
+using GettingThingsDone.src.model;
 
-public class StaticList : TaskList
+public class StaticList : IStaticList
 {
     private ObservableCollection<GTDItem> list = new ObservableCollection<GTDItem>();
     public ObservableCollection<GTDItem> List { get { return list; } }

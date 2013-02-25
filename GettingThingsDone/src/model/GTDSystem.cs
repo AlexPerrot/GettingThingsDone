@@ -8,9 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GettingThingsDone.src.model;
 
 /// <remarks>Cette classe décrit le système général de GTD, avec la boite de reception et les listes de l'utilisateur. On ajoutera surement le calendrier ici.</remarks>
-public class GTDSystem : TaskList
+public class GTDSystem : IGTDSystem
 {
 
     public string Name { get; set; }

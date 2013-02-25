@@ -8,9 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GettingThingsDone.src.model;
 
 /// <remarks>La liste dynamique se construit avec une liste cible (statique ou dynamique) et un filtre (à définir).</remarks>
-public class DynamicList : TaskList
+public class DynamicList : IDynamicList
 {
     public string Name { get; set; }
 
