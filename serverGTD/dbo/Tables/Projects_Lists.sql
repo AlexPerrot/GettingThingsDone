@@ -1,13 +1,17 @@
 ﻿CREATE TABLE [dbo].[Projects_Lists] (
-    [Id]         INT IDENTITY (1, 1) NOT NULL,
-    [Project_id] INT NOT NULL,
-    [List_id]    INT NOT NULL,
-    [Owner]      INT NOT NULL,
+    [Id]          INT            IDENTITY (1, 1) NOT NULL,
+    [Project_id]  INT            NOT NULL,
+    [Owner]       INT            NOT NULL,
+    [Title]       NVARCHAR (50)  NOT NULL,
+    [Description] NVARCHAR (MAX) NULL,
     CONSTRAINT [PK__Projects__3214EC07173876EA] PRIMARY KEY CLUSTERED ([Id] ASC, [Owner] ASC),
-    CONSTRAINT [FK_Projects_Lists_Lists] FOREIGN KEY ([List_id], [Owner]) REFERENCES [dbo].[Lists] ([Id], [Owner]),
     CONSTRAINT [FK_Projects_Lists_Projects] FOREIGN KEY ([Project_id], [Owner]) REFERENCES [dbo].[Projects] ([Id], [Owner]),
     CONSTRAINT [FK_Projects_Lists_Users] FOREIGN KEY ([Owner]) REFERENCES [dbo].[Users] ([Id])
 );
+
+
+
+
 
 
 
