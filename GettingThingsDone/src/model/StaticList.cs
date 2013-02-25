@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
 using GettingThingsDone.src.model;
+using GettingThingsDone.src.model.visitor;
 
 public class StaticList : IStaticList
 {
@@ -42,7 +43,7 @@ public class StaticList : IStaticList
         list.Remove(item);
 	}
 
-	public virtual T accept<T>(TaskVisitor<T> v)
+	public virtual T accept<T>(GTDVisitor<T> v)
 	{
         return v.visit(this);
     }

@@ -11,6 +11,7 @@ using System.Text;
 using GettingThingsDone;
 using GettingThingsDone.data;
 using GettingThingsDone.src.model;
+using GettingThingsDone.src.model.visitor;
 
 public class SingleTask : ISingleTask
 {
@@ -68,7 +69,7 @@ public class SingleTask : ISingleTask
         return "SingleTask : " + Title + "\n" + Description;
     }
 
-    public T accept<T>(TaskVisitor<T> v)
+    public T accept<T>(GTDVisitor<T> v)
     {
         throw new NotImplementedException();
     }
