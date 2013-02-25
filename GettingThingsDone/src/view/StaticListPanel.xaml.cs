@@ -48,5 +48,25 @@ namespace GettingThingsDone.src.view
             list.removeTask(task);
             task.Delete();
         }
+
+        private void OnDrop(object sender, DragEventArgs e)
+        {
+            Task t = e.Data.GetData(e.Data.GetFormats().First(), true) as Task;
+            TaskList l = DataContext as TaskList;
+
+            l.AddTask(t);
+        }
+
+        private void StackPanel_Drag(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Task t = (sender as StackPanel).DataContext as Task;
+                DataObject data = new DataObject(t);
+                TaskList l = DataContext as TaskList;
+                l.removeTask(t);
+                DragDrop.DoDragDrop(sender as StackPanel, data, DragDropEffects.Copy);
+            }
+        }
     }
 }

@@ -4,11 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             AllowDrop="True"
+             Drop="OnDrop">
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
             <Border BorderBrush="Black" BorderThickness="2" >
-                <StackPanel Orientation="Horizontal" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown_1">
+                <StackPanel Orientation="Horizontal" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown_1" MouseMove="StackPanel_Drag">
                     <StackPanel.Background>
                         <LinearGradientBrush StartPoint="0.500,0" EndPoint="0.500,0.900">
                             <GradientStop Color="PowderBlue" Offset="0"/>
