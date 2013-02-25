@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GettingThingsDone.src.model;
+using GettingThingsDone.src.model.visitor;
 
 /// <remarks>La liste dynamique se construit avec une liste cible (statique ou dynamique) et un filtre (à définir).</remarks>
 public class DynamicList : IDynamicList
@@ -38,7 +39,7 @@ public class DynamicList : IDynamicList
         return GetEnumerator();
     }
 
-	public virtual T accept<T>(TaskVisitor<T> v)
+	public virtual T accept<T>(GTDVisitor<T> v)
 	{
 		return v.visit(this);
 	}

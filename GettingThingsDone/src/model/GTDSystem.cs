@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GettingThingsDone.src.model;
+using GettingThingsDone.src.model.visitor;
 
 /// <remarks>Cette classe décrit le système général de GTD, avec la boite de reception et les listes de l'utilisateur. On ajoutera surement le calendrier ici.</remarks>
 public class GTDSystem : IGTDSystem
@@ -60,7 +61,7 @@ public class GTDSystem : IGTDSystem
         return GetEnumerator();
     }
 
-	public virtual T accept<T>(TaskVisitor<T> v)
+	public virtual T accept<T>(GTDVisitor<T> v)
 	{
         return v.visit(this);
     }

@@ -89,11 +89,15 @@
     <Compile Include="src\data\TaskVisitor_T.cs" />
     <Compile Include="src\data\DBGTDFactory.cs" />
     <Compile Include="src\model\DBSingleTask.cs" />
+    <Compile Include="src\model\IDynamicList.cs" />
     <Compile Include="src\model\IGTDFactory.cs" />
+    <Compile Include="src\model\IGTDSystem.cs" />
     <Compile Include="src\model\IProject.cs" />
     <Compile Include="src\model\ISingleTask.cs" />
+    <Compile Include="src\model\IStaticList.cs" />
     <Compile Include="src\model\TaskList.cs" />
-    <Compile Include="src\model\TaskVisitor_T.cs" />
+    <Compile Include="src\model\visitor\GTDVisitor.cs" />
+    <Compile Include="src\model\visitor\VoidVisitor.cs" />
     <Compile Include="src\view\TaskCreationPanel.xaml.cs">
       <DependentUpon>TaskCreationPanel.xaml</DependentUpon>
     </Compile>
