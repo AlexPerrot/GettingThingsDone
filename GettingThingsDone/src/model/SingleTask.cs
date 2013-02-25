@@ -8,8 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GettingThingsDone;
+using GettingThingsDone.data;
+using GettingThingsDone.src.model;
 
-public class SingleTask : Task
+public class SingleTask : ISingleTask
 {
 
     public String Title { get; set; }
@@ -20,7 +23,6 @@ public class SingleTask : Task
     public DateTimeOffset CreationDate { get { return creationDate; } }
     public DateTimeOffset Reminder { get; set; }
     public String Context { get; set; }
-
 
     public SingleTask() : this("")
     {
@@ -41,10 +43,24 @@ public class SingleTask : Task
     public SingleTask(string title, string desc, DateTimeOffset? dueDate)
     {
         this.creationDate = DateTimeOffset.Now;
-        this.Done = false;
         this.Title = title;
         this.Description = desc;
         this.DueDate = dueDate;
+
+       /* this.dbProxy = new Tasks();
+        dbProxy.CreationDate = creationDate;
+        dbProxy.Description = Description;
+        dbProxy.DueDate = DueDate;
+        dbProxy.Title = Title;
+        dbProxy.Users = (App.Current as App).Admin;
+        dbProxy.Done = false;
+
+       
+
+        (App.Current as App).DB.Tasks.InsertOnSubmit(dbProxy);
+        (App.Current as App).DB.SubmitChanges();*/
+
+        this.accept(GettingThingsDone.data.GTDItemSave.Instance);
     }
 
     public override string ToString()
@@ -52,10 +68,16 @@ public class SingleTask : Task
         return "SingleTask : " + Title + "\n" + Description;
     }
 
-	public virtual T accept<T>(TaskVisitor<T> v)
+    public T accept<T>(TaskVisitor<T> v)
+    {
+        throw new NotImplementedException();
+    }
+
+    public virtual void accept(TaskVisitor v)
 	{
-		return v.visit(this);
+		v.visit(this);
 	}
 
+    public void Delete() { }
 }
 

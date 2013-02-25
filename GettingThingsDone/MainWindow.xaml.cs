@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GettingThingsDone.src.view;
 
 namespace GettingThingsDone
 {
@@ -23,15 +24,15 @@ namespace GettingThingsDone
         public MainWindow()
         {
             InitializeComponent();
-            //Window login = new LoginWindow();
-            //login.Show();
+            DataContext = ((App)App.Current).GTD;
         }
 
         private void CreateTask(object sender, RoutedEventArgs e)
         {
             Task t = TaskCreationWindow.GetNewTask();
             if (t!=null)
-                List.Items.Add(t);
+                ((App)App.Current).GTD.Inbox.AddItem(t);
         }
+
     }
 }

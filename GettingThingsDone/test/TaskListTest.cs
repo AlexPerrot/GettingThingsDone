@@ -30,19 +30,19 @@ namespace GettingThingsDone.test
         [TestMethod]
         public void testAddList()
         {
-            Assert.AreEqual(List.list.Count,0);
+            Assert.AreEqual(List.List.Count,0);
             List.AddItem(item);
-            Assert.IsTrue(List.list.Contains(item));
+            Assert.IsTrue(List.List.Contains(item));
         }
 
         [TestMethod]
         public void testRemoveList()
         {
-            Assert.AreEqual(List.list.Count, 0);
+            Assert.AreEqual(List.List.Count, 0);
             List.AddItem(item);
-            Assert.IsTrue(List.list.Contains(item));
+            Assert.IsTrue(List.List.Contains(item));
             List.RemoveItem(item);
-            Assert.IsFalse(List.list.Contains(item));
+            Assert.IsFalse(List.List.Contains(item));
         }
 
         [TestMethod]

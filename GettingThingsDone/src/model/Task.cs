@@ -8,5 +8,7 @@ public interface Task : GTDItem
     Boolean Done { get; set; }
     DateTimeOffset? DueDate { get; set; }
     DateTimeOffset CreationDate { get; }
+
+    void Delete();
 }
 
