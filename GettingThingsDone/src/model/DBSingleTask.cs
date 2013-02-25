@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GettingThingsDone.src.model;
+using GettingThingsDone.src.model.visitor;
 
 namespace GettingThingsDone.src.data
 {
@@ -87,7 +88,7 @@ namespace GettingThingsDone.src.data
             }
         }
 
-        public T accept<T>(TaskVisitor<T> v)
+        public T accept<T>(GTDVisitor<T> v)
         {
             return v.visit(this);
         }

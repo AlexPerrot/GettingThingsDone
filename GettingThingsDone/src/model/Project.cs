@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GettingThingsDone.src.model;
+using GettingThingsDone.src.model.visitor;
 
 /// <remarks>
 /// En lisant le bouquin de GTD, j'ai préférer revenir à ce double composite.
@@ -44,7 +45,7 @@ public class Project : IProject
         this.creationDate = creationDate;
     }
 
-	public virtual T accept<T>(TaskVisitor<T> v)
+	public virtual T accept<T>(GTDVisitor<T> v)
 	{
 		return v.visit(this);
 	}

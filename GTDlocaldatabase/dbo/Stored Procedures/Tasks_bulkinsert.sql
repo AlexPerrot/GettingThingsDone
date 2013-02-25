@@ -7,14 +7,16 @@ BEGIN
 -- use a temp table to store the list of PKs that successfully got updated/inserted
 DECLARE @changed TABLE ([Id] int, [Owner] int, PRIMARY KEY ([Id], [Owner]));
 
+SET IDENTITY_INSERT [Tasks] ON;
 -- update/insert into the base table
 MERGE [Tasks] AS base USING
 -- join done here against the side table to get the local timestamp for concurrency check
 (SELECT p.*, t.local_update_peer_timestamp FROM @changeTable p LEFT JOIN [Tasks_tracking] t ON p.[Id] = t.[Id] AND p.[Owner] = t.[Owner]) AS changes ON changes.[Id] = base.[Id] AND changes.[Owner] = base.[Owner]
 WHEN NOT MATCHED BY TARGET AND changes.local_update_peer_timestamp <= @sync_min_timestamp OR changes.local_update_peer_timestamp IS NULL THEN
-INSERT ([Id], [Title], [Description], [DueDate], [CreationDate], [Owner]) VALUES (changes.[Id], changes.[Title], changes.[Description], changes.[DueDate], changes.[CreationDate], changes.[Owner])
+INSERT ([Id], [Title], [Description], [DueDate], [CreationDate], [Owner], [Done]) VALUES (changes.[Id], changes.[Title], changes.[Description], changes.[DueDate], changes.[CreationDate], changes.[Owner], changes.[Done])
 OUTPUT INSERTED.[Id], INSERTED.[Owner] INTO @changed; -- populates the temp table with successful PKs
 
+SET IDENTITY_INSERT [Tasks] OFF;
 UPDATE side SET
 update_scope_local_id = @sync_scope_local_id, 
 scope_update_peer_key = changes.sync_update_peer_key, 
