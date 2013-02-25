@@ -188,5 +188,18 @@
     <Build Include="dbo\User Defined Types\Lists_Tasks_BulkType.sql" />
     <Build Include="dbo\User Defined Types\Lists_BulkType.sql" />
     <Build Include="dbo\Tables\Projects_Lists_Tasks.sql" />
+    <Build Include="dbo\Tables\Projects_Lists_Tasks_tracking.sql" />
+    <Build Include="dbo\Stored Procedures\Projects_Lists_Tasks_updatemetadata.sql" />
+    <Build Include="dbo\Stored Procedures\Projects_Lists_Tasks_update.sql" />
+    <Build Include="dbo\Stored Procedures\Projects_Lists_Tasks_selectrow.sql" />
+    <Build Include="dbo\Stored Procedures\Projects_Lists_Tasks_selectchanges.sql" />
+    <Build Include="dbo\Stored Procedures\Projects_Lists_Tasks_insertmetadata.sql" />
+    <Build Include="dbo\Stored Procedures\Projects_Lists_Tasks_insert.sql" />
+    <Build Include="dbo\Stored Procedures\Projects_Lists_Tasks_deletemetadata.sql" />
+    <Build Include="dbo\Stored Procedures\Projects_Lists_Tasks_delete.sql" />
+    <Build Include="dbo\Stored Procedures\Projects_Lists_Tasks_bulkupdate.sql" />
+    <Build Include="dbo\Stored Procedures\Projects_Lists_Tasks_bulkinsert.sql" />
+    <Build Include="dbo\Stored Procedures\Projects_Lists_Tasks_bulkdelete.sql" />
+    <Build Include="dbo\User Defined Types\Projects_Lists_Tasks_BulkType.sql" />
   </ItemGroup>
 </Project>
