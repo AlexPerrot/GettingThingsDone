@@ -51,10 +51,13 @@ namespace GettingThingsDone.src.view
 
         private void OnDrop(object sender, DragEventArgs e)
         {
-            Task t = e.Data.GetData(e.Data.GetFormats().First(), true) as Task;
+            TaskMoveData data = e.Data.GetData(e.Data.GetFormats().First(), true) as TaskMoveData;
+
+            data.OrigList.removeTask(data.Task);
+
             TaskList l = DataContext as TaskList;
 
-            l.AddTask(t);
+            l.AddTask(data.Task);
         }
 
         private void StackPanel_Drag(object sender, MouseEventArgs e)
@@ -62,11 +65,25 @@ namespace GettingThingsDone.src.view
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 Task t = (sender as StackPanel).DataContext as Task;
-                DataObject data = new DataObject(t);
                 TaskList l = DataContext as TaskList;
-                l.removeTask(t);
-                DragDrop.DoDragDrop(sender as StackPanel, data, DragDropEffects.Copy);
+                TaskMoveData tmd = new TaskMoveData(t, l);
+                DataObject data = new DataObject(tmd);
+                DragDrop.DoDragDrop(sender as StackPanel, data, DragDropEffects.Move);
             }
+        }
+    }
+
+    class TaskMoveData
+    {
+        private Task task;
+        private TaskList origin;
+        public Task Task { get { return this.task; } }
+        public TaskList OrigList { get { return this.origin; } }
+
+        public TaskMoveData(Task t, TaskList l)
+        {
+            this.task = t;
+            this.origin = l;
         }
     }
 }
