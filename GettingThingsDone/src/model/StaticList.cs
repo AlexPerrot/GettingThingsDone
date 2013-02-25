@@ -8,10 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.ObjectModel;
 
 public class StaticList : TaskList
 {
-    public List<GTDItem> list = new List<GTDItem>();
+    private ObservableCollection<GTDItem> list = new ObservableCollection<GTDItem>();
+    public ObservableCollection<GTDItem> List { get { return list; } }
     public String Name { get; set; }
 
     public StaticList(String name)
@@ -47,6 +49,11 @@ public class StaticList : TaskList
     public override string ToString()
     {
         return this.Name;
+    }
+
+    public void removeTask(Task t)
+    {
+        list.Remove(t);
     }
 }
 

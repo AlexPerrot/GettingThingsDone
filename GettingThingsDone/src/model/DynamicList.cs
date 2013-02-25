@@ -42,5 +42,9 @@ public class DynamicList : TaskList
 		return v.visit(this);
 	}
 
+    public void removeTask(Task t)
+    {
+        this.target.removeTask(t);
+    }
 }
 

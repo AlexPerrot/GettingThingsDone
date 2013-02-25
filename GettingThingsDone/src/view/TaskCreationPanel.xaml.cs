@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GettingThingsDone.src.model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,19 +36,20 @@ namespace GettingThingsDone.src.view
             DueDatePicker.IsEnabled = false;
         }
 
-        public void LoadFromTask(SingleTask task)
+        public void LoadFromTask(ISingleTask task)
         {
             TitleText.Text = task.Title;
             DescText.Text = task.Description;
             DueDateBox.IsChecked = task.DueDate.HasValue;
-            DueDatePicker.SelectedDate = new DateTime?(task.DueDate.Value.DateTime);
+            if (task.DueDate.HasValue)
+             DueDatePicker.SelectedDate = new DateTime?(task.DueDate.Value.DateTime);
         }
 
-        public void WriteToTask(SingleTask task)
+        public void WriteToTask(ISingleTask task)
         {
             task.Title = TitleText.Text;
             task.Description = DescText.Text;
-            if (DueDateBox.IsChecked.Value)
+            if (DueDateBox.IsChecked.Value && DueDatePicker.SelectedDate.HasValue)
                 task.DueDate = new DateTimeOffset(DueDatePicker.SelectedDate.Value);
             else
                 task.DueDate = new DateTimeOffset?();
@@ -55,10 +57,13 @@ namespace GettingThingsDone.src.view
 
         public Task CreateTask()
         {
-            if (DueDateBox.IsChecked.Value)
-                return new SingleTask(TitleText.Text, DescText.Text, DueDatePicker.SelectedDate.Value);
-            else
-                return new SingleTask(TitleText.Text, DescText.Text);
+            IGTDFactory factory = (App.Current as App).Factory;
+            return factory.makeTask(TitleText.Text, DescText.Text, DueDatePicker.SelectedDate);
+        }
+
+        private void PanelLoaded(object sender, RoutedEventArgs e)
+        {
+            TitleText.Focus();
         }
     }
 }
