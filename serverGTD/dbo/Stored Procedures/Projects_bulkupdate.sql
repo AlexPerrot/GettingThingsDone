@@ -7,6 +7,7 @@ BEGIN
 -- use a temp table to store the list of PKs that successfully got updated
 declare @changed TABLE ([Id] int, [Owner] int, PRIMARY KEY ([Id], [Owner]));
 
+SET IDENTITY_INSERT [Projects] ON;
 -- update the base table
 MERGE [Projects] AS base USING
 -- join done here against the side table to get the local timestamp for concurrency check
@@ -15,6 +16,7 @@ WHEN MATCHED AND (changes.update_scope_local_id = @sync_scope_local_id AND chang
 UPDATE SET [Title] = changes.[Title], [Description] = changes.[Description]
 OUTPUT INSERTED.[Id], INSERTED.[Owner] into @changed; -- populates the temp table with successful PKs
 
+SET IDENTITY_INSERT [Projects] OFF;
 UPDATE side SET
 update_scope_local_id = @sync_scope_local_id, 
 scope_update_peer_key = changes.sync_update_peer_key, 

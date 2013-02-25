@@ -8,9 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GettingThingsDone.src.model;
+using GettingThingsDone.src.model.visitor;
 
 /// <remarks>Cette classe décrit le système général de GTD, avec la boite de reception et les listes de l'utilisateur. On ajoutera surement le calendrier ici.</remarks>
-public class GTDSystem : TaskList
+public class GTDSystem : IGTDSystem
 {
 
     public string Name { get; set; }
@@ -33,7 +35,7 @@ public class GTDSystem : TaskList
     private TaskList waiting = new StaticList("Waiting");
     public TaskList Waiting { get { return waiting; } }
 
-    private List<StaticList> contexts = new List<StaticList>() 
+    private List<TaskList> contexts = new List<TaskList>() 
         {
             new StaticList("Work"),
             new StaticList("Home"),
@@ -42,7 +44,7 @@ public class GTDSystem : TaskList
             new StaticList("Errands")
         };
 
-    public List<StaticList> Contexts { get { return contexts; } }
+    public List<TaskList> Contexts { get { return contexts; } }
 
 	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
@@ -59,7 +61,7 @@ public class GTDSystem : TaskList
         return GetEnumerator();
     }
 
-	public virtual T accept<T>(TaskVisitor<T> v)
+	public virtual T accept<T>(GTDVisitor<T> v)
 	{
         return v.visit(this);
     }
@@ -69,6 +71,37 @@ public class GTDSystem : TaskList
         foreach (TaskList l in this)
             l.removeTask(t);
         t.Delete();
+    }
+
+    TaskList IGTDSystem.Inbox
+    {
+        get { throw new NotImplementedException(); }
+    }
+
+    public TaskList Tommorow
+    {
+        get { throw new NotImplementedException(); }
+    }
+
+    IEnumerable<TaskList> IGTDSystem.contexts
+    {
+        get { throw new NotImplementedException(); }
+    }
+
+
+    public void AddTask(Task t)
+    {
+        Inbox.AddTask(t);
+    }
+
+    public void AddSubList(TaskList l)
+    {
+        Contexts.Add(l);
+    }
+
+    public void removeSubList(TaskList l)
+    {
+        Contexts.Remove(l);
     }
 }
 

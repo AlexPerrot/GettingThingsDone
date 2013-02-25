@@ -12,6 +12,10 @@ using System.Text;
 public interface TaskList : GTDItem, IEnumerable<GTDItem>
 {
    String Name { get; set; }
+   void AddTask(Task t);
+   void AddSubList(TaskList l);
+
    void removeTask(Task t);
+   void removeSubList(TaskList l);
 }
 

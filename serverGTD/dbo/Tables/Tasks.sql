@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Tasks] (
-    [Id]           INT                NOT NULL,
+    [Id]           INT                IDENTITY (1, 1) NOT NULL,
     [Title]        VARCHAR (50)       NOT NULL,
     [Description]  VARCHAR (50)       NOT NULL,
     [DueDate]      DATETIMEOFFSET (7) NULL,
@@ -9,6 +9,10 @@
     CONSTRAINT [PK__Tasks__3214EC071ED998B2] PRIMARY KEY CLUSTERED ([Id] ASC, [Owner] ASC),
     CONSTRAINT [FK_Tasks_Users] FOREIGN KEY ([Owner]) REFERENCES [dbo].[Users] ([Id])
 );
+
+
+
+
 
 
 
