@@ -35,7 +35,7 @@ public class GTDSystem : IGTDSystem
     private TaskList waiting = new StaticList("Waiting");
     public TaskList Waiting { get { return waiting; } }
 
-    private List<StaticList> contexts = new List<StaticList>() 
+    private List<TaskList> contexts = new List<TaskList>() 
         {
             new StaticList("Work"),
             new StaticList("Home"),
@@ -44,7 +44,7 @@ public class GTDSystem : IGTDSystem
             new StaticList("Errands")
         };
 
-    public List<StaticList> Contexts { get { return contexts; } }
+    public List<TaskList> Contexts { get { return contexts; } }
 
 	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
@@ -71,6 +71,37 @@ public class GTDSystem : IGTDSystem
         foreach (TaskList l in this)
             l.removeTask(t);
         t.Delete();
+    }
+
+    TaskList IGTDSystem.Inbox
+    {
+        get { throw new NotImplementedException(); }
+    }
+
+    public TaskList Tommorow
+    {
+        get { throw new NotImplementedException(); }
+    }
+
+    IEnumerable<TaskList> IGTDSystem.contexts
+    {
+        get { throw new NotImplementedException(); }
+    }
+
+
+    public void AddTask(Task t)
+    {
+        Inbox.AddTask(t);
+    }
+
+    public void AddSubList(TaskList l)
+    {
+        Contexts.Add(l);
+    }
+
+    public void removeSubList(TaskList l)
+    {
+        Contexts.Remove(l);
     }
 }
 

@@ -57,5 +57,21 @@ public class StaticList : IStaticList
     {
         list.Remove(t);
     }
+
+
+    public void AddTask(Task t)
+    {
+        this.AddItem(t);
+    }
+
+    public void AddSubList(TaskList l)
+    {
+        this.AddItem(l);
+    }
+
+    public void removeSubList(TaskList l)
+    {
+        this.RemoveItem(l);
+    }
 }
 

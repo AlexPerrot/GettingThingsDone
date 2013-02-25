@@ -48,5 +48,21 @@ public class DynamicList : IDynamicList
     {
         this.target.removeTask(t);
     }
+
+
+    public void AddTask(Task t)
+    {
+        target.AddTask(t);
+    }
+
+    public void AddSubList(TaskList l)
+    {
+        target.AddSubList(l);
+    }
+
+    public void removeSubList(TaskList l)
+    {
+        target.removeSubList(l);
+    }
 }
 

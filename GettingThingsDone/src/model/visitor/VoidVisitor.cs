@@ -17,11 +17,11 @@ namespace GettingThingsDone.src.model.visitor
 
     public abstract class VoidVisitor : GTDVisitor<Void>
     {
-        protected void visitVoid(ISingleTask t);
-        protected void visitVoid(IProject p);
-        protected void visitVoid(IGTDSystem s);
-        protected void visitVoid(IStaticList l);
-        protected void visitVoid(IDynamicList l);
+        protected abstract void visitVoid(ISingleTask t);
+        protected abstract  void visitVoid(IProject p);
+        protected abstract void visitVoid(IGTDSystem s);
+        protected abstract void visitVoid(IStaticList l);
+        protected abstract void visitVoid(IDynamicList l);
 
 
         public Void visit(ISingleTask t)
