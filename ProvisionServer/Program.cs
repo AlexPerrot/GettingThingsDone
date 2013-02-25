@@ -38,11 +38,12 @@ namespace ProvisionServer
             otherTables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("Tasks", serverConn));
             otherTables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("Lists", serverConn));
             otherTables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("Projects", serverConn));
-            otherTables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("Tasks_Lists", serverConn));
+            //otherTables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("Tasks_Lists", serverConn));
             otherTables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("Tasks_Tasks", serverConn));
             otherTables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("Lists_Tasks", serverConn));
             otherTables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("Projects_Tasks", serverConn));
             otherTables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("Projects_Lists", serverConn));
+            otherTables.Add(SqlSyncDescriptionBuilder.GetDescriptionForTable("Projects_Lists_Tasks", serverConn));
             foreach (var table in otherTables)
             {
                 scopeDesc.Tables.Add(table);

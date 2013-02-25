@@ -8,10 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GettingThingsDone.src.model.visitor;
 
 public interface GTDItem 
 {
-	T accept<T>(TaskVisitor<T> v);
+	T accept<T>(GTDVisitor<T> v);
 
 }
 
