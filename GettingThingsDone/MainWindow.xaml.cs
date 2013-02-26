@@ -25,6 +25,9 @@ namespace GettingThingsDone
         {
             InitializeComponent();
             DataContext = ((App)App.Current).GTD;
+            Window win = new Window();
+            win.Content = new ReviewPage();
+            win.ShowDialog();
         }
 
         private void CreateTask(object sender, RoutedEventArgs e)
