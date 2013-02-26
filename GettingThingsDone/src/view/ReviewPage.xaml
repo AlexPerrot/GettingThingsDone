@@ -13,11 +13,13 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <local:StaticListPanel DataContext="{Binding Inbox}" Grid.Row="0" Margin="12,12,12,12" MaxHeight="150"/>
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Contexts}" >
+        <local:StaticListPanel DataContext="{Binding Inbox}" Grid.Row="0" Margin="12,12,12,12" VerticalAlignment="Stretch"/>
+        <GridSplitter Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" ShowsPreview="True" Height="5" Background="DimGray" />
+        <ItemsControl Grid.Row="2" ItemsSource="{Binding Contexts}" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                 <WrapPanel Orientation="Horizontal" />
