@@ -24,6 +24,7 @@ namespace GettingThingsDone.src.view
         public StaticListPanel()
         {
             InitializeComponent();
+            this.List.BorderBrush = new SolidColorBrush(Colors.DarkGreen);
         }
 
         private void StackPanel_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
@@ -47,6 +48,55 @@ namespace GettingThingsDone.src.view
             StaticList list = DataContext as StaticList;
             list.removeTask(task);
             task.Delete();
+        }
+
+        private void OnDrop(object sender, DragEventArgs e)
+        {
+            TaskMoveData data = e.Data.GetData(e.Data.GetFormats().First(), true) as TaskMoveData;
+
+            data.OrigList.removeTask(data.Task);
+
+            TaskList l = DataContext as TaskList;
+
+            l.AddTask(data.Task);
+
+            this.List.BorderThickness = new Thickness(0);
+        }
+
+        private void StackPanel_Drag(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Task t = (sender as StackPanel).DataContext as Task;
+                TaskList l = DataContext as TaskList;
+                TaskMoveData tmd = new TaskMoveData(t, l);
+                DataObject data = new DataObject(tmd);
+                DragDrop.DoDragDrop(sender as StackPanel, data, DragDropEffects.Move);
+            }
+        }
+
+        private void UserControl_DragEnter_1(object sender, DragEventArgs e)
+        {
+            this.List.BorderThickness = new Thickness(2);
+        }
+
+        private void UserControl_DragLeave_1(object sender, DragEventArgs e)
+        {
+            this.List.BorderThickness = new Thickness(0);
+        }
+    }
+
+    class TaskMoveData
+    {
+        private Task task;
+        private TaskList origin;
+        public Task Task { get { return this.task; } }
+        public TaskList OrigList { get { return this.origin; } }
+
+        public TaskMoveData(Task t, TaskList l)
+        {
+            this.task = t;
+            this.origin = l;
         }
     }
 }
