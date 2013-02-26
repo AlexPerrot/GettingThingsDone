@@ -21,6 +21,19 @@ namespace GettingThingsDone.src.view
     /// </summary>
     public partial class StaticListPanel : UserControl
     {
+        public Brush LabelBackground {
+            get { return GetValue(ProxyProp) as Brush;
+            Console.WriteLine("couleur lue");
+            }
+            set { 
+            SetValue(ProxyProp, value);
+            Console.WriteLine("couleur changée");
+            }
+        }
+
+        public static readonly DependencyProperty LabelBackgroundProperty = DependencyProperty.Register("LabelBackground", typeof(Brush), typeof(StaticListPanel));
+        private static readonly DependencyProperty ProxyProp = Label.BackgroundProperty.AddOwner(typeof(StaticListPanel));
+
         public StaticListPanel()
         {
             InitializeComponent();

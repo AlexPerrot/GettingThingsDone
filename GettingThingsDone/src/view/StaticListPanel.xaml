@@ -34,7 +34,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Content="{Binding Name}" FontSize="16" Foreground="AntiqueWhite" Background="SaddleBrown" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+        <Label Name="NameLabel" Content="{Binding Name}" FontSize="16" Foreground="AntiqueWhite" Background="SaddleBrown" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
         <ItemsControl x:Name="List" ItemsSource="{Binding List}" ItemTemplate="{DynamicResource TaskDT}"
                       Grid.Column="0" Grid.Row="1"
                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch"

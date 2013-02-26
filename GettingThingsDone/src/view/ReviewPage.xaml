@@ -19,7 +19,7 @@
         
         <local:StaticListPanel DataContext="{Binding Inbox}" Grid.Row="0" Margin="12,12,12,12" VerticalAlignment="Stretch"/>
         <GridSplitter Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" ShowsPreview="True" Height="5" Background="DimGray" />
-        <ItemsControl Grid.Row="2" ItemsSource="{Binding Contexts}" >
+        <ItemsControl Grid.Row="2" ItemsSource="{Binding Contexts}" AlternationCount="2" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                 <WrapPanel Orientation="Horizontal" />
@@ -27,9 +27,17 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate >
-                    <Border BorderBrush="Black" BorderThickness="0" Margin="8" CornerRadius="2">
-                        <local:StaticListPanel Width="100"/>
+                    <Border Name="DTBorder" BorderBrush="Black" BorderThickness="3" Margin="8" CornerRadius="2">
+                        <local:StaticListPanel Name="ListPanel" Width="100"/>
                     </Border>
+                    <DataTemplate.Triggers>
+                        <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                            <Setter Property="BorderBrush" Value="Crimson" TargetName="DTBorder"/>
+                        </Trigger>
+                        <Trigger  Property="ItemsControl.AlternationIndex" Value="1">
+                            <Setter Property="BorderBrush" Value="Indigo" TargetName="DTBorder"/>
+                        </Trigger>
+                    </DataTemplate.Triggers>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
