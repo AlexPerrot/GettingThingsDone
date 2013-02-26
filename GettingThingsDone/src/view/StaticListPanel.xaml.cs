@@ -24,6 +24,7 @@ namespace GettingThingsDone.src.view
         public StaticListPanel()
         {
             InitializeComponent();
+            this.List.BorderBrush = new SolidColorBrush(Colors.DarkGreen);
         }
 
         private void StackPanel_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
@@ -58,6 +59,8 @@ namespace GettingThingsDone.src.view
             TaskList l = DataContext as TaskList;
 
             l.AddTask(data.Task);
+
+            this.List.BorderThickness = new Thickness(0);
         }
 
         private void StackPanel_Drag(object sender, MouseEventArgs e)
@@ -70,6 +73,16 @@ namespace GettingThingsDone.src.view
                 DataObject data = new DataObject(tmd);
                 DragDrop.DoDragDrop(sender as StackPanel, data, DragDropEffects.Move);
             }
+        }
+
+        private void UserControl_DragEnter_1(object sender, DragEventArgs e)
+        {
+            this.List.BorderThickness = new Thickness(2);
+        }
+
+        private void UserControl_DragLeave_1(object sender, DragEventArgs e)
+        {
+            this.List.BorderThickness = new Thickness(0);
         }
     }
 

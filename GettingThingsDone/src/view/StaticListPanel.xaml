@@ -6,7 +6,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              AllowDrop="True"
-             Drop="OnDrop">
+             Drop="OnDrop"
+             DragEnter="UserControl_DragEnter_1"
+             DragLeave="UserControl_DragLeave_1">
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
             <Border BorderBrush="Black" BorderThickness="2" >
