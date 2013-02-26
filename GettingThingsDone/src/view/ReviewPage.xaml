@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:GettingThingsDone.src.view"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             Background="DimGray">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -15,7 +16,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <local:StaticListPanel DataContext="{Binding Inbox}" Grid.Row="0"/>
+        <local:StaticListPanel DataContext="{Binding Inbox}" Grid.Row="0" Margin="12,12,12,12" MaxHeight="150"/>
         <ItemsControl Grid.Row="1" ItemsSource="{Binding Contexts}" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -24,7 +25,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate >
-                    <Border BorderBrush="Black" BorderThickness="3" Margin="5" CornerRadius="2">
+                    <Border BorderBrush="Black" BorderThickness="0" Margin="8" CornerRadius="2">
                         <local:StaticListPanel Width="100"/>
                     </Border>
                 </DataTemplate>
