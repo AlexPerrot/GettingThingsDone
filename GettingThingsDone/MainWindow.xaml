@@ -19,16 +19,14 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <StackPanel Orientation="Horizontal" Name="ContextsPanel">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=ListTemplate}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
+                            <WrapPanel Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
-            </StackPanel>
         </ScrollViewer>
         <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask"/>
     </Grid>
