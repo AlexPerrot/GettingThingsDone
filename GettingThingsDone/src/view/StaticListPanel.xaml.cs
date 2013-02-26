@@ -31,8 +31,16 @@ namespace GettingThingsDone.src.view
             }
         }
 
-        public static readonly DependencyProperty LabelBackgroundProperty = DependencyProperty.Register("LabelBackground", typeof(Brush), typeof(StaticListPanel));
+        public static readonly DependencyProperty LabelBackgroundProperty =
+            DependencyProperty.Register("LabelBackground", typeof(Brush), typeof(StaticListPanel), new FrameworkPropertyMetadata(new SolidColorBrush(Colors.Black), FrameworkPropertyMetadataOptions.AffectsRender));
         private static readonly DependencyProperty ProxyProp = Label.BackgroundProperty.AddOwner(typeof(StaticListPanel));
+
+        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+        {
+            base.OnPropertyChanged(e);
+            if (e.Property.Name == LabelBackgroundProperty.Name)
+                this.NameLabel.Background = e.NewValue as Brush;
+        }
 
         public StaticListPanel()
         {

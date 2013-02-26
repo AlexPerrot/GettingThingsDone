@@ -27,15 +27,15 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate >
-                    <Border Name="DTBorder" BorderBrush="Black" BorderThickness="3" Margin="8" CornerRadius="2">
+                    <Border Name="DTBorder" BorderBrush="Black" BorderThickness="0" Margin="8" CornerRadius="2">
                         <local:StaticListPanel Name="ListPanel" Width="100"/>
                     </Border>
                     <DataTemplate.Triggers>
                         <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                            <Setter Property="BorderBrush" Value="Crimson" TargetName="DTBorder"/>
+                            <Setter TargetName="ListPanel" Property="LabelBackground" Value="MidnightBlue" />
                         </Trigger>
                         <Trigger  Property="ItemsControl.AlternationIndex" Value="1">
-                            <Setter Property="BorderBrush" Value="Indigo" TargetName="DTBorder"/>
+                            <Setter Property="LabelBackground" Value="DarkRed" TargetName="ListPanel"/>
                         </Trigger>
                     </DataTemplate.Triggers>
                 </DataTemplate>
