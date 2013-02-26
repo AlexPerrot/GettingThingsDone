@@ -15,6 +15,20 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <local:StaticListPanel DataContext="{Binding Inbox}" />
+        <local:StaticListPanel DataContext="{Binding Inbox}" Grid.Row="0"/>
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding Contexts}" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate >
+                    <Border BorderBrush="Black" BorderThickness="3" Margin="5" CornerRadius="2">
+                        <local:StaticListPanel Width="100"/>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>
