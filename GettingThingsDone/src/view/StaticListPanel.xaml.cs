@@ -21,6 +21,36 @@ namespace GettingThingsDone.src.view
     /// </summary>
     public partial class StaticListPanel : UserControl
     {
+        public Brush LabelBackground {
+            get { return GetValue(ProxyProp) as Brush;
+            Console.WriteLine("couleur lue");
+            }
+            set { 
+            SetValue(ProxyProp, value);
+            Console.WriteLine("couleur changée");
+            }
+        }
+
+        public bool AllowListDrop
+        {
+            get { return (bool)GetValue(AllowListDropProperty); }
+            set { SetValue(AllowListDropProperty, value); }
+        }
+
+        public static readonly DependencyProperty AllowListDropProperty =
+            DependencyProperty.Register("AllowListDrop", typeof(bool), typeof(StaticListPanel), new FrameworkPropertyMetadata(false));
+
+        public static readonly DependencyProperty LabelBackgroundProperty =
+            DependencyProperty.Register("LabelBackground", typeof(Brush), typeof(StaticListPanel), new FrameworkPropertyMetadata(new SolidColorBrush(Colors.Black), FrameworkPropertyMetadataOptions.AffectsRender));
+        private static readonly DependencyProperty ProxyProp = Label.BackgroundProperty.AddOwner(typeof(StaticListPanel));
+
+        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+        {
+            base.OnPropertyChanged(e);
+            if (e.Property.Name == LabelBackgroundProperty.Name)
+                this.NameLabel.Background = e.NewValue as Brush;
+        }
+
         public StaticListPanel()
         {
             InitializeComponent();
@@ -52,15 +82,31 @@ namespace GettingThingsDone.src.view
 
         private void OnDrop(object sender, DragEventArgs e)
         {
-            TaskMoveData data = e.Data.GetData(e.Data.GetFormats().First(), true) as TaskMoveData;
 
-            data.OrigList.removeTask(data.Task);
+            if (e.Data.GetFormats().Contains("GettingThingsDone.src.view.StaticListPanel") && this.AllowListDrop)
+            {
+                StaticListPanel source = e.Data.GetData(e.Data.GetFormats().First()) as StaticListPanel;
+                StaticListPanel target = e.Source as StaticListPanel;
 
-            TaskList l = DataContext as TaskList;
+                var tmp = source.DataContext;
+                source.DataContext = target.DataContext;
+                target.DataContext = tmp;
 
-            l.AddTask(data.Task);
+                return;
+            }
 
-            this.List.BorderThickness = new Thickness(0);
+            else if (e.Data.GetFormats().Contains(typeof(TaskMoveData).ToString()))
+            {
+                TaskMoveData data = e.Data.GetData(e.Data.GetFormats().First(), true) as TaskMoveData;
+
+                data.OrigList.removeTask(data.Task);
+
+                TaskList l = DataContext as TaskList;
+
+                l.AddTask(data.Task);
+
+                this.List.BorderThickness = new Thickness(0);
+            }
         }
 
         private void StackPanel_Drag(object sender, MouseEventArgs e)
@@ -77,12 +123,16 @@ namespace GettingThingsDone.src.view
 
         private void UserControl_DragEnter_1(object sender, DragEventArgs e)
         {
-            this.List.BorderThickness = new Thickness(2);
+            if (e.Data.GetFormats().Contains(typeof(TaskMoveData).ToString()))
+                this.List.BorderThickness = new Thickness(2);
+            else if (!AllowListDrop)
+                e.Effects = DragDropEffects.None;
         }
 
         private void UserControl_DragLeave_1(object sender, DragEventArgs e)
         {
-            this.List.BorderThickness = new Thickness(0);
+            if (e.Data.GetFormats().Contains(typeof(TaskMoveData).ToString()))
+                this.List.BorderThickness = new Thickness(0);
         }
     }
 

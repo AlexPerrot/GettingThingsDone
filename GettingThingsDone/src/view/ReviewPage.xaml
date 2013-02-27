@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="GettingThingsDone.src.view.ReviewPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:GettingThingsDone.src.view"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Background="DimGray">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <local:StaticListPanel DataContext="{Binding Inbox}" Grid.Row="0" Margin="12,12,12,12" VerticalAlignment="Stretch"/>
+        <GridSplitter Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" ShowsPreview="True" Height="5" Background="DimGray" />
+        <ItemsControl Grid.Row="2" ItemsSource="{Binding Contexts}" AlternationCount="2" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                <WrapPanel Orientation="Horizontal" AllowDrop="True"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate >
+                    <Border Name="DTBorder" BorderBrush="Black" BorderThickness="0" Margin="8" CornerRadius="2">
+                        <local:StaticListPanel Name="ListPanel" Width="100" MouseMove="StaticListPanel_MouseMove_1" AllowListDrop="True"/>
+                    </Border>
+                    <DataTemplate.Triggers>
+                        <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                            <Setter TargetName="ListPanel" Property="LabelBackground" Value="MidnightBlue" />
+                        </Trigger>
+                        <Trigger  Property="ItemsControl.AlternationIndex" Value="1">
+                            <Setter Property="LabelBackground" Value="DarkRed" TargetName="ListPanel"/>
+                        </Trigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</UserControl>

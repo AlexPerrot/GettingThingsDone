@@ -34,5 +34,11 @@ namespace GettingThingsDone
                 ((App)App.Current).GTD.Inbox.AddItem(t);
         }
 
+        private void Label_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            this.ReviewLink.Visibility = Visibility.Collapsed;
+            this.ReviewPanel.Visibility = Visibility.Visible;
+        }
+
     }
 }
