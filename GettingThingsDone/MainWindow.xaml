@@ -20,11 +20,11 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Name="ReviewLink" Content="Review" Foreground="AntiqueWhite" Background="Indigo" Grid.Row="0" MouseLeftButtonDown="Label_MouseLeftButtonDown_1"
+        <Label Name="ReviewLink" Content="Review" Foreground="AntiqueWhite" Background="Indigo" Grid.Row="0" MouseLeftButtonDown="ReviewButtonClick"
                VerticalAlignment="Center" HorizontalAlignment="Center"
                VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                Width="200" Height="80" FontSize="18"
-               MouseEnter="ReviewLink_MouseEnter_1" MouseLeave="ReviewLink_MouseLeave_1"/>
+               MouseEnter="ReviewLinkEnter" MouseLeave="ReviewLinkLeave"/>
         <ScrollViewer x:Name="ReviewPanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0">
             <local:ReviewPage/>
         </ScrollViewer>

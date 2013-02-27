@@ -34,19 +34,19 @@ namespace GettingThingsDone
                 ((App)App.Current).GTD.Inbox.AddItem(t);
         }
 
-        private void Label_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        private void ReviewButtonClick(object sender, MouseButtonEventArgs e)
         {
             this.ReviewLink.Visibility = Visibility.Collapsed;
             this.ReviewPanel.Visibility = Visibility.Visible;
         }
 
-        private void ReviewLink_MouseEnter_1(object sender, MouseEventArgs e)
+        private void ReviewLinkEnter(object sender, MouseEventArgs e)
         {
             Mouse.OverrideCursor = Cursors.Hand;
             this.ReviewLink.Foreground = new SolidColorBrush(Colors.Aqua);
         }
 
-        private void ReviewLink_MouseLeave_1(object sender, MouseEventArgs e)
+        private void ReviewLinkLeave(object sender, MouseEventArgs e)
         {
             Mouse.OverrideCursor = null;
             this.ReviewLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
