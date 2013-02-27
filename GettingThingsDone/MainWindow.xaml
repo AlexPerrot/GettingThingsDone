@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:GettingThingsDone.src.view"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="GettingThingsDone.MainWindow"
-        Title="Getting Things Done" Height="350" Width="700">
+        Title="Getting Things Done" Height="500" Width="1000"
+        Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
     <Window.Resources>
         <DataTemplate x:Key="ListTemplate">
             <Border BorderBrush="Black" BorderThickness="3" Margin="5" CornerRadius="2">
@@ -19,16 +20,13 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <StackPanel Orientation="Horizontal" Name="ContextsPanel">
-                <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=ListTemplate}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-            </StackPanel>
+        <Label Name="ReviewLink" Content="Review" Foreground="AntiqueWhite" Background="Indigo" Grid.Row="0" MouseLeftButtonDown="ReviewButtonClick"
+               VerticalAlignment="Center" HorizontalAlignment="Center"
+               VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+               Width="200" Height="80" FontSize="18"
+               MouseEnter="ReviewLinkEnter" MouseLeave="ReviewLinkLeave"/>
+        <ScrollViewer x:Name="ReviewPanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0">
+            <local:ReviewPage/>
         </ScrollViewer>
         <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask"/>
     </Grid>
