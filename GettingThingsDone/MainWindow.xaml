@@ -14,7 +14,8 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -24,10 +25,15 @@
                VerticalAlignment="Center" HorizontalAlignment="Center"
                VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                Width="200" Height="80" FontSize="18"
-               MouseEnter="ReviewLinkEnter" MouseLeave="ReviewLinkLeave"/>
-        <ScrollViewer x:Name="ReviewPanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0">
+               MouseEnter="ReviewLinkEnter" MouseLeave="ReviewLinkLeave" Margin="148,184"/>
+        <ScrollViewer x:Name="ReviewPanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0" Grid.ColumnSpan="2">
             <local:ReviewPage/>
         </ScrollViewer>
-        <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask"/>
+        <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask" Grid.ColumnSpan="2"/>
+        <Label x:Name="ScheduleLink" Content="Schedule" Foreground="AntiqueWhite" Background="Indigo" Grid.Row="0" MouseLeftButtonDown="ScheduleButtonClick"
+        	VerticalAlignment="Center" HorizontalAlignment="Center"
+        	VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+        	Width="200" Height="80" FontSize="18"
+        	MouseEnter="ScheduleLinkEnter" MouseLeave="ScheduleLinkLeave" Margin="149,184,147,184" Grid.Column="1"/>
     </Grid>
 </Window>
