@@ -57,7 +57,7 @@ namespace GettingThingsDone
         {
             this.ReviewLink.Visibility = Visibility.Collapsed;
             this.ScheduleLink.Visibility = Visibility.Collapsed;
-            this.ReviewPanel.Visibility = Visibility.Visible;
+            this.SchedulePanel.Visibility = Visibility.Visible;
         }
 
         private void ScheduleLinkEnter(object sender, MouseEventArgs e)
