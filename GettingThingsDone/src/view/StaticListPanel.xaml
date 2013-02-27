@@ -8,11 +8,12 @@
              AllowDrop="True"
              Drop="OnDrop"
              DragEnter="UserControl_DragEnter_1"
-             DragLeave="UserControl_DragLeave_1">
+             DragLeave="UserControl_DragLeave_1"
+             DragOver="UserControl_DragEnter_1">
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
-            <Border BorderBrush="Black" BorderThickness="2" >
-                <StackPanel Orientation="Horizontal" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown_1" MouseMove="StackPanel_Drag">
+            <Border BorderBrush="Black" BorderThickness="2" Margin="5" >
+                <StackPanel Orientation="Horizontal" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown_1" MouseMove="StackPanel_Drag" MinWidth="100">
                     <StackPanel.Background>
                         <LinearGradientBrush StartPoint="0.500,0" EndPoint="0.500,0.900">
                             <GradientStop Color="PowderBlue" Offset="0"/>
@@ -34,7 +35,16 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Content="{Binding Name}" FontSize="16" Foreground="AntiqueWhite" Background="SaddleBrown" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
-        <ListBox x:Name="List" ItemsSource="{Binding List}" ItemTemplate="{DynamicResource TaskDT}" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Stretch" MinHeight="100"/>
+        <Label Name="NameLabel" Content="{Binding Name}" FontSize="16" Foreground="AntiqueWhite" Background="SaddleBrown" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+        <ItemsControl x:Name="List" ItemsSource="{Binding List}" ItemTemplate="{DynamicResource TaskDT}"
+                      Grid.Column="0" Grid.Row="1"
+                      VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                      MinHeight="100" Background="Gainsboro">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
     </Grid>
 </UserControl>
