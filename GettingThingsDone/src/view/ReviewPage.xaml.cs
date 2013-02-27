@@ -25,5 +25,26 @@ namespace GettingThingsDone.src.view
             InitializeComponent();
             DataContext = (App.Current as App).GTD;
         }
+
+  
+
+        private void StaticListPanel_Drop_1(object sender, DragEventArgs e)
+        {
+            StaticListPanel source = e.Source as StaticListPanel;
+            StaticListPanel target = sender as StaticListPanel;
+
+            var tmp = source.DataContext;
+            source.DataContext = target.DataContext;
+            target.DataContext = tmp;
+        }
+
+        private void StaticListPanel_MouseMove_1(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DataObject data = new DataObject(sender);
+                DragDrop.DoDragDrop(sender as StaticListPanel, data, DragDropEffects.Move);
+            }
+        }
     }
 }
