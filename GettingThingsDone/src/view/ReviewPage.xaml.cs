@@ -42,7 +42,7 @@ namespace GettingThingsDone.src.view
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DataObject data = new DataObject(sender);
-                DragDrop.DoDragDrop(sender as StaticListPanel, data, DragDropEffects.Move);
+                DragDrop.DoDragDrop(sender as StaticListPanel, data, DragDropEffects.Link);
             }
         }
     }
