@@ -42,13 +42,13 @@ namespace GettingThingsDone
 
         private void ReviewLink_MouseEnter_1(object sender, MouseEventArgs e)
         {
-            e.MouseDevice.SetCursor(Cursors.Hand);
+            Mouse.OverrideCursor = Cursors.Hand;
             this.ReviewLink.Foreground = new SolidColorBrush(Colors.Aqua);
         }
 
         private void ReviewLink_MouseLeave_1(object sender, MouseEventArgs e)
         {
-            e.MouseDevice.SetCursor(Cursors.Arrow);
+            Mouse.OverrideCursor = null;
             this.ReviewLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
         }
 
