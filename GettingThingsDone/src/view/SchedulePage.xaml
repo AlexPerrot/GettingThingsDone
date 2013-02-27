@@ -9,6 +9,6 @@
       Background="DimGray">
 
     <Grid Margin="0,67,0,124">
-         <local:StaticListPanel DataContext="{Binding Today}" x:Name="ListPanel" Width="100" MouseMove="StaticListPanel_MouseMove_1" AllowListDrop="True"/>
+         <local:StaticListPanel DataContext="{Binding listTemp}" x:Name="ListPanel" Width="100" MouseMove="StaticListPanel_MouseMove_1" AllowListDrop="True"/>
     </Grid>
 </UserControl>

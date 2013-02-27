@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using GettingThingsDone.src.model;
 using GettingThingsDone.src.model.visitor;
+using GettingThingsDone.src.data;
 
 /// <remarks>Cette classe décrit le système général de GTD, avec la boite de reception et les listes de l'utilisateur. On ajoutera surement le calendrier ici.</remarks>
 public class GTDSystem : IGTDSystem
@@ -46,10 +47,23 @@ public class GTDSystem : IGTDSystem
 
     public List<TaskList> Contexts { get { return contexts; } }
 
+    public TaskList dueToday;
+
+    public TaskList listTemp = new StaticList("listTemp");
+
     public GTDSystem()
     {
+       // AllISingleTasks t = new AllISingleTasks();
+        //StaticList t1 = (StaticList)t.visit(this);
         today.AddTask(new SingleTask("task1","desc1"));
-        today.AddTask(new SingleTask("task2", "desc1"));
+        today.AddTask(new SingleTask("task2", "desc4",DateTime.Today));
+        contexts[0].AddTask(new SingleTask("task3", "desc3"));
+        dueToday = new DynamicList(Today, Algorithms.getDueToday);
+        foreach(GTDItem t in dueToday)
+        {
+            SingleTask t1 = (SingleTask)t;
+            listTemp.AddTask(t1);
+        }
     }
 
 	public virtual IEnumerator<GTDItem> GetEnumerator()
