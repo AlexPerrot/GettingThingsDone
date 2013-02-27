@@ -8,7 +8,8 @@
              AllowDrop="True"
              Drop="OnDrop"
              DragEnter="UserControl_DragEnter_1"
-             DragLeave="UserControl_DragLeave_1">
+             DragLeave="UserControl_DragLeave_1"
+             DragOver="UserControl_DragEnter_1">
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
             <Border BorderBrush="Black" BorderThickness="2" Margin="5" >

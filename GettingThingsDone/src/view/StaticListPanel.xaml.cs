@@ -38,7 +38,7 @@ namespace GettingThingsDone.src.view
         }
 
         public static readonly DependencyProperty AllowListDropProperty =
-            DependencyProperty.Register("AllowListDrop", typeof(bool), typeof(StaticListPanel));
+            DependencyProperty.Register("AllowListDrop", typeof(bool), typeof(StaticListPanel), new FrameworkPropertyMetadata(false));
 
         public static readonly DependencyProperty LabelBackgroundProperty =
             DependencyProperty.Register("LabelBackground", typeof(Brush), typeof(StaticListPanel), new FrameworkPropertyMetadata(new SolidColorBrush(Colors.Black), FrameworkPropertyMetadataOptions.AffectsRender));
@@ -123,12 +123,16 @@ namespace GettingThingsDone.src.view
 
         private void UserControl_DragEnter_1(object sender, DragEventArgs e)
         {
-            this.List.BorderThickness = new Thickness(2);
+            if (e.Data.GetFormats().Contains(typeof(TaskMoveData).ToString()))
+                this.List.BorderThickness = new Thickness(2);
+            else if (!AllowListDrop)
+                e.Effects = DragDropEffects.None;
         }
 
         private void UserControl_DragLeave_1(object sender, DragEventArgs e)
         {
-            this.List.BorderThickness = new Thickness(0);
+            if (e.Data.GetFormats().Contains(typeof(TaskMoveData).ToString()))
+                this.List.BorderThickness = new Thickness(0);
         }
     }
 
