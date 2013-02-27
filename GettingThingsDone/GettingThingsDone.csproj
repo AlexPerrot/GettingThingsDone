@@ -90,7 +90,6 @@
     <Compile Include="src\data\GTDItemSave.cs" />
     <Compile Include="src\data\TaskVisitor_T.cs" />
     <Compile Include="src\data\DBGTDFactory.cs" />
-    <Compile Include="src\model\Algorithms.cs" />
     <Compile Include="src\model\DBSingleTask.cs" />
     <Compile Include="src\model\IDynamicList.cs" />
     <Compile Include="src\model\IGTDFactory.cs" />
