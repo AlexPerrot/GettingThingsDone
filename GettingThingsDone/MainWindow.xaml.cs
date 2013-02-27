@@ -25,11 +25,6 @@ namespace GettingThingsDone
         {
             InitializeComponent();
             DataContext = ((App)App.Current).GTD;
-            Window win = new Window();
-            var page = new ReviewPage();
-            page.DataContext = DataContext;
-            win.Content = page;
-            win.ShowDialog();
         }
 
         private void CreateTask(object sender, RoutedEventArgs e)
@@ -37,6 +32,12 @@ namespace GettingThingsDone
             Task t = TaskCreationWindow.GetNewTask();
             if (t!=null)
                 ((App)App.Current).GTD.Inbox.AddItem(t);
+        }
+
+        private void Label_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            this.ReviewLink.Visibility = Visibility.Collapsed;
+            this.ReviewPanel.Visibility = Visibility.Visible;
         }
 
     }
