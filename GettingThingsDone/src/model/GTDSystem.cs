@@ -46,6 +46,12 @@ public class GTDSystem : IGTDSystem
 
     public List<TaskList> Contexts { get { return contexts; } }
 
+    public GTDSystem()
+    {
+        today.AddTask(new SingleTask("task1","desc1"));
+        today.AddTask(new SingleTask("task2", "desc1"));
+    }
+
 	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
         yield return Inbox;

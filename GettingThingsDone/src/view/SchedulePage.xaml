@@ -8,15 +8,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Background="DimGray">
 
-    <Grid>
-        <Label Content="Test" HorizontalAlignment="Left" Margin="133,53,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Grid HorizontalAlignment="Left" Height="152" Margin="65,105,0,0" VerticalAlignment="Top" Width="188">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="11*"/>
-                <ColumnDefinition Width="23*"/>
-                <ColumnDefinition Width="13*"/>
-            </Grid.ColumnDefinitions>
-        </Grid>
-
+    <Grid Margin="0,67,0,124">
+         <local:StaticListPanel DataContext="{Binding Today}" x:Name="ListPanel" Width="100" MouseMove="StaticListPanel_MouseMove_1" AllowListDrop="True"/>
     </Grid>
 </UserControl>
