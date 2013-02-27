@@ -23,7 +23,8 @@
         <Label Name="ReviewLink" Content="Review" Foreground="AntiqueWhite" Background="Indigo" Grid.Row="0" MouseLeftButtonDown="Label_MouseLeftButtonDown_1"
                VerticalAlignment="Center" HorizontalAlignment="Center"
                VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
-               Width="200" Height="80"/>
+               Width="200" Height="80" FontSize="18"
+               MouseEnter="ReviewLink_MouseEnter_1" MouseLeave="ReviewLink_MouseLeave_1"/>
         <ScrollViewer x:Name="ReviewPanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0">
             <local:ReviewPage/>
         </ScrollViewer>

@@ -40,5 +40,17 @@ namespace GettingThingsDone
             this.ReviewPanel.Visibility = Visibility.Visible;
         }
 
+        private void ReviewLink_MouseEnter_1(object sender, MouseEventArgs e)
+        {
+            e.MouseDevice.SetCursor(Cursors.Hand);
+            this.ReviewLink.Foreground = new SolidColorBrush(Colors.Aqua);
+        }
+
+        private void ReviewLink_MouseLeave_1(object sender, MouseEventArgs e)
+        {
+            e.MouseDevice.SetCursor(Cursors.Arrow);
+            this.ReviewLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
+        }
+
     }
 }
