@@ -26,7 +26,9 @@ namespace GettingThingsDone
             InitializeComponent();
             DataContext = ((App)App.Current).GTD;
             Window win = new Window();
-            win.Content = new ReviewPage();
+            var page = new ReviewPage();
+            page.DataContext = DataContext;
+            win.Content = page;
             win.ShowDialog();
         }
 

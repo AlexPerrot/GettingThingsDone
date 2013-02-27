@@ -23,7 +23,6 @@ namespace GettingThingsDone.src.view
         public ReviewPage()
         {
             InitializeComponent();
-            DataContext = (App.Current as App).GTD;
         }
 
   
