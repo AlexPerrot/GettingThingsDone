@@ -15,9 +15,8 @@ using GettingThingsDone.src.model.visitor;
 public class DynamicList : IDynamicList
 {
     public string Name { get; set; }
-    public List<Task> list;
 
-	public virtual TaskList target
+	public virtual StaticList target
 	{
 		get;
 		set;
@@ -25,7 +24,7 @@ public class DynamicList : IDynamicList
 
     private Func<GTDItem, Boolean> filter;
 
-    public DynamicList(TaskList target, Func<GTDItem, Boolean> filter) {
+    public DynamicList(StaticList target, Func<GTDItem, Boolean> filter) {
         this.target = target;
         this.filter = filter;
     }
