@@ -6,10 +6,14 @@
       xmlns:local="clr-namespace:GettingThingsDone.src.view"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Background="DimGray">
+      Background="DimGray"
+             Loaded="UserControl_Loaded_1">
 
     <Grid Margin="0,67,0,124">
-         <!--local:StaticListPanel DataContext="{Binding Today}" x:Name="ListPanel" Width="100" MouseMove="StaticListPanel_MouseMove_1" AllowListDrop="True"/-->
+        <Grid.RowDefinitions >
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
         <ItemsControl Grid.Row="2" ItemsSource="{Binding Schedules}" AlternationCount="2" >
             <ItemsControl.ItemsPanel>
@@ -33,6 +37,14 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        
+        <ListBox ItemsSource="{Binding Today}" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Title}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
     
 </UserControl>

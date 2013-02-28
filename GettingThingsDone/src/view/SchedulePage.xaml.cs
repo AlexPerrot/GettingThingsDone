@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GettingThingsDone.src.model;
 
 namespace GettingThingsDone.src.view
 {
@@ -42,6 +43,11 @@ namespace GettingThingsDone.src.view
             var tmp = source.DataContext;
             source.DataContext = target.DataContext;
             target.DataContext = tmp;
+        }
+
+        private void UserControl_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Schedule((App.Current as App).GTD);
         }
     }
 }
