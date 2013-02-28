@@ -58,22 +58,44 @@ namespace GettingThingsDone.src.data
         // Fonction de mise à jour des listes temporelles (Today, Tomorrow, ...) de l'échéancier
         public void updateSchedule(GTDSystem sys)
         {
-            TaskList dueTodayTemp;
-            // Ajout dans la liste "Today" des tâches de la Inbox dont la date de rendu
-            // est aujourd'hui
-            dueTodayTemp = new DynamicList(sys.Inbox, Algorithms.getDueToday);
-            foreach (Task t in dueTodayTemp)
-            {
-                sys.Today.AddTask(t);
-            }
+            TaskList due;
+            Func<GTDItem, Boolean> filter = null;
 
-            // Idem pour les tâches présentes dans les liste des contextes existants
-            foreach (TaskList taskList in sys.Contexts)
+            foreach (TaskList schedule in sys.Schedules) 
             {
-                dueTodayTemp = new DynamicList(taskList, Algorithms.getDueToday);
-                foreach (Task t in dueTodayTemp)
+                // Choix du filtre à utiliser selon la liste
+                if (schedule.Name == "Today")
+                    filter = Algorithms.getDueToday;
+                else if (schedule.Name == "Tomorrow")
+                    filter = Algorithms.getDueTomorrow;
+                else if (schedule.Name == "Next week")
+                    filter = Algorithms.getDueNextWeek;
+                else if (schedule.Name == "Next Month")
+                    filter = Algorithms.getDueNextMonth;
+                else
+                    filter = null;
+
+                if (filter != null)
                 {
-                    sys.Today.AddTask(t);
+                    ((StaticList)schedule).List.Clear();
+
+                    // Ajout des tâches venant de la inbox
+                    // dans la liste actuelle
+                    due = new DynamicList(sys.Inbox, filter);
+                    foreach (Task t in due)
+                    {
+                        schedule.AddTask(t);
+                    }
+
+                    // Ajout des tâches venant de chaque contexte
+                    foreach (TaskList taskList in sys.Contexts)
+                    {
+                        due = new DynamicList(taskList, filter);
+                        foreach (Task t in due)
+                        {
+                            schedule.AddTask(t);
+                        }
+                    }
                 }
             }
         }

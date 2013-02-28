@@ -11,5 +11,6 @@ namespace GettingThingsDone.src.model
         ISingleTask makeTask(string title, string description, DateTimeOffset? DueDate);
         IProject makeProject(string title);
         GTDSystem makeSystem();
+        void updateSchedule(GTDSystem sys);
     }
 }

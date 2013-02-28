@@ -30,8 +30,12 @@ namespace GettingThingsDone
         private void CreateTask(object sender, RoutedEventArgs e)
         {
             Task t = TaskCreationWindow.GetNewTask();
-            if (t!=null)
+            if (t != null)
+            {
                 ((App)App.Current).GTD.Inbox.AddItem(t);
+                // Update de l'échéancier
+                ((App)App.Current).Factory.updateSchedule(((App)App.Current).GTD);
+            }
         }
 
         private void ReviewButtonClick(object sender, MouseButtonEventArgs e)
