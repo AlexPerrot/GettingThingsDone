@@ -35,10 +35,7 @@ namespace GettingThingsDone.src.model
         {
             get
             {
-                IEnumerable tasks = sys.accept(new AllTasks());
-                ICollectionView view = CollectionViewSource.GetDefaultView(tasks);
-                view.Filter = isDueToday;
-                return view;
+                return filterView(isDueToday);
             }
         }
 
@@ -46,10 +43,7 @@ namespace GettingThingsDone.src.model
         {
             get
             {
-                IEnumerable tasks = sys.accept(new AllTasks());
-                ICollectionView view = CollectionViewSource.GetDefaultView(tasks);
-                view.Filter = isDueTomorrow;
-                return view;
+                return filterView(isDueTomorrow);
             }
         }
 
@@ -57,10 +51,7 @@ namespace GettingThingsDone.src.model
         {
             get
             {
-                IEnumerable tasks = sys.accept(new AllTasks());
-                ICollectionView view = CollectionViewSource.GetDefaultView(tasks);
-                view.Filter = isDueThisWeek;
-                return view;
+                return filterView(isDueThisWeek);
             }
         }
 
@@ -99,6 +90,13 @@ namespace GettingThingsDone.src.model
             return dueDate < nextMonday;
         }
 
-  
+
+        private IEnumerable filterView(Predicate<Object> pred)
+        {
+            IEnumerable tasks = sys.accept(new AllTasks());
+            ICollectionView view = CollectionViewSource.GetDefaultView(tasks);
+            view.Filter = pred;
+            return view;
+        }
     }
 }
