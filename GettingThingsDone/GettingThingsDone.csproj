@@ -98,6 +98,7 @@
     <Compile Include="src\model\IProject.cs" />
     <Compile Include="src\model\ISingleTask.cs" />
     <Compile Include="src\model\IStaticList.cs" />
+    <Compile Include="src\model\Schedule.cs" />
     <Compile Include="src\model\TaskList.cs" />
     <Compile Include="src\model\visitor\AllISingleTasks.cs" />
     <Compile Include="src\model\visitor\AllTasks.cs" />
