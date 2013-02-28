@@ -28,7 +28,12 @@ namespace GettingThingsDone.src.model
 
         private bool isDueToday(Object obj)
         {
-            return (obj as Task).DueDate.Value.Day.Equals(DateTime.Now.Day);
+            Task t = obj as Task;
+            if (t == null) return false;
+
+            if (!t.DueDate.HasValue) return false;
+            DateTimeOffset dueDate = t.DueDate.Value;
+            return dueDate.Day.Equals(DateTimeOffset.Now.Day);
         }
     }
 }
