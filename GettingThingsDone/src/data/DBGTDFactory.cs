@@ -25,6 +25,7 @@ namespace GettingThingsDone.src.data
             dbTask.CreationDate = DateTimeOffset.Now;
             dbTask.Title = title;
             dbTask.Description = description;
+            dbTask.DueDate = DueDate;
             dbTask.Owner = (App.Current as App).Admin.Id;
 
             dc.Tasks.InsertOnSubmit(dbTask);
@@ -49,7 +50,32 @@ namespace GettingThingsDone.src.data
                 sys.Inbox.List.Add(st);
             }
 
+            updateSchedule(sys);
+
             return sys;
+        }
+
+        // Fonction de mise à jour des listes temporelles (Today, Tomorrow, ...) de l'échéancier
+        public void updateSchedule(GTDSystem sys)
+        {
+            TaskList dueTodayTemp;
+            // Ajout dans la liste "Today" des tâches de la Inbox dont la date de rendu
+            // est aujourd'hui
+            dueTodayTemp = new DynamicList(sys.Inbox, Algorithms.getDueToday);
+            foreach (Task t in dueTodayTemp)
+            {
+                sys.Today.AddTask(t);
+            }
+
+            // Idem pour les tâches présentes dans les liste des contextes existants
+            foreach (TaskList taskList in sys.Contexts)
+            {
+                dueTodayTemp = new DynamicList(taskList, Algorithms.getDueToday);
+                foreach (Task t in dueTodayTemp)
+                {
+                    sys.Today.AddTask(t);
+                }
+            }
         }
     }
 }
