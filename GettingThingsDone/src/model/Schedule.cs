@@ -55,6 +55,12 @@ namespace GettingThingsDone.src.model
             }
         }
 
+        public IEnumerable ThisMonth
+        { get { return filterView(isDueThisMonth); } }
+
+        public IEnumerable NextMonth
+        { get { return filterView(isDueNextMonth); } }
+
 
         private bool isDueToday(Object obj)
         {
@@ -88,6 +94,30 @@ namespace GettingThingsDone.src.model
             DateTimeOffset dueDate = t.DueDate.Value;
             DateTimeOffset nextMonday = DateTime.Now.Next(DayOfWeek.Monday);
             return dueDate < nextMonday;
+        }
+
+        private bool isDueThisMonth(Object obj)
+        {
+            if (isDueToday(obj) || isDueTomorrow(obj) || isDueThisWeek(obj)) return false;
+
+            Task t = obj as Task;
+            if (t == null) return false;
+
+            if (!t.DueDate.HasValue) return false;
+            DateTimeOffset dueDate = t.DueDate.Value;
+            return dueDate.Month < DateTime.Now.AddMonths(1).Month;
+        }
+
+        private bool isDueNextMonth(Object obj)
+        {
+            if (isDueToday(obj) || isDueTomorrow(obj) || isDueThisWeek(obj) || isDueThisMonth(obj)) return false;
+
+            Task t = obj as Task;
+            if (t == null) return false;
+
+            if (!t.DueDate.HasValue) return false;
+            DateTimeOffset dueDate = t.DueDate.Value;
+            return dueDate.Month < DateTime.Now.AddMonths(2).Month;
         }
 
 
