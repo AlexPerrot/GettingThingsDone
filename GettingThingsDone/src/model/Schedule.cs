@@ -19,12 +19,27 @@ namespace GettingThingsDone.src.model
             sys = system;
         }
 
-        public IEnumerable Today { get { 
-            IEnumerable tasks = sys.accept(new AllTasks());
-            ICollectionView view = CollectionViewSource.GetDefaultView(tasks);
-            view.Filter = isDueToday;
-            return view;
-        } }
+        public IEnumerable Today
+        {
+            get
+            {
+                IEnumerable tasks = sys.accept(new AllTasks());
+                ICollectionView view = CollectionViewSource.GetDefaultView(tasks);
+                view.Filter = isDueToday;
+                return view;
+            }
+        }
+
+        public IEnumerable Tomorrow
+        {
+            get
+            {
+                IEnumerable tasks = sys.accept(new AllTasks());
+                ICollectionView view = CollectionViewSource.GetDefaultView(tasks);
+                view.Filter = isDueTomorrow;
+                return view;
+            }
+        }
 
         private bool isDueToday(Object obj)
         {
@@ -34,6 +49,18 @@ namespace GettingThingsDone.src.model
             if (!t.DueDate.HasValue) return false;
             DateTimeOffset dueDate = t.DueDate.Value;
             return dueDate.Day.Equals(DateTimeOffset.Now.Day);
+        }
+
+        private bool isDueTomorrow(Object obj)
+        {
+            if (isDueToday(obj)) return false;
+
+            Task t = obj as Task;
+            if (t == null) return false;
+
+            if (!t.DueDate.HasValue) return false;
+            DateTimeOffset dueDate = t.DueDate.Value;
+            return dueDate.Day.Equals(DateTimeOffset.Now.AddDays(1).Day);
         }
     }
 }
