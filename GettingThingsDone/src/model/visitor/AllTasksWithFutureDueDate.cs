@@ -17,9 +17,7 @@ namespace GettingThingsDone.src.model.visitor
         public IEnumerable<Task> visit(ISingleTask t)
         {
             if (t.DueDate.HasValue 
-                && t.DueDate.Value.Day >= DateTimeOffset.Now.Day
-                && t.DueDate.Value.Month >= DateTimeOffset.Now.Month
-                && t.DueDate.Value.Year >= DateTimeOffset.Now.Year)
+                && t.DueDate.Value >= DateTime.Today)
                 return Yield(t);
             else
                 return Enumerable.Empty<Task>();
@@ -37,7 +35,7 @@ namespace GettingThingsDone.src.model.visitor
         {
             IEnumerable<Task> tmp = Enumerable.Empty<Task>();
             foreach (TaskList l in s)
-                tmp.Concat(l.accept(this));
+                tmp = tmp.Concat(l.accept(this));
             return tmp;
         }
 
@@ -45,7 +43,7 @@ namespace GettingThingsDone.src.model.visitor
         {
             IEnumerable<Task> tmp = Enumerable.Empty<Task>();
             foreach (Task tl in l)
-                tmp.Concat(tl.accept(this));
+                tmp = tmp.Concat(tl.accept(this));
             return tmp;
         }
 
@@ -53,7 +51,7 @@ namespace GettingThingsDone.src.model.visitor
         {
             IEnumerable<Task> tmp = Enumerable.Empty<Task>();
             foreach (Task tl in l)
-                tmp.Concat(tl.accept(this));
+                tmp = tmp.Concat(tl.accept(this));
             return tmp;
         }
     }
