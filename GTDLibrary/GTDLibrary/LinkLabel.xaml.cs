@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GTDLibrary
 {
@@ -19,21 +9,86 @@ namespace GTDLibrary
     /// </summary>
     public partial class LinkLabel : UserControl
     {
+        /// <summary>
+        /// Delegate of the callback that has to be called when the hyperlink is clicked.
+        /// </summary>
+        public delegate void LinkCallback();
+        /// <summary>
+        /// Event raised when the hyperlink is clicked.
+        /// </summary>
+        public event EventHandler LinkClickedEvent;
+
+        /// <summary>
+        /// Callback that has to be called when the hyperlink is clicked.
+        /// </summary>
+        private LinkCallback call = null;
+
+        #region "Constructors"
+        // -------------------------------------------------------
+        //                       Constructors
+        // -------------------------------------------------------
+
         public LinkLabel()
         {
             InitializeComponent();
-            this.Height = 30;
-            this.Width = 60;
+            this.call = null;
         }
 
-        public LinkLabel(String content) : this()
+        /// <summary>
+        /// LinkLabel constructor.
+        /// </summary>
+        /// <param name="call"> Callback that has to be called when the hyperlink is clicked. </param>
+        public LinkLabel(LinkCallback call)
+            : this()
+        {
+            this.call = call;
+        }
+
+        /// <summary>
+        /// LinkLabel constructor.
+        /// </summary>
+        /// <param name="content"> String to be shown in the hyperlink. </param>
+        public LinkLabel(String content)
+            : this()
         {
             this.text.Text = content;
         }
 
+        /// <summary>
+        /// LinkLabel constructor.
+        /// </summary>
+        /// <param name="call"> Callback that has to be called when the hyperlink is clicked. </param>
+        /// <param name="content"> String to be shown in the hyperlink. </param>
+        public LinkLabel(LinkCallback call, String content)
+            : this(content)
+        {
+            this.call = call;
+        }
+
+        #endregion
+
+        #region "Methods"
+        // -------------------------------------------------------
+        //                        Methods
+        // -------------------------------------------------------
+
+        /// <summary>
+        /// Execute the callback of this LinkLabel.
+        /// </summary>
+        public void executeCallback()
+        {
+            this.call();
+        }
+
+        /// <summary>
+        /// When the hyperlink is clicked, raise an event to prevent the parent, so that the callback can be executed.
+        /// </summary>
         private void hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            RaiseEvent(e);
+            if (this.LinkClickedEvent != null)
+                this.LinkClickedEvent(this, new EventArgs());
         }
+
+        #endregion
     }
 }

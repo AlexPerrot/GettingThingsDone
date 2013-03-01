@@ -49,7 +49,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ArianneThread.xaml">
+    <Page Include="AriadneThread.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -59,8 +59,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArianneThread.xaml.cs">
-      <DependentUpon>ArianneThread.xaml</DependentUpon>
+    <Compile Include="AriadneThread.xaml.cs">
+      <DependentUpon>AriadneThread.xaml</DependentUpon>
     </Compile>
     <Compile Include="LinkLabel.xaml.cs">
       <DependentUpon>LinkLabel.xaml</DependentUpon>
