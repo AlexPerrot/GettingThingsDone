@@ -10,7 +10,7 @@ using GettingThingsDone.src.model.visitor;
 
 namespace GettingThingsDone.src.model
 {
-    public static class Ext
+    public static class DateTimeHelper
     {
         public static DateTime Next(this DateTime from, DayOfWeek dayOfWeek)
         {
@@ -123,7 +123,7 @@ namespace GettingThingsDone.src.model
 
         private IEnumerable filterView(Predicate<Object> pred)
         {
-            IEnumerable tasks = sys.accept(new AllTasks());
+            IEnumerable tasks = sys.accept(new AllTasksWithFutureDueDate());
             ICollectionView view = CollectionViewSource.GetDefaultView(tasks);
             view.Filter = pred;
             return view;

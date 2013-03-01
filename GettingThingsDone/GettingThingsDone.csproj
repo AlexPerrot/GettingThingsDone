@@ -102,6 +102,7 @@
     <Compile Include="src\model\TaskList.cs" />
     <Compile Include="src\model\visitor\AllISingleTasks.cs" />
     <Compile Include="src\model\visitor\AllTasks.cs" />
+    <Compile Include="src\model\visitor\AllTasksWithFutureDueDate.cs" />
     <Compile Include="src\model\visitor\GTDVisitor.cs" />
     <Compile Include="src\model\visitor\SubLists.cs" />
     <Compile Include="src\model\visitor\VoidVisitor.cs" />
