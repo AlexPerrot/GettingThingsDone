@@ -128,7 +128,38 @@ namespace GettingThingsDone.src.model
             IEnumerable tasks = sys.accept(new AllTasksWithFutureDueDate());
             ICollectionView view = CollectionViewSource.GetDefaultView(tasks);
             view.Filter = pred;
+            view.GroupDescriptions.Add(new ContextGroupDescription(sys));
             return view;
         }
+    }
+
+    class ContextGroupDescription : PropertyGroupDescription
+    {
+        private IGTDSystem sys;
+
+        public ContextGroupDescription(IGTDSystem system)
+        {
+            sys = system;
+        }
+
+        private String findContext(Task t)
+        {
+            foreach (TaskList l in sys)
+                if (l.Contains(t))
+                    return l.Name;
+            return ""; 
+        }
+
+        public override object GroupNameFromItem(object item, int level,
+                                                System.Globalization.CultureInfo culture)
+        {
+            object value = base.GroupNameFromItem(item, level, culture);
+
+            Task t = item as Task;
+            if (t != null)
+                return findContext(t);
+
+            return value;
+        } 
     }
 }
