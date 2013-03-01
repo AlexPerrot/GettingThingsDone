@@ -9,6 +9,18 @@
       Background="DimGray"
              Loaded="UserControl_Loaded_1">
 
+    <UserControl.Resources>
+        <DataTemplate x:Key="HeaderTemplate">
+            <Label Foreground="Azure" Content="{Binding Name}"/>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate">
+            <StackPanel Background="LightGray"/>
+        </ItemsPanelTemplate>
+        <DataTemplate x:Key="TaskScheduleTemplate">
+            <Label Content="{Binding Title}" />
+        </DataTemplate>
+    </UserControl.Resources>
+    
     <Grid Margin="0,67,0,124">
         <Grid.RowDefinitions >
             <RowDefinition Height="Auto" />
@@ -30,78 +42,39 @@
         <Label Content="This Month" Grid.Row="0" Grid.Column="4" VerticalAlignment="Stretch" Foreground="AntiqueWhite" Background="DarkBlue" />
         <Label Content="Next Month" Grid.Row="0" Grid.Column="5" VerticalAlignment="Stretch" Foreground="AntiqueWhite" Background="Crimson" />
 
-        <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Today}" Foreground="AntiqueWhite">
+        <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Today}" Foreground="AntiqueWhite"
+                      ItemsPanel="{StaticResource ItemsPanelTemplate}" ItemTemplate="{StaticResource TaskScheduleTemplate}">
             <ItemsControl.GroupStyle>
-                <GroupStyle>
-                    <GroupStyle.HeaderTemplate>
-                        <DataTemplate>
-                            <Label Foreground="Azure" Content="{Binding Name}"/>
-                        </DataTemplate>
-                    </GroupStyle.HeaderTemplate>
-                </GroupStyle>
+                <GroupStyle HeaderTemplate="{StaticResource ResourceKey=HeaderTemplate}"/>
             </ItemsControl.GroupStyle>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Background="LightGray"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding Title}" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <ItemsControl Grid.Row="1" Grid.Column="2" ItemsSource="{Binding Tomorrow}" Foreground="AntiqueWhite">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Background="LightGray"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding Title}" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
+        <ItemsControl Grid.Row="1" Grid.Column="2" ItemsSource="{Binding Tomorrow}" Foreground="AntiqueWhite"
+            ItemsPanel="{StaticResource ItemsPanelTemplate}" ItemTemplate="{StaticResource TaskScheduleTemplate}">
+            <ItemsControl.GroupStyle>
+                <GroupStyle HeaderTemplate="{StaticResource ResourceKey=HeaderTemplate}"/>
+            </ItemsControl.GroupStyle>
         </ItemsControl>
 
-        <ItemsControl Grid.Row="1" Grid.Column="3" ItemsSource="{Binding ThisWeek}" Foreground="AntiqueWhite">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Background="LightGray"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding Title}" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
+        <ItemsControl Grid.Row="1" Grid.Column="3" ItemsSource="{Binding ThisWeek}" Foreground="AntiqueWhite"
+            ItemsPanel="{StaticResource ItemsPanelTemplate}" ItemTemplate="{StaticResource TaskScheduleTemplate}">
+            <ItemsControl.GroupStyle>
+                <GroupStyle HeaderTemplate="{StaticResource ResourceKey=HeaderTemplate}"/>
+            </ItemsControl.GroupStyle>
         </ItemsControl>
 
-        <ItemsControl Grid.Row="1" Grid.Column="4" ItemsSource="{Binding ThisMonth}" Foreground="AntiqueWhite">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Background="LightGray"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding Title}" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
+        <ItemsControl Grid.Row="1" Grid.Column="4" ItemsSource="{Binding ThisMonth}" Foreground="AntiqueWhite"
+            ItemsPanel="{StaticResource ItemsPanelTemplate}" ItemTemplate="{StaticResource TaskScheduleTemplate}">
+            <ItemsControl.GroupStyle>
+                <GroupStyle HeaderTemplate="{StaticResource ResourceKey=HeaderTemplate}"/>
+            </ItemsControl.GroupStyle>
         </ItemsControl>
 
-        <ItemsControl Grid.Row="1" Grid.Column="5" ItemsSource="{Binding NextMonth}" Foreground="AntiqueWhite">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Background="LightGray"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding Title}" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
+        <ItemsControl Grid.Row="1" Grid.Column="5" ItemsSource="{Binding NextMonth}" Foreground="AntiqueWhite"
+            ItemsPanel="{StaticResource ItemsPanelTemplate}" ItemTemplate="{StaticResource TaskScheduleTemplate}">
+            <ItemsControl.GroupStyle>
+                <GroupStyle HeaderTemplate="{StaticResource ResourceKey=HeaderTemplate}"/>
+            </ItemsControl.GroupStyle>
         </ItemsControl>
     </Grid>
     
