@@ -50,7 +50,7 @@ namespace GettingThingsDone.src.data
                 sys.Inbox.List.Add(st);
             }
 
-            updateSchedule(sys);
+            //updateSchedule(sys);
 
             return sys;
         }
@@ -58,6 +58,7 @@ namespace GettingThingsDone.src.data
         // Fonction de mise à jour des listes temporelles (Today, Tomorrow, ...) de l'échéancier
         public void updateSchedule(GTDSystem sys)
         {
+            System.Console.WriteLine("ceylemal");
             TaskList due;
             Func<GTDItem, Boolean> filter = null;
 
