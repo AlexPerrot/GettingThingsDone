@@ -31,6 +31,15 @@
         <Label Content="Next Month" Grid.Row="0" Grid.Column="5" VerticalAlignment="Stretch" Foreground="AntiqueWhite" Background="Crimson" />
 
         <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Today}" Foreground="AntiqueWhite">
+            <ItemsControl.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <Label Foreground="Azure" Content="{Binding Name}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ItemsControl.GroupStyle>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Background="LightGray"/>

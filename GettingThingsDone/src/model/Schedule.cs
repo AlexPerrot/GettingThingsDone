@@ -137,7 +137,7 @@ namespace GettingThingsDone.src.model
     {
         private IGTDSystem sys;
 
-        public ContextGroupDescription(IGTDSystem system)
+        public ContextGroupDescription(IGTDSystem system) : base()
         {
             sys = system;
         }
@@ -147,7 +147,7 @@ namespace GettingThingsDone.src.model
             foreach (TaskList l in sys)
                 if (l.Contains(t))
                     return l.Name;
-            return ""; 
+            return "Caca"; 
         }
 
         public override object GroupNameFromItem(object item, int level,
