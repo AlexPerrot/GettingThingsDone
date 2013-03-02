@@ -25,12 +25,10 @@ namespace GettingThingsDone.src.model
     public class Schedule
     {
         private IGTDSystem sys;
-        private IEnumerable tasks;
 
         public Schedule(IGTDSystem system)
         {
             sys = system;
-            tasks = sys.accept(new AllTasksWithFutureDueDate());
         }
 
         public IEnumerable Today

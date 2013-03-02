@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GettingThingsDone.src.view;
+using GettingThingsDone.src.model;
 
 namespace GettingThingsDone
 {
@@ -21,6 +22,8 @@ namespace GettingThingsDone
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Schedule Schedule { get { return new Schedule(DataContext as IGTDSystem); } }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -32,7 +35,7 @@ namespace GettingThingsDone
             Task t = TaskCreationWindow.GetNewTask();
             if (t != null)
             {
-                ((App)App.Current).GTD.Inbox.AddItem(t);
+                ((App)App.Current).GTD.Inbox.AddTask(t);
                 // Update de l'échéancier
                 ((App)App.Current).Factory.updateSchedule(((App)App.Current).GTD);
             }
@@ -62,6 +65,7 @@ namespace GettingThingsDone
             this.ReviewLink.Visibility = Visibility.Collapsed;
             this.ScheduleLink.Visibility = Visibility.Collapsed;
             this.SchedulePanel.Visibility = Visibility.Visible;
+            this.SchedulePanel.DataContext = Schedule;
         }
 
         private void ScheduleLinkEnter(object sender, MouseEventArgs e)

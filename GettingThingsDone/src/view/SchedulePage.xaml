@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Background="DimGray"
-             Loaded="UserControl_Loaded_1">
+      >
 
     <UserControl.Resources>
         <DataTemplate x:Key="HeaderTemplate">
