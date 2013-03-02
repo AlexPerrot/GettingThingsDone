@@ -16,8 +16,9 @@ namespace GettingThingsDone.src.model.visitor
 
         public IEnumerable<Task> visit(ISingleTask t)
         {
-            if (t.DueDate.HasValue 
-                && t.DueDate.Value >= DateTime.Today)
+            DateTimeOffset? dueDate = t.DueDate;
+            if (dueDate.HasValue 
+                && dueDate.Value >= DateTime.Today)
                 return Yield(t);
             else
                 return Enumerable.Empty<Task>();
