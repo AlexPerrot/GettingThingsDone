@@ -25,10 +25,12 @@ namespace GettingThingsDone.src.model
     public class Schedule
     {
         private IGTDSystem sys;
+        private System.Collections.Generic.IEnumerable<Task> tasks;
 
         public Schedule(IGTDSystem system)
         {
             sys = system;
+            tasks = sys.accept(new AllTasksWithFutureDueDate());
         }
 
         public IEnumerable Today
@@ -123,8 +125,8 @@ namespace GettingThingsDone.src.model
 
         private IEnumerable filterView(Predicate<Object> pred)
         {
-            IEnumerable tasks = sys.accept(new AllTasksWithFutureDueDate());
-            ICollectionView view = CollectionViewSource.GetDefaultView(tasks);
+            //IEnumerable tasks = sys.accept(new AllTasksWithFutureDueDate());
+            ICollectionView view = CollectionViewSource.GetDefaultView(tasks.ToList());
             view.Filter = pred;
             view.GroupDescriptions.Add(new ContextGroupDescription(sys));
             return view;
