@@ -22,12 +22,12 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <TabControl>
+        <TabControl SelectionChanged="TabControl_SelectionChanged_1">
             <TabItem Header="Home">
                 <local:ReviewPage />
             </TabItem>
             <TabItem Header="Schedule">
-                <local:SchedulePage />
+                <local:SchedulePage x:Name="SchedulePage" Loaded="SchedulePage_Loaded_1" />
             </TabItem>
         </TabControl>
         

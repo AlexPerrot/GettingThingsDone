@@ -22,12 +22,14 @@ namespace GettingThingsDone
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ISchedule Schedule { get { return (App.Current as App).Factory.makeSchedule(DataContext as IGTDSystem); } }
+        private ISchedule schedule;
+        public ISchedule Schedule { get { return schedule; } }
 
         public MainWindow()
         {
             InitializeComponent();
             DataContext = ((App)App.Current).GTD;
+            schedule = (App.Current as App).Factory.makeSchedule(DataContext as IGTDSystem);
         }
 
         private void CreateTask(object sender, RoutedEventArgs e)
@@ -38,6 +40,28 @@ namespace GettingThingsDone
                 ((App)App.Current).GTD.Inbox.AddTask(t);
             }
         }
+
+        private void TabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            TabItem item = sender as TabItem;
+            if (item != null)
+            {
+                switch (item.Header.ToString())
+                {
+                    case "Schedule":
+                        this.SchedulePage.update();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void SchedulePage_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            this.SchedulePage.DataContext = Schedule;
+        }
+
 
     }
 }
