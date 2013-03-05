@@ -23,7 +23,7 @@ public class GTDSystem : IGTDSystem
         get { return inbox; }
 	}
 
-    private TaskList today = new StaticList("Today");
+    /*private TaskList today = new StaticList("Today");
     public TaskList Today { get { return today; } }
 
     private TaskList tomorrow = new StaticList("Tomorrow");
@@ -33,7 +33,27 @@ public class GTDSystem : IGTDSystem
     public TaskList Someday { get { return someday; } }
 
     private TaskList waiting = new StaticList("Waiting");
-    public TaskList Waiting { get { return waiting; } }
+    public TaskList Waiting { get { return waiting; } }*/
+
+    private List<TaskList> schedules = new List<TaskList>()
+        {
+            new StaticList("Today"),
+            new StaticList("Tomorrow"),
+            new StaticList("Next week"),
+            new StaticList("Next month"),
+            new StaticList("Someday"),
+            new StaticList("Waiting")
+        };
+
+    public List<TaskList> Schedules { get { return schedules; } }
+
+    public TaskList Today { get { return schedules[0]; } }
+    public TaskList Tomorrow { get { return schedules[1]; } }
+    public TaskList NextWeek { get { return schedules[2]; } }
+    public TaskList NextMonth { get { return schedules[3]; } }
+    public TaskList Someday { get { return schedules[4]; } }
+    public TaskList Waiting { get { return schedules[5]; } }
+
 
     private List<TaskList> contexts = new List<TaskList>() 
         {
@@ -46,11 +66,32 @@ public class GTDSystem : IGTDSystem
 
     public List<TaskList> Contexts { get { return contexts; } }
 
+    //public TaskList dueToday;
+    //public TaskList dueTodayTemp;
+
+    public GTDSystem()
+    {
+        /*today.AddTask(new SingleTask("task1","desc1"));
+
+        // AllISingleTasks t = new AllISingleTasks();
+        //StaticList t1 = (StaticList)t.visit(this);
+        today.AddTask(new SingleTask("task1", "desc1"));
+        today.AddTask(new SingleTask("task2", "desc4", DateTime.Today));
+        contexts[0].AddTask(new SingleTask("task3", "desc3"));
+        dueToday = new DynamicList(Today, Algorithms.getDueToday);
+        foreach (GTDItem t in dueToday)
+        {
+            SingleTask t1 = (SingleTask)t;
+            listTemp.AddTask(t1);
+        }
+        today.AddTask(new SingleTask("task2", "desc1"));*/
+    }
+
 	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
         yield return Inbox;
-        yield return Today;
-        yield return Tomorrow;
+        //yield return Today;
+        //yield return Tomorrow;
         yield return Someday;
         foreach (TaskList item in contexts)
             yield return item;
