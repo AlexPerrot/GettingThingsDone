@@ -24,15 +24,15 @@
     <Grid >
         <Grid.RowDefinitions >
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" MinHeight="250"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" MinWidth="150"/>
+            <ColumnDefinition Width="*" MinWidth="150"/>
+            <ColumnDefinition Width="*" MinWidth="150"/>
+            <ColumnDefinition Width="*" MinWidth="150"/>
+            <ColumnDefinition Width="*" MinWidth="150"/>
         </Grid.ColumnDefinitions>
 
         <Label Content="Today" Foreground="AntiqueWhite" Background="Crimson" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"/>
