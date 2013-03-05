@@ -66,14 +66,10 @@ namespace GettingThingsDone.test
         [TestMethod]
         public void CreationGTDSystem()
         {
-            Assert.IsNotNull(system.Today);
-            Assert.IsNotNull(system.Tomorrow);
             Assert.IsNotNull(system.Someday);
             Assert.IsNotNull(system.Waiting);
             Assert.IsNotNull(system.Contexts);
             Assert.IsNotNull(system.Inbox);
-            Assert.AreEqual(system.Today.Name, "Today");
-            Assert.AreEqual(system.Tomorrow.Name, "Tomorrow");
             Assert.AreEqual(system.Someday.Name, "Someday");
             Assert.AreEqual(system.Waiting.Name, "Waiting");
         }
