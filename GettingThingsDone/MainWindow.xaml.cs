@@ -39,44 +39,5 @@ namespace GettingThingsDone
             }
         }
 
-        private void ReviewButtonClick(object sender, MouseButtonEventArgs e)
-        {
-            this.ReviewLink.Visibility = Visibility.Collapsed;
-            this.ScheduleLink.Visibility = Visibility.Collapsed;
-            this.ReviewPanel.Visibility = Visibility.Visible;
-        }
-
-        private void ReviewLinkEnter(object sender, MouseEventArgs e)
-        {
-            Mouse.OverrideCursor = Cursors.Hand;
-            this.ReviewLink.Foreground = new SolidColorBrush(Colors.Aqua);
-        }
-
-        private void ReviewLinkLeave(object sender, MouseEventArgs e)
-        {
-            Mouse.OverrideCursor = null;
-            this.ReviewLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
-        }
-
-        private void ScheduleButtonClick(object sender, MouseButtonEventArgs e)
-        {
-            this.ReviewLink.Visibility = Visibility.Collapsed;
-            this.ScheduleLink.Visibility = Visibility.Collapsed;
-            this.SchedulePanel.Visibility = Visibility.Visible;
-            this.SchedulePanel.DataContext = Schedule;
-        }
-
-        private void ScheduleLinkEnter(object sender, MouseEventArgs e)
-        {
-            Mouse.OverrideCursor = Cursors.Hand;
-            this.ScheduleLink.Foreground = new SolidColorBrush(Colors.Aqua);
-        }
-
-        private void ScheduleLinkLeave(object sender, MouseEventArgs e)
-        {
-            Mouse.OverrideCursor = null;
-            this.ScheduleLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
-        }
-
     }
 }
