@@ -55,6 +55,9 @@ namespace GettingThingsDone.src.data
             return sys;
         }
 
- 
+        public ISchedule makeSchedule(IGTDSystem source)
+        {
+            return new Schedule(source);
+        }
     }
 }
