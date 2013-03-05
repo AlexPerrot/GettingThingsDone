@@ -85,6 +85,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </Compile>
+    <Compile Include="ProjectCreationWindow.xaml.cs">
+      <DependentUpon>ProjectCreationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="src\data\IDatabaseProvider.cs" />
     <Compile Include="src\data\LocalDatabaseProvider.cs" />
     <Compile Include="src\data\GTDItemSave.cs" />
@@ -103,6 +106,9 @@
     <Compile Include="src\model\visitor\GTDVisitor.cs" />
     <Compile Include="src\model\visitor\SubLists.cs" />
     <Compile Include="src\model\visitor\VoidVisitor.cs" />
+    <Compile Include="src\view\ProjectCreationPanel.xaml.cs">
+      <DependentUpon>ProjectCreationPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="src\view\ProjectsPanel.xaml.cs">
       <DependentUpon>ProjectsPanel.xaml</DependentUpon>
     </Compile>
@@ -146,6 +152,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProjectCreationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\view\ProjectCreationPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="src\view\ProjectsPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

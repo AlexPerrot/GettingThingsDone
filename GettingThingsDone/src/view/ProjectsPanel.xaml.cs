@@ -24,5 +24,23 @@ namespace GettingThingsDone.src.view
         {
             InitializeComponent();
         }
+
+        private void CreateProjectLinkEnter(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Hand;
+            this.CreateProjectLink.Foreground = new SolidColorBrush(Colors.Aqua);
+        }
+
+        private void CreateProjectLinkLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = null;
+            this.CreateProjectLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
+        }
+
+        private void CreateProjectClick(object sender, MouseButtonEventArgs e)
+        {
+            ProjectCreationWindow p = new ProjectCreationWindow();
+            p.Show();
+        }
     }
 }
