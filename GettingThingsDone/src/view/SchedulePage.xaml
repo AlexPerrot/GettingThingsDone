@@ -18,6 +18,10 @@
         <DataTemplate x:Key="TaskScheduleTemplate">
             <Label Content="{Binding Title}" />
         </DataTemplate>
+        
+        <SolidColorBrush x:Key="TitleBrush" Color="AntiqueWhite"/>
+        <SolidColorBrush x:Key="TitleBG1" Color="Crimson"/>
+        <SolidColorBrush x:Key="TitleBG2" Color="DarkBlue"/>
     </UserControl.Resources>
     
     <Grid >
@@ -34,12 +38,12 @@
             <ColumnDefinition Width="*" MinWidth="150"/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="Today" Foreground="AntiqueWhite" Background="Crimson" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"/>
-        <Label Content="Tommorow" Foreground="AntiqueWhite" Background="DarkBlue" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch"/>
-        <Label Content="Tasks" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" Foreground="AntiqueWhite" Background="Indigo"/>
-        <Label Content="This Week" Grid.Row="0" Grid.Column="3" VerticalAlignment="Stretch" Foreground="AntiqueWhite" Background="Crimson" />
-        <Label Content="This Month" Grid.Row="0" Grid.Column="4" VerticalAlignment="Stretch" Foreground="AntiqueWhite" Background="DarkBlue" />
-        <Label Content="Next Month" Grid.Row="0" Grid.Column="5" VerticalAlignment="Stretch" Foreground="AntiqueWhite" Background="Crimson" />
+        <Label Content="Today" Foreground="{StaticResource TitleBrush}" Background="{StaticResource TitleBG1}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"/>
+        <Label Content="Tommorow" Foreground="{StaticResource TitleBrush}" Background="{StaticResource TitleBG2}" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch"/>
+        <Label Content="Tasks" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" Foreground="{StaticResource TitleBrush}" Background="Indigo"/>
+        <Label Content="This Week" Grid.Row="0" Grid.Column="3" VerticalAlignment="Stretch" Foreground="{StaticResource TitleBrush}" Background="{StaticResource TitleBG1}" />
+        <Label Content="This Month" Grid.Row="0" Grid.Column="4" VerticalAlignment="Stretch" Foreground="{StaticResource TitleBrush}" Background="{StaticResource TitleBG2}" />
+        <Label Content="Next Month" Grid.Row="0" Grid.Column="5" VerticalAlignment="Stretch" Foreground="{StaticResource TitleBrush}" Background="{StaticResource TitleBG1}" />
 
         <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Today}" Background="LightGray"
                       ItemsPanel="{StaticResource ItemsPanelTemplate}" ItemTemplate="{StaticResource TaskScheduleTemplate}">
