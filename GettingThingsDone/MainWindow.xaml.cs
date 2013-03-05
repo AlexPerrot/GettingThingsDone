@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GettingThingsDone.src.view;
+using GettingThingsDone.src.model;
 
 namespace GettingThingsDone
 {
@@ -21,6 +22,8 @@ namespace GettingThingsDone
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ISchedule Schedule { get { return (App.Current as App).Factory.makeSchedule(DataContext as IGTDSystem); } }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,13 +33,16 @@ namespace GettingThingsDone
         private void CreateTask(object sender, RoutedEventArgs e)
         {
             Task t = TaskCreationWindow.GetNewTask();
-            if (t!=null)
-                ((App)App.Current).GTD.Inbox.AddItem(t);
+            if (t != null)
+            {
+                ((App)App.Current).GTD.Inbox.AddTask(t);
+            }
         }
 
         private void ReviewButtonClick(object sender, MouseButtonEventArgs e)
         {
             this.ReviewLink.Visibility = Visibility.Collapsed;
+            this.ScheduleLink.Visibility = Visibility.Collapsed;
             this.ReviewPanel.Visibility = Visibility.Visible;
         }
 
@@ -50,6 +56,26 @@ namespace GettingThingsDone
         {
             Mouse.OverrideCursor = null;
             this.ReviewLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
+        }
+
+        private void ScheduleButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            this.ReviewLink.Visibility = Visibility.Collapsed;
+            this.ScheduleLink.Visibility = Visibility.Collapsed;
+            this.SchedulePanel.Visibility = Visibility.Visible;
+            this.SchedulePanel.DataContext = Schedule;
+        }
+
+        private void ScheduleLinkEnter(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Hand;
+            this.ScheduleLink.Foreground = new SolidColorBrush(Colors.Aqua);
+        }
+
+        private void ScheduleLinkLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = null;
+            this.ScheduleLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
         }
 
     }

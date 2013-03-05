@@ -20,8 +20,8 @@ namespace GettingThingsDone
     public partial class App : Application
     {
 
-        private GTDSystem gtd;
-        public GTDSystem GTD { get { return gtd; } }
+        private IGTDSystem gtd;
+        public IGTDSystem GTD { get { return gtd; } }
 
         public GettingThingsDone.DataClassesDataContext DB { get { return new DataClassesDataContext(); } }
 

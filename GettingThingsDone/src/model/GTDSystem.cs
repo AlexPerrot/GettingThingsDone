@@ -16,24 +16,19 @@ public class GTDSystem : IGTDSystem
 {
 
     public string Name { get; set; }
-    private StaticList inbox = new StaticList("Inbox");
+    private TaskList inbox = new StaticList("Inbox");
     
-    public virtual StaticList Inbox
+    public virtual TaskList Inbox
 	{
         get { return inbox; }
 	}
-
-    private TaskList today = new StaticList("Today");
-    public TaskList Today { get { return today; } }
-
-    private TaskList tomorrow = new StaticList("Tomorrow");
-    public TaskList Tomorrow { get { return tomorrow; } }
 
     private TaskList someday = new StaticList("Someday");
     public TaskList Someday { get { return someday; } }
 
     private TaskList waiting = new StaticList("Waiting");
     public TaskList Waiting { get { return waiting; } }
+
 
     private List<TaskList> contexts = new List<TaskList>() 
         {
@@ -46,11 +41,15 @@ public class GTDSystem : IGTDSystem
 
     public List<TaskList> Contexts { get { return contexts; } }
 
+
+    public GTDSystem()
+    {
+       
+    }
+
 	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
         yield return Inbox;
-        yield return Today;
-        yield return Tomorrow;
         yield return Someday;
         foreach (TaskList item in contexts)
             yield return item;
@@ -73,20 +72,6 @@ public class GTDSystem : IGTDSystem
         t.Delete();
     }
 
-    TaskList IGTDSystem.Inbox
-    {
-        get { throw new NotImplementedException(); }
-    }
-
-    public TaskList Tommorow
-    {
-        get { throw new NotImplementedException(); }
-    }
-
-    IEnumerable<TaskList> IGTDSystem.contexts
-    {
-        get { throw new NotImplementedException(); }
-    }
 
 
     public void AddTask(Task t)
