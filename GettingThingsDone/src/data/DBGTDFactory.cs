@@ -47,7 +47,7 @@ namespace GettingThingsDone.src.data
             foreach (Tasks t in db.Tasks)
             {
                 ISingleTask st = new DBSingleTask(t, dbProvider);
-                sys.Inbox.List.Add(st);
+                sys.Inbox.AddTask(st);
             }
 
             //updateSchedule(sys);
