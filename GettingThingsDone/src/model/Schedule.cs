@@ -22,7 +22,7 @@ namespace GettingThingsDone.src.model
         }
     }
 
-    public class Schedule : GettingThingsDone.src.model.ISchedule
+    public class Schedule : GettingThingsDone.src.model.ISchedule, INotifyPropertyChanged
     {
         private IGTDSystem sys;
         private System.Collections.Generic.IEnumerable<Task> tasks;
@@ -135,7 +135,19 @@ namespace GettingThingsDone.src.model
         public void update()
         {
             this.tasks = sys.accept(new AllTasksWithFutureDueDate());
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("Today"));
+                PropertyChanged(this, new PropertyChangedEventArgs("Tomorrow"));
+                PropertyChanged(this, new PropertyChangedEventArgs("ThisWeek"));
+                PropertyChanged(this, new PropertyChangedEventArgs("ThisMonth"));
+                PropertyChanged(this, new PropertyChangedEventArgs("NextMonth"));
+
+            }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
     }
 
     class ContextGroupDescription : PropertyGroupDescription

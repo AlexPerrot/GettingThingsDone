@@ -43,7 +43,7 @@ namespace GettingThingsDone
 
         private void TabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            TabItem item = sender as TabItem;
+            TabItem item = (sender as TabControl).SelectedItem as TabItem;
             if (item != null)
             {
                 switch (item.Header.ToString())

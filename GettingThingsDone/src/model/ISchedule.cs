@@ -1,7 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 namespace GettingThingsDone.src.model
 {
-    public interface ISchedule
+    public interface ISchedule : INotifyPropertyChanged
     {
         System.Collections.IEnumerable NextMonth { get; }
         System.Collections.IEnumerable ThisMonth { get; }
