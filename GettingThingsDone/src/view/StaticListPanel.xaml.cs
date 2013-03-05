@@ -68,8 +68,6 @@ namespace GettingThingsDone.src.view
                 {
                     editWin.CreationPanel.WriteToTask(task);
                     this.List.Items.Refresh();
-                    // Update des listes de l'échéancier
-                    ((App)App.Current).Factory.updateSchedule(((App)App.Current).GTD);
                 }
             }
         }
