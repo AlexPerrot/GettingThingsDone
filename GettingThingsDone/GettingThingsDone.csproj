@@ -96,6 +96,7 @@
     <Compile Include="src\model\IGTDFactory.cs" />
     <Compile Include="src\model\IGTDSystem.cs" />
     <Compile Include="src\model\IProject.cs" />
+    <Compile Include="src\model\ISchedule.cs" />
     <Compile Include="src\model\ISingleTask.cs" />
     <Compile Include="src\model\IStaticList.cs" />
     <Compile Include="src\model\Schedule.cs" />

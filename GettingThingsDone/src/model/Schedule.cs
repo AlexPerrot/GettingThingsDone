@@ -22,7 +22,7 @@ namespace GettingThingsDone.src.model
         }
     }
 
-    public class Schedule
+    public class Schedule : GettingThingsDone.src.model.ISchedule
     {
         private IGTDSystem sys;
         private System.Collections.Generic.IEnumerable<Task> tasks;
