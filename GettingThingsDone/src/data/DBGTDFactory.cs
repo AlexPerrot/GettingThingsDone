@@ -39,7 +39,7 @@ namespace GettingThingsDone.src.data
             throw new NotImplementedException();
         }
 
-        public GTDSystem makeSystem()
+        public IGTDSystem makeSystem()
         {
             GTDSystem sys = new GTDSystem();
 
