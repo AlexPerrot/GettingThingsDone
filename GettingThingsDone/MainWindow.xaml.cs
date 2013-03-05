@@ -55,8 +55,9 @@ namespace GettingThingsDone
 
         private void ProjectsButtonClick(object sender, MouseButtonEventArgs e)
         {
+            this.ReviewLink.Visibility = Visibility.Collapsed;
             this.ProjectsLink.Visibility = Visibility.Collapsed;
-            this.ReviewPanel.Visibility = Visibility.Visible;
+            this.ProjectsPanel.Visibility = Visibility.Visible;
         }
 
         private void ProjectsLinkEnter(object sender, MouseEventArgs e)

@@ -14,7 +14,8 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -24,15 +25,18 @@
                VerticalAlignment="Center" HorizontalAlignment="Center"
                VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                Width="200" Height="80" FontSize="18"
-               MouseEnter="ReviewLinkEnter" MouseLeave="ReviewLinkLeave"/>
+               MouseEnter="ReviewLinkEnter" MouseLeave="ReviewLinkLeave" Margin="154,184,142,184" Grid.Column="1"/>
         <Label Name="ProjectsLink" Content="Projects" Foreground="AntiqueWhite" Background="Indigo" Grid.Row="0" MouseLeftButtonDown="ProjectsButtonClick"
                VerticalAlignment="Center" HorizontalAlignment="Left"
                VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                Width="200" Height="80" FontSize="18"
-               MouseEnter="ProjectsLinkEnter" MouseLeave="ProjectsLinkLeave"/>
-        <ScrollViewer x:Name="ReviewPanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0">
+               MouseEnter="ProjectsLinkEnter" MouseLeave="ProjectsLinkLeave" Margin="152,184,0,184"/>
+        <ScrollViewer x:Name="ReviewPanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0" Grid.ColumnSpan="2">
             <local:ReviewPage/>
         </ScrollViewer>
-        <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask"/>
+        <ScrollViewer x:Name="ProjectsPanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0" Grid.ColumnSpan="2">
+            <local:ProjectsPanel/>
+        </ScrollViewer>
+        <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
