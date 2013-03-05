@@ -1,7 +1,7 @@
 ﻿using System;
 namespace GettingThingsDone.src.model
 {
-    interface ISchedule
+    public interface ISchedule
     {
         System.Collections.IEnumerable NextMonth { get; }
         System.Collections.IEnumerable ThisMonth { get; }
