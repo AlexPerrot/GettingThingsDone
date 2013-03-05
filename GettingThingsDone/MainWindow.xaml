@@ -30,8 +30,8 @@
         <ScrollViewer x:Name="ReviewPanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0" Grid.ColumnSpan="2">
             <local:ReviewPage/>
         </ScrollViewer>
-        <ScrollViewer x:Name="SchedulePanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0" Grid.ColumnSpan="2">
-            <local:SchedulePage />
+        <ScrollViewer x:Name="SchedulePanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0" Grid.ColumnSpan="2" >
+            <local:SchedulePage Margin="10,50,10,40"/>
         </ScrollViewer>
         <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask" Grid.ColumnSpan="2"/>
         <Label x:Name="ScheduleLink" Content="Schedule" Foreground="AntiqueWhite" Background="Indigo" Grid.Row="0" MouseLeftButtonDown="ScheduleButtonClick"
