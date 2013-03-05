@@ -36,8 +36,6 @@ namespace GettingThingsDone
             if (t != null)
             {
                 ((App)App.Current).GTD.Inbox.AddTask(t);
-                // Update de l'échéancier
-                ((App)App.Current).Factory.updateSchedule(((App)App.Current).GTD);
             }
         }
 
