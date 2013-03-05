@@ -22,7 +22,7 @@ namespace GettingThingsDone
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Schedule Schedule { get { return new Schedule(DataContext as IGTDSystem); } }
+        public ISchedule Schedule { get { return (App.Current as App).Factory.makeSchedule(DataContext as IGTDSystem); } }
 
         public MainWindow()
         {
