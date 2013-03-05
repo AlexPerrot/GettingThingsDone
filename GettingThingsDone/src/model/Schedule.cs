@@ -33,35 +33,60 @@ namespace GettingThingsDone.src.model
             tasks = sys.accept(new AllTasksWithFutureDueDate());
         }
 
+        private ICollectionView today;
         public IEnumerable Today
         {
             get
             {
-                return filterView(isDueToday);
+                if (today == null)
+                    today = filterView(isDueToday);
+                return today;
             }
         }
 
+        private ICollectionView tomorrow;
         public IEnumerable Tomorrow
         {
             get
             {
-                return filterView(isDueTomorrow);
+                if (tomorrow == null)
+                    tomorrow = filterView(isDueTomorrow);
+                return tomorrow;
             }
         }
 
+        private ICollectionView thisWeek;
         public IEnumerable ThisWeek
         {
             get
             {
-                return filterView(isDueThisWeek);
+                if (thisWeek == null)
+                    thisWeek = filterView(isDueThisWeek);
+                return thisWeek;
             }
         }
 
+        private ICollectionView thisMonth;
         public IEnumerable ThisMonth
-        { get { return filterView(isDueThisMonth); } }
+        {
+            get
+            {
+                if (thisMonth == null)
+                    thisMonth = filterView(isDueThisMonth);
+                return thisMonth;
+            }
+        }
 
+        private ICollectionView nextMonth;
         public IEnumerable NextMonth
-        { get { return filterView(isDueNextMonth); } }
+        {
+            get
+            {
+                if (nextMonth == null)
+                    nextMonth = filterView(isDueNextMonth);
+                return nextMonth;
+            }
+        }
 
 
         private bool isDueToday(Object obj)
@@ -123,10 +148,9 @@ namespace GettingThingsDone.src.model
         }
 
 
-        private IEnumerable filterView(Predicate<Object> pred)
+        private ICollectionView filterView(Predicate<Object> pred)
         {
-            //IEnumerable tasks = sys.accept(new AllTasksWithFutureDueDate());
-            ICollectionView view = CollectionViewSource.GetDefaultView(tasks.ToList());
+            ICollectionView view = new CollectionViewSource() { Source = tasks }.View;
             view.Filter = pred;
             view.GroupDescriptions.Add(new ContextGroupDescription(sys));
             return view;

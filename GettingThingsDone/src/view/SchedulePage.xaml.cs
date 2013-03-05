@@ -56,7 +56,6 @@ namespace GettingThingsDone.src.view
             if (schedule != null)
             {
                 schedule.update();
-                this.InvalidateVisual();
             }
         }
     }
