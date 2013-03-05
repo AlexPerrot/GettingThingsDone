@@ -49,7 +49,9 @@ namespace GettingThingsDone
                 switch (item.Header.ToString())
                 {
                     case "Schedule":
-                        this.SchedulePage.update();
+                        Dispatcher.BeginInvoke(new Action(this.SchedulePage.update),
+                            System.Windows.Threading.DispatcherPriority.Background,
+                            new object[0]);
                         break;
                     default:
                         break;

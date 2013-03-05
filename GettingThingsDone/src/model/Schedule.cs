@@ -159,6 +159,11 @@ namespace GettingThingsDone.src.model
         public void update()
         {
             this.tasks = sys.accept(new AllTasksWithFutureDueDate());
+            today = filterView(isDueToday);
+            tomorrow = filterView(isDueTomorrow);
+            thisWeek = filterView(isDueThisWeek);
+            thisMonth = filterView(isDueThisMonth);
+            nextMonth = filterView(isDueNextMonth);
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs("Today"));
