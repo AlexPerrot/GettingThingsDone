@@ -25,6 +25,7 @@ namespace GettingThingsDone.src.data
             dbTask.CreationDate = DateTimeOffset.Now;
             dbTask.Title = title;
             dbTask.Description = description;
+            dbTask.DueDate = DueDate;
             dbTask.Owner = (App.Current as App).Admin.Id;
 
             dc.Tasks.InsertOnSubmit(dbTask);
@@ -38,7 +39,7 @@ namespace GettingThingsDone.src.data
             throw new NotImplementedException();
         }
 
-        public GTDSystem makeSystem()
+        public IGTDSystem makeSystem()
         {
             GTDSystem sys = new GTDSystem();
 
@@ -49,7 +50,14 @@ namespace GettingThingsDone.src.data
                 sys.Inbox.List.Add(st);
             }
 
+            //updateSchedule(sys);
+
             return sys;
+        }
+
+        public ISchedule makeSchedule(IGTDSystem source)
+        {
+            return new Schedule(source);
         }
     }
 }

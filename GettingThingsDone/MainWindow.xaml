@@ -4,7 +4,8 @@
         xmlns:local="clr-namespace:GettingThingsDone.src.view"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="GettingThingsDone.MainWindow"
         Title="Getting Things Done" Height="500" Width="1000"
-        Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+        Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"
+    x:Name="GTDWindow">
     <Window.Resources>
         <DataTemplate x:Key="ListTemplate">
             <Border BorderBrush="Black" BorderThickness="3" Margin="5" CornerRadius="2">
@@ -14,7 +15,8 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -24,10 +26,18 @@
                VerticalAlignment="Center" HorizontalAlignment="Center"
                VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                Width="200" Height="80" FontSize="18"
-               MouseEnter="ReviewLinkEnter" MouseLeave="ReviewLinkLeave"/>
-        <ScrollViewer x:Name="ReviewPanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0">
+               MouseEnter="ReviewLinkEnter" MouseLeave="ReviewLinkLeave" Margin="148,184"/>
+        <ScrollViewer x:Name="ReviewPanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0" Grid.ColumnSpan="2">
             <local:ReviewPage/>
         </ScrollViewer>
-        <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask"/>
+        <ScrollViewer x:Name="SchedulePanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0" Grid.ColumnSpan="2" >
+            <local:SchedulePage Margin="10,50,10,40"/>
+        </ScrollViewer>
+        <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask" Grid.ColumnSpan="2"/>
+        <Label x:Name="ScheduleLink" Content="Schedule" Foreground="AntiqueWhite" Background="Indigo" Grid.Row="0" MouseLeftButtonDown="ScheduleButtonClick"
+        	VerticalAlignment="Center" HorizontalAlignment="Center"
+        	VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+        	Width="200" Height="80" FontSize="18"
+        	MouseEnter="ScheduleLinkEnter" MouseLeave="ScheduleLinkLeave" Margin="149,184,147,184" Grid.Column="1"/>
     </Grid>
 </Window>
