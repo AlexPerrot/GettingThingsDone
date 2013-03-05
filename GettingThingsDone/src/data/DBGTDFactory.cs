@@ -55,50 +55,6 @@ namespace GettingThingsDone.src.data
             return sys;
         }
 
-        // Fonction de mise à jour des listes temporelles (Today, Tomorrow, ...) de l'échéancier
-        public void updateSchedule(GTDSystem sys)
-        {
-            System.Console.WriteLine("ceylemal");
-            TaskList due;
-            Func<GTDItem, Boolean> filter = null;
-
-            foreach (TaskList schedule in sys.Schedules) 
-            {
-                // Choix du filtre à utiliser selon la liste
-                if (schedule.Name == "Today")
-                    filter = Algorithms.getDueToday;
-                else if (schedule.Name == "Tomorrow")
-                    filter = Algorithms.getDueTomorrow;
-                else if (schedule.Name == "Next week")
-                    filter = Algorithms.getDueNextWeek;
-                else if (schedule.Name == "Next Month")
-                    filter = Algorithms.getDueNextMonth;
-                else
-                    filter = null;
-
-                if (filter != null)
-                {
-                    ((StaticList)schedule).List.Clear();
-
-                    // Ajout des tâches venant de la inbox
-                    // dans la liste actuelle
-                    due = new DynamicList(sys.Inbox, filter);
-                    foreach (Task t in due)
-                    {
-                        schedule.AddTask(t);
-                    }
-
-                    // Ajout des tâches venant de chaque contexte
-                    foreach (TaskList taskList in sys.Contexts)
-                    {
-                        due = new DynamicList(taskList, filter);
-                        foreach (Task t in due)
-                        {
-                            schedule.AddTask(t);
-                        }
-                    }
-                }
-            }
-        }
+ 
     }
 }
