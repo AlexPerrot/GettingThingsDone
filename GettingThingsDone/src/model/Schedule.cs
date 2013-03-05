@@ -25,12 +25,12 @@ namespace GettingThingsDone.src.model
     public class Schedule : GettingThingsDone.src.model.ISchedule, INotifyPropertyChanged
     {
         private IGTDSystem sys;
-        private System.Collections.Generic.IEnumerable<Task> tasks;
+        private System.Collections.ObjectModel.ObservableCollection<Task> tasks;
 
         public Schedule(IGTDSystem system)
         {
             sys = system;
-            tasks = sys.accept(new AllTasksWithFutureDueDate());
+            tasks = new System.Collections.ObjectModel.ObservableCollection<Task>(sys.accept(new AllTasksWithFutureDueDate()));
         }
 
         private ICollectionView today;
@@ -158,21 +158,10 @@ namespace GettingThingsDone.src.model
 
         public void update()
         {
-            this.tasks = sys.accept(new AllTasksWithFutureDueDate());
-            today = filterView(isDueToday);
-            tomorrow = filterView(isDueTomorrow);
-            thisWeek = filterView(isDueThisWeek);
-            thisMonth = filterView(isDueThisMonth);
-            nextMonth = filterView(isDueNextMonth);
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs("Today"));
-                PropertyChanged(this, new PropertyChangedEventArgs("Tomorrow"));
-                PropertyChanged(this, new PropertyChangedEventArgs("ThisWeek"));
-                PropertyChanged(this, new PropertyChangedEventArgs("ThisMonth"));
-                PropertyChanged(this, new PropertyChangedEventArgs("NextMonth"));
-
-            }
+            IEnumerable tmp = sys.accept(new AllTasksWithFutureDueDate());
+            tasks.Clear();
+            foreach (Task t in tmp)
+                tasks.Add(t);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
