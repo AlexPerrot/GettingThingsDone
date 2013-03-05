@@ -25,6 +25,11 @@
                VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                Width="200" Height="80" FontSize="18"
                MouseEnter="ReviewLinkEnter" MouseLeave="ReviewLinkLeave"/>
+        <Label Name="ProjectsLink" Content="Projects" Foreground="AntiqueWhite" Background="Indigo" Grid.Row="0" MouseLeftButtonDown="ProjectsButtonClick"
+               VerticalAlignment="Center" HorizontalAlignment="Left"
+               VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+               Width="200" Height="80" FontSize="18"
+               MouseEnter="ProjectsLinkEnter" MouseLeave="ProjectsLinkLeave"/>
         <ScrollViewer x:Name="ReviewPanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0">
             <local:ReviewPage/>
         </ScrollViewer>

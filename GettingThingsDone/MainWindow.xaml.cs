@@ -52,5 +52,23 @@ namespace GettingThingsDone
             this.ReviewLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
         }
 
+
+        private void ProjectsButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            this.ProjectsLink.Visibility = Visibility.Collapsed;
+            this.ReviewPanel.Visibility = Visibility.Visible;
+        }
+
+        private void ProjectsLinkEnter(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Hand;
+            this.ProjectsLink.Foreground = new SolidColorBrush(Colors.Aqua);
+        }
+
+        private void ProjectsLinkLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = null;
+            this.ProjectsLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
+        }
     }
 }
