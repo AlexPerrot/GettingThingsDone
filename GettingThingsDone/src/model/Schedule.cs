@@ -131,6 +131,11 @@ namespace GettingThingsDone.src.model
             view.GroupDescriptions.Add(new ContextGroupDescription(sys));
             return view;
         }
+
+        public void update()
+        {
+            this.tasks = sys.accept(new AllTasksWithFutureDueDate());
+        }
     }
 
     class ContextGroupDescription : PropertyGroupDescription

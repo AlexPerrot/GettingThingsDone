@@ -8,5 +8,7 @@ namespace GettingThingsDone.src.model
         System.Collections.IEnumerable ThisWeek { get; }
         System.Collections.IEnumerable Today { get; }
         System.Collections.IEnumerable Tomorrow { get; }
+
+        void update();
     }
 }
