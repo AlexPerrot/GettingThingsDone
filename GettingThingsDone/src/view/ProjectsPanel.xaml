@@ -10,6 +10,5 @@
         <Label Name="CreateProjectLink" Content="Create a new project" Foreground="AntiqueWhite" Background="Indigo" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"
                Margin="0,250,0,0" VerticalContentAlignment="Center" Width="300" Height="50" MouseEnter="CreateProjectLinkEnter" MouseLeave="CreateProjectLinkLeave"
                MouseLeftButtonDown="CreateProjectClick"/>
-
     </Grid>
 </UserControl>
