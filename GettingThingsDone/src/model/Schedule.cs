@@ -152,7 +152,7 @@ namespace GettingThingsDone.src.model
             foreach (TaskList l in sys)
                 if (l.Contains(t))
                     return l.Name;
-            return "Caca"; 
+            return ""; 
         }
 
         public override object GroupNameFromItem(object item, int level,
