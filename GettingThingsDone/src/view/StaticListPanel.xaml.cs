@@ -23,11 +23,9 @@ namespace GettingThingsDone.src.view
     {
         public Brush LabelBackground {
             get { return GetValue(ProxyProp) as Brush;
-            Console.WriteLine("couleur lue");
             }
             set { 
             SetValue(ProxyProp, value);
-            Console.WriteLine("couleur changée");
             }
         }
 
