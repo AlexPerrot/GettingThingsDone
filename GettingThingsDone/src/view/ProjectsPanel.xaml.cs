@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GettingThingsDone.src.model;
 
 namespace GettingThingsDone.src.view
 {
@@ -20,9 +21,18 @@ namespace GettingThingsDone.src.view
     /// </summary>
     public partial class ProjectsPanel : UserControl
     {
+
+        public List<Project> Projects { get; set; }
+
         public ProjectsPanel()
         {
             InitializeComponent();
+
+            this.Projects = new List<Project>();
+            this.Projects.Add(new Project("mon projet 1", "ma desc 1", null, false, DateTimeOffset.Now));
+            this.Projects.Add(new Project("mon projet 2", "ma desc 2", null, false, DateTimeOffset.Now));
+
+            this.DataContext = this;
         }
 
         private void CreateProjectLinkEnter(object sender, MouseEventArgs e)
