@@ -24,7 +24,9 @@
         
         <TabControl SelectionChanged="TabControl_SelectionChanged_1">
             <TabItem Header="Home">
-                <local:ReviewPage />
+                <ScrollViewer>
+                    <local:ReviewPage />
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Schedule">
                 <local:SchedulePage x:Name="SchedulePage" Loaded="SchedulePage_Loaded_1" />
