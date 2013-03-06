@@ -22,17 +22,17 @@ namespace GettingThingsDone.src.view
     public partial class ProjectsPanel : UserControl
     {
 
-        public List<Project> Projects { get; set; }
+       // public List<Task> Projects { get; set; }
 
         public ProjectsPanel()
         {
             InitializeComponent();
 
-            this.Projects = new List<Project>();
-            this.Projects.Add(new Project("mon projet 1", "ma desc 1", null, false, DateTimeOffset.Now));
-            this.Projects.Add(new Project("mon projet 2", "ma desc 2", null, false, DateTimeOffset.Now));
+            //this.Projects = new List<Task>();
+            //this.Projects.Add(new Project("mon projet 1", "ma desc 1", null, false, DateTimeOffset.Now));
+            //this.Projects.Add(new Project("mon projet 2", "ma desc 2", null, false, DateTimeOffset.Now));
 
-            this.DataContext = this;
+            this.DataContext = ((App)App.Current).GTD;
         }
 
         private void CreateProjectLinkEnter(object sender, MouseEventArgs e)
@@ -50,6 +50,13 @@ namespace GettingThingsDone.src.view
         private void CreateProjectClick(object sender, MouseButtonEventArgs e)
         {
             Task newProject = ProjectCreationWindow.GetNewProject();
+
+            if (newProject != null)
+            {
+                ((App)App.Current).GTD.Projects.Add(newProject);
+                //this.Projects.Add(newProject);
+                this.FileList.Items.Refresh();
+            }
         }
 
         private void UpdateProject(object sender, MouseButtonEventArgs e)
@@ -64,5 +71,5 @@ namespace GettingThingsDone.src.view
             }
         }
 
-        }
+    }
 }

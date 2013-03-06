@@ -63,6 +63,12 @@ namespace GettingThingsDone.src.data
                 sys.Inbox.AddTask(st);
             }
 
+            foreach (Projects project in db.Projects)
+            {
+                IProject p = new DBProject(project, dbProvider);
+                sys.Projects.Add(p);
+            }
+
             //updateSchedule(sys);
 
             return sys;

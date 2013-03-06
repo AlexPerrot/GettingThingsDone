@@ -17,6 +17,9 @@ public class GTDSystem : IGTDSystem
 
     public string Name { get; set; }
     private TaskList inbox = new StaticList("Inbox");
+
+    private List<Task> projects = new List<Task>();
+    public List<Task> Projects { get { return projects; } }
     
     public virtual TaskList Inbox
 	{
