@@ -5,7 +5,7 @@ using GettingThingsDone.src.data;
 using GettingThingsDone.src.model;
 using GettingThingsDone.src.model.visitor;
 
-namespace GettingThingsDone.model
+namespace GettingThingsDone.src.data
 {
     public class DBProject : IProject
     {
@@ -115,7 +115,9 @@ namespace GettingThingsDone.model
         {
             get
             {
-               return accept(new AllTasksFromProject(this));
+                throw new NotImplementedException();
+                // TODO: implementer le visiteur AllTasksFromProject
+                //return accept(new AllTasksFromProject(this));
             }
 
             private set
@@ -130,11 +132,10 @@ namespace GettingThingsDone.model
         private int id;
         private IDatabaseProvider dbProvider;
 
-        public DBProject(int id, IDatabaseProvider dbProvider)
+        public DBProject(Projects project, IDatabaseProvider dbProvider)
         {
-            this.id = id;
+            this.id = project.Id;
             this.dbProvider = dbProvider;
-            this.CreationDate = DateTimeOffset.Now;
         }
     }
 }
