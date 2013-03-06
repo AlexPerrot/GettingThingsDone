@@ -27,6 +27,7 @@ namespace GettingThingsDone.src.data
             dbTask.Description = description;
             dbTask.DueDate = DueDate;
             dbTask.Owner = (App.Current as App).Admin.Id;
+            // TODO?: utiliser DueDate
 
             dc.Tasks.InsertOnSubmit(dbTask);
             dc.SubmitChanges();
@@ -34,9 +35,21 @@ namespace GettingThingsDone.src.data
             return new DBSingleTask(dbTask, this.dbProvider);
         }
 
-        public IProject makeProject(string title)
+        public IProject makeProject(string title, string description, DateTimeOffset? DueDate)
         {
-            throw new NotImplementedException();
+            DataClassesDataContext dc = dbProvider.Database;
+
+            Projects dbProject = new Projects();
+            dbProject.CreationDate = DateTimeOffset.Now;
+            dbProject.Title = title;
+            dbProject.Description = description;
+            dbProject.DueDate = DueDate;
+            dbProject.Owner = (App.Current as App).Admin.Id;
+            
+            dc.Projects.InsertOnSubmit(dbProject);
+            dc.SubmitChanges();
+
+            return new DBProject(dbProject, this.dbProvider);
         }
 
         public IGTDSystem makeSystem()

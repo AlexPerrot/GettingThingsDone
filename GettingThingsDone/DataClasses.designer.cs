@@ -36,27 +36,27 @@ namespace GettingThingsDone
     partial void InsertLists_Tasks(Lists_Tasks instance);
     partial void UpdateLists_Tasks(Lists_Tasks instance);
     partial void DeleteLists_Tasks(Lists_Tasks instance);
-    partial void InsertProjects(Projects instance);
-    partial void UpdateProjects(Projects instance);
-    partial void DeleteProjects(Projects instance);
-    partial void InsertProjects_Lists(Projects_Lists instance);
-    partial void UpdateProjects_Lists(Projects_Lists instance);
-    partial void DeleteProjects_Lists(Projects_Lists instance);
-    partial void InsertProjects_Tasks(Projects_Tasks instance);
-    partial void UpdateProjects_Tasks(Projects_Tasks instance);
-    partial void DeleteProjects_Tasks(Projects_Tasks instance);
     partial void InsertTasks(Tasks instance);
     partial void UpdateTasks(Tasks instance);
     partial void DeleteTasks(Tasks instance);
-    partial void InsertTasks_Lists(Tasks_Lists instance);
-    partial void UpdateTasks_Lists(Tasks_Lists instance);
-    partial void DeleteTasks_Lists(Tasks_Lists instance);
     partial void InsertTasks_Tasks(Tasks_Tasks instance);
     partial void UpdateTasks_Tasks(Tasks_Tasks instance);
     partial void DeleteTasks_Tasks(Tasks_Tasks instance);
     partial void InsertUsers(Users instance);
     partial void UpdateUsers(Users instance);
     partial void DeleteUsers(Users instance);
+    partial void InsertProjects_Tasks(Projects_Tasks instance);
+    partial void UpdateProjects_Tasks(Projects_Tasks instance);
+    partial void DeleteProjects_Tasks(Projects_Tasks instance);
+    partial void InsertProjects_Lists_Tasks(Projects_Lists_Tasks instance);
+    partial void UpdateProjects_Lists_Tasks(Projects_Lists_Tasks instance);
+    partial void DeleteProjects_Lists_Tasks(Projects_Lists_Tasks instance);
+    partial void InsertProjects_Lists(Projects_Lists instance);
+    partial void UpdateProjects_Lists(Projects_Lists instance);
+    partial void DeleteProjects_Lists(Projects_Lists instance);
+    partial void InsertProjects(Projects instance);
+    partial void UpdateProjects(Projects instance);
+    partial void DeleteProjects(Projects instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -105,43 +105,11 @@ namespace GettingThingsDone
 			}
 		}
 		
-		public System.Data.Linq.Table<Projects> Projects
-		{
-			get
-			{
-				return this.GetTable<Projects>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Projects_Lists> Projects_Lists
-		{
-			get
-			{
-				return this.GetTable<Projects_Lists>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Projects_Tasks> Projects_Tasks
-		{
-			get
-			{
-				return this.GetTable<Projects_Tasks>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Tasks> Tasks
 		{
 			get
 			{
 				return this.GetTable<Tasks>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Tasks_Lists> Tasks_Lists
-		{
-			get
-			{
-				return this.GetTable<Tasks_Lists>();
 			}
 		}
 		
@@ -158,6 +126,38 @@ namespace GettingThingsDone
 			get
 			{
 				return this.GetTable<Users>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Projects_Tasks> Projects_Tasks
+		{
+			get
+			{
+				return this.GetTable<Projects_Tasks>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Projects_Lists_Tasks> Projects_Lists_Tasks
+		{
+			get
+			{
+				return this.GetTable<Projects_Lists_Tasks>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Projects_Lists> Projects_Lists
+		{
+			get
+			{
+				return this.GetTable<Projects_Lists>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Projects> Projects
+		{
+			get
+			{
+				return this.GetTable<Projects>();
 			}
 		}
 	}
@@ -178,10 +178,6 @@ namespace GettingThingsDone
 		
 		private EntitySet<Lists_Tasks> _Lists_Tasks;
 		
-		private EntitySet<Projects_Lists> _Projects_Lists;
-		
-		private EntitySet<Tasks_Lists> _Tasks_Lists;
-		
 		private EntityRef<Users> _Users;
 		
     #region Définitions de méthodes d'extensibilité
@@ -201,8 +197,6 @@ namespace GettingThingsDone
 		public Lists()
 		{
 			this._Lists_Tasks = new EntitySet<Lists_Tasks>(new Action<Lists_Tasks>(this.attach_Lists_Tasks), new Action<Lists_Tasks>(this.detach_Lists_Tasks));
-			this._Projects_Lists = new EntitySet<Projects_Lists>(new Action<Projects_Lists>(this.attach_Projects_Lists), new Action<Projects_Lists>(this.detach_Projects_Lists));
-			this._Tasks_Lists = new EntitySet<Tasks_Lists>(new Action<Tasks_Lists>(this.attach_Tasks_Lists), new Action<Tasks_Lists>(this.detach_Tasks_Lists));
 			this._Users = default(EntityRef<Users>);
 			OnCreated();
 		}
@@ -304,32 +298,6 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Projects_Lists", Storage="_Projects_Lists", ThisKey="Id,Owner", OtherKey="List_id,Owner")]
-		public EntitySet<Projects_Lists> Projects_Lists
-		{
-			get
-			{
-				return this._Projects_Lists;
-			}
-			set
-			{
-				this._Projects_Lists.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Tasks_Lists", Storage="_Tasks_Lists", ThisKey="Id,Owner", OtherKey="List_id,Owner")]
-		public EntitySet<Tasks_Lists> Tasks_Lists
-		{
-			get
-			{
-				return this._Tasks_Lists;
-			}
-			set
-			{
-				this._Tasks_Lists.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Lists", Storage="_Users", ThisKey="Owner", OtherKey="Id", IsForeignKey=true)]
 		public Users Users
 		{
@@ -391,30 +359,6 @@ namespace GettingThingsDone
 		}
 		
 		private void detach_Lists_Tasks(Lists_Tasks entity)
-		{
-			this.SendPropertyChanging();
-			entity.Lists = null;
-		}
-		
-		private void attach_Projects_Lists(Projects_Lists entity)
-		{
-			this.SendPropertyChanging();
-			entity.Lists = this;
-		}
-		
-		private void detach_Projects_Lists(Projects_Lists entity)
-		{
-			this.SendPropertyChanging();
-			entity.Lists = null;
-		}
-		
-		private void attach_Tasks_Lists(Tasks_Lists entity)
-		{
-			this.SendPropertyChanging();
-			entity.Lists = this;
-		}
-		
-		private void detach_Tasks_Lists(Tasks_Lists entity)
 		{
 			this.SendPropertyChanging();
 			entity.Lists = null;
@@ -645,685 +589,6 @@ namespace GettingThingsDone
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Projects")]
-	public partial class Projects : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Title;
-		
-		private string _Description;
-		
-		private int _Owner;
-		
-		private EntitySet<Projects_Lists> _Projects_Lists;
-		
-		private EntitySet<Projects_Tasks> _Projects_Tasks;
-		
-		private EntityRef<Users> _Users;
-		
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnOwnerChanging(int value);
-    partial void OnOwnerChanged();
-    #endregion
-		
-		public Projects()
-		{
-			this._Projects_Lists = new EntitySet<Projects_Lists>(new Action<Projects_Lists>(this.attach_Projects_Lists), new Action<Projects_Lists>(this.detach_Projects_Lists));
-			this._Projects_Tasks = new EntitySet<Projects_Tasks>(new Action<Projects_Tasks>(this.attach_Projects_Tasks), new Action<Projects_Tasks>(this.detach_Projects_Tasks));
-			this._Users = default(EntityRef<Users>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(50)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Owner
-		{
-			get
-			{
-				return this._Owner;
-			}
-			set
-			{
-				if ((this._Owner != value))
-				{
-					if (this._Users.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnOwnerChanging(value);
-					this.SendPropertyChanging();
-					this._Owner = value;
-					this.SendPropertyChanged("Owner");
-					this.OnOwnerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Lists", Storage="_Projects_Lists", ThisKey="Id,Owner", OtherKey="Project_id,Owner")]
-		public EntitySet<Projects_Lists> Projects_Lists
-		{
-			get
-			{
-				return this._Projects_Lists;
-			}
-			set
-			{
-				this._Projects_Lists.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Tasks", Storage="_Projects_Tasks", ThisKey="Id,Owner", OtherKey="Project_id,Owner")]
-		public EntitySet<Projects_Tasks> Projects_Tasks
-		{
-			get
-			{
-				return this._Projects_Tasks;
-			}
-			set
-			{
-				this._Projects_Tasks.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Projects", Storage="_Users", ThisKey="Owner", OtherKey="Id", IsForeignKey=true)]
-		public Users Users
-		{
-			get
-			{
-				return this._Users.Entity;
-			}
-			set
-			{
-				Users previousValue = this._Users.Entity;
-				if (((previousValue != value) 
-							|| (this._Users.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Users.Entity = null;
-						previousValue.Projects.Remove(this);
-					}
-					this._Users.Entity = value;
-					if ((value != null))
-					{
-						value.Projects.Add(this);
-						this._Owner = value.Id;
-					}
-					else
-					{
-						this._Owner = default(int);
-					}
-					this.SendPropertyChanged("Users");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Projects_Lists(Projects_Lists entity)
-		{
-			this.SendPropertyChanging();
-			entity.Projects = this;
-		}
-		
-		private void detach_Projects_Lists(Projects_Lists entity)
-		{
-			this.SendPropertyChanging();
-			entity.Projects = null;
-		}
-		
-		private void attach_Projects_Tasks(Projects_Tasks entity)
-		{
-			this.SendPropertyChanging();
-			entity.Projects = this;
-		}
-		
-		private void detach_Projects_Tasks(Projects_Tasks entity)
-		{
-			this.SendPropertyChanging();
-			entity.Projects = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Projects_Lists")]
-	public partial class Projects_Lists : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _Project_id;
-		
-		private int _List_id;
-		
-		private int _Owner;
-		
-		private EntityRef<Lists> _Lists;
-		
-		private EntityRef<Projects> _Projects;
-		
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnProject_idChanging(int value);
-    partial void OnProject_idChanged();
-    partial void OnList_idChanging(int value);
-    partial void OnList_idChanged();
-    partial void OnOwnerChanging(int value);
-    partial void OnOwnerChanged();
-    #endregion
-		
-		public Projects_Lists()
-		{
-			this._Lists = default(EntityRef<Lists>);
-			this._Projects = default(EntityRef<Projects>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Project_id", DbType="Int NOT NULL")]
-		public int Project_id
-		{
-			get
-			{
-				return this._Project_id;
-			}
-			set
-			{
-				if ((this._Project_id != value))
-				{
-					if (this._Projects.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProject_idChanging(value);
-					this.SendPropertyChanging();
-					this._Project_id = value;
-					this.SendPropertyChanged("Project_id");
-					this.OnProject_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_List_id", DbType="Int NOT NULL")]
-		public int List_id
-		{
-			get
-			{
-				return this._List_id;
-			}
-			set
-			{
-				if ((this._List_id != value))
-				{
-					if (this._Lists.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnList_idChanging(value);
-					this.SendPropertyChanging();
-					this._List_id = value;
-					this.SendPropertyChanged("List_id");
-					this.OnList_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL")]
-		public int Owner
-		{
-			get
-			{
-				return this._Owner;
-			}
-			set
-			{
-				if ((this._Owner != value))
-				{
-					if ((this._Lists.HasLoadedOrAssignedValue || this._Projects.HasLoadedOrAssignedValue))
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnOwnerChanging(value);
-					this.SendPropertyChanging();
-					this._Owner = value;
-					this.SendPropertyChanged("Owner");
-					this.OnOwnerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Projects_Lists", Storage="_Lists", ThisKey="List_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
-		public Lists Lists
-		{
-			get
-			{
-				return this._Lists.Entity;
-			}
-			set
-			{
-				Lists previousValue = this._Lists.Entity;
-				if (((previousValue != value) 
-							|| (this._Lists.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Lists.Entity = null;
-						previousValue.Projects_Lists.Remove(this);
-					}
-					this._Lists.Entity = value;
-					if ((value != null))
-					{
-						value.Projects_Lists.Add(this);
-						this._List_id = value.Id;
-						this._Owner = value.Owner;
-					}
-					else
-					{
-						this._List_id = default(int);
-						this._Owner = default(int);
-					}
-					this.SendPropertyChanged("Lists");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Lists", Storage="_Projects", ThisKey="Project_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
-		public Projects Projects
-		{
-			get
-			{
-				return this._Projects.Entity;
-			}
-			set
-			{
-				Projects previousValue = this._Projects.Entity;
-				if (((previousValue != value) 
-							|| (this._Projects.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Projects.Entity = null;
-						previousValue.Projects_Lists.Remove(this);
-					}
-					this._Projects.Entity = value;
-					if ((value != null))
-					{
-						value.Projects_Lists.Add(this);
-						this._Project_id = value.Id;
-						this._Owner = value.Owner;
-					}
-					else
-					{
-						this._Project_id = default(int);
-						this._Owner = default(int);
-					}
-					this.SendPropertyChanged("Projects");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Projects_Tasks")]
-	public partial class Projects_Tasks : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _Project_id;
-		
-		private int _Task_id;
-		
-		private int _Owner;
-		
-		private EntityRef<Projects> _Projects;
-		
-		private EntityRef<Tasks> _Tasks;
-		
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnProject_idChanging(int value);
-    partial void OnProject_idChanged();
-    partial void OnTask_idChanging(int value);
-    partial void OnTask_idChanged();
-    partial void OnOwnerChanging(int value);
-    partial void OnOwnerChanged();
-    #endregion
-		
-		public Projects_Tasks()
-		{
-			this._Projects = default(EntityRef<Projects>);
-			this._Tasks = default(EntityRef<Tasks>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Project_id", DbType="Int NOT NULL")]
-		public int Project_id
-		{
-			get
-			{
-				return this._Project_id;
-			}
-			set
-			{
-				if ((this._Project_id != value))
-				{
-					if (this._Projects.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProject_idChanging(value);
-					this.SendPropertyChanging();
-					this._Project_id = value;
-					this.SendPropertyChanged("Project_id");
-					this.OnProject_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Task_id", DbType="Int NOT NULL")]
-		public int Task_id
-		{
-			get
-			{
-				return this._Task_id;
-			}
-			set
-			{
-				if ((this._Task_id != value))
-				{
-					if (this._Tasks.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTask_idChanging(value);
-					this.SendPropertyChanging();
-					this._Task_id = value;
-					this.SendPropertyChanged("Task_id");
-					this.OnTask_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL")]
-		public int Owner
-		{
-			get
-			{
-				return this._Owner;
-			}
-			set
-			{
-				if ((this._Owner != value))
-				{
-					if ((this._Projects.HasLoadedOrAssignedValue || this._Tasks.HasLoadedOrAssignedValue))
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnOwnerChanging(value);
-					this.SendPropertyChanging();
-					this._Owner = value;
-					this.SendPropertyChanged("Owner");
-					this.OnOwnerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Tasks", Storage="_Projects", ThisKey="Project_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
-		public Projects Projects
-		{
-			get
-			{
-				return this._Projects.Entity;
-			}
-			set
-			{
-				Projects previousValue = this._Projects.Entity;
-				if (((previousValue != value) 
-							|| (this._Projects.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Projects.Entity = null;
-						previousValue.Projects_Tasks.Remove(this);
-					}
-					this._Projects.Entity = value;
-					if ((value != null))
-					{
-						value.Projects_Tasks.Add(this);
-						this._Project_id = value.Id;
-						this._Owner = value.Owner;
-					}
-					else
-					{
-						this._Project_id = default(int);
-						this._Owner = default(int);
-					}
-					this.SendPropertyChanged("Projects");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Projects_Tasks", Storage="_Tasks", ThisKey="Task_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
-		public Tasks Tasks
-		{
-			get
-			{
-				return this._Tasks.Entity;
-			}
-			set
-			{
-				Tasks previousValue = this._Tasks.Entity;
-				if (((previousValue != value) 
-							|| (this._Tasks.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Tasks.Entity = null;
-						previousValue.Projects_Tasks.Remove(this);
-					}
-					this._Tasks.Entity = value;
-					if ((value != null))
-					{
-						value.Projects_Tasks.Add(this);
-						this._Task_id = value.Id;
-						this._Owner = value.Owner;
-					}
-					else
-					{
-						this._Task_id = default(int);
-						this._Owner = default(int);
-					}
-					this.SendPropertyChanged("Tasks");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tasks")]
 	public partial class Tasks : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1346,13 +611,13 @@ namespace GettingThingsDone
 		
 		private EntitySet<Lists_Tasks> _Lists_Tasks;
 		
-		private EntitySet<Projects_Tasks> _Projects_Tasks;
-		
-		private EntitySet<Tasks_Lists> _Tasks_Lists;
-		
 		private EntitySet<Tasks_Tasks> _Tasks_Tasks;
 		
 		private EntitySet<Tasks_Tasks> _Tasks_Tasks1;
+		
+		private EntitySet<Projects_Tasks> _Projects_Tasks;
+		
+		private EntitySet<Projects_Lists_Tasks> _Projects_Lists_Tasks;
 		
 		private EntityRef<Users> _Users;
 		
@@ -1379,10 +644,10 @@ namespace GettingThingsDone
 		public Tasks()
 		{
 			this._Lists_Tasks = new EntitySet<Lists_Tasks>(new Action<Lists_Tasks>(this.attach_Lists_Tasks), new Action<Lists_Tasks>(this.detach_Lists_Tasks));
-			this._Projects_Tasks = new EntitySet<Projects_Tasks>(new Action<Projects_Tasks>(this.attach_Projects_Tasks), new Action<Projects_Tasks>(this.detach_Projects_Tasks));
-			this._Tasks_Lists = new EntitySet<Tasks_Lists>(new Action<Tasks_Lists>(this.attach_Tasks_Lists), new Action<Tasks_Lists>(this.detach_Tasks_Lists));
 			this._Tasks_Tasks = new EntitySet<Tasks_Tasks>(new Action<Tasks_Tasks>(this.attach_Tasks_Tasks), new Action<Tasks_Tasks>(this.detach_Tasks_Tasks));
 			this._Tasks_Tasks1 = new EntitySet<Tasks_Tasks>(new Action<Tasks_Tasks>(this.attach_Tasks_Tasks1), new Action<Tasks_Tasks>(this.detach_Tasks_Tasks1));
+			this._Projects_Tasks = new EntitySet<Projects_Tasks>(new Action<Projects_Tasks>(this.attach_Projects_Tasks), new Action<Projects_Tasks>(this.detach_Projects_Tasks));
+			this._Projects_Lists_Tasks = new EntitySet<Projects_Lists_Tasks>(new Action<Projects_Lists_Tasks>(this.attach_Projects_Lists_Tasks), new Action<Projects_Lists_Tasks>(this.detach_Projects_Lists_Tasks));
 			this._Users = default(EntityRef<Users>);
 			OnCreated();
 		}
@@ -1544,32 +809,6 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Projects_Tasks", Storage="_Projects_Tasks", ThisKey="Id,Owner", OtherKey="Task_id,Owner")]
-		public EntitySet<Projects_Tasks> Projects_Tasks
-		{
-			get
-			{
-				return this._Projects_Tasks;
-			}
-			set
-			{
-				this._Projects_Tasks.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Lists", Storage="_Tasks_Lists", ThisKey="Id,Owner", OtherKey="Task_id,Owner")]
-		public EntitySet<Tasks_Lists> Tasks_Lists
-		{
-			get
-			{
-				return this._Tasks_Lists;
-			}
-			set
-			{
-				this._Tasks_Lists.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Tasks", Storage="_Tasks_Tasks", ThisKey="Id,Owner", OtherKey="Predecessor_Id,Predecessor_Owner")]
 		public EntitySet<Tasks_Tasks> Tasks_Tasks
 		{
@@ -1593,6 +832,32 @@ namespace GettingThingsDone
 			set
 			{
 				this._Tasks_Tasks1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Projects_Tasks", Storage="_Projects_Tasks", ThisKey="Id,Owner", OtherKey="Task_id,Owner")]
+		public EntitySet<Projects_Tasks> Projects_Tasks
+		{
+			get
+			{
+				return this._Projects_Tasks;
+			}
+			set
+			{
+				this._Projects_Tasks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Projects_Lists_Tasks", Storage="_Projects_Lists_Tasks", ThisKey="Id,Owner", OtherKey="Task_id,Owner")]
+		public EntitySet<Projects_Lists_Tasks> Projects_Lists_Tasks
+		{
+			get
+			{
+				return this._Projects_Lists_Tasks;
+			}
+			set
+			{
+				this._Projects_Lists_Tasks.Assign(value);
 			}
 		}
 		
@@ -1662,30 +927,6 @@ namespace GettingThingsDone
 			entity.Tasks = null;
 		}
 		
-		private void attach_Projects_Tasks(Projects_Tasks entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tasks = this;
-		}
-		
-		private void detach_Projects_Tasks(Projects_Tasks entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tasks = null;
-		}
-		
-		private void attach_Tasks_Lists(Tasks_Lists entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tasks = this;
-		}
-		
-		private void detach_Tasks_Lists(Tasks_Lists entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tasks = null;
-		}
-		
 		private void attach_Tasks_Tasks(Tasks_Tasks entity)
 		{
 			this.SendPropertyChanging();
@@ -1709,229 +950,29 @@ namespace GettingThingsDone
 			this.SendPropertyChanging();
 			entity.Tasks1 = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tasks_Lists")]
-	public partial class Tasks_Lists : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _Task_id;
-		
-		private int _List_id;
-		
-		private int _Owner;
-		
-		private EntityRef<Lists> _Lists;
-		
-		private EntityRef<Tasks> _Tasks;
-		
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnTask_idChanging(int value);
-    partial void OnTask_idChanged();
-    partial void OnList_idChanging(int value);
-    partial void OnList_idChanged();
-    partial void OnOwnerChanging(int value);
-    partial void OnOwnerChanged();
-    #endregion
-		
-		public Tasks_Lists()
+		private void attach_Projects_Tasks(Projects_Tasks entity)
 		{
-			this._Lists = default(EntityRef<Lists>);
-			this._Tasks = default(EntityRef<Tasks>);
-			OnCreated();
+			this.SendPropertyChanging();
+			entity.Tasks = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		private void detach_Projects_Tasks(Projects_Tasks entity)
 		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
+			this.SendPropertyChanging();
+			entity.Tasks = null;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Task_id", DbType="Int NOT NULL")]
-		public int Task_id
+		private void attach_Projects_Lists_Tasks(Projects_Lists_Tasks entity)
 		{
-			get
-			{
-				return this._Task_id;
-			}
-			set
-			{
-				if ((this._Task_id != value))
-				{
-					if (this._Tasks.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTask_idChanging(value);
-					this.SendPropertyChanging();
-					this._Task_id = value;
-					this.SendPropertyChanged("Task_id");
-					this.OnTask_idChanged();
-				}
-			}
+			this.SendPropertyChanging();
+			entity.Tasks = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_List_id", DbType="Int NOT NULL")]
-		public int List_id
+		private void detach_Projects_Lists_Tasks(Projects_Lists_Tasks entity)
 		{
-			get
-			{
-				return this._List_id;
-			}
-			set
-			{
-				if ((this._List_id != value))
-				{
-					if (this._Lists.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnList_idChanging(value);
-					this.SendPropertyChanging();
-					this._List_id = value;
-					this.SendPropertyChanged("List_id");
-					this.OnList_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL")]
-		public int Owner
-		{
-			get
-			{
-				return this._Owner;
-			}
-			set
-			{
-				if ((this._Owner != value))
-				{
-					if ((this._Lists.HasLoadedOrAssignedValue || this._Tasks.HasLoadedOrAssignedValue))
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnOwnerChanging(value);
-					this.SendPropertyChanging();
-					this._Owner = value;
-					this.SendPropertyChanged("Owner");
-					this.OnOwnerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lists_Tasks_Lists", Storage="_Lists", ThisKey="List_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
-		public Lists Lists
-		{
-			get
-			{
-				return this._Lists.Entity;
-			}
-			set
-			{
-				Lists previousValue = this._Lists.Entity;
-				if (((previousValue != value) 
-							|| (this._Lists.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Lists.Entity = null;
-						previousValue.Tasks_Lists.Remove(this);
-					}
-					this._Lists.Entity = value;
-					if ((value != null))
-					{
-						value.Tasks_Lists.Add(this);
-						this._List_id = value.Id;
-						this._Owner = value.Owner;
-					}
-					else
-					{
-						this._List_id = default(int);
-						this._Owner = default(int);
-					}
-					this.SendPropertyChanged("Lists");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Tasks_Lists", Storage="_Tasks", ThisKey="Task_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
-		public Tasks Tasks
-		{
-			get
-			{
-				return this._Tasks.Entity;
-			}
-			set
-			{
-				Tasks previousValue = this._Tasks.Entity;
-				if (((previousValue != value) 
-							|| (this._Tasks.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Tasks.Entity = null;
-						previousValue.Tasks_Lists.Remove(this);
-					}
-					this._Tasks.Entity = value;
-					if ((value != null))
-					{
-						value.Tasks_Lists.Add(this);
-						this._Task_id = value.Id;
-						this._Owner = value.Owner;
-					}
-					else
-					{
-						this._Task_id = default(int);
-						this._Owner = default(int);
-					}
-					this.SendPropertyChanged("Tasks");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			this.SendPropertyChanging();
+			entity.Tasks = null;
 		}
 	}
 	
@@ -2203,9 +1244,15 @@ namespace GettingThingsDone
 		
 		private EntitySet<Lists> _Lists;
 		
-		private EntitySet<Projects> _Projects;
-		
 		private EntitySet<Tasks> _Tasks;
+		
+		private EntitySet<Projects_Tasks> _Projects_Tasks;
+		
+		private EntitySet<Projects_Lists_Tasks> _Projects_Lists_Tasks;
+		
+		private EntitySet<Projects_Lists> _Projects_Lists;
+		
+		private EntitySet<Projects> _Projects;
 		
     #region Définitions de méthodes d'extensibilité
     partial void OnLoaded();
@@ -2224,8 +1271,11 @@ namespace GettingThingsDone
 		public Users()
 		{
 			this._Lists = new EntitySet<Lists>(new Action<Lists>(this.attach_Lists), new Action<Lists>(this.detach_Lists));
-			this._Projects = new EntitySet<Projects>(new Action<Projects>(this.attach_Projects), new Action<Projects>(this.detach_Projects));
 			this._Tasks = new EntitySet<Tasks>(new Action<Tasks>(this.attach_Tasks), new Action<Tasks>(this.detach_Tasks));
+			this._Projects_Tasks = new EntitySet<Projects_Tasks>(new Action<Projects_Tasks>(this.attach_Projects_Tasks), new Action<Projects_Tasks>(this.detach_Projects_Tasks));
+			this._Projects_Lists_Tasks = new EntitySet<Projects_Lists_Tasks>(new Action<Projects_Lists_Tasks>(this.attach_Projects_Lists_Tasks), new Action<Projects_Lists_Tasks>(this.detach_Projects_Lists_Tasks));
+			this._Projects_Lists = new EntitySet<Projects_Lists>(new Action<Projects_Lists>(this.attach_Projects_Lists), new Action<Projects_Lists>(this.detach_Projects_Lists));
+			this._Projects = new EntitySet<Projects>(new Action<Projects>(this.attach_Projects), new Action<Projects>(this.detach_Projects));
 			OnCreated();
 		}
 		
@@ -2322,19 +1372,6 @@ namespace GettingThingsDone
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Projects", Storage="_Projects", ThisKey="Id", OtherKey="Owner")]
-		public EntitySet<Projects> Projects
-		{
-			get
-			{
-				return this._Projects;
-			}
-			set
-			{
-				this._Projects.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Tasks", Storage="_Tasks", ThisKey="Id", OtherKey="Owner")]
 		public EntitySet<Tasks> Tasks
 		{
@@ -2345,6 +1382,58 @@ namespace GettingThingsDone
 			set
 			{
 				this._Tasks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Projects_Tasks", Storage="_Projects_Tasks", ThisKey="Id", OtherKey="Owner")]
+		public EntitySet<Projects_Tasks> Projects_Tasks
+		{
+			get
+			{
+				return this._Projects_Tasks;
+			}
+			set
+			{
+				this._Projects_Tasks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Projects_Lists_Tasks", Storage="_Projects_Lists_Tasks", ThisKey="Id", OtherKey="Owner")]
+		public EntitySet<Projects_Lists_Tasks> Projects_Lists_Tasks
+		{
+			get
+			{
+				return this._Projects_Lists_Tasks;
+			}
+			set
+			{
+				this._Projects_Lists_Tasks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Projects_Lists", Storage="_Projects_Lists", ThisKey="Id", OtherKey="Owner")]
+		public EntitySet<Projects_Lists> Projects_Lists
+		{
+			get
+			{
+				return this._Projects_Lists;
+			}
+			set
+			{
+				this._Projects_Lists.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Projects", Storage="_Projects", ThisKey="Id", OtherKey="Owner")]
+		public EntitySet<Projects> Projects
+		{
+			get
+			{
+				return this._Projects;
+			}
+			set
+			{
+				this._Projects.Assign(value);
 			}
 		}
 		
@@ -2380,6 +1469,54 @@ namespace GettingThingsDone
 			entity.Users = null;
 		}
 		
+		private void attach_Tasks(Tasks entity)
+		{
+			this.SendPropertyChanging();
+			entity.Users = this;
+		}
+		
+		private void detach_Tasks(Tasks entity)
+		{
+			this.SendPropertyChanging();
+			entity.Users = null;
+		}
+		
+		private void attach_Projects_Tasks(Projects_Tasks entity)
+		{
+			this.SendPropertyChanging();
+			entity.Users = this;
+		}
+		
+		private void detach_Projects_Tasks(Projects_Tasks entity)
+		{
+			this.SendPropertyChanging();
+			entity.Users = null;
+		}
+		
+		private void attach_Projects_Lists_Tasks(Projects_Lists_Tasks entity)
+		{
+			this.SendPropertyChanging();
+			entity.Users = this;
+		}
+		
+		private void detach_Projects_Lists_Tasks(Projects_Lists_Tasks entity)
+		{
+			this.SendPropertyChanging();
+			entity.Users = null;
+		}
+		
+		private void attach_Projects_Lists(Projects_Lists entity)
+		{
+			this.SendPropertyChanging();
+			entity.Users = this;
+		}
+		
+		private void detach_Projects_Lists(Projects_Lists entity)
+		{
+			this.SendPropertyChanging();
+			entity.Users = null;
+		}
+		
 		private void attach_Projects(Projects entity)
 		{
 			this.SendPropertyChanging();
@@ -2391,17 +1528,1102 @@ namespace GettingThingsDone
 			this.SendPropertyChanging();
 			entity.Users = null;
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Projects_Tasks")]
+	public partial class Projects_Tasks : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		private void attach_Tasks(Tasks entity)
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _Project_id;
+		
+		private int _Task_id;
+		
+		private int _Owner;
+		
+		private EntityRef<Tasks> _Tasks;
+		
+		private EntityRef<Users> _Users;
+		
+		private EntityRef<Projects> _Projects;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnProject_idChanging(int value);
+    partial void OnProject_idChanged();
+    partial void OnTask_idChanging(int value);
+    partial void OnTask_idChanged();
+    partial void OnOwnerChanging(int value);
+    partial void OnOwnerChanged();
+    #endregion
+		
+		public Projects_Tasks()
 		{
-			this.SendPropertyChanging();
-			entity.Users = this;
+			this._Tasks = default(EntityRef<Tasks>);
+			this._Users = default(EntityRef<Users>);
+			this._Projects = default(EntityRef<Projects>);
+			OnCreated();
 		}
 		
-		private void detach_Tasks(Tasks entity)
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Project_id", DbType="Int NOT NULL")]
+		public int Project_id
+		{
+			get
+			{
+				return this._Project_id;
+			}
+			set
+			{
+				if ((this._Project_id != value))
+				{
+					if (this._Projects.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProject_idChanging(value);
+					this.SendPropertyChanging();
+					this._Project_id = value;
+					this.SendPropertyChanged("Project_id");
+					this.OnProject_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Task_id", DbType="Int NOT NULL")]
+		public int Task_id
+		{
+			get
+			{
+				return this._Task_id;
+			}
+			set
+			{
+				if ((this._Task_id != value))
+				{
+					if (this._Tasks.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTask_idChanging(value);
+					this.SendPropertyChanging();
+					this._Task_id = value;
+					this.SendPropertyChanged("Task_id");
+					this.OnTask_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Owner
+		{
+			get
+			{
+				return this._Owner;
+			}
+			set
+			{
+				if ((this._Owner != value))
+				{
+					if (((this._Tasks.HasLoadedOrAssignedValue || this._Users.HasLoadedOrAssignedValue) 
+								|| this._Projects.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOwnerChanging(value);
+					this.SendPropertyChanging();
+					this._Owner = value;
+					this.SendPropertyChanged("Owner");
+					this.OnOwnerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Projects_Tasks", Storage="_Tasks", ThisKey="Task_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
+		public Tasks Tasks
+		{
+			get
+			{
+				return this._Tasks.Entity;
+			}
+			set
+			{
+				Tasks previousValue = this._Tasks.Entity;
+				if (((previousValue != value) 
+							|| (this._Tasks.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tasks.Entity = null;
+						previousValue.Projects_Tasks.Remove(this);
+					}
+					this._Tasks.Entity = value;
+					if ((value != null))
+					{
+						value.Projects_Tasks.Add(this);
+						this._Task_id = value.Id;
+						this._Owner = value.Owner;
+					}
+					else
+					{
+						this._Task_id = default(int);
+						this._Owner = default(int);
+					}
+					this.SendPropertyChanged("Tasks");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Projects_Tasks", Storage="_Users", ThisKey="Owner", OtherKey="Id", IsForeignKey=true)]
+		public Users Users
+		{
+			get
+			{
+				return this._Users.Entity;
+			}
+			set
+			{
+				Users previousValue = this._Users.Entity;
+				if (((previousValue != value) 
+							|| (this._Users.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Users.Entity = null;
+						previousValue.Projects_Tasks.Remove(this);
+					}
+					this._Users.Entity = value;
+					if ((value != null))
+					{
+						value.Projects_Tasks.Add(this);
+						this._Owner = value.Id;
+					}
+					else
+					{
+						this._Owner = default(int);
+					}
+					this.SendPropertyChanged("Users");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Tasks", Storage="_Projects", ThisKey="Project_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
+		public Projects Projects
+		{
+			get
+			{
+				return this._Projects.Entity;
+			}
+			set
+			{
+				Projects previousValue = this._Projects.Entity;
+				if (((previousValue != value) 
+							|| (this._Projects.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Projects.Entity = null;
+						previousValue.Projects_Tasks.Remove(this);
+					}
+					this._Projects.Entity = value;
+					if ((value != null))
+					{
+						value.Projects_Tasks.Add(this);
+						this._Project_id = value.Id;
+						this._Owner = value.Owner;
+					}
+					else
+					{
+						this._Project_id = default(int);
+						this._Owner = default(int);
+					}
+					this.SendPropertyChanged("Projects");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Projects_Lists_Tasks")]
+	public partial class Projects_Lists_Tasks : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _Project_List_id;
+		
+		private int _Owner;
+		
+		private int _Task_id;
+		
+		private EntityRef<Tasks> _Tasks;
+		
+		private EntityRef<Users> _Users;
+		
+		private EntityRef<Projects_Lists> _Projects_Lists;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnProject_List_idChanging(int value);
+    partial void OnProject_List_idChanged();
+    partial void OnOwnerChanging(int value);
+    partial void OnOwnerChanged();
+    partial void OnTask_idChanging(int value);
+    partial void OnTask_idChanged();
+    #endregion
+		
+		public Projects_Lists_Tasks()
+		{
+			this._Tasks = default(EntityRef<Tasks>);
+			this._Users = default(EntityRef<Users>);
+			this._Projects_Lists = default(EntityRef<Projects_Lists>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Project_List_id", DbType="Int NOT NULL")]
+		public int Project_List_id
+		{
+			get
+			{
+				return this._Project_List_id;
+			}
+			set
+			{
+				if ((this._Project_List_id != value))
+				{
+					if (this._Projects_Lists.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProject_List_idChanging(value);
+					this.SendPropertyChanging();
+					this._Project_List_id = value;
+					this.SendPropertyChanged("Project_List_id");
+					this.OnProject_List_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Owner
+		{
+			get
+			{
+				return this._Owner;
+			}
+			set
+			{
+				if ((this._Owner != value))
+				{
+					if (((this._Tasks.HasLoadedOrAssignedValue || this._Users.HasLoadedOrAssignedValue) 
+								|| this._Projects_Lists.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOwnerChanging(value);
+					this.SendPropertyChanging();
+					this._Owner = value;
+					this.SendPropertyChanged("Owner");
+					this.OnOwnerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Task_id", DbType="Int NOT NULL")]
+		public int Task_id
+		{
+			get
+			{
+				return this._Task_id;
+			}
+			set
+			{
+				if ((this._Task_id != value))
+				{
+					if (this._Tasks.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTask_idChanging(value);
+					this.SendPropertyChanging();
+					this._Task_id = value;
+					this.SendPropertyChanged("Task_id");
+					this.OnTask_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tasks_Projects_Lists_Tasks", Storage="_Tasks", ThisKey="Task_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
+		public Tasks Tasks
+		{
+			get
+			{
+				return this._Tasks.Entity;
+			}
+			set
+			{
+				Tasks previousValue = this._Tasks.Entity;
+				if (((previousValue != value) 
+							|| (this._Tasks.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tasks.Entity = null;
+						previousValue.Projects_Lists_Tasks.Remove(this);
+					}
+					this._Tasks.Entity = value;
+					if ((value != null))
+					{
+						value.Projects_Lists_Tasks.Add(this);
+						this._Task_id = value.Id;
+						this._Owner = value.Owner;
+					}
+					else
+					{
+						this._Task_id = default(int);
+						this._Owner = default(int);
+					}
+					this.SendPropertyChanged("Tasks");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Projects_Lists_Tasks", Storage="_Users", ThisKey="Owner", OtherKey="Id", IsForeignKey=true)]
+		public Users Users
+		{
+			get
+			{
+				return this._Users.Entity;
+			}
+			set
+			{
+				Users previousValue = this._Users.Entity;
+				if (((previousValue != value) 
+							|| (this._Users.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Users.Entity = null;
+						previousValue.Projects_Lists_Tasks.Remove(this);
+					}
+					this._Users.Entity = value;
+					if ((value != null))
+					{
+						value.Projects_Lists_Tasks.Add(this);
+						this._Owner = value.Id;
+					}
+					else
+					{
+						this._Owner = default(int);
+					}
+					this.SendPropertyChanged("Users");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Lists_Projects_Lists_Tasks", Storage="_Projects_Lists", ThisKey="Project_List_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
+		public Projects_Lists Projects_Lists
+		{
+			get
+			{
+				return this._Projects_Lists.Entity;
+			}
+			set
+			{
+				Projects_Lists previousValue = this._Projects_Lists.Entity;
+				if (((previousValue != value) 
+							|| (this._Projects_Lists.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Projects_Lists.Entity = null;
+						previousValue.Projects_Lists_Tasks.Remove(this);
+					}
+					this._Projects_Lists.Entity = value;
+					if ((value != null))
+					{
+						value.Projects_Lists_Tasks.Add(this);
+						this._Project_List_id = value.Id;
+						this._Owner = value.Owner;
+					}
+					else
+					{
+						this._Project_List_id = default(int);
+						this._Owner = default(int);
+					}
+					this.SendPropertyChanged("Projects_Lists");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Projects_Lists")]
+	public partial class Projects_Lists : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _Project_id;
+		
+		private int _Owner;
+		
+		private string _Title;
+		
+		private string _Description;
+		
+		private EntitySet<Projects_Lists_Tasks> _Projects_Lists_Tasks;
+		
+		private EntityRef<Users> _Users;
+		
+		private EntityRef<Projects> _Projects;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnProject_idChanging(int value);
+    partial void OnProject_idChanged();
+    partial void OnOwnerChanging(int value);
+    partial void OnOwnerChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    #endregion
+		
+		public Projects_Lists()
+		{
+			this._Projects_Lists_Tasks = new EntitySet<Projects_Lists_Tasks>(new Action<Projects_Lists_Tasks>(this.attach_Projects_Lists_Tasks), new Action<Projects_Lists_Tasks>(this.detach_Projects_Lists_Tasks));
+			this._Users = default(EntityRef<Users>);
+			this._Projects = default(EntityRef<Projects>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Project_id", DbType="Int NOT NULL")]
+		public int Project_id
+		{
+			get
+			{
+				return this._Project_id;
+			}
+			set
+			{
+				if ((this._Project_id != value))
+				{
+					if (this._Projects.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProject_idChanging(value);
+					this.SendPropertyChanging();
+					this._Project_id = value;
+					this.SendPropertyChanged("Project_id");
+					this.OnProject_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Owner
+		{
+			get
+			{
+				return this._Owner;
+			}
+			set
+			{
+				if ((this._Owner != value))
+				{
+					if ((this._Users.HasLoadedOrAssignedValue || this._Projects.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOwnerChanging(value);
+					this.SendPropertyChanging();
+					this._Owner = value;
+					this.SendPropertyChanged("Owner");
+					this.OnOwnerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Lists_Projects_Lists_Tasks", Storage="_Projects_Lists_Tasks", ThisKey="Id,Owner", OtherKey="Project_List_id,Owner")]
+		public EntitySet<Projects_Lists_Tasks> Projects_Lists_Tasks
+		{
+			get
+			{
+				return this._Projects_Lists_Tasks;
+			}
+			set
+			{
+				this._Projects_Lists_Tasks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Projects_Lists", Storage="_Users", ThisKey="Owner", OtherKey="Id", IsForeignKey=true)]
+		public Users Users
+		{
+			get
+			{
+				return this._Users.Entity;
+			}
+			set
+			{
+				Users previousValue = this._Users.Entity;
+				if (((previousValue != value) 
+							|| (this._Users.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Users.Entity = null;
+						previousValue.Projects_Lists.Remove(this);
+					}
+					this._Users.Entity = value;
+					if ((value != null))
+					{
+						value.Projects_Lists.Add(this);
+						this._Owner = value.Id;
+					}
+					else
+					{
+						this._Owner = default(int);
+					}
+					this.SendPropertyChanged("Users");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Lists", Storage="_Projects", ThisKey="Project_id,Owner", OtherKey="Id,Owner", IsForeignKey=true)]
+		public Projects Projects
+		{
+			get
+			{
+				return this._Projects.Entity;
+			}
+			set
+			{
+				Projects previousValue = this._Projects.Entity;
+				if (((previousValue != value) 
+							|| (this._Projects.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Projects.Entity = null;
+						previousValue.Projects_Lists.Remove(this);
+					}
+					this._Projects.Entity = value;
+					if ((value != null))
+					{
+						value.Projects_Lists.Add(this);
+						this._Project_id = value.Id;
+						this._Owner = value.Owner;
+					}
+					else
+					{
+						this._Project_id = default(int);
+						this._Owner = default(int);
+					}
+					this.SendPropertyChanged("Projects");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Projects_Lists_Tasks(Projects_Lists_Tasks entity)
 		{
 			this.SendPropertyChanging();
-			entity.Users = null;
+			entity.Projects_Lists = this;
+		}
+		
+		private void detach_Projects_Lists_Tasks(Projects_Lists_Tasks entity)
+		{
+			this.SendPropertyChanging();
+			entity.Projects_Lists = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Projects")]
+	public partial class Projects : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Title;
+		
+		private string _Description;
+		
+		private int _Owner;
+		
+		private bool _Done;
+		
+		private System.Nullable<System.DateTimeOffset> _DueDate;
+		
+		private System.DateTimeOffset _CreationDate;
+		
+		private EntitySet<Projects_Tasks> _Projects_Tasks;
+		
+		private EntitySet<Projects_Lists> _Projects_Lists;
+		
+		private EntityRef<Users> _Users;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnOwnerChanging(int value);
+    partial void OnOwnerChanged();
+    partial void OnDoneChanging(bool value);
+    partial void OnDoneChanged();
+    partial void OnDueDateChanging(System.Nullable<System.DateTimeOffset> value);
+    partial void OnDueDateChanged();
+    partial void OnCreationDateChanging(System.DateTimeOffset value);
+    partial void OnCreationDateChanged();
+    #endregion
+		
+		public Projects()
+		{
+			this._Projects_Tasks = new EntitySet<Projects_Tasks>(new Action<Projects_Tasks>(this.attach_Projects_Tasks), new Action<Projects_Tasks>(this.detach_Projects_Tasks));
+			this._Projects_Lists = new EntitySet<Projects_Lists>(new Action<Projects_Lists>(this.attach_Projects_Lists), new Action<Projects_Lists>(this.detach_Projects_Lists));
+			this._Users = default(EntityRef<Users>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(50)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Owner
+		{
+			get
+			{
+				return this._Owner;
+			}
+			set
+			{
+				if ((this._Owner != value))
+				{
+					if (this._Users.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOwnerChanging(value);
+					this.SendPropertyChanging();
+					this._Owner = value;
+					this.SendPropertyChanged("Owner");
+					this.OnOwnerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Done", DbType="Bit NOT NULL")]
+		public bool Done
+		{
+			get
+			{
+				return this._Done;
+			}
+			set
+			{
+				if ((this._Done != value))
+				{
+					this.OnDoneChanging(value);
+					this.SendPropertyChanging();
+					this._Done = value;
+					this.SendPropertyChanged("Done");
+					this.OnDoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DueDate", DbType="DateTimeOffset")]
+		public System.Nullable<System.DateTimeOffset> DueDate
+		{
+			get
+			{
+				return this._DueDate;
+			}
+			set
+			{
+				if ((this._DueDate != value))
+				{
+					this.OnDueDateChanging(value);
+					this.SendPropertyChanging();
+					this._DueDate = value;
+					this.SendPropertyChanged("DueDate");
+					this.OnDueDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreationDate", DbType="DateTimeOffset NOT NULL")]
+		public System.DateTimeOffset CreationDate
+		{
+			get
+			{
+				return this._CreationDate;
+			}
+			set
+			{
+				if ((this._CreationDate != value))
+				{
+					this.OnCreationDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreationDate = value;
+					this.SendPropertyChanged("CreationDate");
+					this.OnCreationDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Tasks", Storage="_Projects_Tasks", ThisKey="Id,Owner", OtherKey="Project_id,Owner")]
+		public EntitySet<Projects_Tasks> Projects_Tasks
+		{
+			get
+			{
+				return this._Projects_Tasks;
+			}
+			set
+			{
+				this._Projects_Tasks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projects_Projects_Lists", Storage="_Projects_Lists", ThisKey="Id,Owner", OtherKey="Project_id,Owner")]
+		public EntitySet<Projects_Lists> Projects_Lists
+		{
+			get
+			{
+				return this._Projects_Lists;
+			}
+			set
+			{
+				this._Projects_Lists.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Users_Projects", Storage="_Users", ThisKey="Owner", OtherKey="Id", IsForeignKey=true)]
+		public Users Users
+		{
+			get
+			{
+				return this._Users.Entity;
+			}
+			set
+			{
+				Users previousValue = this._Users.Entity;
+				if (((previousValue != value) 
+							|| (this._Users.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Users.Entity = null;
+						previousValue.Projects.Remove(this);
+					}
+					this._Users.Entity = value;
+					if ((value != null))
+					{
+						value.Projects.Add(this);
+						this._Owner = value.Id;
+					}
+					else
+					{
+						this._Owner = default(int);
+					}
+					this.SendPropertyChanged("Users");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Projects_Tasks(Projects_Tasks entity)
+		{
+			this.SendPropertyChanging();
+			entity.Projects = this;
+		}
+		
+		private void detach_Projects_Tasks(Projects_Tasks entity)
+		{
+			this.SendPropertyChanging();
+			entity.Projects = null;
+		}
+		
+		private void attach_Projects_Lists(Projects_Lists entity)
+		{
+			this.SendPropertyChanging();
+			entity.Projects = this;
+		}
+		
+		private void detach_Projects_Lists(Projects_Lists entity)
+		{
+			this.SendPropertyChanging();
+			entity.Projects = null;
 		}
 	}
 }
