@@ -169,7 +169,7 @@ namespace GettingThingsDone.src.model
             if (t == null) return false;
 
             if (!t.DueDate.HasValue) return false;
-            return t.IsDueAfter(DateTimeHelper.NextFirst.AddDays(-1));
+            return t.IsDueAfter(DateTimeHelper.NextFirst.AddDays(-1)) && t.IsDueBefore(DateTimeHelper.NextFirst.AddMonths(1));
         }
 
 
