@@ -3,6 +3,9 @@
     [Title]       NVARCHAR (50) NOT NULL,
     [Description] NVARCHAR (50) NULL,
     [Owner]       INT           NOT NULL,
+    [Done] BIT NOT NULL DEFAULT 0, 
+    [DueDate] DATETIMEOFFSET NULL, 
+    [CreationDate] DATETIMEOFFSET NOT NULL, 
     CONSTRAINT [PK__Projects__3214EC071367E606] PRIMARY KEY CLUSTERED ([Id] ASC, [Owner] ASC),
     CONSTRAINT [FK_Projects_Users] FOREIGN KEY ([Owner]) REFERENCES [dbo].[Users] ([Id])
 );
