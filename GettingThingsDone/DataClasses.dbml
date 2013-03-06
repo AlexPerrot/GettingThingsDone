@@ -7,8 +7,6 @@
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Owner" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="Lists_Lists_Tasks" Member="Lists_Tasks" ThisKey="Id,Owner" OtherKey="List_id,Owner" Type="Lists_Tasks" />
-      <Association Name="Lists_Projects_Lists" Member="Projects_Lists" ThisKey="Id,Owner" OtherKey="List_id,Owner" Type="Projects_Lists" />
-      <Association Name="Lists_Tasks_Lists" Member="Tasks_Lists" ThisKey="Id,Owner" OtherKey="List_id,Owner" Type="Tasks_Lists" />
       <Association Name="Users_Lists" Member="Users" ThisKey="Owner" OtherKey="Id" Type="Users" IsForeignKey="true" />
     </Type>
   </Table>
@@ -22,37 +20,6 @@
       <Association Name="Tasks_Lists_Tasks" Member="Tasks" ThisKey="Task_id,Owner" OtherKey="Id,Owner" Type="Tasks" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Projects" Member="Projects">
-    <Type Name="Projects">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Owner" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Projects_Projects_Lists" Member="Projects_Lists" ThisKey="Id,Owner" OtherKey="Project_id,Owner" Type="Projects_Lists" />
-      <Association Name="Projects_Projects_Tasks" Member="Projects_Tasks" ThisKey="Id,Owner" OtherKey="Project_id,Owner" Type="Projects_Tasks" />
-      <Association Name="Users_Projects" Member="Users" ThisKey="Owner" OtherKey="Id" Type="Users" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Projects_Lists" Member="Projects_Lists">
-    <Type Name="Projects_Lists">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Project_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="List_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Owner" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Lists_Projects_Lists" Member="Lists" ThisKey="List_id,Owner" OtherKey="Id,Owner" Type="Lists" IsForeignKey="true" />
-      <Association Name="Projects_Projects_Lists" Member="Projects" ThisKey="Project_id,Owner" OtherKey="Id,Owner" Type="Projects" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Projects_Tasks" Member="Projects_Tasks">
-    <Type Name="Projects_Tasks">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Project_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Task_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Owner" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Projects_Projects_Tasks" Member="Projects" ThisKey="Project_id,Owner" OtherKey="Id,Owner" Type="Projects" IsForeignKey="true" />
-      <Association Name="Tasks_Projects_Tasks" Member="Tasks" ThisKey="Task_id,Owner" OtherKey="Id,Owner" Type="Tasks" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Tasks" Member="Tasks">
     <Type Name="Tasks">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -63,21 +30,11 @@
       <Column Name="Owner" AutoSync="Always" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Done" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Tasks_Lists_Tasks" Member="Lists_Tasks" ThisKey="Id,Owner" OtherKey="Task_id,Owner" Type="Lists_Tasks" />
-      <Association Name="Tasks_Projects_Tasks" Member="Projects_Tasks" ThisKey="Id,Owner" OtherKey="Task_id,Owner" Type="Projects_Tasks" />
-      <Association Name="Tasks_Tasks_Lists" Member="Tasks_Lists" ThisKey="Id,Owner" OtherKey="Task_id,Owner" Type="Tasks_Lists" />
       <Association Name="Tasks_Tasks_Tasks" Member="Tasks_Tasks" ThisKey="Id,Owner" OtherKey="Predecessor_Id,Predecessor_Owner" Type="Tasks_Tasks" />
       <Association Name="Tasks_Tasks_Tasks1" Member="Tasks_Tasks1" ThisKey="Id,Owner" OtherKey="Successor_Id,Successor_Owner" Type="Tasks_Tasks" />
+      <Association Name="Tasks_Projects_Tasks" Member="Projects_Tasks" ThisKey="Id,Owner" OtherKey="Task_id,Owner" Type="Projects_Tasks" />
+      <Association Name="Tasks_Projects_Lists_Tasks" Member="Projects_Lists_Tasks" ThisKey="Id,Owner" OtherKey="Task_id,Owner" Type="Projects_Lists_Tasks" />
       <Association Name="Users_Tasks" Member="Users" ThisKey="Owner" OtherKey="Id" Type="Users" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Tasks_Lists" Member="Tasks_Lists">
-    <Type Name="Tasks_Lists">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Task_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="List_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Owner" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Lists_Tasks_Lists" Member="Lists" ThisKey="List_id,Owner" OtherKey="Id,Owner" Type="Lists" IsForeignKey="true" />
-      <Association Name="Tasks_Tasks_Lists" Member="Tasks" ThisKey="Task_id,Owner" OtherKey="Id,Owner" Type="Tasks" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Tasks_Tasks" Member="Tasks_Tasks">
@@ -98,8 +55,59 @@
       <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Mail" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Users_Lists" Member="Lists" ThisKey="Id" OtherKey="Owner" Type="Lists" />
-      <Association Name="Users_Projects" Member="Projects" ThisKey="Id" OtherKey="Owner" Type="Projects" />
       <Association Name="Users_Tasks" Member="Tasks" ThisKey="Id" OtherKey="Owner" Type="Tasks" />
+      <Association Name="Users_Projects_Tasks" Member="Projects_Tasks" ThisKey="Id" OtherKey="Owner" Type="Projects_Tasks" />
+      <Association Name="Users_Projects_Lists_Tasks" Member="Projects_Lists_Tasks" ThisKey="Id" OtherKey="Owner" Type="Projects_Lists_Tasks" />
+      <Association Name="Users_Projects_Lists" Member="Projects_Lists" ThisKey="Id" OtherKey="Owner" Type="Projects_Lists" />
+      <Association Name="Users_Projects" Member="Projects" ThisKey="Id" OtherKey="Owner" Type="Projects" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Projects_Tasks" Member="Projects_Tasks">
+    <Type Name="Projects_Tasks">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Project_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Task_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Owner" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Tasks_Projects_Tasks" Member="Tasks" ThisKey="Task_id,Owner" OtherKey="Id,Owner" Type="Tasks" IsForeignKey="true" />
+      <Association Name="Users_Projects_Tasks" Member="Users" ThisKey="Owner" OtherKey="Id" Type="Users" IsForeignKey="true" />
+      <Association Name="Projects_Projects_Tasks" Member="Projects" ThisKey="Project_id,Owner" OtherKey="Id,Owner" Type="Projects" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Projects_Lists_Tasks" Member="Projects_Lists_Tasks">
+    <Type Name="Projects_Lists_Tasks">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Project_List_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Owner" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Task_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Tasks_Projects_Lists_Tasks" Member="Tasks" ThisKey="Task_id,Owner" OtherKey="Id,Owner" Type="Tasks" IsForeignKey="true" />
+      <Association Name="Users_Projects_Lists_Tasks" Member="Users" ThisKey="Owner" OtherKey="Id" Type="Users" IsForeignKey="true" />
+      <Association Name="Projects_Lists_Projects_Lists_Tasks" Member="Projects_Lists" ThisKey="Project_List_id,Owner" OtherKey="Id,Owner" Type="Projects_Lists" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Projects_Lists" Member="Projects_Lists">
+    <Type Name="Projects_Lists">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Project_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Owner" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Projects_Lists_Projects_Lists_Tasks" Member="Projects_Lists_Tasks" ThisKey="Id,Owner" OtherKey="Project_List_id,Owner" Type="Projects_Lists_Tasks" />
+      <Association Name="Users_Projects_Lists" Member="Users" ThisKey="Owner" OtherKey="Id" Type="Users" IsForeignKey="true" />
+      <Association Name="Projects_Projects_Lists" Member="Projects" ThisKey="Project_id,Owner" OtherKey="Id,Owner" Type="Projects" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Projects" Member="Projects">
+    <Type Name="Projects">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Owner" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Done" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DueDate" Type="System.DateTimeOffset" DbType="DateTimeOffset" CanBeNull="true" />
+      <Column Name="CreationDate" Type="System.DateTimeOffset" DbType="DateTimeOffset NOT NULL" CanBeNull="false" />
+      <Association Name="Projects_Projects_Tasks" Member="Projects_Tasks" ThisKey="Id,Owner" OtherKey="Project_id,Owner" Type="Projects_Tasks" />
+      <Association Name="Projects_Projects_Lists" Member="Projects_Lists" ThisKey="Id,Owner" OtherKey="Project_id,Owner" Type="Projects_Lists" />
+      <Association Name="Users_Projects" Member="Users" ThisKey="Owner" OtherKey="Id" Type="Users" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
