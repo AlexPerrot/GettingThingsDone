@@ -12,6 +12,17 @@ namespace GettingThingsDone.src.model
 {
     public static class DateTimeHelper
     {
+        public static DateTime Tomorrow { get { return DateTime.Today.AddDays(1); } }
+        public static DateTime NextMonday { get { return DateTime.Today.Next(DayOfWeek.Monday); } }
+        public static DateTime NextFirst
+        {
+            get
+            {
+                DateTime today = DateTime.Today;
+                return new DateTime(today.Year, today.Month + 1, 1);
+            }
+        }
+
         public static DateTime Next(this DateTime from, DayOfWeek dayOfWeek)
         {
             int start = (int)from.DayOfWeek;
@@ -19,6 +30,24 @@ namespace GettingThingsDone.src.model
             if (target <= start)
                 target += 7;
             return from.AddDays(target - start);
+        }
+    }
+
+    public static class TaskHelper
+    {
+        public static bool IsDueAt(this Task t, DateTime date)
+        {
+            return t.DueDate == date;
+        }
+
+        public static bool IsDueBefore(this Task t, DateTime date)
+        {
+            return t.DueDate < date;
+        }
+        
+        public static bool IsDueAfter(this Task t, DateTime date)
+        {
+            return t.DueDate > date;
         }
     }
 
@@ -91,60 +120,56 @@ namespace GettingThingsDone.src.model
 
         private bool isDueToday(Object obj)
         {
+            System.Console.WriteLine("DueToday");
             Task t = obj as Task;
             if (t == null) return false;
 
             if (!t.DueDate.HasValue) return false;
-            DateTimeOffset dueDate = t.DueDate.Value;
-            return dueDate.Day.Equals(DateTimeOffset.Now.Day);
+            return t.IsDueAt(DateTime.Today);
         }
 
         private bool isDueTomorrow(Object obj)
         {
-            if (isDueToday(obj)) return false;
+            System.Console.WriteLine("DueTomorrow");
 
             Task t = obj as Task;
             if (t == null) return false;
 
             if (!t.DueDate.HasValue) return false;
-            DateTimeOffset dueDate = t.DueDate.Value;
-            return dueDate.Day.Equals(DateTimeOffset.Now.AddDays(1).Day);
+            return t.IsDueAt(DateTimeHelper.Tomorrow);
         }
 
         private bool isDueThisWeek(Object obj) {
-            if (isDueToday(obj) || isDueTomorrow(obj)) return false;
+            System.Console.WriteLine("DueThisWeek");
 
             Task t = obj as Task;
             if (t == null) return false;
 
             if (!t.DueDate.HasValue) return false;
-            DateTimeOffset dueDate = t.DueDate.Value;
-            DateTimeOffset nextMonday = DateTime.Now.Next(DayOfWeek.Monday);
-            return dueDate < nextMonday;
+            return t.IsDueAfter(DateTimeHelper.Tomorrow) && t.IsDueBefore(DateTimeHelper.NextMonday);
         }
 
         private bool isDueThisMonth(Object obj)
         {
-            if (isDueToday(obj) || isDueTomorrow(obj) || isDueThisWeek(obj)) return false;
+            System.Console.WriteLine("DueThisMonth");
+
 
             Task t = obj as Task;
             if (t == null) return false;
 
             if (!t.DueDate.HasValue) return false;
-            DateTimeOffset dueDate = t.DueDate.Value;
-            return dueDate.Month < DateTime.Now.AddMonths(1).Month;
+            return t.IsDueAfter(DateTimeHelper.NextMonday.AddDays(-1)) && t.IsDueBefore(DateTimeHelper.NextFirst);
         }
 
         private bool isDueNextMonth(Object obj)
         {
-            if (isDueToday(obj) || isDueTomorrow(obj) || isDueThisWeek(obj) || isDueThisMonth(obj)) return false;
+            System.Console.WriteLine("DueNextMonth");
 
             Task t = obj as Task;
             if (t == null) return false;
 
             if (!t.DueDate.HasValue) return false;
-            DateTimeOffset dueDate = t.DueDate.Value;
-            return dueDate.Month < DateTime.Now.AddMonths(2).Month;
+            return t.IsDueAfter(DateTimeHelper.NextFirst.AddDays(-1));
         }
 
 
