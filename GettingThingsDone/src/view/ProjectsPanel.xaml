@@ -13,7 +13,7 @@
                        <ListBox x:Name="FileList" ItemsSource="{Binding Projects}" HorizontalAlignment="Left" Height="160" Margin="10,10,0,0" VerticalAlignment="Top" Width="280">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Title}"/>
+                    <Label Content="{Binding Title}" MouseDoubleClick="UpdateProject"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

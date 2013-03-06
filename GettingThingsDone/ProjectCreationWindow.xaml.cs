@@ -24,11 +24,11 @@ namespace GettingThingsDone
             InitializeComponent();
         }
 
-        public static Task GetNewTask()
+        public static Task GetNewProject()
         {
-            TaskCreationWindow win = new TaskCreationWindow();
+            ProjectCreationWindow win = new ProjectCreationWindow();
             if (win.ShowDialog().Value)
-                return win.CreationPanel.CreateTask();
+                return win.CreationPanel.CreateProject();
             else
                 return null;
         }

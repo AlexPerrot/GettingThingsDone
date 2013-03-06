@@ -33,7 +33,7 @@ namespace GettingThingsDone.src.data
             return new DBSingleTask(dbTask, this.dbProvider);
         }
 
-        public IProject makeProject(string title)
+        public IProject makeProject(string title, string description, DateTimeOffset? DueDate)
         {
             throw new NotImplementedException();
         }

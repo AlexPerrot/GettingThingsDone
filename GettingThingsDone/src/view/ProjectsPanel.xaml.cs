@@ -49,8 +49,20 @@ namespace GettingThingsDone.src.view
 
         private void CreateProjectClick(object sender, MouseButtonEventArgs e)
         {
-            ProjectCreationWindow p = new ProjectCreationWindow();
-            p.Show();
+            Task newProject = ProjectCreationWindow.GetNewProject();
         }
-    }
+
+        private void UpdateProject(object sender, MouseButtonEventArgs e)
+        {
+            ProjectCreationWindow editWindow = new ProjectCreationWindow();
+            IProject project = (sender as Label).DataContext as IProject;
+            editWindow.CreationPanel.LoadFromProject(project);
+            if (editWindow.ShowDialog().Value)
+            {
+                editWindow.CreationPanel.WriteToProject(project);
+                this.FileList.Items.Refresh();
+            }
+        }
+
+        }
 }

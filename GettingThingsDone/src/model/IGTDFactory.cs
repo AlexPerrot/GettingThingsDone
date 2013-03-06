@@ -9,7 +9,7 @@ namespace GettingThingsDone.src.model
     public interface IGTDFactory
     {
         ISingleTask makeTask(string title, string description, DateTimeOffset? DueDate);
-        IProject makeProject(string title);
+        IProject makeProject(string title, string description, DateTimeOffset? DueDate);
         GTDSystem makeSystem();
     }
 }
