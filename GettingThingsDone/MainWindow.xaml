@@ -22,7 +22,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <TabControl SelectionChanged="TabControl_SelectionChanged_1">
+        <TabControl SelectionChanged="TabControl_SelectionChanged_1" Background="DimGray">
             <TabItem Header="Home">
                 <ScrollViewer>
                     <local:ReviewPage />
