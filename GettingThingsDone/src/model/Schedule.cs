@@ -12,6 +12,17 @@ namespace GettingThingsDone.src.model
 {
     public static class DateTimeHelper
     {
+        public static DateTime Tomorrow { get { return DateTime.Today.AddDays(1); } }
+        public static DateTime NextMonday { get { return DateTime.Today.Next(DayOfWeek.Monday); } }
+        public static DateTime NextFirst
+        {
+            get
+            {
+                DateTime today = DateTime.Today;
+                return new DateTime(today.Year, today.Month + 1, 1);
+            }
+        }
+
         public static DateTime Next(this DateTime from, DayOfWeek dayOfWeek)
         {
             int start = (int)from.DayOfWeek;
@@ -22,111 +33,149 @@ namespace GettingThingsDone.src.model
         }
     }
 
-    public class Schedule : GettingThingsDone.src.model.ISchedule
+    public static class TaskHelper
+    {
+        public static bool IsDueAt(this Task t, DateTime date)
+        {
+            return t.DueDate == date;
+        }
+
+        public static bool IsDueBefore(this Task t, DateTime date)
+        {
+            return t.DueDate < date;
+        }
+        
+        public static bool IsDueAfter(this Task t, DateTime date)
+        {
+            return t.DueDate > date;
+        }
+    }
+
+    public class Schedule : GettingThingsDone.src.model.ISchedule, INotifyPropertyChanged
     {
         private IGTDSystem sys;
-        private System.Collections.Generic.IEnumerable<Task> tasks;
+        private System.Collections.ObjectModel.ObservableCollection<Task> tasks;
 
         public Schedule(IGTDSystem system)
         {
             sys = system;
-            tasks = sys.accept(new AllTasksWithFutureDueDate());
+            tasks = new System.Collections.ObjectModel.ObservableCollection<Task>(sys.accept(new AllTasksWithFutureDueDate()));
         }
 
+        private ICollectionView today;
         public IEnumerable Today
         {
             get
             {
-                return filterView(isDueToday);
+                if (today == null)
+                    today = filterView(isDueToday);
+                return today;
             }
         }
 
+        private ICollectionView tomorrow;
         public IEnumerable Tomorrow
         {
             get
             {
-                return filterView(isDueTomorrow);
+                if (tomorrow == null)
+                    tomorrow = filterView(isDueTomorrow);
+                return tomorrow;
             }
         }
 
+        private ICollectionView thisWeek;
         public IEnumerable ThisWeek
         {
             get
             {
-                return filterView(isDueThisWeek);
+                if (thisWeek == null)
+                    thisWeek = filterView(isDueThisWeek);
+                return thisWeek;
             }
         }
 
+        private ICollectionView thisMonth;
         public IEnumerable ThisMonth
-        { get { return filterView(isDueThisMonth); } }
+        {
+            get
+            {
+                if (thisMonth == null)
+                    thisMonth = filterView(isDueThisMonth);
+                return thisMonth;
+            }
+        }
 
+        private ICollectionView nextMonth;
         public IEnumerable NextMonth
-        { get { return filterView(isDueNextMonth); } }
+        {
+            get
+            {
+                if (nextMonth == null)
+                    nextMonth = filterView(isDueNextMonth);
+                return nextMonth;
+            }
+        }
 
 
         private bool isDueToday(Object obj)
         {
+            System.Console.WriteLine("DueToday");
             Task t = obj as Task;
             if (t == null) return false;
 
             if (!t.DueDate.HasValue) return false;
-            DateTimeOffset dueDate = t.DueDate.Value;
-            return dueDate.Day.Equals(DateTimeOffset.Now.Day);
+            return t.IsDueAt(DateTime.Today);
         }
 
         private bool isDueTomorrow(Object obj)
         {
-            if (isDueToday(obj)) return false;
+            System.Console.WriteLine("DueTomorrow");
 
             Task t = obj as Task;
             if (t == null) return false;
 
             if (!t.DueDate.HasValue) return false;
-            DateTimeOffset dueDate = t.DueDate.Value;
-            return dueDate.Day.Equals(DateTimeOffset.Now.AddDays(1).Day);
+            return t.IsDueAt(DateTimeHelper.Tomorrow);
         }
 
         private bool isDueThisWeek(Object obj) {
-            if (isDueToday(obj) || isDueTomorrow(obj)) return false;
+            System.Console.WriteLine("DueThisWeek");
 
             Task t = obj as Task;
             if (t == null) return false;
 
             if (!t.DueDate.HasValue) return false;
-            DateTimeOffset dueDate = t.DueDate.Value;
-            DateTimeOffset nextMonday = DateTime.Now.Next(DayOfWeek.Monday);
-            return dueDate < nextMonday;
+            return t.IsDueAfter(DateTimeHelper.Tomorrow) && t.IsDueBefore(DateTimeHelper.NextMonday);
         }
 
         private bool isDueThisMonth(Object obj)
         {
-            if (isDueToday(obj) || isDueTomorrow(obj) || isDueThisWeek(obj)) return false;
+            System.Console.WriteLine("DueThisMonth");
+
 
             Task t = obj as Task;
             if (t == null) return false;
 
             if (!t.DueDate.HasValue) return false;
-            DateTimeOffset dueDate = t.DueDate.Value;
-            return dueDate.Month < DateTime.Now.AddMonths(1).Month;
+            return t.IsDueAfter(DateTimeHelper.NextMonday.AddDays(-1)) && t.IsDueBefore(DateTimeHelper.NextFirst);
         }
 
         private bool isDueNextMonth(Object obj)
         {
-            if (isDueToday(obj) || isDueTomorrow(obj) || isDueThisWeek(obj) || isDueThisMonth(obj)) return false;
+            System.Console.WriteLine("DueNextMonth");
 
             Task t = obj as Task;
             if (t == null) return false;
 
             if (!t.DueDate.HasValue) return false;
-            DateTimeOffset dueDate = t.DueDate.Value;
-            return dueDate.Month < DateTime.Now.AddMonths(2).Month;
+            return t.IsDueAfter(DateTimeHelper.NextFirst.AddDays(-1));
         }
 
 
-        private IEnumerable filterView(Predicate<Object> pred)
+        private ICollectionView filterView(Predicate<Object> pred)
         {
-            //IEnumerable tasks = sys.accept(new AllTasksWithFutureDueDate());
-            ICollectionView view = CollectionViewSource.GetDefaultView(tasks.ToList());
+            ICollectionView view = new CollectionViewSource() { Source = tasks }.View;
             view.Filter = pred;
             view.GroupDescriptions.Add(new ContextGroupDescription(sys));
             return view;
@@ -134,8 +183,14 @@ namespace GettingThingsDone.src.model
 
         public void update()
         {
-            this.tasks = sys.accept(new AllTasksWithFutureDueDate());
+            IEnumerable tmp = sys.accept(new AllTasksWithFutureDueDate());
+            tasks.Clear();
+            foreach (Task t in tmp)
+                tasks.Add(t);
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
     }
 
     class ContextGroupDescription : PropertyGroupDescription

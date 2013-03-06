@@ -16,28 +16,24 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Name="ReviewLink" Content="Review" Foreground="AntiqueWhite" Background="Indigo" Grid.Row="0" MouseLeftButtonDown="ReviewButtonClick"
-               VerticalAlignment="Center" HorizontalAlignment="Center"
-               VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
-               Width="200" Height="80" FontSize="18"
-               MouseEnter="ReviewLinkEnter" MouseLeave="ReviewLinkLeave" Margin="148,184"/>
-        <ScrollViewer x:Name="ReviewPanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0" Grid.ColumnSpan="2">
-            <local:ReviewPage/>
-        </ScrollViewer>
-        <ScrollViewer x:Name="SchedulePanel" Visibility="Collapsed"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="0" Grid.ColumnSpan="2" >
-            <local:SchedulePage Margin="10,50,10,40"/>
-        </ScrollViewer>
+        
+        <TabControl SelectionChanged="TabControl_SelectionChanged_1" Background="DimGray">
+            <TabItem Header="Home">
+                <ScrollViewer>
+                    <local:ReviewPage />
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Schedule">
+                <local:SchedulePage x:Name="SchedulePage" Loaded="SchedulePage_Loaded_1" />
+            </TabItem>
+        </TabControl>
+        
         <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask" Grid.ColumnSpan="2"/>
-        <Label x:Name="ScheduleLink" Content="Schedule" Foreground="AntiqueWhite" Background="Indigo" Grid.Row="0" MouseLeftButtonDown="ScheduleButtonClick"
-        	VerticalAlignment="Center" HorizontalAlignment="Center"
-        	VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
-        	Width="200" Height="80" FontSize="18"
-        	MouseEnter="ScheduleLinkEnter" MouseLeave="ScheduleLinkLeave" Margin="149,184,147,184" Grid.Column="1"/>
+        
     </Grid>
 </Window>

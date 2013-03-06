@@ -49,5 +49,14 @@ namespace GettingThingsDone.src.view
         {
             DataContext = new Schedule((App.Current as App).GTD);
         }
+
+        internal void update()
+        {
+            ISchedule schedule = DataContext as ISchedule;
+            if (schedule != null)
+            {
+                schedule.update();
+            }
+        }
     }
 }
