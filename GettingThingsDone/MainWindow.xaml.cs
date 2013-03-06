@@ -22,12 +22,14 @@ namespace GettingThingsDone
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ISchedule Schedule { get { return (App.Current as App).Factory.makeSchedule(DataContext as IGTDSystem); } }
+        private ISchedule schedule;
+        public ISchedule Schedule { get { return schedule; } }
 
         public MainWindow()
         {
             InitializeComponent();
             DataContext = ((App)App.Current).GTD;
+            schedule = (App.Current as App).Factory.makeSchedule(DataContext as IGTDSystem);
         }
 
         private void CreateTask(object sender, RoutedEventArgs e)
@@ -39,44 +41,29 @@ namespace GettingThingsDone
             }
         }
 
-        private void ReviewButtonClick(object sender, MouseButtonEventArgs e)
+        private void TabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            this.ReviewLink.Visibility = Visibility.Collapsed;
-            this.ScheduleLink.Visibility = Visibility.Collapsed;
-            this.ReviewPanel.Visibility = Visibility.Visible;
+            TabItem item = (sender as TabControl).SelectedItem as TabItem;
+            if (item != null)
+            {
+                switch (item.Header.ToString())
+                {
+                    case "Schedule":
+                        Dispatcher.BeginInvoke(new Action(this.SchedulePage.update),
+                            System.Windows.Threading.DispatcherPriority.Background,
+                            new object[0]);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
-        private void ReviewLinkEnter(object sender, MouseEventArgs e)
+        private void SchedulePage_Loaded_1(object sender, RoutedEventArgs e)
         {
-            Mouse.OverrideCursor = Cursors.Hand;
-            this.ReviewLink.Foreground = new SolidColorBrush(Colors.Aqua);
+            this.SchedulePage.DataContext = Schedule;
         }
 
-        private void ReviewLinkLeave(object sender, MouseEventArgs e)
-        {
-            Mouse.OverrideCursor = null;
-            this.ReviewLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
-        }
-
-        private void ScheduleButtonClick(object sender, MouseButtonEventArgs e)
-        {
-            this.ReviewLink.Visibility = Visibility.Collapsed;
-            this.ScheduleLink.Visibility = Visibility.Collapsed;
-            this.SchedulePanel.Visibility = Visibility.Visible;
-            this.SchedulePanel.DataContext = Schedule;
-        }
-
-        private void ScheduleLinkEnter(object sender, MouseEventArgs e)
-        {
-            Mouse.OverrideCursor = Cursors.Hand;
-            this.ScheduleLink.Foreground = new SolidColorBrush(Colors.Aqua);
-        }
-
-        private void ScheduleLinkLeave(object sender, MouseEventArgs e)
-        {
-            Mouse.OverrideCursor = null;
-            this.ScheduleLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
-        }
 
     }
 }
