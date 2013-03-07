@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Tasks] (
     [Id]           INT                IDENTITY (1, 1) NOT NULL,
     [Title]        VARCHAR (50)       NOT NULL,
-    [Description]  VARCHAR (50)       NOT NULL,
+    [Description]  VARCHAR (MAX)       NOT NULL,
     [DueDate]      DATETIMEOFFSET (7) NULL,
     [CreationDate] DATETIMEOFFSET (7) NOT NULL,
     [Owner]        INT                NOT NULL,
