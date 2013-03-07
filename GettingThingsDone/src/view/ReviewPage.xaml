@@ -9,9 +9,7 @@
              Background="DimGray">
     <UserControl.Resources>
         <DataTemplate x:Key="ContextPanel">
-            <Border Name="DTBorder" BorderBrush="Black" BorderThickness="0" Margin="8" CornerRadius="2">
-                <local:StaticListPanel Name="ListPanel" Width="100" MouseMove="StaticListPanel_MouseMove_1" AllowListDrop="True"/>
-            </Border>
+            <local:StaticListPanel Name="ListPanel" Width="100" MouseMove="StaticListPanel_MouseMove_1" AllowListDrop="True" Margin="8"/>
             <DataTemplate.Triggers>
                 <Trigger Property="ItemsControl.AlternationIndex" Value="0">
                     <Setter TargetName="ListPanel" Property="LabelBackground" Value="MidnightBlue" />
