@@ -54,7 +54,6 @@ namespace GettingThingsDone.src.view
             if (newProject != null)
             {
                 ((App)App.Current).GTD.Projects.Add(newProject);
-                //this.Projects.Add(newProject);
                 this.FileList.Items.Refresh();
             }
         }
