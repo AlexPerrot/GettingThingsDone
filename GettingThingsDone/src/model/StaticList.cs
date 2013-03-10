@@ -73,5 +73,11 @@ public class StaticList : IStaticList
     {
         this.RemoveItem(l);
     }
+
+
+    public void Delete()
+    {
+        // do nothing
+    }
 }
 

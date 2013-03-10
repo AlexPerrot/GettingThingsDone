@@ -14,5 +14,7 @@ public interface GTDItem
 {
 	T accept<T>(GTDVisitor<T> v);
 
+    void Delete();
+
 }
 

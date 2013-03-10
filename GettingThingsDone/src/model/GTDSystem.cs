@@ -88,5 +88,11 @@ public class GTDSystem : IGTDSystem
     {
         Contexts.Remove(l);
     }
+
+
+    public void Delete()
+    {
+        // do nothing
+    }
 }
 

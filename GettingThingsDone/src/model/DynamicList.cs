@@ -64,5 +64,11 @@ public class DynamicList : IDynamicList
     {
         target.removeSubList(l);
     }
+
+
+    public void Delete()
+    {
+
+    }
 }
 
