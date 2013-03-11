@@ -35,6 +35,15 @@ namespace GettingThingsDone.src.view
             set { SetValue(AllowListDropProperty, value); }
         }
 
+        public bool AllowDelete
+        {
+            get { return (bool)GetValue(AllowDeleteProperty); }
+            set { SetValue(AllowDeleteProperty, value); }
+        }
+
+        public static readonly DependencyProperty AllowDeleteProperty =
+            DependencyProperty.Register("AllowDelete", typeof (bool), typeof (StaticListPanel), new PropertyMetadata(true));
+
         public static readonly DependencyProperty AllowListDropProperty =
             DependencyProperty.Register("AllowListDrop", typeof(bool), typeof(StaticListPanel), new FrameworkPropertyMetadata(false));
 
@@ -73,9 +82,8 @@ namespace GettingThingsDone.src.view
         private void DelButton_Click_1(object sender, RoutedEventArgs e)
         {
             ISingleTask task = (sender as Button).DataContext as ISingleTask;
-            StaticList list = DataContext as StaticList;
-            list.removeTask(task);
-            task.Delete();
+            IGTDSystem sys = (App.Current as App).GTD;
+            sys.removeTask(task);
         }
 
         private void OnDrop(object sender, DragEventArgs e)
@@ -131,6 +139,25 @@ namespace GettingThingsDone.src.view
         {
             if (e.Data.GetFormats().Contains(typeof(TaskMoveData).ToString()))
                 this.List.BorderThickness = new Thickness(0);
+        }
+
+        private void TrashcanButton_Click(object sender, RoutedEventArgs e)
+        {
+            StaticList list = DataContext as StaticList;
+            list.Delete();
+        }
+
+        private void UserControl_MouseEnter_1(object sender, MouseEventArgs e)
+        {
+            if(this.AllowDelete)
+            {
+                TrashcanButton.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void UserControl_MouseLeave_1(object sender, MouseEventArgs e)
+        {
+            TrashcanButton.Visibility = Visibility.Hidden;
         }
     }
 

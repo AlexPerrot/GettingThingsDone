@@ -8,7 +8,8 @@ namespace GettingThingsDone.src.model
 {
     public interface IProject : Task
     {
-        IList<Task> Tasks { get; }
-
+        IEnumerable<Task> Tasks { get; }
+        void AddTask(Task t);
+        void RemoveTask(Task t);
     }
 }
