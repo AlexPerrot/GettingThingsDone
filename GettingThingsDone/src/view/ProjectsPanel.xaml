@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300">
+      d:DesignHeight="300" d:DesignWidth="300" Background="#FF262626">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -25,11 +25,11 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0"
-                Name="CreateProjectLink" Content="Create a new project" Foreground="AntiqueWhite" Background="Indigo" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"
+                Name="CreateProjectLink" Content="Create a new project" Foreground="AntiqueWhite" Background="#FF10253F" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"
                Margin="10,0,10,0" VerticalContentAlignment="Center" Width="280" Height="50" MouseEnter="CreateProjectLinkEnter" MouseLeave="CreateProjectLinkLeave"
                MouseLeftButtonDown="CreateProjectClick"/>
 
-            <ListBox Grid.Row="1" Grid.Column="0" x:Name="FileList" ItemsSource="{Binding Projects}" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Height="Auto" Width="280" Background="LightGray">
+            <ListBox Grid.Row="1" Grid.Column="0" x:Name="FileList" ItemsSource="{Binding Projects}" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Height="Auto" Width="280" Background="DimGray">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding Title}" MouseDoubleClick="UpdateProject"/>

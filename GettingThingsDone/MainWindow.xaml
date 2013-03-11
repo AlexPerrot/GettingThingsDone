@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:GettingThingsDone.src.view"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="GettingThingsDone.MainWindow"
         Title="Getting Things Done" Height="500" Width="1000"
-        Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"
+        Background="#FF262626"
     x:Name="GTDWindow">
     <Window.Resources>
         <DataTemplate x:Key="ListTemplate">
