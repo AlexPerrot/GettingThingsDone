@@ -10,5 +10,6 @@ namespace GettingThingsDone.src.data
     public interface IDatabaseProvider
     {
         DataClassesDataContext Database { get;}
+        DBIdManager IdManager { get; }
     }
 }

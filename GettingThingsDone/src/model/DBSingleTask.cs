@@ -94,6 +94,7 @@ namespace GettingThingsDone.src.data
         }
 
         private int id;
+        public int Id { get { return id; } }
         private IDatabaseProvider dbProvider;
 
         public DBSingleTask(Tasks dbTask, IDatabaseProvider dbProvider)

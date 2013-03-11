@@ -72,9 +72,8 @@ namespace GettingThingsDone.src.view
         private void CreateTaskClick(object sender, MouseButtonEventArgs e)
         {
             Task t = TaskCreationWindowWithContext.NewTaskDialog();
-            (FileList.SelectedItem as IProject).Tasks.Add(t);
+            (FileList.SelectedItem as IProject).AddTask(t);
             this.ItemsControlTasks.Items.Refresh();
-
         }
 
         private void CreateTaskLinkEnter(object sender, MouseEventArgs e)
