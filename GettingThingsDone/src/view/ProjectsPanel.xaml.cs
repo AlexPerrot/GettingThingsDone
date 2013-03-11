@@ -27,11 +27,6 @@ namespace GettingThingsDone.src.view
         public ProjectsPanel()
         {
             InitializeComponent();
-
-            //this.Projects = new List<Task>();
-            //this.Projects.Add(new Project("mon projet 1", "ma desc 1", null, false, DateTimeOffset.Now));
-            //this.Projects.Add(new Project("mon projet 2", "ma desc 2", null, false, DateTimeOffset.Now));
-
             this.DataContext = ((App)App.Current).GTD;
         }
 
@@ -53,9 +48,12 @@ namespace GettingThingsDone.src.view
 
             if (newProject != null)
             {
-                (newProject as IProject).Tasks.Add(new SingleTask("test task title", "test task desc"));
+                //this.FileList.BeginInit();
+
                 ((App)App.Current).GTD.Projects.Add(newProject);
                 this.FileList.Items.Refresh();
+
+                //this.FileList.EndInit();
             }
         }
 
@@ -70,11 +68,25 @@ namespace GettingThingsDone.src.view
                 this.FileList.Items.Refresh();
             }
         }
-        
-        private void Label_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+
+        private void CreateTaskClick(object sender, MouseButtonEventArgs e)
         {
             Task t = TaskCreationWindowWithContext.NewTaskDialog();
             (FileList.SelectedItem as IProject).Tasks.Add(t);
+            this.ItemsControlTasks.Items.Refresh();
+
+        }
+
+        private void CreateTaskLinkEnter(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Hand;
+            this.CreateTaskLink.Foreground = new SolidColorBrush(Colors.Aqua);
+        }
+
+        private void CreateTaskLinkLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = null;
+            this.CreateTaskLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
         }
     }
 }

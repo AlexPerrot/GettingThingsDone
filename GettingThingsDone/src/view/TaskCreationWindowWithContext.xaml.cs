@@ -33,7 +33,11 @@ namespace GettingThingsDone.src.view
             {
                 Task t = win.CreationPanel.CreateTask();
                 TaskList l = win.ContextSelect.SelectedItem as TaskList;
-                l.AddTask(t);
+                if (l != null)
+                {
+                    l.AddTask(t);
+                }
+
                 return t;
             }
             return null;

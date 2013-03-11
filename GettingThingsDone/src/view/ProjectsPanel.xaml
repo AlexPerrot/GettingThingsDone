@@ -68,7 +68,13 @@
                 </GroupBox.Style>
                 
                 <StackPanel>
-                    <ItemsControl ItemsSource="{Binding ElementName=FileList, Path=SelectedItem.Tasks}">
+
+                    <Label Name="CreateTaskLink" Content="Create New Task" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                            MouseEnter="CreateTaskLinkEnter" MouseLeave="CreateTaskLinkLeave" MouseLeftButtonDown="CreateTaskClick"
+                           Foreground="AntiqueWhite" Background="Indigo"
+                           VerticalContentAlignment="Center" Width="100" Height="30" />
+
+                    <ItemsControl Name="ItemsControlTasks" ItemsSource="{Binding ElementName=FileList, Path=SelectedItem.Tasks}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                         
@@ -81,8 +87,6 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-
-                    <Button Content="Add task" />
                     
                 </StackPanel>
             </GroupBox>
