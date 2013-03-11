@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="GettingThingsDone.src.view.ProjectsPanel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0"
+                Name="CreateProjectLink" Content="Create a new project" Foreground="AntiqueWhite" Background="Indigo" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"
+               Margin="10,0,10,0" VerticalContentAlignment="Center" Width="280" Height="50" MouseEnter="CreateProjectLinkEnter" MouseLeave="CreateProjectLinkLeave"
+               MouseLeftButtonDown="CreateProjectClick"/>
+
+            <ListBox Grid.Row="1" Grid.Column="0" x:Name="FileList" ItemsSource="{Binding Projects}" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Height="Auto" Width="280" Background="LightGray">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Title}" MouseDoubleClick="UpdateProject"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1" x:Name="SelectedProjectData" Margin="10,0,0,0" Background="LightGray">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Margin="5,5,5,5">
+                <Label Content="{Binding ElementName=FileList, Path=SelectedItem.Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
+                <Label Content="{Binding ElementName=FileList, Path=SelectedItem.Description}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="{Binding ElementName=FileList, Path=SelectedItem.Done}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="{Binding ElementName=FileList, Path=SelectedItem.DueDate}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </StackPanel>
+
+            <GroupBox Grid.Row="1" Grid.Column="0" Header="Tasks" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Margin="5,5,5,5" Padding="5,5,5,5">
+                
+                <!-- Permet de ne pas afficher la GroupBox de Tasks si aucun projet n'est sélectionné -->
+                <GroupBox.Style>
+                    <Style TargetType="{x:Type GroupBox}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=FileList, Path=SelectedItem}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </GroupBox.Style>
+                
+                <StackPanel>
+
+                    <Label Name="CreateTaskLink" Content="Create New Task" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                            MouseEnter="CreateTaskLinkEnter" MouseLeave="CreateTaskLinkLeave" MouseLeftButtonDown="CreateTaskClick"
+                           Foreground="AntiqueWhite" Background="Indigo"
+                           VerticalContentAlignment="Center" Width="100" Height="30" />
+
+                    <ItemsControl Name="ItemsControlTasks" ItemsSource="{Binding ElementName=FileList, Path=SelectedItem.Tasks}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                        
+                                <Expander Header="{Binding Title}" Background="#FFFBFBFB" Margin="0,5,0,5" Padding="5,5,5,5">
+                                    <StackPanel>
+                                        <TextBlock TextWrapping="Wrap" Text="{Binding Description}" />
+                                    </StackPanel>
+                                </Expander>
+                        
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+
+    </Grid>
+
+</UserControl>

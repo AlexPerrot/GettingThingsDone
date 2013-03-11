@@ -16,6 +16,14 @@ namespace GettingThingsDone.src.data
         {
             get { return new DataClassesDataContext(); }
         }
+
+        private DBIdManager idMngr;
+        public DBIdManager IdManager { get { return idMngr; } }
+
+        public LocalDatabaseProvider()
+        {
+            idMngr = new DBIdManager(this);
+        }
     }
 }
 

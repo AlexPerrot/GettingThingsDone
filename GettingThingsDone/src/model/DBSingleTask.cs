@@ -94,6 +94,7 @@ namespace GettingThingsDone.src.data
         }
 
         private int id;
+        public int Id { get { return id; } }
         private IDatabaseProvider dbProvider;
 
         public DBSingleTask(Tasks dbTask, IDatabaseProvider dbProvider)
@@ -109,9 +110,22 @@ namespace GettingThingsDone.src.data
 
         public void Delete()
         {
+            //obtention db
             DataClassesDataContext db = dbProvider.Database;
+
+            //suppression des instances dans les listes
+            IEnumerable<Lists_Tasks> lists = db.Lists_Tasks.Where(item => item.Task_id == this.id);
+            db.Lists_Tasks.DeleteAllOnSubmit(lists);
+
+            //suppression des instances dans les projets
+            IEnumerable<Projects_Tasks> projects = db.Projects_Tasks.Where(item => item.Task_id == this.id);
+            db.Projects_Tasks.DeleteAllOnSubmit(projects);
+            
+            //suppression de la tache proprement dite
             Tasks t = db.Tasks.Single(x => x.Id == this.id);
             db.Tasks.DeleteOnSubmit(t);
+
+            //on poste les changements
             db.SubmitChanges();
         }
     }
