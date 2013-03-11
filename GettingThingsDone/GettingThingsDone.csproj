@@ -85,6 +85,7 @@
     <Compile Include="ProjectCreationWindow.xaml.cs">
       <DependentUpon>ProjectCreationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="src\data\DBIdManager.cs" />
     <Compile Include="src\data\IDatabaseProvider.cs" />
     <Compile Include="src\data\LocalDatabaseProvider.cs" />
     <Compile Include="src\data\GTDItemSave.cs" />
