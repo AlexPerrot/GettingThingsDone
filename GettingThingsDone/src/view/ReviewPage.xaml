@@ -6,16 +6,16 @@
              xmlns:local="clr-namespace:GettingThingsDone.src.view"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             Background="DimGray">
+             Background="#FF262626">
     <UserControl.Resources>
         <DataTemplate x:Key="ContextPanel">
             <local:StaticListPanel Name="ListPanel" Width="100" MouseMove="StaticListPanel_MouseMove_1" AllowListDrop="True" Margin="8"/>
             <DataTemplate.Triggers>
                 <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                    <Setter TargetName="ListPanel" Property="LabelBackground" Value="MidnightBlue" />
+                    <Setter TargetName="ListPanel" Property="LabelBackground" Value="#FF10253F" />
                 </Trigger>
                 <Trigger  Property="ItemsControl.AlternationIndex" Value="1">
-                    <Setter Property="LabelBackground" Value="DarkRed" TargetName="ListPanel"/>
+                    <Setter Property="LabelBackground" Value="#FF632523" TargetName="ListPanel"/>
                 </Trigger>
             </DataTemplate.Triggers>
         </DataTemplate>
@@ -32,7 +32,7 @@
         </Grid.RowDefinitions>
 
         <local:StaticListPanel DataContext="{Binding Inbox}" Grid.Row="0" Margin="12,12,12,12" VerticalAlignment="Stretch" AllowDelete="False"/>
-        <GridSplitter Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" ShowsPreview="True" Height="5" Background="DimGray" />
+        <GridSplitter Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" ShowsPreview="True" Height="5" Background="#FF262626" />
         <ItemsControl Grid.Row="2" ItemsSource="{Binding Contexts}" AlternationCount="2" ItemTemplate="{StaticResource ContextPanel}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
