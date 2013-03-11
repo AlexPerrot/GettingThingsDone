@@ -126,6 +126,9 @@
     <Compile Include="src\view\StaticListPanel.xaml.cs">
       <DependentUpon>StaticListPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="src\view\TaskCreationWindowWithContext.xaml.cs">
+      <DependentUpon>TaskCreationWindowWithContext.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TaskCreationWindow.xaml.cs">
       <DependentUpon>TaskCreationWindow.xaml</DependentUpon>
     </Compile>
@@ -184,6 +187,10 @@
     <Page Include="src\view\StaticListPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\view\TaskCreationWindowWithContext.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="TaskCreationWindow.xaml">
       <SubType>Designer</SubType>

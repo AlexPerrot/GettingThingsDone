@@ -70,5 +70,11 @@ namespace GettingThingsDone.src.view
                 this.FileList.Items.Refresh();
             }
         }
+        
+        private void Label_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            Task t = TaskCreationWindowWithContext.NewTaskDialog();
+            (FileList.SelectedItem as IProject).Tasks.Add(t);
+        }
     }
 }
