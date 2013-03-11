@@ -82,9 +82,8 @@ namespace GettingThingsDone.src.view
         private void DelButton_Click_1(object sender, RoutedEventArgs e)
         {
             ISingleTask task = (sender as Button).DataContext as ISingleTask;
-            StaticList list = DataContext as StaticList;
-            list.removeTask(task);
-            task.Delete();
+            IGTDSystem sys = (App.Current as App).GTD;
+            sys.removeTask(task);
         }
 
         private void OnDrop(object sender, DragEventArgs e)

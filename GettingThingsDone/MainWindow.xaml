@@ -31,6 +31,9 @@
             <TabItem Header="Schedule">
                 <local:SchedulePage x:Name="SchedulePage" Loaded="SchedulePage_Loaded_1" />
             </TabItem>
+            <TabItem Header="Projects">
+                <local:ProjectsPanel x:Name="ProjectsPanel" />
+            </TabItem>
         </TabControl>
         
         <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask" Grid.ColumnSpan="2"/>

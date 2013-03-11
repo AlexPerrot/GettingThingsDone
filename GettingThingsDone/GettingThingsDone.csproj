@@ -82,6 +82,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </Compile>
+    <Compile Include="ProjectCreationWindow.xaml.cs">
+      <DependentUpon>ProjectCreationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="src\data\DBIdManager.cs" />
     <Compile Include="src\data\IDatabaseProvider.cs" />
     <Compile Include="src\data\LocalDatabaseProvider.cs" />
     <Compile Include="src\data\GTDItemSave.cs" />
@@ -105,6 +109,12 @@
     <Compile Include="src\model\visitor\GTDVisitor.cs" />
     <Compile Include="src\model\visitor\SubLists.cs" />
     <Compile Include="src\model\visitor\VoidVisitor.cs" />
+    <Compile Include="src\view\ProjectCreationPanel.xaml.cs">
+      <DependentUpon>ProjectCreationPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="src\view\ProjectsPanel.xaml.cs">
+      <DependentUpon>ProjectsPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="src\view\ReviewPage.xaml.cs">
       <DependentUpon>ReviewPage.xaml</DependentUpon>
     </Compile>
@@ -118,6 +128,9 @@
       <DependentUpon>StaticListPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="src\view\TaskDataTemplateSelector.cs" />
+    <Compile Include="src\view\TaskCreationWindowWithContext.xaml.cs">
+      <DependentUpon>TaskCreationWindowWithContext.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TaskCreationWindow.xaml.cs">
       <DependentUpon>TaskCreationWindow.xaml</DependentUpon>
     </Compile>
@@ -149,6 +162,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProjectCreationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\view\ProjectCreationPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\view\ProjectsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="src\view\ReviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -164,6 +189,10 @@
     <Page Include="src\view\StaticListPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\view\TaskCreationWindowWithContext.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="TaskCreationWindow.xaml">
       <SubType>Designer</SubType>

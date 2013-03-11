@@ -111,22 +111,10 @@ namespace GettingThingsDone.src.data
             return v.visit(this);
         }
 
-        public IList<Task> Tasks
+        private List<Task> tasks = new List<Task>();
+        public IEnumerable<Task> Tasks
         {
-            get
-            {
-                throw new NotImplementedException();
-                // TODO: implementer le visiteur AllTasksFromProject
-                //return accept(new AllTasksFromProject(this));
-            }
-
-            private set
-            {
-                DataClassesDataContext db = dbProvider.Database;
-                Projects p = db.Projects.Single(x => x.Id == id);
-                // TODO: Pour chaque nouvelle tache, faire l'ajout en bdd
-                db.SubmitChanges();
-            }
+            get { return tasks; }
         }
 
         private int id;
@@ -136,6 +124,34 @@ namespace GettingThingsDone.src.data
         {
             this.id = project.Id;
             this.dbProvider = dbProvider;
+        }
+
+        public void AddTask(Task t)
+        {
+            tasks.Add(t);
+
+            DataClassesDataContext dc = dbProvider.Database;
+            int id = dbProvider.IdManager.GetId(t);
+            IEnumerable<Projects_Tasks> ptlist = dc.Projects_Tasks.Where(p => p.Task_id == id);
+            if (ptlist.Count() == 0)
+            {
+                Projects_Tasks pt = new Projects_Tasks();
+                pt.Project_id = this.id;
+                pt.Task_id = id;
+                pt.Owner = (App.Current as App).Admin.Id;
+                dc.Projects_Tasks.InsertOnSubmit(pt);
+            }
+            else
+            {
+                Projects_Tasks pt = ptlist.First();
+                pt.Projects.Id = this.id;
+            }
+            dc.SubmitChanges();
+        }
+
+        public void RemoveTask(Task t)
+        {
+            tasks.Remove(t);
         }
     }
 }

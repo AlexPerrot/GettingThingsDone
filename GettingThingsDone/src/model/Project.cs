@@ -51,5 +51,20 @@ public class Project : IProject
 	}
 
     public void Delete() { }
+
+    IEnumerable<Task> IProject.Tasks
+    {
+        get { throw new NotImplementedException(); }
+    }
+
+    public void AddTask(Task t)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void RemoveTask(Task t)
+    {
+        throw new NotImplementedException();
+    }
 }
 
