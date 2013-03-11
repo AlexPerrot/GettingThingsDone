@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace GettingThingsDone.src.view
 {
-    class TaskDataTemplateSelector : DataTemplateSelector
+    public class TaskDataTemplateSelector : DataTemplateSelector
     {
         public DataTemplate SingleTaskTemplate { get; set; }
         public DataTemplate ProjectTemplate { get; set; }
