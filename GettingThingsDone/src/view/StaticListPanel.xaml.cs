@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 using GettingThingsDone.src.model;
 
 namespace GettingThingsDone.src.view
@@ -35,6 +34,15 @@ namespace GettingThingsDone.src.view
             get { return (bool)GetValue(AllowListDropProperty); }
             set { SetValue(AllowListDropProperty, value); }
         }
+
+        public bool AllowDelete
+        {
+            get { return (bool)GetValue(AllowDeleteProperty); }
+            set { SetValue(AllowDeleteProperty, value); }
+        }
+
+        public static readonly DependencyProperty AllowDeleteProperty =
+            DependencyProperty.Register("AllowDelete", typeof (bool), typeof (StaticListPanel), new PropertyMetadata(true));
 
         public static readonly DependencyProperty AllowListDropProperty =
             DependencyProperty.Register("AllowListDrop", typeof(bool), typeof(StaticListPanel), new FrameworkPropertyMetadata(false));
@@ -142,7 +150,10 @@ namespace GettingThingsDone.src.view
 
         private void UserControl_MouseEnter_1(object sender, MouseEventArgs e)
         {
-            TrashcanButton.Visibility = Visibility.Visible;
+            if(this.AllowDelete)
+            {
+                TrashcanButton.Visibility = Visibility.Visible;
+            }
         }
 
         private void UserControl_MouseLeave_1(object sender, MouseEventArgs e)
