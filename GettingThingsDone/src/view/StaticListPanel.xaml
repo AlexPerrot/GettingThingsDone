@@ -10,7 +10,7 @@
              DragEnter="UserControl_DragEnter_1"
              DragLeave="UserControl_DragLeave_1"
              DragOver="UserControl_DragEnter_1"
-             xmlns:local="clr-namespace:GettingThingsDone.src.view">
+             xmlns:local="clr-namespace:GettingThingsDone.src.view" MouseEnter="UserControl_MouseEnter_1" MouseLeave="UserControl_MouseLeave_1">
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
             <Border BorderBrush="Black" BorderThickness="2" Margin="5" >
@@ -31,8 +31,9 @@
         <local:TaskDataTemplateSelector x:Key="TemplateSelector"
                                         SingleTaskTemplate="{StaticResource TaskDT}"
                                         ProjectTemplate="{StaticResource TaskDT}" />
+        
     </UserControl.Resources>
-    <Grid>
+    <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -41,6 +42,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Name="NameLabel" Content="{Binding Name}" FontSize="16" Foreground="AntiqueWhite" Background="SaddleBrown" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+        <Button x:Name="TrashcanButton" VerticalAlignment="Top" Background="#FFA60000" Cursor="Hand" Height="32" Click="TrashcanButton_Click" Margin="142,0,0,0" HorizontalAlignment="Right" Width="32" Visibility="Hidden">
+            <Image Source="trash_recyclebin_empty_closed.png"/>
+        </Button>
         <ItemsControl x:Name="List" ItemsSource="{Binding List}" ItemTemplateSelector="{StaticResource TemplateSelector}"
                       Grid.Column="0" Grid.Row="1"
                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch"

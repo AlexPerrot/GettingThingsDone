@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using GettingThingsDone.src.model;
 
 namespace GettingThingsDone.src.view
@@ -131,6 +132,22 @@ namespace GettingThingsDone.src.view
         {
             if (e.Data.GetFormats().Contains(typeof(TaskMoveData).ToString()))
                 this.List.BorderThickness = new Thickness(0);
+        }
+
+        private void TrashcanButton_Click(object sender, RoutedEventArgs e)
+        {
+            StaticList list = DataContext as StaticList;
+            list.Delete();
+        }
+
+        private void UserControl_MouseEnter_1(object sender, MouseEventArgs e)
+        {
+            TrashcanButton.Visibility = Visibility.Visible;
+        }
+
+        private void UserControl_MouseLeave_1(object sender, MouseEventArgs e)
+        {
+            TrashcanButton.Visibility = Visibility.Hidden;
         }
     }
 
