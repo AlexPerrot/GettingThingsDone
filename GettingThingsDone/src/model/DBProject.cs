@@ -132,8 +132,20 @@ namespace GettingThingsDone.src.data
 
             DataClassesDataContext dc = dbProvider.Database;
             int id = dbProvider.IdManager.GetId(t);
-            Projects_Tasks pt = dc.Projects_Tasks.Where(p => p.Task_id == id).First();
-            pt.Projects.Id = this.id;
+            IEnumerable<Projects_Tasks> ptlist = dc.Projects_Tasks.Where(p => p.Task_id == id);
+            if (ptlist.Count() == 0)
+            {
+                Projects_Tasks pt = new Projects_Tasks();
+                pt.Project_id = this.id;
+                pt.Task_id = id;
+                pt.Owner = (App.Current as App).Admin.Id;
+                dc.Projects_Tasks.InsertOnSubmit(pt);
+            }
+            else
+            {
+                Projects_Tasks pt = ptlist.First();
+                pt.Projects.Id = this.id;
+            }
             dc.SubmitChanges();
         }
 
