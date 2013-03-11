@@ -113,20 +113,9 @@ namespace GettingThingsDone.src.data
 
         public IList<Task> Tasks
         {
-            get
-            {
-                throw new NotImplementedException();
-                // TODO: implementer le visiteur AllTasksFromProject
-                //return accept(new AllTasksFromProject(this));
-            }
+            get;
 
-            private set
-            {
-                DataClassesDataContext db = dbProvider.Database;
-                Projects p = db.Projects.Single(x => x.Id == id);
-                // TODO: Pour chaque nouvelle tache, faire l'ajout en bdd
-                db.SubmitChanges();
-            }
+            private set;
         }
 
         private int id;
@@ -136,6 +125,7 @@ namespace GettingThingsDone.src.data
         {
             this.id = project.Id;
             this.dbProvider = dbProvider;
+            Tasks = new List<Task>();
         }
     }
 }
