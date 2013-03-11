@@ -111,11 +111,10 @@ namespace GettingThingsDone.src.data
             return v.visit(this);
         }
 
-        public IList<Task> Tasks
+        private List<Task> tasks = new List<Task>();
+        public IEnumerable<Task> Tasks
         {
-            get;
-
-            private set;
+            get { return tasks; }
         }
 
         private int id;
@@ -125,7 +124,22 @@ namespace GettingThingsDone.src.data
         {
             this.id = project.Id;
             this.dbProvider = dbProvider;
-            Tasks = new List<Task>();
+        }
+
+        public void AddTask(Task t)
+        {
+            tasks.Add(t);
+
+            DataClassesDataContext dc = dbProvider.Database;
+            int id = dbProvider.IdManager.GetId(t);
+            Projects_Tasks pt = dc.Projects_Tasks.Where(p => p.Task_id == id).First();
+            pt.Projects.Id = this.id;
+            dc.SubmitChanges();
+        }
+
+        public void RemoveTask(Task t)
+        {
+            tasks.Remove(t);
         }
     }
 }
