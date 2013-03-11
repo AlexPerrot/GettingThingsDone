@@ -22,7 +22,7 @@ namespace GettingThingsDone.src.view
     public partial class ProjectsPanel : UserControl
     {
 
-       // public List<Task> Projects { get; set; }
+        //MainWindow main = App.Current.MainWindow as MainWindow;
 
         public ProjectsPanel()
         {
@@ -53,6 +53,7 @@ namespace GettingThingsDone.src.view
 
             if (newProject != null)
             {
+                (newProject as IProject).Tasks.Add(new SingleTask("test task title", "test task desc"));
                 ((App)App.Current).GTD.Projects.Add(newProject);
                 this.FileList.Items.Refresh();
             }
@@ -69,6 +70,5 @@ namespace GettingThingsDone.src.view
                 this.FileList.Items.Refresh();
             }
         }
-
     }
 }

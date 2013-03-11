@@ -40,9 +40,6 @@
 
         <Grid Grid.Row="0" Grid.Column="1" x:Name="SelectedProjectData" Margin="10,0,0,0" Background="LightGray">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
@@ -50,20 +47,47 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="{Binding ElementName=FileList, Path=SelectedItem.Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
-            <Label Grid.Row="1" Grid.Column="0" Content="{Binding ElementName=FileList, Path=SelectedItem.Description}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Label Grid.Row="2" Grid.Column="0" Content="{Binding ElementName=FileList, Path=SelectedItem.Done}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Label Grid.Row="3" Grid.Column="0" Content="{Binding ElementName=FileList, Path=SelectedItem.DueDate}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <StackPanel Grid.Row="0" Grid.Column="0" Margin="5,5,5,5">
+                <Label Content="{Binding ElementName=FileList, Path=SelectedItem.Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
+                <Label Content="{Binding ElementName=FileList, Path=SelectedItem.Description}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="{Binding ElementName=FileList, Path=SelectedItem.Done}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="{Binding ElementName=FileList, Path=SelectedItem.DueDate}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </StackPanel>
 
+            <GroupBox Grid.Row="1" Grid.Column="0" Header="Tasks" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Margin="5,5,5,5" Padding="5,5,5,5">
+                
+                <!-- Permet de ne pas afficher la GroupBox de Tasks si aucun projet n'est sélectionné -->
+                <GroupBox.Style>
+                    <Style TargetType="{x:Type GroupBox}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=FileList, Path=SelectedItem}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </GroupBox.Style>
+                
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding ElementName=FileList, Path=SelectedItem.Tasks}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                        
+                                <Expander Header="{Binding Title}" Background="#FFFBFBFB" Margin="0,5,0,5" Padding="5,5,5,5">
+                                    <StackPanel>
+                                        <TextBlock TextWrapping="Wrap" Text="{Binding Description}" />
+                                    </StackPanel>
+                                </Expander>
+                        
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
 
-            <!--DataGrid 
-                Grid.Row="4" Grid.Column="0"
-                HorizontalAlignment="Left" VerticalAlignment="Top" 
-                ItemsSource="{Binding Projects}"/-->
-
-
-
+                    <Button Content="Add task" />
+                    
+                </StackPanel>
+            </GroupBox>
         </Grid>
 
     </Grid>
+
 </UserControl>
