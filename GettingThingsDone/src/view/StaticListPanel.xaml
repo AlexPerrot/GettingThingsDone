@@ -42,7 +42,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Name="NameLabel" Content="{Binding Name}" FontSize="16" Foreground="AntiqueWhite" Background="SaddleBrown" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
-        <Button x:Name="TrashcanButton" VerticalAlignment="Top" Background="#FFA60000" Cursor="Hand" Height="32" Click="TrashcanButton_Click" Margin="142,0,0,0" HorizontalAlignment="Right" Width="32" Visibility="Hidden">
+        <Button x:Name="TrashcanButton" VerticalAlignment="Top" Cursor="Hand" Height="32" Click="TrashcanButton_Click" HorizontalAlignment="Right" Width="32" Visibility="Hidden" Background="#FFAC0000">
             <Image Source="trash_recyclebin_empty_closed.png"/>
         </Button>
         <ItemsControl x:Name="List" ItemsSource="{Binding List}" ItemTemplateSelector="{StaticResource TemplateSelector}"
