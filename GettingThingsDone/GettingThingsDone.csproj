@@ -117,6 +117,7 @@
     <Compile Include="src\view\StaticListPanel.xaml.cs">
       <DependentUpon>StaticListPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="src\view\TaskDataTemplateSelector.cs" />
     <Compile Include="TaskCreationWindow.xaml.cs">
       <DependentUpon>TaskCreationWindow.xaml</DependentUpon>
     </Compile>
