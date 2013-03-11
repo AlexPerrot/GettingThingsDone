@@ -26,7 +26,7 @@ namespace GettingThingsDone.src.view
             InitializeComponent();
         }
 
-        public static void NewTaskDialog()
+        public static Task NewTaskDialog()
         {
             TaskCreationWindowWithContext win = new TaskCreationWindowWithContext();
             if (win.ShowDialog().Value)
@@ -34,7 +34,9 @@ namespace GettingThingsDone.src.view
                 Task t = win.CreationPanel.CreateTask();
                 TaskList l = win.ContextSelect.SelectedItem as TaskList;
                 l.AddTask(t);
+                return t;
             }
+            return null;
         }
         
         private void OkButtonClick(object sender, RoutedEventArgs e)
