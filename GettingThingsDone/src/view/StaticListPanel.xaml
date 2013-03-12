@@ -15,11 +15,18 @@
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
             <StackPanel Orientation="Vertical" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown_1" MouseMove="StackPanel_Drag" MouseEnter="Task_OnMouseEnter" MouseLeave="Task_OnMouseLeave" Margin="12,6">
-                <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
                     <Label x:Name="TaskTitle" Content="{Binding Title}" Foreground="Black"
                         HorizontalAlignment="Left" FontSize="13" FontWeight="DemiBold"/>
-                    <!--<CheckBox IsChecked="{Binding Done, Mode=TwoWay}" HorizontalAlignment="Right"/>-->
-                    <CheckBox IsChecked="{Binding Done, Mode=TwoWay}" Cursor="Hand" Visibility="Hidden">
+                    <CheckBox IsChecked="{Binding Done, Mode=TwoWay}" Cursor="Hand" Visibility="Hidden" Grid.Column="1">
                         <CheckBox.Template>
                             <ControlTemplate TargetType="CheckBox">
                                 <StackPanel Orientation="Horizontal">
@@ -36,10 +43,11 @@
                             </ControlTemplate>
                         </CheckBox.Template>
                     </CheckBox>
-                    <Button x:Name="DelButton" Cursor="Hand" Height="20" Click="DelButton_Click_1" HorizontalAlignment="Right" Width="20" Visibility="Hidden" Background="{x:Null}" BorderThickness="0">
+                    <Button x:Name="DelButton" Cursor="Hand" Height="20" Click="DelButton_Click_1" Width="20"
+                            Visibility="Hidden" Background="{x:Null}" BorderThickness="0" Grid.Column="2">
                         <Image Source="cross_button.png"/>
                     </Button>
-                </StackPanel>
+                </Grid>
                 <Label Name="TaskDescription" Foreground="Black"
                         HorizontalAlignment="Left" FontSize="10" FontWeight="Light" MaxWidth="200">
                     <TextBlock Text="{Binding Description}" TextWrapping="Wrap" MaxHeight="40" />

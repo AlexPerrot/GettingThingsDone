@@ -162,16 +162,16 @@ namespace GettingThingsDone.src.view
 
         private void Task_OnMouseEnter(object sender, MouseEventArgs e)
         {
-            var s = sender as StackPanel;
-            var childPanel = s.Children[0] as StackPanel;
+            var s = sender as Panel;
+            var childPanel = s.Children[0] as Panel;
             childPanel.Children[1].Visibility = Visibility.Visible;
             childPanel.Children[2].Visibility = Visibility.Visible;
         }
 
         private void Task_OnMouseLeave(object sender, MouseEventArgs e)
         {
-            var s = sender as StackPanel;
-            var childPanel = s.Children[0] as StackPanel;
+            var s = sender as Panel;
+            var childPanel = s.Children[0] as Panel;
             childPanel.Children[1].Visibility = Visibility.Hidden;
             childPanel.Children[2].Visibility = Visibility.Hidden;
         }
