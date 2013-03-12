@@ -159,6 +159,22 @@ namespace GettingThingsDone.src.view
         {
             TrashcanButton.Visibility = Visibility.Hidden;
         }
+
+        private void Task_OnMouseEnter(object sender, MouseEventArgs e)
+        {
+            var s = sender as StackPanel;
+            var childPanel = s.Children[0] as StackPanel;
+            childPanel.Children[1].Visibility = Visibility.Visible;
+            childPanel.Children[2].Visibility = Visibility.Visible;
+        }
+
+        private void Task_OnMouseLeave(object sender, MouseEventArgs e)
+        {
+            var s = sender as StackPanel;
+            var childPanel = s.Children[0] as StackPanel;
+            childPanel.Children[1].Visibility = Visibility.Hidden;
+            childPanel.Children[2].Visibility = Visibility.Hidden;
+        }
     }
 
     class TaskMoveData

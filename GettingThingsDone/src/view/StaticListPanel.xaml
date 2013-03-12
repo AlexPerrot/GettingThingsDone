@@ -11,28 +11,47 @@
              DragLeave="UserControl_DragLeave_1"
              DragOver="UserControl_DragEnter_1"
              xmlns:local="clr-namespace:GettingThingsDone.src.view" MouseEnter="UserControl_MouseEnter_1" MouseLeave="UserControl_MouseLeave_1">
+    
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
-            <Border BorderBrush="Black" BorderThickness="2" Margin="5" >
-                <StackPanel Orientation="Horizontal" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown_1" MouseMove="StackPanel_Drag" MinWidth="100">
-                    <StackPanel.Background>
-                        <LinearGradientBrush StartPoint="0.500,0" EndPoint="0.500,0.900">
-                            <GradientStop Color="PowderBlue" Offset="0"/>
-                            <GradientStop Color="SkyBlue" Offset="0.900"/>
-                        </LinearGradientBrush>
-                    </StackPanel.Background>
-                <CheckBox Margin="3" Content="" IsChecked="{Binding Done, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label Name="TaskTitle" Content="{Binding Title}" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="12"/>
-                    <Button Name="DelButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" Click="DelButton_Click_1" HorizontalAlignment="Right"/>
+            <StackPanel Orientation="Vertical" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown_1" MouseMove="StackPanel_Drag" MouseEnter="Task_OnMouseEnter" MouseLeave="Task_OnMouseLeave" Margin="12,6">
+                <StackPanel Orientation="Horizontal">
+                    <Label x:Name="TaskTitle" Content="{Binding Title}" Foreground="Black"
+                        HorizontalAlignment="Left" FontSize="13" FontWeight="DemiBold"/>
+                    <!--<CheckBox IsChecked="{Binding Done, Mode=TwoWay}" HorizontalAlignment="Right"/>-->
+                    <CheckBox IsChecked="{Binding Done, Mode=TwoWay}" Cursor="Hand" Visibility="Hidden">
+                        <CheckBox.Template>
+                            <ControlTemplate TargetType="CheckBox">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image x:Name="_image" Source="unchecked_checkbox.png" Width="16" Height="16"/>
+                                </StackPanel>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter TargetName="_image" Property="Source" Value="checked_checkbox.png"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="False">
+                                        <Setter TargetName="_image" Property="Source" Value="unchecked_checkbox.png"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </CheckBox.Template>
+                    </CheckBox>
+                    <Button x:Name="DelButton" Cursor="Hand" Height="20" Click="DelButton_Click_1" HorizontalAlignment="Right" Width="20" Visibility="Hidden" Background="{x:Null}" BorderThickness="0">
+                        <Image Source="cross_button.png"/>
+                    </Button>
+                </StackPanel>
+                <Label Name="TaskDescription" Foreground="Black"
+                        HorizontalAlignment="Left" FontSize="10" FontWeight="Light" MaxWidth="200">
+                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" MaxHeight="40" />
+                </Label>
             </StackPanel>
-            </Border>
         </DataTemplate>
         
         <local:TaskDataTemplateSelector x:Key="TemplateSelector"
                                         SingleTaskTemplate="{StaticResource TaskDT}"
                                         ProjectTemplate="{StaticResource TaskDT}" />
-        
     </UserControl.Resources>
+    
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
