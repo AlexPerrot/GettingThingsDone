@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -164,7 +163,6 @@ namespace GettingThingsDone.src.view
         {
             var s = sender as Panel;
             var childPanel = s.Children[0] as Panel;
-            childPanel.Children[1].Visibility = Visibility.Visible;
             childPanel.Children[2].Visibility = Visibility.Visible;
         }
 
@@ -172,8 +170,8 @@ namespace GettingThingsDone.src.view
         {
             var s = sender as Panel;
             var childPanel = s.Children[0] as Panel;
-            childPanel.Children[1].Visibility = Visibility.Hidden;
             childPanel.Children[2].Visibility = Visibility.Hidden;
+
         }
     }
 
