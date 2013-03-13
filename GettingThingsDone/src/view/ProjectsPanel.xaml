@@ -34,8 +34,9 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="{Binding Title}" MouseDoubleClick="UpdateProject"/>
-                            <Button Name="DelProjectButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" HorizontalAlignment="Right" Height="20" Width="20" VerticalContentAlignment="Center" Click="DeleteProjectButton"/>
+                            <CheckBox Name="CheckBoxProject" IsChecked="{Binding Done, Mode=TwoWay}" VerticalAlignment="Center" />
+                            <Label Content="{Binding Title}" MouseDoubleClick="UpdateProject" MinWidth="200"/>
+                            <Button Name="DelProjectButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" HorizontalAlignment="Right" Height="20" Width="20" Click="DeleteProjectButton"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

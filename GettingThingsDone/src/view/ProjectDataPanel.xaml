@@ -18,11 +18,11 @@
                             <Style TargetType="{x:Type TextBlock}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Done}" Value="True">
-                                        <Setter Property="Text" Value="Project Done"/>
+                                        <Setter Property="Text" Value="This project has been completed."/>
                                     </DataTrigger>
 
                                     <DataTrigger Binding="{Binding Done}" Value="False">
-                                        <Setter Property="Text" Value="Project in progress"/>
+                                        <Setter Property="Text" Value="This project is still in progress."/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -30,7 +30,7 @@
 
                     </TextBlock>
 
-                    <TextBlock Text="{Binding DueDate}" HorizontalAlignment="Left" />
+                <TextBlock Text="{Binding DueDate, StringFormat= This project has to be completed before : {0}.}" HorizontalAlignment="Left" />
                 </StackPanel>
 
                 <GroupBox Header="Tasks" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Margin="5,5,5,5" Padding="5,5,5,5">
@@ -72,15 +72,18 @@
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" Width="200">
-                                            <Expander Style="{StaticResource ResourceKey=PlusMinusExpander}" Header="{Binding Title}" Background="Transparent" Margin="0,5,0,5" Padding="5,5,5,5" >
-                                                <StackPanel>
-                                                    <TextBlock TextWrapping="Wrap" Text="{Binding Description}" Foreground="Black" FontStyle="Italic" />
-                                                </StackPanel>
-                                            </Expander>
 
-                                            <Button Name="DelButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" HorizontalAlignment="Right" Height="20" Width="20" VerticalContentAlignment="Center" Click="DeleteTaskButton"/>
+                                        <CheckBox Name="CheckBoxProject" IsChecked="{Binding Done, Mode=TwoWay}" VerticalAlignment="Center" />
+                                        <Expander Style="{StaticResource ResourceKey=PlusMinusExpander}" Header="{Binding Title}" Background="Transparent" Margin="0,5,0,5" Padding="5,5,5,5" >
+                                            <StackPanel>
+                                                <TextBlock TextWrapping="Wrap" Text="{Binding Description}" Foreground="Black" FontStyle="Italic" />
+                                                
+                                            </StackPanel>
+                                        </Expander>
 
-                                        </StackPanel>
+                                        <Button Name="DelButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" HorizontalAlignment="Right" Height="20" Width="20" VerticalContentAlignment="Center" Click="DeleteTaskButton"/>
+
+                                    </StackPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
