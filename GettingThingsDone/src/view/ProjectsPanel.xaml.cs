@@ -112,7 +112,7 @@ namespace GettingThingsDone.src.view
         private void MoveItemDownClick(object sender, MouseEventArgs e)
         {
             int selectedIndex = this.TaskList.SelectedIndex;
-            if (selectedIndex < (FileList.SelectedItem as IProject).Tasks.Count())
+            if (selectedIndex < (FileList.SelectedItem as IProject).Tasks.Count() - 1)
             {
                 (FileList.SelectedItem as IProject).moveTaskTo(selectedIndex, selectedIndex + 1);
                 this.TaskList.Items.Refresh();

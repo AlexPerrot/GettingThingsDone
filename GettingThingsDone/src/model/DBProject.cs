@@ -166,8 +166,8 @@ namespace GettingThingsDone.src.data
 
         public void moveTaskTo(int currentIndex, int nextIndex)
         {
-            if (currentIndex >= 0 && currentIndex <= this.tasks.Count
-                && nextIndex >= 0 && nextIndex <= this.tasks.Count
+            if (currentIndex >= 0 && currentIndex < this.tasks.Count
+                && nextIndex >= 0 && nextIndex < this.tasks.Count
                 && currentIndex != nextIndex)
             {
                 Task itemToMove = this.tasks.ElementAt(currentIndex);
