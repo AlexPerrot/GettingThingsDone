@@ -68,9 +68,11 @@ namespace GettingThingsDone.src.view
         private void CreateTaskClick(object sender, MouseButtonEventArgs e)
         {
             Task t = TaskCreationWindowWithContext.NewTaskDialog();
-            (FileList.SelectedItem as IProject).AddTask(t);
-            //this.ItemsControlTasks.Items.Refresh();
-            this.TaskList.Items.Refresh();
+            if (t != null)
+            {
+                (FileList.SelectedItem as IProject).AddTask(t);
+                this.TaskList.Items.Refresh();
+            }
         }
 
         private void CreateTaskLinkEnter(object sender, MouseEventArgs e)
@@ -84,7 +86,6 @@ namespace GettingThingsDone.src.view
             Mouse.OverrideCursor = null;
             this.CreateTaskLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
         }
-
 
         private void MoveItemUpClick(object sender, MouseEventArgs e)
         {
@@ -128,6 +129,22 @@ namespace GettingThingsDone.src.view
         {
             Mouse.OverrideCursor = null;
             this.MoveItemDownLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
+		}
+		
+        private void DeleteTaskButton(object sender, RoutedEventArgs e)
+        {
+            ISingleTask task = (sender as Button).DataContext as ISingleTask;
+            IGTDSystem sys = (App.Current as App).GTD;
+            sys.removeTask(task);
+            this.TaskList.Items.Refresh();
+        }
+
+        private void DeleteProjectButton(object sender, RoutedEventArgs e)
+        {
+            IProject project = (sender as Button).DataContext as IProject;
+            IGTDSystem sys = (App.Current as App).GTD;
+            sys.removeProject(project);
+            this.FileList.Items.Refresh();
         }
     }
 }

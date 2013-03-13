@@ -77,7 +77,17 @@ public class GTDSystem : IGTDSystem
         t.Delete();
     }
 
-
+    public void removeProject(Task t)
+    {
+        IProject project = (IProject)t;
+        foreach (Task task in project.Tasks)
+        {
+            foreach (TaskList l in this)
+                l.removeTask(task);
+        }
+        projects.Remove(t);
+        t.Delete();
+    }
 
     public void AddTask(Task t)
     {
