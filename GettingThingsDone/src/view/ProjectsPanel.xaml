@@ -45,10 +45,27 @@
         <StackPanel Grid.Row="0" Grid.Column="1" x:Name="SelectedProjectData" Margin="10,0,0,0" Background="LightGray">
 
             <StackPanel Margin="5,5,5,5">
-                <Label Content="{Binding ElementName=FileList, Path=SelectedItem.Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
-                <Label Content="{Binding ElementName=FileList, Path=SelectedItem.Description}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="{Binding ElementName=FileList, Path=SelectedItem.Done}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="{Binding ElementName=FileList, Path=SelectedItem.DueDate}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="{Binding ElementName=FileList, Path=SelectedItem.Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
+                <TextBlock Text="{Binding ElementName=FileList, Path=SelectedItem.Description}" HorizontalAlignment="Left" />
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=FileList, Path=SelectedItem.Done}" Value="True">
+                                    <Setter Property="Text" Value="Project Done"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding ElementName=FileList, Path=SelectedItem.Done}" Value="False">
+                                    <Setter Property="Text" Value="Project in progress"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+
+                </TextBlock>
+                
+                <TextBlock Text="{Binding ElementName=FileList, Path=SelectedItem.DueDate}" HorizontalAlignment="Left" />
             </StackPanel>
 
             <GroupBox Header="Tasks" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Margin="5,5,5,5" Padding="5,5,5,5">
