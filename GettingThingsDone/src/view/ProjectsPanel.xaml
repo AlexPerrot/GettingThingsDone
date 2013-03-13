@@ -71,7 +71,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <!--Label Content="{Binding Title}" MouseDoubleClick="UpdateProject"/-->
-                                <Expander Header="{Binding Title}" Background="Transparent" Margin="0,5,0,5" Padding="5,5,5,5" >
+                                <Expander Style="{StaticResource ResourceKey=PlusMinusExpander}" Header="{Binding Title}" Background="Transparent" Margin="0,5,0,5" Padding="5,5,5,5" >
                                     <StackPanel>
                                         <TextBlock TextWrapping="Wrap" Text="{Binding Description}" Foreground="Black" FontStyle="Italic" />
                                     </StackPanel>

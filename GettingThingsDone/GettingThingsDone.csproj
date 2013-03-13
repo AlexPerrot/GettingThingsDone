@@ -254,7 +254,14 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="closed.png" />
+    <Resource Include="closed_neonglow.png" />
+    <Resource Include="closed_plasticwrap.png" />
+    <Resource Include="open.png" />
+    <Resource Include="open_neonglow.png" />
+    <Resource Include="open_plasticwrap.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
