@@ -20,8 +20,8 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <local:EditableTextBlock x:Name="TaskTitle" Text="{Binding Title, Mode=TwoWay}" Foreground="Black"
-                        HorizontalAlignment="Left" FontSize="13" FontWeight="DemiBold" />
+            <local:EditableTextBlock x:Name="TaskTitle" Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"
+                        HorizontalAlignment="Left" FontSize="13" FontWeight="DemiBold"/>
             <CheckBox IsChecked="{Binding Done, Mode=TwoWay}" Cursor="Hand" Visibility="Visible"
                             Grid.Column="3">
                 <CheckBox.Template>
@@ -52,6 +52,6 @@
         </Grid>
         <local:EditableTextBlock x:Name="TaskDescription" Foreground="Black"
                     HorizontalAlignment="Left" FontSize="10" FontWeight="Light"
-                    MaxWidth="200" Text="{Binding Description}" TextWrapping="Wrap" MaxHeight="40" />
+                    MaxWidth="200" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" MaxHeight="40" />
     </StackPanel>
 </UserControl>

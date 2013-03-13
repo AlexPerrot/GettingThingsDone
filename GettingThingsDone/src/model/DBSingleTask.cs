@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using GettingThingsDone.src.model;
@@ -8,7 +10,7 @@ using GettingThingsDone.src.model.visitor;
 
 namespace GettingThingsDone.src.data
 {
-    class DBSingleTask : ISingleTask
+    class DBSingleTask : ISingleTask, INotifyPropertyChanged
     {
         public string Title
         {
@@ -24,6 +26,7 @@ namespace GettingThingsDone.src.data
                 Tasks t = db.Tasks.Single(x => x.Id == id);
                 t.Title = value;
                 db.SubmitChanges();
+                OnPropertyChanged("Title");
             }
         }
 
@@ -41,6 +44,7 @@ namespace GettingThingsDone.src.data
                 Tasks t = db.Tasks.Single(x => x.Id == id);
                 t.Description = value;
                 db.SubmitChanges();
+                OnPropertyChanged("Description");
             }
         }
 
@@ -127,6 +131,16 @@ namespace GettingThingsDone.src.data
 
             //on poste les changements
             db.SubmitChanges();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }
