@@ -55,21 +55,27 @@ namespace GettingThingsDone.src.data
         public IGTDSystem makeSystem()
         {
             GTDSystem sys = new GTDSystem();
+            IDictionary<int, ISingleTask> taskMap = new Dictionary<int, ISingleTask>();
+            IDictionary<int, IProject> projectMap = new Dictionary<int, IProject>();
 
             DataClassesDataContext db = dbProvider.Database;
             foreach (Tasks t in db.Tasks)
             {
-                ISingleTask st = new DBSingleTask(t, dbProvider);
+                DBSingleTask st = new DBSingleTask(t, dbProvider);
+                taskMap.Add(st.Id, st);
                 sys.Inbox.AddTask(st);
             }
 
             foreach (Projects project in db.Projects)
             {
                 IProject p = new DBProject(project, dbProvider);
+                projectMap.Add(project.Id, p);
                 sys.Projects.Add(p);
             }
 
-            //updateSchedule(sys);
+            foreach (Projects_Tasks pt in db.Projects_Tasks)
+                projectMap[pt.Project_id].AddTask(taskMap[pt.Task_id]);
+
 
             return sys;
         }
