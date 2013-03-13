@@ -15,7 +15,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
             <!-- Obligé de mettre un background non transparant au StackPanel ci-dessous, sinon l'événement MouseLeave est capturé trop tôt -->
-                <StackPanel Orientation="Vertical" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown_1"
+                <StackPanel x:Name="listStackPanel" Orientation="Vertical" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown_1"
                             MouseMove="StackPanel_Drag" MouseEnter="Task_OnMouseEnter" MouseLeave="Task_OnMouseLeave" Margin="12,6" Background="Gainsboro">
                     <Grid>
                         <Grid.RowDefinitions>
