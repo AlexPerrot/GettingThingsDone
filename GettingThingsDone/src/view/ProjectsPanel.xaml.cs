@@ -68,11 +68,9 @@ namespace GettingThingsDone.src.view
         private void CreateTaskClick(object sender, MouseButtonEventArgs e)
         {
             Task t = TaskCreationWindowWithContext.NewTaskDialog();
-            if (t != null)
-            {
-                (FileList.SelectedItem as IProject).AddTask(t);
-                this.TaskList.Items.Refresh();
-            }
+            (FileList.SelectedItem as IProject).AddTask(t);
+            //this.ItemsControlTasks.Items.Refresh();
+            this.TaskList.Items.Refresh();
         }
 
         private void CreateTaskLinkEnter(object sender, MouseEventArgs e)
@@ -85,6 +83,51 @@ namespace GettingThingsDone.src.view
         {
             Mouse.OverrideCursor = null;
             this.CreateTaskLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
+        }
+
+
+        private void MoveItemUpClick(object sender, MouseEventArgs e)
+        {
+            int selectedIndex = this.TaskList.SelectedIndex;
+            if (selectedIndex > 0)
+            {
+                (FileList.SelectedItem as IProject).moveTaskTo(selectedIndex, selectedIndex - 1);
+                this.TaskList.Items.Refresh();
+            }
+        }
+
+        private void MoveItemUpLinkEnter(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Hand;
+            this.MoveItemUpLink.Foreground = new SolidColorBrush(Colors.Aqua);
+        }
+
+        private void MoveItemUpLinkLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = null;
+            this.MoveItemUpLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
+        }
+
+        private void MoveItemDownClick(object sender, MouseEventArgs e)
+        {
+            int selectedIndex = this.TaskList.SelectedIndex;
+            if (selectedIndex < (FileList.SelectedItem as IProject).Tasks.Count())
+            {
+                (FileList.SelectedItem as IProject).moveTaskTo(selectedIndex, selectedIndex + 1);
+                this.TaskList.Items.Refresh();
+            }
+        }
+
+        private void MoveItemDownLinkEnter(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Hand;
+            this.MoveItemDownLink.Foreground = new SolidColorBrush(Colors.Aqua);
+        }
+
+        private void MoveItemDownLinkLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = null;
+            this.MoveItemDownLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
         }
     }
 }

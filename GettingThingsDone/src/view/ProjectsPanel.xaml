@@ -1,11 +1,11 @@
 ﻿<UserControl x:Class="GettingThingsDone.src.view.ProjectsPanel"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300">
-
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d" 
+        d:DesignHeight="300" d:DesignWidth="300">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -67,27 +67,41 @@
                            Foreground="AntiqueWhite" Background="Indigo"
                            VerticalContentAlignment="Center" Width="100" Height="30" />
 
-                    <ListBox x:Name="TaskList" ItemsSource="{Binding ElementName=FileList, Path=SelectedItem.Tasks}" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Height="200" Width="280" Background="White">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <!--Label Content="{Binding Title}" MouseDoubleClick="UpdateProject"/-->
-                                <StackPanel Orientation="Horizontal" Width="200">
-                                    <Expander Style="{StaticResource ResourceKey=PlusMinusExpander}" Header="{Binding Title}" Background="Transparent" Margin="0,5,0,5" Padding="5,5,5,5" >
-                                    <StackPanel>
-                                        <TextBlock TextWrapping="Wrap" Text="{Binding Description}" Foreground="Black" FontStyle="Italic" />
-                                    </StackPanel>
-                                </Expander>
+                    <StackPanel Orientation="Horizontal" Margin="10,10,10,0">
+                        <StackPanel>
+                            <Label Name="MoveItemUpLink" Content="^" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                            MouseEnter="MoveItemUpLinkEnter" MouseLeave="MoveItemUpLinkLeave" MouseLeftButtonDown="MoveItemUpClick"
+                           Foreground="AntiqueWhite" Background="Indigo"
+                           VerticalContentAlignment="Center" Width="20" Height="100"
+                           Margin="0,0,0,0"/>
 
-                                    <Button Name="DelButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" HorizontalAlignment="Right" Height="25" Width="20" VerticalAlignment="Center"/>
-                                    
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                            <Label Name="MoveItemDownLink" Content="v" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                            MouseEnter="MoveItemDownLinkEnter" MouseLeave="MoveItemDownLinkLeave" MouseLeftButtonDown="MoveItemDownClick"
+                           Foreground="AntiqueWhite" Background="Indigo"
+                           VerticalContentAlignment="Center" Width="20" Height="100" />
+                        </StackPanel>
+
+                        <ListBox x:Name="TaskList" ItemsSource="{Binding ElementName=FileList, Path=SelectedItem.Tasks}"
+                             HorizontalAlignment="Left" VerticalAlignment="Top" Height="200" Width="280" Background="White">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Width="200">
+                                        <Expander Style="{StaticResource ResourceKey=PlusMinusExpander}" Header="{Binding Title}" Background="Transparent" Margin="0,5,0,5" Padding="5,5,5,5" >
+                                            <StackPanel>
+                                                <TextBlock TextWrapping="Wrap" Text="{Binding Description}" Foreground="Black" FontStyle="Italic" />
+                                            </StackPanel>
+                                        </Expander>
+
+                                        <Button Name="DelButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" HorizontalAlignment="Right" Height="25" Width="20" VerticalAlignment="Center"/>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
                 </StackPanel>
             </GroupBox>
         </StackPanel>
 
     </Grid>
-
 </UserControl>
