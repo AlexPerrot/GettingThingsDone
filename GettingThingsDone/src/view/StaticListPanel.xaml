@@ -10,62 +10,18 @@
              DragEnter="UserControl_DragEnter_1"
              DragLeave="UserControl_DragLeave_1"
              DragOver="UserControl_DragEnter_1"
-             xmlns:local="clr-namespace:GettingThingsDone.src.view" MouseEnter="UserControl_MouseEnter_1" MouseLeave="UserControl_MouseLeave_1">
+             xmlns:local="clr-namespace:GettingThingsDone.src.view"
+             MouseEnter="UserControl_MouseEnter_1"
+             MouseLeave="UserControl_MouseLeave_1">
     
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
-            <!-- Obligé de mettre un background non transparant au StackPanel ci-dessous, sinon l'événement MouseLeave est capturé trop tôt -->
-                <StackPanel x:Name="listStackPanel" Orientation="Vertical" MouseMove="StackPanel_Drag"
-                            MouseEnter="Task_OnMouseEnter" MouseLeave="Task_OnMouseLeave" Margin="12,6" Background="Gainsboro">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                        <local:EditableTextBlock x:Name="TaskTitle" Text="{Binding Title, Mode=TwoWay}" Foreground="Black"
-                               HorizontalAlignment="Left" FontSize="13" FontWeight="DemiBold" />
-                        <CheckBox IsChecked="{Binding Done, Mode=TwoWay}" Cursor="Hand" Visibility="Visible"
-                                  Grid.Column="3">
-                            <CheckBox.Template>
-                                <ControlTemplate TargetType="CheckBox">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image x:Name="_image" Source="unchecked_checkbox.png" Width="16" Height="16" />
-                                    </StackPanel>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsChecked" Value="True">
-                                            <Setter TargetName="_image" Property="Source" Value="checked_checkbox.png" />
-                                        </Trigger>
-                                        <Trigger Property="IsChecked" Value="False">
-                                            <Setter TargetName="_image" Property="Source"
-                                                    Value="unchecked_checkbox.png" />
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </CheckBox.Template>
-                        </CheckBox>
-                        <Button x:Name="DelButton" Cursor="Hand" Height="20" Click="DelButton_Click_1" Width="20"
-                                Visibility="Hidden" Background="{x:Null}" BorderThickness="0" Grid.Column="1">
-                            <Image Source="cross_button.png" />
-                        </Button>
-                        <Button x:Name="EditButton" Cursor="Hand" Height="20" Click="StackPanel_MouseLeftButtonDown_1" Width="20"
-                                Visibility="Hidden" Background="{x:Null}" BorderThickness="0" Grid.Column="2">
-                        <Image Source="edit.png" />
-                        </Button>
-                    </Grid>
-                    <local:EditableTextBlock Name="TaskDescription" Foreground="Black"
-                           HorizontalAlignment="Left" FontSize="10" FontWeight="Light"
-                           MaxWidth="200" Text="{Binding Description}" TextWrapping="Wrap" MaxHeight="40" />
-                </StackPanel>
+            <local:TaskBlock />
         </DataTemplate>
         
         <local:TaskDataTemplateSelector x:Key="TemplateSelector"
                                         SingleTaskTemplate="{StaticResource TaskDT}"
-                                        ProjectTemplate="{StaticResource TaskDT}" />
+                                        ProjectTemplate="{StaticResource TaskDT}"/>
     </UserControl.Resources>
     
     <Grid x:Name="grid">
@@ -80,7 +36,7 @@
         <Button x:Name="TrashcanButton" VerticalAlignment="Top" Cursor="Hand" Height="20" Click="TrashcanButton_Click" HorizontalAlignment="Right" Width="20" Visibility="Hidden" Background="{x:Null}" BorderThickness="0">
             <Image Source="cross_button.png"/>
         </Button>
-        <ItemsControl x:Name="List" ItemsSource="{Binding List}" ItemTemplateSelector="{StaticResource TemplateSelector}"
+        <ItemsControl x:Name="List" ItemsSource="{Binding List, Mode=OneWay}" ItemTemplateSelector="{StaticResource TemplateSelector}"
                       Grid.Column="0" Grid.Row="1"
                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                       MinHeight="100" Background="Gainsboro">

@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="GettingThingsDone.src.view.TaskBlock"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:GettingThingsDone.src.view"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <!-- Obligé de mettre un background non transparant au StackPanel ci-dessous, sinon l'événement MouseLeave est capturé trop tôt -->
+    <StackPanel x:Name="listStackPanel" Orientation="Vertical" MouseMove="StackPanel_Drag"
+                    MouseEnter="Task_OnMouseEnter" MouseLeave="Task_OnMouseLeave" Margin="12,6" Background="Gainsboro">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <local:EditableTextBlock x:Name="TaskTitle" Text="{Binding Title, Mode=TwoWay}" Foreground="Black"
+                        HorizontalAlignment="Left" FontSize="13" FontWeight="DemiBold" />
+            <CheckBox IsChecked="{Binding Done, Mode=TwoWay}" Cursor="Hand" Visibility="Visible"
+                            Grid.Column="3">
+                <CheckBox.Template>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal">
+                            <Image x:Name="_image" Source="unchecked_checkbox.png" Width="16" Height="16" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="_image" Property="Source" Value="checked_checkbox.png" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="_image" Property="Source"
+                                            Value="unchecked_checkbox.png" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </CheckBox.Template>
+            </CheckBox>
+            <Button x:Name="DelButton" Cursor="Hand" Height="20" Click="DelButton_Click_1" Width="20"
+                        Visibility="Hidden" Background="{x:Null}" BorderThickness="0" Grid.Column="1">
+                <Image Source="cross_button.png" />
+            </Button>
+            <Button x:Name="EditButton" Cursor="Hand" Height="20" Click="StackPanel_MouseLeftButtonDown_1" Width="20"
+                        Visibility="Hidden" Background="{x:Null}" BorderThickness="0" Grid.Column="2">
+                <Image Source="edit.png" />
+            </Button>
+        </Grid>
+        <local:EditableTextBlock x:Name="TaskDescription" Foreground="Black"
+                    HorizontalAlignment="Left" FontSize="10" FontWeight="Light"
+                    MaxWidth="200" Text="{Binding Description}" TextWrapping="Wrap" MaxHeight="40" />
+    </StackPanel>
+</UserControl>
