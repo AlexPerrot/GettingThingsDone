@@ -48,12 +48,8 @@ namespace GettingThingsDone.src.view
 
             if (newProject != null)
             {
-                //this.FileList.BeginInit();
-
                 ((App)App.Current).GTD.Projects.Add(newProject);
                 this.FileList.Items.Refresh();
-
-                //this.FileList.EndInit();
             }
         }
 
@@ -72,8 +68,11 @@ namespace GettingThingsDone.src.view
         private void CreateTaskClick(object sender, MouseButtonEventArgs e)
         {
             Task t = TaskCreationWindowWithContext.NewTaskDialog();
-            (FileList.SelectedItem as IProject).AddTask(t);
-            this.ItemsControlTasks.Items.Refresh();
+            if (t != null)
+            {
+                (FileList.SelectedItem as IProject).AddTask(t);
+                this.TaskList.Items.Refresh();
+            }
         }
 
         private void CreateTaskLinkEnter(object sender, MouseEventArgs e)

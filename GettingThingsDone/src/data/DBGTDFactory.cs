@@ -27,7 +27,6 @@ namespace GettingThingsDone.src.data
             dbTask.Description = description;
             dbTask.DueDate = DueDate;
             dbTask.Owner = (App.Current as App).Admin.Id;
-            // TODO?: utiliser DueDate
 
             dc.Tasks.InsertOnSubmit(dbTask);
             dc.SubmitChanges();

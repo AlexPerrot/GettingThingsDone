@@ -19,7 +19,7 @@ namespace GettingThingsDone.src.view
     /// </summary>
     public partial class TaskCreationWindowWithContext : Window
     {
-        public IEnumerable<TaskList> Contexts { get { return (App.Current as App).GTD.Contexts; } }
+        public IEnumerable<GTDItem> Contexts { get { return (App.Current as App).GTD; } }
 
         public TaskCreationWindowWithContext()
         {
