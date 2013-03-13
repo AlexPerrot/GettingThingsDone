@@ -78,7 +78,7 @@
                                     </StackPanel>
                                 </Expander>
 
-                                    <Button Name="DelButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" HorizontalAlignment="Right" Height="25" Width="20" VerticalAlignment="Center"/>
+                                    <Button Name="DelButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" HorizontalAlignment="Right" Height="20" Width="20" VerticalContentAlignment="Center" Click="DeleteTaskButton"/>
                                     
                                 </StackPanel>
                             </DataTemplate>

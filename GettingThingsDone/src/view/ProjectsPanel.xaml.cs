@@ -84,5 +84,13 @@ namespace GettingThingsDone.src.view
             Mouse.OverrideCursor = null;
             this.CreateTaskLink.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
         }
+
+        private void DeleteTaskButton(object sender, RoutedEventArgs e)
+        {
+            ISingleTask task = (sender as Button).DataContext as ISingleTask;
+            IGTDSystem sys = (App.Current as App).GTD;
+            sys.removeTask(task);
+            this.TaskList.Items.Refresh();
+        }
     }
 }
