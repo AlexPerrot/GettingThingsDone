@@ -32,9 +32,13 @@
             <ListBox Grid.Row="1" Grid.Column="0" x:Name="FileList" ItemsSource="{Binding Projects}" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Height="Auto" Width="280" Background="LightGray">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding Title}" MouseDoubleClick="UpdateProject"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding Title}" MouseDoubleClick="UpdateProject"/>
+                            <Button Name="DelProjectButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" HorizontalAlignment="Right" Height="20" Width="20" VerticalContentAlignment="Center" Click="DeleteProjectButton"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
+                
             </ListBox>
         </Grid>
 

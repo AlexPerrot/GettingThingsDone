@@ -17,5 +17,6 @@ public interface TaskList : GTDItem, IEnumerable<GTDItem>
 
    void removeTask(Task t);
    void removeSubList(TaskList l);
+   void removeProject(Task t);
 }
 

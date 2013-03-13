@@ -92,5 +92,13 @@ namespace GettingThingsDone.src.view
             sys.removeTask(task);
             this.TaskList.Items.Refresh();
         }
+
+        private void DeleteProjectButton(object sender, RoutedEventArgs e)
+        {
+            IProject project = (sender as Button).DataContext as IProject;
+            IGTDSystem sys = (App.Current as App).GTD;
+            sys.removeProject(project);
+            this.FileList.Items.Refresh();
+        }
     }
 }
