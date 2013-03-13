@@ -9,7 +9,7 @@
              Background="#FF262626">
     <UserControl.Resources>
         <DataTemplate x:Key="ContextPanel">
-            <local:StaticListPanel Name="ListPanel" Width="100" MouseMove="StaticListPanel_MouseMove_1" AllowListDrop="True" Margin="8"/>
+            <local:StaticListPanel Name="ListPanel" Width="300" MouseMove="StaticListPanel_MouseMove_1" AllowListDrop="True" Margin="8"/>
             <DataTemplate.Triggers>
                 <Trigger Property="ItemsControl.AlternationIndex" Value="0">
                     <Setter TargetName="ListPanel" Property="LabelBackground" Value="#FF10253F" />
@@ -24,6 +24,8 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -32,8 +34,13 @@
         </Grid.RowDefinitions>
 
         <local:StaticListPanel DataContext="{Binding Inbox}" Grid.Row="0" Margin="12,12,12,12" VerticalAlignment="Stretch" AllowDelete="False"/>
-        <GridSplitter Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" ShowsPreview="True" Height="5" Background="#FF262626" />
-        <ItemsControl Grid.Row="2" ItemsSource="{Binding Contexts}" AlternationCount="2" ItemTemplate="{StaticResource ContextPanel}">
+        <local:StaticListPanel DataContext="{Binding Waiting}" Grid.Row="0" Grid.Column="1" Margin="12" VerticalAlignment="Stretch" AllowDelete="False"/>
+        <local:StaticListPanel DataContext="{Binding Someday}" Grid.Row="0" Grid.Column="2" Margin="12" VerticalAlignment="Stretch" AllowDelete="False"/>
+        
+        <GridSplitter Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" ShowsPreview="True" Height="5" Background="#FF262626" />
+        
+        
+        <ItemsControl Grid.Row="2" Grid.ColumnSpan="3" ItemsSource="{Binding Contexts}" AlternationCount="2" ItemTemplate="{StaticResource ContextPanel}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                 <WrapPanel Orientation="Horizontal" AllowDrop="True"/>
