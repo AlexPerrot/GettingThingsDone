@@ -133,6 +133,9 @@
     <Compile Include="src\view\TaskCreationWindowWithContext.xaml.cs">
       <DependentUpon>TaskCreationWindowWithContext.xaml</DependentUpon>
     </Compile>
+    <Compile Include="src\view\TaskBlock.xaml.cs">
+      <DependentUpon>TaskBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TaskCreationWindow.xaml.cs">
       <DependentUpon>TaskCreationWindow.xaml</DependentUpon>
     </Compile>
@@ -195,6 +198,10 @@
     <Page Include="src\view\TaskCreationWindowWithContext.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="src\view\TaskBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TaskCreationWindow.xaml">
       <SubType>Designer</SubType>
@@ -259,6 +266,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="src\view\cross_button.png" />
+    <Resource Include="src\view\checked_checkbox.png" />
+    <Resource Include="src\view\unchecked_checkbox.png" />
+    <Resource Include="src\view\edit.png" />
+    <Resource Include="closed.png" />
+    <Resource Include="closed_neonglow.png" />
+    <Resource Include="closed_plasticwrap.png" />
+    <Resource Include="open.png" />
+    <Resource Include="open_neonglow.png" />
+    <Resource Include="open_plasticwrap.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

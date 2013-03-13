@@ -38,23 +38,16 @@
             </ListBox>
         </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="1" x:Name="SelectedProjectData" Margin="10,0,0,0" Background="LightGray">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1" x:Name="SelectedProjectData" Margin="10,0,0,0" Background="LightGray">
 
-            <StackPanel Grid.Row="0" Grid.Column="0" Margin="5,5,5,5">
+            <StackPanel Margin="5,5,5,5">
                 <Label Content="{Binding ElementName=FileList, Path=SelectedItem.Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
                 <Label Content="{Binding ElementName=FileList, Path=SelectedItem.Description}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <Label Content="{Binding ElementName=FileList, Path=SelectedItem.Done}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <Label Content="{Binding ElementName=FileList, Path=SelectedItem.DueDate}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             </StackPanel>
 
-            <GroupBox Grid.Row="1" Grid.Column="0" Header="Tasks" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Margin="5,5,5,5" Padding="5,5,5,5">
+            <GroupBox Header="Tasks" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Margin="5,5,5,5" Padding="5,5,5,5">
                 
                 <!-- Permet de ne pas afficher la GroupBox de Tasks si aucun projet n'est sélectionné -->
                 <GroupBox.Style>
@@ -74,23 +67,26 @@
                            Foreground="AntiqueWhite" Background="Indigo"
                            VerticalContentAlignment="Center" Width="100" Height="30" />
 
-                    <ItemsControl Name="ItemsControlTasks" ItemsSource="{Binding ElementName=FileList, Path=SelectedItem.Tasks}">
-                        <ItemsControl.ItemTemplate>
+                    <ListBox x:Name="TaskList" ItemsSource="{Binding ElementName=FileList, Path=SelectedItem.Tasks}" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Height="200" Width="280" Background="White">
+                        <ListBox.ItemTemplate>
                             <DataTemplate>
-                        
-                                <Expander Header="{Binding Title}" Background="#FFFBFBFB" Margin="0,5,0,5" Padding="5,5,5,5">
+                                <!--Label Content="{Binding Title}" MouseDoubleClick="UpdateProject"/-->
+                                <StackPanel Orientation="Horizontal" Width="200">
+                                    <Expander Style="{StaticResource ResourceKey=PlusMinusExpander}" Header="{Binding Title}" Background="Transparent" Margin="0,5,0,5" Padding="5,5,5,5" >
                                     <StackPanel>
-                                        <TextBlock TextWrapping="Wrap" Text="{Binding Description}" />
+                                        <TextBlock TextWrapping="Wrap" Text="{Binding Description}" Foreground="Black" FontStyle="Italic" />
                                     </StackPanel>
                                 </Expander>
-                        
+
+                                    <Button Name="DelButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" HorizontalAlignment="Right" Height="25" Width="20" VerticalAlignment="Center"/>
+                                    
+                                </StackPanel>
                             </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                    
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </StackPanel>
             </GroupBox>
-        </Grid>
+        </StackPanel>
 
     </Grid>
 
