@@ -63,18 +63,15 @@ namespace GettingThingsDone.src.view
             this.List.BorderBrush = new SolidColorBrush(Colors.DarkGreen);
         }
 
-        private void StackPanel_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        private void StackPanel_MouseLeftButtonDown_1(object sender, RoutedEventArgs routedEventArgs)
         {
-            if (e.ClickCount == 2)
+            TaskCreationWindow editWin = new TaskCreationWindow();
+            ISingleTask task = (sender as Button).DataContext as ISingleTask;
+            editWin.CreationPanel.LoadFromTask(task);
+            if (editWin.ShowDialog().Value)
             {
-                TaskCreationWindow editWin = new TaskCreationWindow();
-                ISingleTask task = (sender as StackPanel).DataContext as ISingleTask;
-                editWin.CreationPanel.LoadFromTask(task);
-                if (editWin.ShowDialog().Value)
-                {
-                    editWin.CreationPanel.WriteToTask(task);
-                    this.List.Items.Refresh();
-                }
+                editWin.CreationPanel.WriteToTask(task);
+                this.List.Items.Refresh();
             }
         }
 
@@ -163,7 +160,10 @@ namespace GettingThingsDone.src.view
         {
             var s = sender as Panel;
             var childPanel = s.FindName("listStackPanel") as Panel;
+
             var element = childPanel.FindName("DelButton") as UIElement;
+            element.Visibility = Visibility.Visible;
+            element = childPanel.FindName("EditButton") as UIElement;
             element.Visibility = Visibility.Visible;
         }
 
@@ -171,7 +171,10 @@ namespace GettingThingsDone.src.view
         {
             var s = sender as Panel;
             var childPanel = s.FindName("listStackPanel") as Panel;
+
             var element = childPanel.FindName("DelButton") as UIElement;
+            element.Visibility = Visibility.Hidden;
+            element = childPanel.FindName("EditButton") as UIElement;
             element.Visibility = Visibility.Hidden;
 
         }

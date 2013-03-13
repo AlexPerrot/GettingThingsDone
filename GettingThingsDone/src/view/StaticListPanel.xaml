@@ -15,8 +15,8 @@
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
             <!-- Obligé de mettre un background non transparant au StackPanel ci-dessous, sinon l'événement MouseLeave est capturé trop tôt -->
-                <StackPanel x:Name="listStackPanel" Orientation="Vertical" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown_1"
-                            MouseMove="StackPanel_Drag" MouseEnter="Task_OnMouseEnter" MouseLeave="Task_OnMouseLeave" Margin="12,6" Background="Gainsboro">
+                <StackPanel x:Name="listStackPanel" Orientation="Vertical" MouseMove="StackPanel_Drag"
+                            MouseEnter="Task_OnMouseEnter" MouseLeave="Task_OnMouseLeave" Margin="12,6" Background="Gainsboro">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -25,11 +25,12 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Label x:Name="TaskTitle" Content="{Binding Title}" Foreground="Black"
+                            <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                        <local:EditableTextBlock x:Name="TaskTitle" Text="{Binding Title, Mode=TwoWay}" Foreground="Black"
                                HorizontalAlignment="Left" FontSize="13" FontWeight="DemiBold" />
                         <CheckBox IsChecked="{Binding Done, Mode=TwoWay}" Cursor="Hand" Visibility="Visible"
-                                  Grid.Column="2">
+                                  Grid.Column="3">
                             <CheckBox.Template>
                                 <ControlTemplate TargetType="CheckBox">
                                     <StackPanel Orientation="Horizontal">
@@ -51,11 +52,14 @@
                                 Visibility="Hidden" Background="{x:Null}" BorderThickness="0" Grid.Column="1">
                             <Image Source="cross_button.png" />
                         </Button>
+                        <Button x:Name="EditButton" Cursor="Hand" Height="20" Click="StackPanel_MouseLeftButtonDown_1" Width="20"
+                                Visibility="Hidden" Background="{x:Null}" BorderThickness="0" Grid.Column="2">
+                        <Image Source="edit.png" />
+                        </Button>
                     </Grid>
-                    <Label Name="TaskDescription" Foreground="Black"
-                           HorizontalAlignment="Left" FontSize="10" FontWeight="Light" MaxWidth="200">
-                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap" MaxHeight="40" />
-                    </Label>
+                    <local:EditableTextBlock Name="TaskDescription" Foreground="Black"
+                           HorizontalAlignment="Left" FontSize="10" FontWeight="Light"
+                           MaxWidth="200" Text="{Binding Description}" TextWrapping="Wrap" MaxHeight="40" />
                 </StackPanel>
         </DataTemplate>
         
