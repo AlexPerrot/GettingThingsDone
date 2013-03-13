@@ -67,18 +67,23 @@
                            Foreground="AntiqueWhite" Background="Indigo"
                            VerticalContentAlignment="Center" Width="100" Height="30" />
 
-                    <ListBox x:Name="TaskList" ItemsSource="{Binding ElementName=FileList, Path=SelectedItem.Tasks}" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Height="Auto" Width="280" Background="White">
+                    <ListBox x:Name="TaskList" ItemsSource="{Binding ElementName=FileList, Path=SelectedItem.Tasks}" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Height="200" Width="280" Background="White">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <!--Label Content="{Binding Title}" MouseDoubleClick="UpdateProject"/-->
-                                <Expander Style="{StaticResource ResourceKey=PlusMinusExpander}" Header="{Binding Title}" Background="Transparent" Margin="0,5,0,5" Padding="5,5,5,5" >
+                                <StackPanel Orientation="Horizontal" Width="200">
+                                    <Expander Style="{StaticResource ResourceKey=PlusMinusExpander}" Header="{Binding Title}" Background="Transparent" Margin="0,5,0,5" Padding="5,5,5,5" >
                                     <StackPanel>
                                         <TextBlock TextWrapping="Wrap" Text="{Binding Description}" Foreground="Black" FontStyle="Italic" />
                                     </StackPanel>
                                 </Expander>
+
+                                    <Button Name="DelButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" HorizontalAlignment="Right" Height="25" Width="20" VerticalAlignment="Center"/>
+                                    
+                                </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
-                    </ListBox>                    
+                    </ListBox>
                 </StackPanel>
             </GroupBox>
         </StackPanel>
