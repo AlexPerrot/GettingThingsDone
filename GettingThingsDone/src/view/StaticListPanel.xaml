@@ -16,7 +16,7 @@
     
     <UserControl.Resources>
         <DataTemplate x:Key="TaskDT">
-            <local:TaskBlock />
+            <local:TaskBlock MouseMove="TaskBlock_Drag"/>
         </DataTemplate>
         
         <local:TaskDataTemplateSelector x:Key="TemplateSelector"

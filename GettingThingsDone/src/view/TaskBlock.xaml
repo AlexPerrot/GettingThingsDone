@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <!-- Obligé de mettre un background non transparant au StackPanel ci-dessous, sinon l'événement MouseLeave est capturé trop tôt -->
-    <StackPanel x:Name="listStackPanel" Orientation="Vertical" MouseMove="StackPanel_Drag"
+    <StackPanel x:Name="listStackPanel" Orientation="Vertical"
                     MouseEnter="Task_OnMouseEnter" MouseLeave="Task_OnMouseLeave" Margin="12,6" Background="Gainsboro">
         <Grid>
             <Grid.RowDefinitions>

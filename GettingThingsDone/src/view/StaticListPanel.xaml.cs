@@ -116,9 +116,21 @@ namespace GettingThingsDone.src.view
         {
             TrashcanButton.Visibility = Visibility.Hidden;
         }
+
+        private void TaskBlock_Drag(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Task t = (sender as TaskBlock).DataContext as Task;
+                TaskList l = DataContext as TaskList;
+                TaskMoveData tmd = new TaskMoveData(t, l);
+                DataObject data = new DataObject(tmd);
+                DragDrop.DoDragDrop(sender as TaskBlock, data, DragDropEffects.Move);
+            }
+        }
     }
 
-    class TaskMoveData
+    public class TaskMoveData
     {
         private Task task;
         private TaskList origin;

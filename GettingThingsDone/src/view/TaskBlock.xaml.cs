@@ -70,18 +70,5 @@ namespace GettingThingsDone.src.view
 
         }
 
-        class TaskMoveData
-        {
-            private Task task;
-            private TaskList origin;
-            public Task Task { get { return this.task; } }
-            public TaskList OrigList { get { return this.origin; } }
-
-            public TaskMoveData(Task t, TaskList l)
-            {
-                this.task = t;
-                this.origin = l;
-            }
-        }
     }
 }
