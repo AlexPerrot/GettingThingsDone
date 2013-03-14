@@ -31,6 +31,14 @@ namespace GettingThingsDone.src.data
             dc.Tasks.InsertOnSubmit(dbTask);
             dc.SubmitChanges();
 
+            Lists_Tasks dbListTask = new Lists_Tasks();
+            dbListTask.List_id = 1;
+            dbListTask.Task_id = dbTask.Id;
+            dbListTask.Owner = dbTask.Owner;
+
+            dc.Lists_Tasks.InsertOnSubmit(dbListTask);
+            dc.SubmitChanges();
+
             return new DBSingleTask(dbTask, this.dbProvider);
         }
 
@@ -58,11 +66,40 @@ namespace GettingThingsDone.src.data
             IDictionary<int, IProject> projectMap = new Dictionary<int, IProject>();
 
             DataClassesDataContext db = dbProvider.Database;
-            foreach (Tasks t in db.Tasks)
+            
+            // Mise en place des tâches dans la Inbox
+            foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == 1 && x.Owner == 1))
             {
+                Tasks t = db.Tasks.Single(x => x.Id == tl.Task_id);
                 DBSingleTask st = new DBSingleTask(t, dbProvider);
                 taskMap.Add(st.Id, st);
                 sys.Inbox.AddTask(st);
+            }
+
+            // Mise en place des tâches dans Waiting
+            foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == 2 && x.Owner == 1))
+            {
+                Tasks t = db.Tasks.Single(x => x.Id == tl.Task_id);
+                DBSingleTask st = new DBSingleTask(t, dbProvider);
+                taskMap.Add(st.Id, st);
+                sys.Waiting.AddTask(st);
+            }
+
+            // Mise en place des tâches dans Someday
+            foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == 3 && x.Owner == 1))
+            {
+                Tasks t = db.Tasks.Single(x => x.Id == tl.Task_id);
+                DBSingleTask st = new DBSingleTask(t, dbProvider);
+                taskMap.Add(st.Id, st);
+                sys.Someday.AddTask(st);
+            }
+
+            // Mise en place Contexts
+            foreach (Lists list in db.Lists.Where(x => x.Id != 1 && x.Id != 2 && x.Id != 3 
+                && x.Owner == 1))
+            {
+                IStaticList st = new StaticList(list.Title);
+                sys.Contexts.Add(st);
             }
 
             foreach (Projects project in db.Projects)
@@ -74,7 +111,6 @@ namespace GettingThingsDone.src.data
 
             foreach (Projects_Tasks pt in db.Projects_Tasks)
                 projectMap[pt.Project_id].AddTask(taskMap[pt.Task_id]);
-
 
             return sys;
         }

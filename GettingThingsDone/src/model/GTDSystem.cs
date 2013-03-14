@@ -33,17 +33,9 @@ public class GTDSystem : IGTDSystem
     public TaskList Waiting { get { return waiting; } }
 
 
-    private List<TaskList> contexts = new List<TaskList>() 
-        {
-            new StaticList("Work"),
-            new StaticList("Home"),
-            new StaticList("Phone"),
-            new StaticList("Computer"),
-            new StaticList("Errands")
-        };
-
+    private List<TaskList> contexts = new List<TaskList>();
+        
     public List<TaskList> Contexts { get { return contexts; } }
-
 
     public GTDSystem()
     {
