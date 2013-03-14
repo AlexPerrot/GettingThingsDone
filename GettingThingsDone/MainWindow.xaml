@@ -37,7 +37,7 @@
             </TabItem>
         </TabControl>
         
-        <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask" Grid.ColumnSpan="2"/>
+        <!-- <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask" Grid.ColumnSpan="2"/> -->
         
     </Grid>
 </Window>

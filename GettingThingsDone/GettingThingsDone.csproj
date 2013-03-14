@@ -276,6 +276,10 @@
     <Resource Include="open_neonglow.png" />
     <Resource Include="open_plasticwrap.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\view\button_plus_blue.png" />
+    <Resource Include="src\view\button_plus_red.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

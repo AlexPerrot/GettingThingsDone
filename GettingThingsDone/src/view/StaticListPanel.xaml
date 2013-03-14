@@ -27,17 +27,35 @@
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Name="NameLabel" Content="{Binding Name}" FontSize="20" Foreground="AntiqueWhite" Background="#FF1F497D" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontWeight="Light" />
-        <Button x:Name="TrashcanButton" VerticalAlignment="Top" Cursor="Hand" Height="20" Click="TrashcanButton_Click" HorizontalAlignment="Right" Width="20" Visibility="Hidden" Background="{x:Null}" BorderThickness="0">
+        <Label Name="NameLabel" Content="{Binding Name}" FontSize="20" Foreground="AntiqueWhite" Background="#FF1F497D" Grid.Column="0"
+               Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontWeight="Light" Grid.ColumnSpan="2"/>
+        <Button x:Name="AddTaskButton" VerticalAlignment="Top" Height="20" Cursor="Hand" Click="AddTaskButton_Click" Grid.Column="1"
+                HorizontalAlignment="Left" Background="{x:Null}" BorderThickness="0" Visibility="Hidden">
+            <Image>
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Source" Value="button_plus_blue.png"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Source" Value="button_plus_red.png"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </Button>
+        <Button x:Name="TrashcanButton" VerticalAlignment="Top" Cursor="Hand" Height="20" Click="TrashcanButton_Click"
+                HorizontalAlignment="Right" Width="20" Visibility="Hidden" Background="{x:Null}" BorderThickness="0" Grid.Column="0">
             <Image Source="cross_button.png"/>
         </Button>
         <ItemsControl x:Name="List" ItemsSource="{Binding List}" ItemTemplateSelector="{StaticResource TemplateSelector}"
-                      Grid.Column="0" Grid.Row="1"
+                      Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
                       VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                       MinHeight="100" Background="Gainsboro">
             <ItemsControl.ItemsPanel>

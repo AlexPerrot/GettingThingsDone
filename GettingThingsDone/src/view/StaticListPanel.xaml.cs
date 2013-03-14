@@ -110,11 +110,13 @@ namespace GettingThingsDone.src.view
             {
                 TrashcanButton.Visibility = Visibility.Visible;
             }
+            AddTaskButton.Visibility = Visibility.Visible;
         }
 
         private void UserControl_MouseLeave_1(object sender, MouseEventArgs e)
         {
             TrashcanButton.Visibility = Visibility.Hidden;
+            AddTaskButton.Visibility = Visibility.Hidden;
         }
 
         private void TaskBlock_Drag(object sender, MouseEventArgs e)
@@ -126,6 +128,16 @@ namespace GettingThingsDone.src.view
                 TaskMoveData tmd = new TaskMoveData(t, l);
                 DataObject data = new DataObject(tmd);
                 DragDrop.DoDragDrop(sender as TaskBlock, data, DragDropEffects.Move);
+            }
+        }
+
+        private void AddTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            Task t = TaskCreationWindow.GetNewTask();
+            TaskList l = DataContext as TaskList;
+            if (t != null)
+            {
+                l.AddTask(t);
             }
         }
     }
