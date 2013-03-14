@@ -16,7 +16,7 @@ public class GTDSystem : IGTDSystem
 {
 
     public string Name { get; set; }
-    private TaskList inbox = new StaticList("Inbox");
+    private TaskList inbox ;//= new StaticList("Inbox");
 
     private List<Task> projects = new List<Task>();
     public List<Task> Projects { get { return projects; } }
@@ -24,13 +24,22 @@ public class GTDSystem : IGTDSystem
     public virtual TaskList Inbox
 	{
         get { return inbox; }
+        set { inbox = value; }
 	}
 
-    private TaskList someday = new StaticList("Someday");
-    public TaskList Someday { get { return someday; } }
+    private TaskList someday;// = new StaticList("Someday");
+    public TaskList Someday
+    { 
+        get { return someday; }
+        set { someday = value; }
+    }
 
-    private TaskList waiting = new StaticList("Waiting");
-    public TaskList Waiting { get { return waiting; } }
+    private TaskList waiting;// = new StaticList("Waiting");
+    public TaskList Waiting 
+    { 
+        get { return waiting; }
+        set { waiting = value; }
+    }
 
 
     private List<TaskList> contexts = new List<TaskList>();

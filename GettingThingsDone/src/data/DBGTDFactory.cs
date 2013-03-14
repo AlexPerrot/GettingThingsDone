@@ -64,10 +64,12 @@ namespace GettingThingsDone.src.data
             GTDSystem sys = new GTDSystem();
             IDictionary<int, ISingleTask> taskMap = new Dictionary<int, ISingleTask>();
             IDictionary<int, IProject> projectMap = new Dictionary<int, IProject>();
+            //IDictionary<int, IStaticList> listMap = new Dictionary<int, IStaticList>();
 
             DataClassesDataContext db = dbProvider.Database;
             
             // Mise en place des tâches dans la Inbox
+            sys.Inbox = new DBStaticList("Inbox", 1, dbProvider);
             foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == 1 && x.Owner == 1))
             {
                 Tasks t = db.Tasks.Single(x => x.Id == tl.Task_id);
@@ -77,6 +79,7 @@ namespace GettingThingsDone.src.data
             }
 
             // Mise en place des tâches dans Waiting
+            sys.Waiting = new DBStaticList("Waiting", 2, dbProvider);
             foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == 2 && x.Owner == 1))
             {
                 Tasks t = db.Tasks.Single(x => x.Id == tl.Task_id);
@@ -86,6 +89,7 @@ namespace GettingThingsDone.src.data
             }
 
             // Mise en place des tâches dans Someday
+            sys.Someday = new DBStaticList("Someday", 3, dbProvider); 
             foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == 3 && x.Owner == 1))
             {
                 Tasks t = db.Tasks.Single(x => x.Id == tl.Task_id);
@@ -98,8 +102,16 @@ namespace GettingThingsDone.src.data
             foreach (Lists list in db.Lists.Where(x => x.Id != 1 && x.Id != 2 && x.Id != 3 
                 && x.Owner == 1))
             {
-                IStaticList st = new StaticList(list.Title);
-                sys.Contexts.Add(st);
+                IStaticList stl = new DBStaticList(list.Title, list.Id, dbProvider);
+                
+                foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == list.Id && x.Owner == 1))
+                {
+                    Tasks t = db.Tasks.Single(x => x.Id == tl.Task_id);
+                    DBSingleTask st = new DBSingleTask(t, dbProvider);
+                    taskMap.Add(st.Id, st);
+                    stl.AddTask(st);
+                }
+                sys.Contexts.Add(stl);
             }
 
             foreach (Projects project in db.Projects)
