@@ -36,7 +36,28 @@
                         <StackPanel Orientation="Horizontal">
                             <CheckBox Name="CheckBoxProject" IsChecked="{Binding Done, Mode=TwoWay}" VerticalAlignment="Center" />
                             <Label Content="{Binding Title}" MouseDoubleClick="UpdateProject" MinWidth="200"/>
-                            <Button Name="DelProjectButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" HorizontalAlignment="Right" Height="20" Width="20" Click="DeleteProjectButton"/>
+                            <ToggleButton Name="DelProjectButton" Content="x" Background="Crimson" Foreground="AntiqueWhite" HorizontalAlignment="Right" Height="20" Width="20"/>
+                            <Popup Name="myPopup" IsOpen="{Binding ElementName=DelProjectButton, Path=IsChecked}" StaysOpen="False">
+                                <StackPanel Background="White">
+                                    <Label Name="myLabel" Background="White" Foreground="Black">
+                                        <TextBlock>Are you sure you want to delete that project ?<LineBreak/>(every associated task will be deleted as well)</TextBlock>
+                                    </Label>
+                                    <Button Name="PopupOkButton" Content="OK" Click="DeleteProjectButton" Width="100" />
+                                    <Button Name="PopupCancelButton" Content="Cancel" Width="100">
+                                        <Button.Triggers>
+                                            <EventTrigger RoutedEvent="Button.Click">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsChecked" Storyboard.TargetName="DelProjectButton">
+                                                            <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="False" />
+                                                        </BooleanAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Button.Triggers>
+                                    </Button>
+                                </StackPanel>
+                            </Popup>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
