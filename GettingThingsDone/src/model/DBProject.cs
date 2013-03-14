@@ -103,15 +103,9 @@ namespace GettingThingsDone.src.data
             DataClassesDataContext db = dbProvider.Database;
             Projects p = db.Projects.Single(x => x.Id == this.id);
             db.Projects.DeleteOnSubmit(p);
-            foreach (Projects_Tasks project_tasks in db.Projects_Tasks)
+            foreach (Projects_Tasks project_tasks in db.Projects_Tasks.Where(item => item.Project_id == this.id))
             {
-                if (project_tasks.Project_id == this.id)
-                    db.Projects_Tasks.DeleteOnSubmit(project_tasks);
-                foreach (Tasks task in db.Tasks)
-                {
-                    if (task.Id == project_tasks.Task_id)
-                        db.Tasks.DeleteOnSubmit(task);
-                }
+                 db.Projects_Tasks.DeleteOnSubmit(project_tasks);
             }            
             db.SubmitChanges();
         }

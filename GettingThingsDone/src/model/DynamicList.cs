@@ -49,7 +49,7 @@ public class DynamicList : IDynamicList
         this.target.removeTask(t);
     }
 
-    public void removeProject(Task t)
+    public void removeProject(IProject t)
     {
         this.target.removeTask(t);
     }

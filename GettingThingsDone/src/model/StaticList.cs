@@ -58,7 +58,7 @@ public class StaticList : IStaticList
         list.Remove(t);
     }
 
-    public void removeProject(Task t)
+    public void removeProject(IProject t)
     {
         list.Remove(t);
     }
