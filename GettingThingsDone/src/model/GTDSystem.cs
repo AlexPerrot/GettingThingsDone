@@ -77,16 +77,15 @@ public class GTDSystem : IGTDSystem
         t.Delete();
     }
 
-    public void removeProject(Task t)
+    public void removeProject(IProject project)
     {
-        IProject project = (IProject)t;
-        foreach (Task task in project.Tasks)
+        Projects.Remove(project);
+        IEnumerable<Task> tl = project.Tasks.ToList(); // on copie la liste des taches, sinon l'itération lance une exception
+        foreach (Task task in tl)
         {
-            foreach (TaskList l in this)
-                l.removeTask(task);
+            removeTask(task);
         }
-        projects.Remove(t);
-        t.Delete();
+        project.Delete();
     }
 
     public void AddTask(Task t)
