@@ -69,48 +69,20 @@ namespace GettingThingsDone.src.data
             DataClassesDataContext db = dbProvider.Database;
             
             // Mise en place des tâches dans la Inbox
-            sys.Inbox = new DBStaticList("Inbox", 1, dbProvider);
-            foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == 1 && x.Owner == 1))
-            {
-                Tasks t = db.Tasks.Single(x => x.Id == tl.Task_id);
-                DBSingleTask st = new DBSingleTask(t, dbProvider);
-                taskMap.Add(st.Id, st);
-                sys.Inbox.AddTask(st);
-            }
-
+            sys.Inbox = createDBStaticList(db.Lists.Single(x => x.Id == 1), taskMap);
+               
             // Mise en place des tâches dans Waiting
-            sys.Waiting = new DBStaticList("Waiting", 2, dbProvider);
-            foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == 2 && x.Owner == 1))
-            {
-                Tasks t = db.Tasks.Single(x => x.Id == tl.Task_id);
-                DBSingleTask st = new DBSingleTask(t, dbProvider);
-                taskMap.Add(st.Id, st);
-                sys.Waiting.AddTask(st);
-            }
+            sys.Waiting = createDBStaticList(db.Lists.Single(x => x.Id == 2), taskMap);
 
             // Mise en place des tâches dans Someday
-            sys.Someday = new DBStaticList("Someday", 3, dbProvider); 
-            foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == 3 && x.Owner == 1))
-            {
-                Tasks t = db.Tasks.Single(x => x.Id == tl.Task_id);
-                DBSingleTask st = new DBSingleTask(t, dbProvider);
-                taskMap.Add(st.Id, st);
-                sys.Someday.AddTask(st);
-            }
+            sys.Someday = createDBStaticList(db.Lists.Single(x => x.Id == 3), taskMap);
 
             // Mise en place Contexts
+             // attetion User codé en dur
             foreach (Lists list in db.Lists.Where(x => x.Id != 1 && x.Id != 2 && x.Id != 3 
                 && x.Owner == 1))
             {
-                IStaticList stl = new DBStaticList(list.Title, list.Id, dbProvider);
-                
-                foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == list.Id && x.Owner == 1))
-                {
-                    Tasks t = db.Tasks.Single(x => x.Id == tl.Task_id);
-                    DBSingleTask st = new DBSingleTask(t, dbProvider);
-                    taskMap.Add(st.Id, st);
-                    stl.AddTask(st);
-                }
+                IStaticList stl = createDBStaticList(list, taskMap);
                 sys.Contexts.Add(stl);
             }
 
@@ -125,6 +97,21 @@ namespace GettingThingsDone.src.data
                 projectMap[pt.Project_id].AddTask(taskMap[pt.Task_id]);
 
             return sys;
+        }
+
+        private IStaticList createDBStaticList(Lists list, IDictionary<int, ISingleTask> taskMap)
+        {
+            DataClassesDataContext db = dbProvider.Database;
+            IStaticList stl = new DBStaticList(list.Title, list.Id, dbProvider);
+            // attetion User codé en dur
+            foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == list.Id && x.Owner == 1))
+            {
+                Tasks t = db.Tasks.Single(x => x.Id == tl.Task_id);
+                DBSingleTask st = new DBSingleTask(t, dbProvider);
+                taskMap.Add(st.Id, st);
+                stl.AddTask(st);
+            }
+            return stl;
         }
 
         public ISchedule makeSchedule(IGTDSystem source)
