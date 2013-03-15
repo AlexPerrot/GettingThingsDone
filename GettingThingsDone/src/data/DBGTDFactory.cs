@@ -31,14 +31,6 @@ namespace GettingThingsDone.src.data
             dc.Tasks.InsertOnSubmit(dbTask);
             dc.SubmitChanges();
 
-            Lists_Tasks dbListTask = new Lists_Tasks();
-            dbListTask.List_id = 1;
-            dbListTask.Task_id = dbTask.Id;
-            dbListTask.Owner = dbTask.Owner;
-
-            dc.Lists_Tasks.InsertOnSubmit(dbListTask);
-            dc.SubmitChanges();
-
             return new DBSingleTask(dbTask, this.dbProvider);
         }
 
