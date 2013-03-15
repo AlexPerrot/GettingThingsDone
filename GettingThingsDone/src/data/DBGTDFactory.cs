@@ -59,6 +59,20 @@ namespace GettingThingsDone.src.data
             return new DBProject(dbProject, this.dbProvider);
         }
 
+        public IStaticList makeContext(string title, string description)
+        {
+            DataClassesDataContext dc = dbProvider.Database;
+            Lists dbList = new Lists();
+            dbList.Title = title;
+            dbList.Description = description;
+            dbList.Owner = (App.Current as App).Admin.Id;
+
+            dc.Lists.InsertOnSubmit(dbList);
+            dc.SubmitChanges();
+
+            return new DBStaticList(dbList.Title, dbList.Id, dbProvider);
+        }
+
         public IGTDSystem makeSystem()
         {
             GTDSystem sys = new GTDSystem();

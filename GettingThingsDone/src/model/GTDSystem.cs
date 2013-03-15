@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using GettingThingsDone.src.model;
 using GettingThingsDone.src.model.visitor;
+using System.Collections.ObjectModel;
 
 /// <remarks>Cette classe décrit le système général de GTD, avec la boite de reception et les listes de l'utilisateur. On ajoutera surement le calendrier ici.</remarks>
 public class GTDSystem : IGTDSystem
@@ -42,9 +43,9 @@ public class GTDSystem : IGTDSystem
     }
 
 
-    private List<TaskList> contexts = new List<TaskList>();
-        
-    public List<TaskList> Contexts { get { return contexts; } }
+    private ObservableCollection<TaskList> contexts = new ObservableCollection<TaskList>();
+
+    public ObservableCollection<TaskList> Contexts { get { return contexts; } }
 
     public GTDSystem()
     {

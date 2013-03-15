@@ -21,6 +21,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
         <TabControl SelectionChanged="TabControl_SelectionChanged_1" Background="DimGray">
@@ -38,6 +39,7 @@
         </TabControl>
         
         <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask" Grid.ColumnSpan="2"/>
-        
+        <Button Content="Créer un contexte" Grid.Row="2" Click="CreateContext" Grid.ColumnSpan="2"/>
+
     </Grid>
 </Window>
