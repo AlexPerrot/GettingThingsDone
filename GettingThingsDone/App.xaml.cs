@@ -34,8 +34,8 @@ namespace GettingThingsDone
         public App()
             : base()
         {
-            gtd = Factory.makeSystem();
             admin = this.DB.Users.Single(item => item.Username == "admin");
+            gtd = Factory.makeSystem();
         }
 
         private void Application_Exit_1(object sender, ExitEventArgs e)
