@@ -106,7 +106,10 @@ namespace GettingThingsDone.src.data
 
         public void Delete()
         {
-            // do nothing
+            DataClassesDataContext db = dbProvider.Database;
+            Lists dbo = db.Lists.Single(item => item.Id == this.id);
+            db.Lists.DeleteOnSubmit(dbo);
+            db.SubmitChanges();
         }
     }
 }

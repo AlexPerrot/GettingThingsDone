@@ -15,5 +15,7 @@ namespace GettingThingsDone.src.model
         TaskList Waiting { get; }
         ObservableCollection<TaskList> Contexts { get; }
 
+        void removeContext(IStaticList l);
+
     }
 }

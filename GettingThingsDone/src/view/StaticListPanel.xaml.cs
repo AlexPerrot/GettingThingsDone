@@ -100,8 +100,8 @@ namespace GettingThingsDone.src.view
 
         private void TrashcanButton_Click(object sender, RoutedEventArgs e)
         {
-            StaticList list = DataContext as StaticList;
-            list.Delete();
+            IStaticList list = DataContext as IStaticList;
+            (App.Current as App).GTD.removeContext(list);
         }
 
         private void UserControl_MouseEnter_1(object sender, MouseEventArgs e)

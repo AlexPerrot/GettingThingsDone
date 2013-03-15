@@ -79,7 +79,15 @@ public class GTDSystem : IGTDSystem
         t.Delete();
     }
 
+    public void removeContext(IStaticList l)
+    {
+        foreach (Task t in l)
+            removeTask(t);
 
+        contexts.Remove(l);
+
+        l.Delete();
+    }
 
     public void AddTask(Task t)
     {
