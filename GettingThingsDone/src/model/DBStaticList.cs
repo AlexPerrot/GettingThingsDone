@@ -61,10 +61,12 @@ namespace GettingThingsDone.src.data
             DataClassesDataContext db = dbProvider.Database;
             DBIdManager idm = dbProvider.IdManager;
             
-            Lists_Tasks lt = db.Lists_Tasks.Single(x => x.List_id == this.id && x.Task_id == idm.GetId(t) 
+            var ltenum = db.Lists_Tasks.Where(x => x.List_id == this.id && x.Task_id == idm.GetId(t) 
                 && x.Owner == 1);
-            db.Lists_Tasks.DeleteOnSubmit(lt);
-
+            foreach (var lt in ltenum)
+            {
+                db.Lists_Tasks.DeleteOnSubmit(lt);
+            }
             //on poste les changements
             db.SubmitChanges();
 
