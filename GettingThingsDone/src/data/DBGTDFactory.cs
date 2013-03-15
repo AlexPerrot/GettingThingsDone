@@ -81,7 +81,15 @@ namespace GettingThingsDone.src.data
             //IDictionary<int, IStaticList> listMap = new Dictionary<int, IStaticList>();
 
             DataClassesDataContext db = dbProvider.Database;
+
+            foreach (Tasks t in db.Tasks)
+            {
+                ISingleTask st = new DBSingleTask(t, dbProvider);
+                taskMap.Add(t.Id, st);
+            }
             
+            //IEnumerable<Lists> inboxes = 
+
             // Mise en place des tâches dans la Inbox
             sys.Inbox = createDBStaticList(db.Lists.Single(x => x.Id == 1), taskMap);
                
@@ -120,10 +128,7 @@ namespace GettingThingsDone.src.data
             // attetion User codé en dur
             foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == list.Id && x.Owner == 1))
             {
-                Tasks t = db.Tasks.Single(x => x.Id == tl.Task_id);
-                DBSingleTask st = new DBSingleTask(t, dbProvider);
-                taskMap.Add(st.Id, st);
-                stl.AddTask(st);
+                stl.AddTask(taskMap[tl.Task_id]);
             }
             return stl;
         }
