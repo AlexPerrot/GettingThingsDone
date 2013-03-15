@@ -41,6 +41,15 @@ namespace GettingThingsDone
             }
         }
 
+        private void CreateContext(object sender, RoutedEventArgs e)
+        {
+            IStaticList c = ContextCreationWindow.GetNewContext();
+            if (c != null)
+            {
+                ((App)App.Current).GTD.Contexts.Add(c);
+            }
+        }
+
         private void TabControl_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             TabItem item = (sender as TabControl).SelectedItem as TabItem;

@@ -12,5 +12,6 @@ namespace GettingThingsDone.src.model
         IProject makeProject(string title, string description, DateTimeOffset? DueDate);
         IGTDSystem makeSystem();
         ISchedule makeSchedule(IGTDSystem source);
+        IStaticList makeContext(string title, string description);
     }
 }
