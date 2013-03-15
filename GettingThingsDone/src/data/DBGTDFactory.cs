@@ -137,7 +137,7 @@ namespace GettingThingsDone.src.data
             DataClassesDataContext db = dbProvider.Database;
             IStaticList stl = new DBStaticList(list.Title, list.Id, dbProvider);
             // attetion User codé en dur
-            foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == list.Id && x.Owner == 1))
+            foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == list.Id && x.Owner == (App.Current as App).Admin.Id))
             {
                 stl.AddTask(taskMap[tl.Task_id]);
             }
