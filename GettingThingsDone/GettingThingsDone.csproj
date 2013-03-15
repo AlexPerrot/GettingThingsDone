@@ -77,6 +77,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ContextCreationWindow.xaml.cs">
+      <DependentUpon>ContextCreationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataClasses.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -110,6 +113,9 @@
     <Compile Include="src\model\visitor\GTDVisitor.cs" />
     <Compile Include="src\model\visitor\SubLists.cs" />
     <Compile Include="src\model\visitor\VoidVisitor.cs" />
+    <Compile Include="src\view\ContextCreationPanel.xaml.cs">
+      <DependentUpon>ContextCreationPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="src\view\EditableTextBlock.cs" />
     <Compile Include="src\view\EditableTextBlockAdorner.cs" />
     <Compile Include="src\view\ProjectCreationPanel.xaml.cs">
@@ -142,6 +148,10 @@
     </Compile>
     <Compile Include="test\TaskListTest.cs" />
     <Compile Include="test\SingleTaskTest.cs" />
+    <Page Include="ContextCreationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,6 +179,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ProjectCreationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\view\ContextCreationPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -243,7 +257,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
