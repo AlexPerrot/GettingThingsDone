@@ -131,6 +131,12 @@ namespace GettingThingsDone.src.data
             foreach (Projects_Tasks pt in db.Projects_Tasks)
                 projectMap[pt.Project_id].AddTask(taskMap[pt.Task_id]);
 
+            //selection des orphelins
+            var orphans = db.Tasks.Where(item => item.Lists_Tasks.Count == 0).Select(item => taskMap[item.Id]);
+            //ajout dans la inbox
+            foreach (ISingleTask orphan in orphans)
+                sys.Inbox.AddTask(orphan);
+
             return sys;
         }
 
