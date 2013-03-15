@@ -75,26 +75,47 @@ namespace GettingThingsDone.src.data
 
         public IGTDSystem makeSystem()
         {
+            // TODO : utiliser une classe perso au passage au multi user
+            Users user = (App.Current as App).Admin;
+
             GTDSystem sys = new GTDSystem();
             IDictionary<int, ISingleTask> taskMap = new Dictionary<int, ISingleTask>();
             IDictionary<int, IProject> projectMap = new Dictionary<int, IProject>();
             //IDictionary<int, IStaticList> listMap = new Dictionary<int, IStaticList>();
 
             DataClassesDataContext db = dbProvider.Database;
-            
+
+            foreach (Tasks t in db.Tasks)
+            {
+                ISingleTask st = new DBSingleTask(t, dbProvider);
+                taskMap.Add(t.Id, st);
+            }
+
+            IDictionary<string, IStaticList> defaultListsMap = new Dictionary<string, IStaticList>();
+            string[] names = new string[] {"Inbox", "Waiting", "Someday"};
+            foreach (var name in names)
+            {
+                IEnumerable<Lists> listResults = db.Lists.Where(list => list.Title == name);
+                if (listResults.Count() == 0)
+                {
+                    // si la requete est vide, il n'y a pas de liste avec ce nom, donc aucune tache dedans
+                    defaultListsMap.Add(name, makeContext(name, ""));
+                }
+                else { defaultListsMap.Add(name, createDBStaticList(listResults.First(), taskMap)); } 
+            }
+
             // Mise en place des tâches dans la Inbox
-            sys.Inbox = createDBStaticList(db.Lists.Single(x => x.Id == 1), taskMap);
+            sys.Inbox = defaultListsMap["Inbox"];
                
             // Mise en place des tâches dans Waiting
-            sys.Waiting = createDBStaticList(db.Lists.Single(x => x.Id == 2), taskMap);
+            sys.Waiting = defaultListsMap["Waiting"];
 
             // Mise en place des tâches dans Someday
-            sys.Someday = createDBStaticList(db.Lists.Single(x => x.Id == 3), taskMap);
+            sys.Someday = defaultListsMap["Someday"];
 
             // Mise en place Contexts
-             // attetion User codé en dur
-            foreach (Lists list in db.Lists.Where(x => x.Id != 1 && x.Id != 2 && x.Id != 3 
-                && x.Owner == 1))
+            foreach (Lists list in db.Lists.Where(x => !names.Contains(x.Title)
+                && x.Owner == user.Id))
             {
                 IStaticList stl = createDBStaticList(list, taskMap);
                 sys.Contexts.Add(stl);
@@ -120,10 +141,7 @@ namespace GettingThingsDone.src.data
             // attetion User codé en dur
             foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == list.Id && x.Owner == 1))
             {
-                Tasks t = db.Tasks.Single(x => x.Id == tl.Task_id);
-                DBSingleTask st = new DBSingleTask(t, dbProvider);
-                taskMap.Add(st.Id, st);
-                stl.AddTask(st);
+                stl.AddTask(taskMap[tl.Task_id]);
             }
             return stl;
         }
