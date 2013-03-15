@@ -94,6 +94,7 @@
     <Compile Include="src\model\Algorithms.cs" />
     <Compile Include="src\model\DBProject.cs" />
     <Compile Include="src\model\DBSingleTask.cs" />
+    <Compile Include="src\model\DBStaticList.cs" />
     <Compile Include="src\model\IDynamicList.cs" />
     <Compile Include="src\model\IGTDFactory.cs" />
     <Compile Include="src\model\IGTDSystem.cs" />
