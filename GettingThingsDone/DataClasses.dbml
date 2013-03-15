@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="gtd" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=localgtd;Integrated Security=True" SettingsObjectName="GettingThingsDone.Properties.Settings" SettingsPropertyName="gtdLocalConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\v11.0;Initial Catalog=GTDlocaldatabase;Integrated Security=True" SettingsObjectName="GettingThingsDone.Properties.Settings" SettingsPropertyName="gtdLocalConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Lists" Member="Lists">
     <Type Name="Lists">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -68,6 +68,7 @@
       <Column Name="Project_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Task_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Owner" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Task_order" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
       <Association Name="Tasks_Projects_Tasks" Member="Tasks" ThisKey="Task_id,Owner" OtherKey="Id,Owner" Type="Tasks" IsForeignKey="true" />
       <Association Name="Users_Projects_Tasks" Member="Users" ThisKey="Owner" OtherKey="Id" Type="Users" IsForeignKey="true" />
       <Association Name="Projects_Projects_Tasks" Member="Projects" ThisKey="Project_id,Owner" OtherKey="Id,Owner" Type="Projects" IsForeignKey="true" />

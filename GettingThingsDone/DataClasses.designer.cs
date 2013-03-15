@@ -1544,6 +1544,8 @@ namespace GettingThingsDone
 		
 		private int _Owner;
 		
+		private int _Task_order;
+		
 		private EntityRef<Tasks> _Tasks;
 		
 		private EntityRef<Users> _Users;
@@ -1562,6 +1564,8 @@ namespace GettingThingsDone
     partial void OnTask_idChanged();
     partial void OnOwnerChanging(int value);
     partial void OnOwnerChanged();
+    partial void OnTask_orderChanging(int value);
+    partial void OnTask_orderChanged();
     #endregion
 		
 		public Projects_Tasks()
@@ -1661,6 +1665,26 @@ namespace GettingThingsDone
 					this._Owner = value;
 					this.SendPropertyChanged("Owner");
 					this.OnOwnerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Task_order", DbType="int NOT NULL")]
+		public int Task_order
+		{
+			get
+			{
+				return this._Task_order;
+			}
+			set
+			{
+				if ((this._Task_order != value))
+				{
+					this.OnTask_orderChanging(value);
+					this.SendPropertyChanging();
+					this._Task_order = value;
+					this.SendPropertyChanged("Task_order");
+					this.OnTask_orderChanged();
 				}
 			}
 		}
