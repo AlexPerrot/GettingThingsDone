@@ -81,7 +81,7 @@ public class GTDSystem : IGTDSystem
 
     public void removeContext(IStaticList l)
     {
-        foreach (Task t in l)
+        foreach (Task t in l.ToList())
             removeTask(t);
 
         contexts.Remove(l);
