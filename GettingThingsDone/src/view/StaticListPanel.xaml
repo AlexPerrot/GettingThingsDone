@@ -6,10 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              AllowDrop="True"
-             Drop="OnDrop"
-             DragEnter="UserControl_DragEnter_1"
-             DragLeave="UserControl_DragLeave_1"
-             DragOver="UserControl_DragEnter_1"
              xmlns:local="clr-namespace:GettingThingsDone.src.view"
              MouseEnter="UserControl_MouseEnter_1"
              MouseLeave="UserControl_MouseLeave_1">
