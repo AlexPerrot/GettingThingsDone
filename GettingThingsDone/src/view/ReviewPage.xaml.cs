@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GettingThingsDone.src.model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,21 +30,32 @@ namespace GettingThingsDone.src.view
 
         private void StaticListPanel_Drop_1(object sender, DragEventArgs e)
         {
-            StaticListPanel source = e.Source as StaticListPanel;
             StaticListPanel target = sender as StaticListPanel;
 
-            var tmp = source.DataContext;
-            source.DataContext = target.DataContext;
-            target.DataContext = tmp;
+            int sourceIndex = (int)e.Data.GetData(typeof(int));
+            int targetIndex = Contexts.Items.IndexOf(target.DataContext);
+
+            IGTDSystem sys = DataContext as IGTDSystem;
+
+            var sourceData = sys.Contexts.ElementAt(sourceIndex);
+            sys.Contexts.RemoveAt(sourceIndex);
+            sys.Contexts.Insert(targetIndex, sourceData);
         }
 
         private void StaticListPanel_MouseMove_1(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                DataObject data = new DataObject(sender);
+                StaticListPanel source = sender as StaticListPanel;
+                int index = Contexts.Items.IndexOf(source.DataContext);
+                DataObject data = new DataObject(index);
                 DragDrop.DoDragDrop(sender as StaticListPanel, data, DragDropEffects.Link);
             }
+        }
+
+        private void ItemsControl_TargetUpdated_1(object sender, DataTransferEventArgs e)
+        {
+            Contexts.Items.Refresh();
         }
     }
 }
