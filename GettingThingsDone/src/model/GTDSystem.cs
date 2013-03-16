@@ -87,6 +87,9 @@ public class GTDSystem : IGTDSystem
         contexts.Remove(l);
 
         l.Delete();
+
+        if (PropertyChanged != null)
+            PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Contexts"));
     }
 
     public void AddTask(Task t)
@@ -109,5 +112,7 @@ public class GTDSystem : IGTDSystem
     {
         // do nothing
     }
+
+    public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 }
 
