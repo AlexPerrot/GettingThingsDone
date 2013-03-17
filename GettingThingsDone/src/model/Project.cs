@@ -66,5 +66,10 @@ public class Project : IProject
     {
         throw new NotImplementedException();
     }
+
+    public void moveTaskTo(int currentIndex, int nextIndex)
+    {
+        throw new NotImplementedException();
+    }
 }
 

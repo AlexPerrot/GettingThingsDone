@@ -11,5 +11,6 @@ namespace GettingThingsDone.src.model
         IEnumerable<Task> Tasks { get; }
         void AddTask(Task t);
         void RemoveTask(Task t);
+        void moveTaskTo(int currentIndex, int nextIndex);
     }
 }

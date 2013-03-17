@@ -91,6 +91,17 @@ public class GTDSystem : IGTDSystem
         if (PropertyChanged != null)
             PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs("Contexts"));
     }
+    
+    public void removeProject(IProject project)
+    {
+        Projects.Remove(project);
+        IEnumerable<Task> tl = project.Tasks.ToList(); // on copie la liste des taches, sinon l'itération lance une exception
+        foreach (Task task in tl)
+        {
+            removeTask(task);
+        }
+        project.Delete();
+    }
 
     public void AddTask(Task t)
     {

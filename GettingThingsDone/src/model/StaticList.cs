@@ -58,6 +58,10 @@ public class StaticList : IStaticList
         list.Remove(t);
     }
 
+    public void removeProject(IProject t)
+    {
+        list.Remove(t);
+    }
 
     public void AddTask(Task t)
     {

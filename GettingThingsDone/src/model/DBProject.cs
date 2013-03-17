@@ -103,6 +103,10 @@ namespace GettingThingsDone.src.data
             DataClassesDataContext db = dbProvider.Database;
             Projects p = db.Projects.Single(x => x.Id == this.id);
             db.Projects.DeleteOnSubmit(p);
+            foreach (Projects_Tasks project_tasks in db.Projects_Tasks.Where(item => item.Project_id == this.id))
+            {
+                 db.Projects_Tasks.DeleteOnSubmit(project_tasks);
+            }            
             db.SubmitChanges();
         }
 
@@ -152,6 +156,18 @@ namespace GettingThingsDone.src.data
         public void RemoveTask(Task t)
         {
             tasks.Remove(t);
+        }
+
+        public void moveTaskTo(int currentIndex, int nextIndex)
+        {
+            if (currentIndex >= 0 && currentIndex < this.tasks.Count
+                && nextIndex >= 0 && nextIndex < this.tasks.Count
+                && currentIndex != nextIndex)
+            {
+                Task itemToMove = this.tasks.ElementAt(currentIndex);
+                this.tasks.RemoveAt(currentIndex);
+                this.tasks.Insert(nextIndex, itemToMove);
+            }
         }
     }
 }
