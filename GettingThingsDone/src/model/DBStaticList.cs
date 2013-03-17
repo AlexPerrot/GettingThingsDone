@@ -111,5 +111,11 @@ namespace GettingThingsDone.src.data
             db.Lists.DeleteOnSubmit(dbo);
             db.SubmitChanges();
         }
+
+
+        public void removeProject(IProject t)
+        {
+            this.RemoveItem(t);
+        }
     }
 }
