@@ -9,7 +9,7 @@
              Background="#FF262626">
     <UserControl.Resources>
         <DataTemplate x:Key="ContextPanel">
-            <local:StaticListPanel Name="ListPanel" Width="300"
+            <local:StaticListPanel x:Name="ListPanel" Width="300"
                                    MouseMove="StaticListPanel_MouseMove_1"
                                    Drop="StaticListPanel_Drop_1"
                                    AllowListDrop="True" Margin="8"/>
