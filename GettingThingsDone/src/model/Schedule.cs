@@ -120,7 +120,6 @@ namespace GettingThingsDone.src.model
 
         private bool isDueToday(Object obj)
         {
-            System.Console.WriteLine("DueToday");
             Task t = obj as Task;
             if (t == null) return false;
 
@@ -130,8 +129,6 @@ namespace GettingThingsDone.src.model
 
         private bool isDueTomorrow(Object obj)
         {
-            System.Console.WriteLine("DueTomorrow");
-
             Task t = obj as Task;
             if (t == null) return false;
 
@@ -140,8 +137,6 @@ namespace GettingThingsDone.src.model
         }
 
         private bool isDueThisWeek(Object obj) {
-            System.Console.WriteLine("DueThisWeek");
-
             Task t = obj as Task;
             if (t == null) return false;
 
@@ -151,9 +146,6 @@ namespace GettingThingsDone.src.model
 
         private bool isDueThisMonth(Object obj)
         {
-            System.Console.WriteLine("DueThisMonth");
-
-
             Task t = obj as Task;
             if (t == null) return false;
 
@@ -163,8 +155,6 @@ namespace GettingThingsDone.src.model
 
         private bool isDueNextMonth(Object obj)
         {
-            System.Console.WriteLine("DueNextMonth");
-
             Task t = obj as Task;
             if (t == null) return false;
 
