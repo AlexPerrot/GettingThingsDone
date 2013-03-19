@@ -27,14 +27,17 @@ namespace GettingThingsDone
         private Users admin;
         public Users Admin { get { return admin; } }
 
-        private IGTDFactory factory = new DBGTDFactory(new LocalDatabaseProvider());
+        IDatabaseProvider dbProvider = new LocalDatabaseProvider();
+
+        private IGTDFactory factory;
         public IGTDFactory Factory { get { return factory; } }
 
         public App()
             : base()
         {
+            factory = new DBGTDFactory(dbProvider);
             admin = this.DB.Users.Single(item => item.Username == "admin");
-            gtd = Factory.makeSystem();
+            gtd = Factory.makeSystem(dbProvider.IdManager.GetUser(admin.Id));
         }
 
         private void Application_Exit_1(object sender, ExitEventArgs e)
