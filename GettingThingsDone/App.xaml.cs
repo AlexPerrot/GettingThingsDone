@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using GettingThingsDone.Properties;
 using GettingThingsDone;
-using GettingThingsDone.data;
 using GettingThingsDone.src.model;
 using GettingThingsDone.src.data;
 
