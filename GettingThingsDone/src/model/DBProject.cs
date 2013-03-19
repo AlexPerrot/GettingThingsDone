@@ -153,5 +153,18 @@ namespace GettingThingsDone.src.data
         {
             tasks.Remove(t);
         }
+
+
+        public IUser Owner
+        {
+            get {
+                DBIdManager mngr = this.dbProvider.IdManager;
+
+                DataClassesDataContext db = this.dbProvider.Database;
+                Projects p = db.Projects.Single(item => item.Id == this.id);
+
+                return mngr.GetUser(p.Owner);
+            }
+        }
     }
 }

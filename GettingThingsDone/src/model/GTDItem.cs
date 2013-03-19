@@ -9,12 +9,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GettingThingsDone.src.model.visitor;
+using GettingThingsDone.src.model;
 
 public interface GTDItem 
 {
 	T accept<T>(GTDVisitor<T> v);
 
     void Delete();
+
+    IUser Owner { get; }
 
 }
 

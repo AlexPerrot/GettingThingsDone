@@ -11,6 +11,7 @@ namespace GettingThingsDone.src.data
 {
     class DBStaticList : IStaticList
     {
+        private IUser owner;
         private ObservableCollection<GTDItem> list = new ObservableCollection<GTDItem>();
         public ObservableCollection<GTDItem> List { get { return list; } }
 
@@ -19,10 +20,11 @@ namespace GettingThingsDone.src.data
 
         public String Name { get; set; }
 
-        public DBStaticList(String name, int id, IDatabaseProvider dbProvider)
+        public DBStaticList(Lists l, IDatabaseProvider dbProvider)
         {
-            this.Name = name;
-            this.id = id;
+            this.Name = l.Title;
+            this.id = l.Id;
+            this.owner = dbProvider.IdManager.GetUser(l.Owner);
             this.dbProvider = dbProvider;
         }
 
@@ -105,6 +107,14 @@ namespace GettingThingsDone.src.data
         public void Delete()
         {
             // do nothing
+        }
+
+
+        public IUser Owner
+        {
+            get {
+                return owner;
+            }
         }
     }
 }
