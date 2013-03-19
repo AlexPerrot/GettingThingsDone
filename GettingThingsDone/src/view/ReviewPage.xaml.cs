@@ -31,7 +31,7 @@ namespace GettingThingsDone.src.view
         private void StaticListPanel_Drop_1(object sender, DragEventArgs e)
         {
             StaticListPanel target = sender as StaticListPanel;
-            if (e.Data.GetFormats().Contains(typeof(int).ToString()))
+            if (e.Data.GetFormats().Contains(typeof(int).ToString()) && target.AllowListDrop)
             {
                 int sourceIndex = (int)e.Data.GetData(typeof(int));
                 int targetIndex = Contexts.Items.IndexOf(target.DataContext);
@@ -41,6 +41,18 @@ namespace GettingThingsDone.src.view
                 var sourceData = sys.Contexts.ElementAt(sourceIndex);
                 sys.Contexts.RemoveAt(sourceIndex);
                 sys.Contexts.Insert(targetIndex, sourceData);
+            }
+            else if (e.Data.GetFormats().Contains(typeof(TaskMoveData).ToString()))
+            {
+                TaskMoveData data = e.Data.GetData(e.Data.GetFormats().First(), true) as TaskMoveData;
+
+                data.OrigList.removeTask(data.Task);
+
+                TaskList l = target.DataContext as TaskList;
+
+                l.AddTask(data.Task);
+
+                target.List.BorderThickness = new Thickness(0);
             }
         }
 
