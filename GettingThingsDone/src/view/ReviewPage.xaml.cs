@@ -31,15 +31,17 @@ namespace GettingThingsDone.src.view
         private void StaticListPanel_Drop_1(object sender, DragEventArgs e)
         {
             StaticListPanel target = sender as StaticListPanel;
+            if (e.Data.GetFormats().Contains(typeof(int).ToString()))
+            {
+                int sourceIndex = (int)e.Data.GetData(typeof(int));
+                int targetIndex = Contexts.Items.IndexOf(target.DataContext);
 
-            int sourceIndex = (int)e.Data.GetData(typeof(int));
-            int targetIndex = Contexts.Items.IndexOf(target.DataContext);
+                IGTDSystem sys = DataContext as IGTDSystem;
 
-            IGTDSystem sys = DataContext as IGTDSystem;
-
-            var sourceData = sys.Contexts.ElementAt(sourceIndex);
-            sys.Contexts.RemoveAt(sourceIndex);
-            sys.Contexts.Insert(targetIndex, sourceData);
+                var sourceData = sys.Contexts.ElementAt(sourceIndex);
+                sys.Contexts.RemoveAt(sourceIndex);
+                sys.Contexts.Insert(targetIndex, sourceData);
+            }
         }
 
         private void StaticListPanel_MouseMove_1(object sender, MouseEventArgs e)
