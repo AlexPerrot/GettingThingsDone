@@ -55,6 +55,7 @@ public class GTDSystem : IGTDSystem
 	public virtual IEnumerator<GTDItem> GetEnumerator()
 	{
         yield return Inbox;
+        yield return Waiting;
         yield return Someday;
         foreach (TaskList item in contexts)
             yield return item;
