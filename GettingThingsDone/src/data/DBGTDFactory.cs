@@ -62,7 +62,7 @@ namespace GettingThingsDone.src.data
             dc.Lists.InsertOnSubmit(dbList);
             dc.SubmitChanges();
 
-            return new DBStaticList(dbList.Title, dbList.Id, dbProvider);
+            return new DBStaticList(dbList, dbProvider);
         }
 
         public IGTDSystem makeSystem()
@@ -70,7 +70,7 @@ namespace GettingThingsDone.src.data
             // TODO : utiliser une classe perso au passage au multi user
             Users user = (App.Current as App).Admin;
 
-            GTDSystem sys = new GTDSystem();
+            GTDSystem sys = new GTDSystem(dbProvider.IdManager.GetUser(user.Id));
             IDictionary<int, ISingleTask> taskMap = new Dictionary<int, ISingleTask>();
             IDictionary<int, IProject> projectMap = new Dictionary<int, IProject>();
             //IDictionary<int, IStaticList> listMap = new Dictionary<int, IStaticList>();
@@ -129,7 +129,7 @@ namespace GettingThingsDone.src.data
         private IStaticList createDBStaticList(Lists list, IDictionary<int, ISingleTask> taskMap)
         {
             DataClassesDataContext db = dbProvider.Database;
-            IStaticList stl = new DBStaticList(list.Title, list.Id, dbProvider);
+            IStaticList stl = new DBStaticList(list, dbProvider);
             // attetion User codé en dur
             foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == list.Id && x.Owner == 1))
             {
