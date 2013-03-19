@@ -58,9 +58,10 @@ namespace GettingThingsDone.src.view
 
         private void StaticListPanel_MouseMove_1(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            StaticListPanel source = sender as StaticListPanel;
+
+            if (e.LeftButton == MouseButtonState.Pressed && source.AllowListDrop)
             {
-                StaticListPanel source = sender as StaticListPanel;
                 int index = Contexts.Items.IndexOf(source.DataContext);
                 DataObject data = new DataObject(index);
                 DragDrop.DoDragDrop(sender as StaticListPanel, data, DragDropEffects.Link);

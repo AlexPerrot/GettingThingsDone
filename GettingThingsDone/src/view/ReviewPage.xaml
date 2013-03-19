@@ -36,9 +36,9 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <local:StaticListPanel DataContext="{Binding Inbox}" Grid.Row="0" Margin="12,12,12,12" VerticalAlignment="Stretch" AllowDelete="False"/>
-        <local:StaticListPanel DataContext="{Binding Waiting}" Grid.Row="0" Grid.Column="1" Margin="12" VerticalAlignment="Stretch" AllowDelete="False"/>
-        <local:StaticListPanel DataContext="{Binding Someday}" Grid.Row="0" Grid.Column="2" Margin="12" VerticalAlignment="Stretch" AllowDelete="False"/>
+        <local:StaticListPanel DataContext="{Binding Inbox}" Grid.Row="0" Margin="12,12,12,12" VerticalAlignment="Stretch" AllowDelete="False" Drop="StaticListPanel_Drop_1"/>
+        <local:StaticListPanel DataContext="{Binding Waiting}" Grid.Row="0" Grid.Column="1" Margin="12" VerticalAlignment="Stretch" AllowDelete="False" Drop="StaticListPanel_Drop_1"/>
+        <local:StaticListPanel DataContext="{Binding Someday}" Grid.Row="0" Grid.Column="2" Margin="12" VerticalAlignment="Stretch" AllowDelete="False" Drop="StaticListPanel_Drop_1"/>
         
         <GridSplitter Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" ShowsPreview="True" Height="5" Background="#FF262626" />
         
