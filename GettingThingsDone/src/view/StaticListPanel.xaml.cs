@@ -100,7 +100,7 @@ namespace GettingThingsDone.src.view
 
         private void TrashcanButton_Click(object sender, RoutedEventArgs e)
         {
-            StaticList list = DataContext as StaticList;
+            IStaticList list = DataContext as IStaticList;
             list.Delete();
         }
 
