@@ -9,7 +9,7 @@ namespace GettingThingsDone.src.data
 {
     class DBUser : IUser
     {
-        String Username
+        public string Username
         {
             get
             {
@@ -26,7 +26,8 @@ namespace GettingThingsDone.src.data
                 db.SubmitChanges();
             }
         }
-        String Password
+
+        public string Password
         {
             get
             {
@@ -43,7 +44,8 @@ namespace GettingThingsDone.src.data
                 db.SubmitChanges();
             }
         }
-        String Mail
+
+        public string Mail
         {
             get
             {
