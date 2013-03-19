@@ -30,6 +30,21 @@ namespace GettingThingsDone.src.data
             }
         }
 
+        public int GetId(IUser user)
+        {
+            if (user is DBUser)
+                return (user as DBUser).Id;
+            else
+            {
+                DataClassesDataContext db = dbProvider.Database;
+                Users dbUser = db.Users.Where(
+                    usr => usr.Username == user.Username &&
+                        usr.Password == user.Password &&
+                        usr.Mail == user.Mail).First();
+                return dbUser.Id;
+            }
+        }
+
         public IUser GetUser(int id)
         {
             IUser user = null;
