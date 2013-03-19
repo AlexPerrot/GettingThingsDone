@@ -9,55 +9,56 @@ namespace GettingThingsDone.src.data
 {
     class DBUser : IUser
     {
-        String Username 
+        String Username
         {
             get
             {
                 DataClassesDataContext db = dbProvider.Database;
                 Users u = db.Users.Single(x => x.Id == id);
-                return u.Username; 
+                return u.Username;
             }
-            
+
             set
             {
                 DataClassesDataContext db = dbProvider.Database;
                 Users u = db.Users.Single(x => x.Id == id);
                 u.Username = value;
-                db.SubmitChanges(); 
-            } 
+                db.SubmitChanges();
+            }
         }
-        String Password 
+        String Password
         {
             get
             {
                 DataClassesDataContext db = dbProvider.Database;
                 Users u = db.Users.Single(x => x.Id == id);
-                return u.Password; 
+                return u.Password;
             }
-            
+
             set
             {
                 DataClassesDataContext db = dbProvider.Database;
                 Users u = db.Users.Single(x => x.Id == id);
                 u.Password = value;
-                db.SubmitChanges(); 
-            } 
+                db.SubmitChanges();
+            }
         }
-        String Mail { 
+        String Mail
+        {
             get
             {
                 DataClassesDataContext db = dbProvider.Database;
                 Users u = db.Users.Single(x => x.Id == id);
-                return u.Mail; 
+                return u.Mail;
             }
-            
+
             set
             {
                 DataClassesDataContext db = dbProvider.Database;
                 Users u = db.Users.Single(x => x.Id == id);
                 u.Mail = value;
-                db.SubmitChanges(); 
-            } 
+                db.SubmitChanges();
+            }
         }
 
         public void Delete()
@@ -78,5 +79,5 @@ namespace GettingThingsDone.src.data
             this.dbProvider = dbProvider;
         }
     }
-    }
 }
+
