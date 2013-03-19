@@ -98,6 +98,7 @@
     <Compile Include="src\model\DBProject.cs" />
     <Compile Include="src\model\DBSingleTask.cs" />
     <Compile Include="src\model\DBStaticList.cs" />
+    <Compile Include="src\model\DBUser.cs" />
     <Compile Include="src\model\IDynamicList.cs" />
     <Compile Include="src\model\IGTDFactory.cs" />
     <Compile Include="src\model\IGTDSystem.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="src\model\ISchedule.cs" />
     <Compile Include="src\model\ISingleTask.cs" />
     <Compile Include="src\model\IStaticList.cs" />
+    <Compile Include="src\model\IUser.cs" />
     <Compile Include="src\model\Schedule.cs" />
     <Compile Include="src\model\TaskList.cs" />
     <Compile Include="src\model\visitor\AllISingleTasks.cs" />
