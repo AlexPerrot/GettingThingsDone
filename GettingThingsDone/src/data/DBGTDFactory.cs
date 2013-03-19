@@ -17,7 +17,7 @@ namespace GettingThingsDone.src.data
             this.dbProvider = dbProvider;
         }
 
-        public ISingleTask makeTask(string title, string description, DateTimeOffset? DueDate)
+        public ISingleTask makeTask(string title, string description, DateTimeOffset? DueDate, IUser owner)
         {
             DataClassesDataContext dc = dbProvider.Database;
 
@@ -34,7 +34,7 @@ namespace GettingThingsDone.src.data
             return new DBSingleTask(dbTask, this.dbProvider);
         }
 
-        public IProject makeProject(string title, string description, DateTimeOffset? DueDate)
+        public IProject makeProject(string title, string description, DateTimeOffset? DueDate, IUser owner)
         {
             DataClassesDataContext dc = dbProvider.Database;
 
@@ -51,7 +51,7 @@ namespace GettingThingsDone.src.data
             return new DBProject(dbProject, this.dbProvider);
         }
 
-        public IStaticList makeContext(string title, string description)
+        public IStaticList makeContext(string title, string description, IUser owner)
         {
             DataClassesDataContext dc = dbProvider.Database;
             Lists dbList = new Lists();
@@ -65,12 +65,9 @@ namespace GettingThingsDone.src.data
             return new DBStaticList(dbList, dbProvider);
         }
 
-        public IGTDSystem makeSystem()
+        public IGTDSystem makeSystem(IUser owner)
         {
-            // TODO : utiliser une classe perso au passage au multi user
-            Users user = (App.Current as App).Admin;
-
-            GTDSystem sys = new GTDSystem(dbProvider.IdManager.GetUser(user.Id));
+            GTDSystem sys = new GTDSystem(owner);
             IDictionary<int, ISingleTask> taskMap = new Dictionary<int, ISingleTask>();
             IDictionary<int, IProject> projectMap = new Dictionary<int, IProject>();
             //IDictionary<int, IStaticList> listMap = new Dictionary<int, IStaticList>();
@@ -91,7 +88,7 @@ namespace GettingThingsDone.src.data
                 if (listResults.Count() == 0)
                 {
                     // si la requete est vide, il n'y a pas de liste avec ce nom, donc aucune tache dedans
-                    defaultListsMap.Add(name, makeContext(name, ""));
+                    defaultListsMap.Add(name, makeContext(name, "", owner));
                 }
                 else { defaultListsMap.Add(name, createDBStaticList(listResults.First(), taskMap)); } 
             }
@@ -107,7 +104,7 @@ namespace GettingThingsDone.src.data
 
             // Mise en place Contexts
             foreach (Lists list in db.Lists.Where(x => !names.Contains(x.Title)
-                && x.Owner == user.Id))
+                && x.Owner == dbProvider.IdManager.GetId(owner)))
             {
                 IStaticList stl = createDBStaticList(list, taskMap);
                 sys.Contexts.Add(stl);
