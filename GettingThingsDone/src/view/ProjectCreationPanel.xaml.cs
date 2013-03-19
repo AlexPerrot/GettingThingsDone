@@ -58,7 +58,8 @@ namespace GettingThingsDone.src.view
         public Task CreateProject()
         {
             IGTDFactory factory = (App.Current as App).Factory;
-            return factory.makeProject(TitleText.Text, DescText.Text, DueDatePicker.SelectedDate);
+            IUser user = (App.Current as App).GTD.Owner;
+            return factory.makeProject(TitleText.Text, DescText.Text, DueDatePicker.SelectedDate, user);
         }
 
         private void PanelLoaded(object sender, RoutedEventArgs e)
