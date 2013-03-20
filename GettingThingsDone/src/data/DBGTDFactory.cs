@@ -74,7 +74,9 @@ namespace GettingThingsDone.src.data
 
             DataClassesDataContext db = dbProvider.Database;
 
-            foreach (Tasks t in db.Tasks)
+            int usrid = dbProvider.IdManager.GetId(owner);
+
+            foreach (Tasks t in db.Tasks.Where(item => item.Owner == usrid))
             {
                 ISingleTask st = new DBSingleTask(t, dbProvider);
                 taskMap.Add(t.Id, st);
@@ -84,7 +86,7 @@ namespace GettingThingsDone.src.data
             string[] names = new string[] {"Inbox", "Waiting", "Someday"};
             foreach (var name in names)
             {
-                IEnumerable<Lists> listResults = db.Lists.Where(list => list.Title == name);
+                IEnumerable<Lists> listResults = db.Lists.Where(list => list.Title == name && list.Owner == usrid);
                 if (listResults.Count() == 0)
                 {
                     // si la requete est vide, il n'y a pas de liste avec ce nom, donc aucune tache dedans
@@ -104,20 +106,20 @@ namespace GettingThingsDone.src.data
 
             // Mise en place Contexts
             foreach (Lists list in db.Lists.Where(x => !names.Contains(x.Title)
-                && x.Owner == dbProvider.IdManager.GetId(owner)))
+                && x.Owner == usrid))
             {
                 IStaticList stl = createDBStaticList(list, taskMap);
                 sys.Contexts.Add(stl);
             }
 
-            foreach (Projects project in db.Projects)
+            foreach (Projects project in db.Projects.Where(item => item.Owner == usrid))
             {
                 IProject p = new DBProject(project, dbProvider);
                 projectMap.Add(project.Id, p);
                 sys.Projects.Add(p);
             }
 
-            foreach (Projects_Tasks pt in db.Projects_Tasks)
+            foreach (Projects_Tasks pt in db.Projects_Tasks.Where(item => item.Owner == usrid))
                 projectMap[pt.Project_id].AddTask(taskMap[pt.Task_id]);
 
             return sys;
