@@ -26,7 +26,7 @@ namespace GettingThingsDone.src.data
             dbTask.Title = title;
             dbTask.Description = description;
             dbTask.DueDate = DueDate;
-            dbTask.Owner = (App.Current as App).Admin.Id;
+            dbTask.Owner = dbProvider.IdManager.GetId(owner);
 
             dc.Tasks.InsertOnSubmit(dbTask);
             dc.SubmitChanges();
@@ -43,7 +43,7 @@ namespace GettingThingsDone.src.data
             dbProject.Title = title;
             dbProject.Description = description;
             dbProject.DueDate = DueDate;
-            dbProject.Owner = (App.Current as App).Admin.Id;
+            dbProject.Owner = dbProvider.IdManager.GetId(owner);
             
             dc.Projects.InsertOnSubmit(dbProject);
             dc.SubmitChanges();
@@ -57,7 +57,7 @@ namespace GettingThingsDone.src.data
             Lists dbList = new Lists();
             dbList.Title = title;
             dbList.Description = description;
-            dbList.Owner = (App.Current as App).Admin.Id;
+            dbList.Owner = dbProvider.IdManager.GetId(owner);
 
             dc.Lists.InsertOnSubmit(dbList);
             dc.SubmitChanges();
@@ -128,7 +128,7 @@ namespace GettingThingsDone.src.data
             DataClassesDataContext db = dbProvider.Database;
             IStaticList stl = new DBStaticList(list, dbProvider);
             // attetion User codé en dur
-            foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == list.Id && x.Owner == 1))
+            foreach (Lists_Tasks tl in db.Lists_Tasks.Where(x => x.List_id == list.Id && x.Owner == list.Owner))
             {
                 stl.AddTask(taskMap[tl.Task_id]);
             }
