@@ -70,5 +70,11 @@ namespace GettingThingsDone
         {
             App.Current.Shutdown();
         }
+
+        private void EnterPressed(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                Login(sender, e);
+        }
     }
 }
