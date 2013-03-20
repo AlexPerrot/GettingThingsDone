@@ -34,5 +34,10 @@ namespace GettingThingsDone
             win.Show();
             this.Close();
         }
+
+        private void Window_Closed_1(object sender, EventArgs e)
+        {
+            App.Current.Shutdown();
+        }
     }
 }
