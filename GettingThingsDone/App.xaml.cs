@@ -38,6 +38,10 @@ namespace GettingThingsDone
             factory = new DBGTDFactory(dbProvider);
             admin = this.DB.Users.Single(item => item.Username == "admin");
             gtd = Factory.makeSystem(dbProvider.IdManager.GetUser(admin.Id));
+
+            this.Properties["Factory"] = factory;
+            this.Properties["Admin"] = admin;
+            this.Properties["GTD"] = gtd;
         }
 
         private void Application_Exit_1(object sender, ExitEventArgs e)
