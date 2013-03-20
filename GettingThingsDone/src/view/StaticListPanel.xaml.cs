@@ -101,7 +101,7 @@ namespace GettingThingsDone.src.view
         private void TrashcanButton_Click(object sender, RoutedEventArgs e)
         {
             IStaticList list = DataContext as IStaticList;
-            (App.Current as App).GTD.removeContext(list);
+            (App.Current.Properties["GTD"] as IGTDSystem).removeContext(list);
         }
 
         private void UserControl_MouseEnter_1(object sender, MouseEventArgs e)

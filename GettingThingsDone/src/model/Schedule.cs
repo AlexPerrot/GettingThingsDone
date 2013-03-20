@@ -59,7 +59,7 @@ namespace GettingThingsDone.src.model
         public Schedule(IGTDSystem system)
         {
             sys = system;
-            tasks = new System.Collections.ObjectModel.ObservableCollection<Task>(sys.accept(new AllTasksWithFutureDueDate()));
+            tasks = new System.Collections.ObjectModel.ObservableCollection<Task>();
         }
 
         private ICollectionView today;

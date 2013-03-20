@@ -1,8 +1,10 @@
 ﻿<Application x:Class="GettingThingsDone.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml"
+             xmlns:gtd="clr-namespace:GettingThingsDone"
+             StartupUri="LoginWindow.xaml"
              Exit="Application_Exit_1">
+    
     <Application.Resources>
         <!-- styles found at : http://blog.ninlabs.com/2011/04/keeping-it-simple-customizing-the-wpf-expander-icon/ -->
         <Style x:Key="ExpanderHeaderFocusVisual">

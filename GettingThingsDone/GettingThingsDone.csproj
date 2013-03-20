@@ -98,13 +98,12 @@
     <Compile Include="src\data\DBIdManager.cs" />
     <Compile Include="src\data\IDatabaseProvider.cs" />
     <Compile Include="src\data\LocalDatabaseProvider.cs" />
-    <Compile Include="src\data\GTDItemSave.cs" />
-    <Compile Include="src\data\TaskVisitor_T.cs" />
     <Compile Include="src\data\DBGTDFactory.cs" />
     <Compile Include="src\model\Algorithms.cs" />
     <Compile Include="src\model\DBProject.cs" />
     <Compile Include="src\model\DBSingleTask.cs" />
     <Compile Include="src\model\DBStaticList.cs" />
+    <Compile Include="src\model\DBUser.cs" />
     <Compile Include="src\model\IDynamicList.cs" />
     <Compile Include="src\model\IGTDFactory.cs" />
     <Compile Include="src\model\IGTDSystem.cs" />
@@ -112,6 +111,7 @@
     <Compile Include="src\model\ISchedule.cs" />
     <Compile Include="src\model\ISingleTask.cs" />
     <Compile Include="src\model\IStaticList.cs" />
+    <Compile Include="src\model\IUser.cs" />
     <Compile Include="src\model\Schedule.cs" />
     <Compile Include="src\model\TaskList.cs" />
     <Compile Include="src\model\visitor\AllISingleTasks.cs" />
@@ -156,8 +156,6 @@
     <Compile Include="TaskCreationWindow.xaml.cs">
       <DependentUpon>TaskCreationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="test\TaskListTest.cs" />
-    <Compile Include="test\SingleTaskTest.cs" />
     <Page Include="ContextCreationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,15 +172,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\model\DynamicList.cs" />
     <Compile Include="src\model\GTDItem.cs" />
     <Compile Include="src\model\GTDSystem.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\model\Project.cs" />
-    <Compile Include="src\model\SingleTask.cs" />
-    <Compile Include="src\model\StaticList.cs" />
     <Compile Include="src\model\Task.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

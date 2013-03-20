@@ -38,8 +38,9 @@ namespace GettingThingsDone.src.view
 
         public IStaticList CreateContext()
         {
-            IGTDFactory factory = (App.Current as App).Factory;
-            return factory.makeContext(TitleText.Text, DescText.Text);
+            IGTDFactory factory = App.Current.Properties["Factory"] as IGTDFactory;
+            IUser user = (App.Current.Properties["GTD"] as IGTDSystem).Owner;
+            return factory.makeContext(TitleText.Text, DescText.Text, user);
         }
 
         private void PanelLoaded(object sender, RoutedEventArgs e)

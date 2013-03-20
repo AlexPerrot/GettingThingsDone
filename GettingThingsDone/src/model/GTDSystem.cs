@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 /// <remarks>Cette classe décrit le système général de GTD, avec la boite de reception et les listes de l'utilisateur. On ajoutera surement le calendrier ici.</remarks>
 public class GTDSystem : IGTDSystem
 {
+    private IUser owner;
 
     public string Name { get; set; }
     private TaskList inbox ;//= new StaticList("Inbox");
@@ -47,9 +48,9 @@ public class GTDSystem : IGTDSystem
 
     public ObservableCollection<TaskList> Contexts { get { return contexts; } }
 
-    public GTDSystem()
+    public GTDSystem(IUser owner)
     {
-       
+        this.owner = owner;
     }
 
 	public virtual IEnumerator<GTDItem> GetEnumerator()
@@ -126,5 +127,10 @@ public class GTDSystem : IGTDSystem
     }
 
     public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+
+    public IUser Owner
+    {
+        get { return owner; }
+    }
 }
 

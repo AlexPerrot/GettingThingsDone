@@ -100,10 +100,12 @@ namespace GettingThingsDone.src.data
         private int id;
         public int Id { get { return id; } }
         private IDatabaseProvider dbProvider;
+        private IUser owner;
 
         public DBSingleTask(Tasks dbTask, IDatabaseProvider dbProvider)
         {
             this.id = dbTask.Id;
+            this.owner = dbProvider.IdManager.GetUser(dbTask.Owner);
             this.dbProvider = dbProvider;
         }
 
@@ -141,6 +143,12 @@ namespace GettingThingsDone.src.data
             {
                 handler(this, new PropertyChangedEventArgs(name));
             }
+        }
+
+
+        public IUser Owner
+        {
+            get { return owner; }
         }
     }
 }

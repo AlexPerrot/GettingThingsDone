@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using GettingThingsDone.Properties;
 using GettingThingsDone;
-using GettingThingsDone.data;
 using GettingThingsDone.src.model;
 using GettingThingsDone.src.data;
 
@@ -28,14 +27,18 @@ namespace GettingThingsDone
         private Users admin;
         public Users Admin { get { return admin; } }
 
-        private IGTDFactory factory = new DBGTDFactory(new LocalDatabaseProvider());
+        IDatabaseProvider dbProvider = new LocalDatabaseProvider();
+
+        private IGTDFactory factory;
         public IGTDFactory Factory { get { return factory; } }
 
         public App()
             : base()
         {
-            admin = this.DB.Users.Single(item => item.Username == "admin");
-            gtd = Factory.makeSystem();
+            factory = new DBGTDFactory(dbProvider);
+
+            this.Properties["Factory"] = factory;
+            this.Properties["DBProvider"] = dbProvider;
         }
 
         private void Application_Exit_1(object sender, ExitEventArgs e)

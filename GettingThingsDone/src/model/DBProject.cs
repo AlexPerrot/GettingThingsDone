@@ -142,7 +142,7 @@ namespace GettingThingsDone.src.data
                 Projects_Tasks pt = new Projects_Tasks();
                 pt.Project_id = this.id;
                 pt.Task_id = id;
-                pt.Owner = (App.Current as App).Admin.Id;
+                pt.Owner = dbProvider.IdManager.GetId(t.Owner);
                 dc.Projects_Tasks.InsertOnSubmit(pt);
             }
             else
@@ -167,6 +167,18 @@ namespace GettingThingsDone.src.data
                 Task itemToMove = this.tasks.ElementAt(currentIndex);
                 this.tasks.RemoveAt(currentIndex);
                 this.tasks.Insert(nextIndex, itemToMove);
+            }
+         }
+
+        public IUser Owner
+        {
+            get {
+                DBIdManager mngr = this.dbProvider.IdManager;
+
+                DataClassesDataContext db = this.dbProvider.Database;
+                Projects p = db.Projects.Single(item => item.Id == this.id);
+
+                return mngr.GetUser(p.Owner);
             }
         }
     }

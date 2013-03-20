@@ -8,10 +8,10 @@ namespace GettingThingsDone.src.model
 {
     public interface IGTDFactory
     {
-        ISingleTask makeTask(string title, string description, DateTimeOffset? DueDate);
-        IProject makeProject(string title, string description, DateTimeOffset? DueDate);
-        IGTDSystem makeSystem();
+        ISingleTask makeTask(string title, string description, DateTimeOffset? DueDate, IUser owner);
+        IProject makeProject(string title, string description, DateTimeOffset? DueDate, IUser owner);
+        IGTDSystem makeSystem(IUser owner);
         ISchedule makeSchedule(IGTDSystem source);
-        IStaticList makeContext(string title, string description);
+        IStaticList makeContext(string title, string description, IUser owner);
     }
 }

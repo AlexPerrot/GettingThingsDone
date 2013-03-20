@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GettingThingsDone.src.model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace GettingThingsDone.src.view
     /// </summary>
     public partial class TaskCreationWindowWithContext : Window
     {
-        public IEnumerable<GTDItem> Contexts { get { return (App.Current as App).GTD; } }
+        public IEnumerable<GTDItem> Contexts { get { return App.Current.Properties["GTD"] as IGTDSystem; } }
 
         public TaskCreationWindowWithContext()
         {

@@ -45,11 +45,6 @@ namespace GettingThingsDone.src.view
             target.DataContext = tmp;
         }
 
-        private void UserControl_Loaded_1(object sender, RoutedEventArgs e)
-        {
-            DataContext = new Schedule((App.Current as App).GTD);
-        }
-
         internal void update()
         {
             ISchedule schedule = DataContext as ISchedule;

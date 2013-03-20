@@ -21,13 +21,10 @@ namespace GettingThingsDone.src.view
     /// </summary>
     public partial class ProjectsPanel : UserControl
     {
-
-        //MainWindow main = App.Current.MainWindow as MainWindow;
-
         public ProjectsPanel()
         {
             InitializeComponent();
-            this.DataContext = ((App)App.Current).GTD;
+            this.DataContext = App.Current.Properties["GTD"];
         }
 
         private void CreateProjectLinkEnter(object sender, MouseEventArgs e)
@@ -48,7 +45,7 @@ namespace GettingThingsDone.src.view
 
             if (newProject != null)
             {
-                ((App)App.Current).GTD.Projects.Add(newProject);
+                (this.DataContext as IGTDSystem).Projects.Add(newProject);
                 this.FileList.Items.Refresh();
             }
         }
