@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GettingThingsDone.src.data;
+using GettingThingsDone.src.model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +32,11 @@ namespace GettingThingsDone
 
         private void Login(object sender, EventArgs e)
         {
+            IDatabaseProvider dbProvider = App.Current.Properties["DBProvider"] as IDatabaseProvider;
+            IUser user = dbProvider.IdManager.GetUser(dbProvider.Database.Users.First().Id); // dummy user for now
+            IGTDFactory factory = App.Current.Properties["Factory"] as IGTDFactory;
+            App.Current.Properties["GTD"] = factory.makeSystem(user);
+
             Window win = App.Current.MainWindow;
             win.Show();
             this.Close();
