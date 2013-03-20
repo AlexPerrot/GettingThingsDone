@@ -47,13 +47,13 @@ namespace GettingThingsDone
             }
             catch (InvalidOperationException ioe)
             {
-                //TODO : afficher un message d'erreur
+                MessageBox.Show("No user with this username", "Sorry");
                 return;
             }
 
             if (!(dbUser.Password == password))
             {
-                //TODO : afficher un message d'erreur
+                MessageBox.Show("Wrong password", "Try again");
                 return;
             }
 
