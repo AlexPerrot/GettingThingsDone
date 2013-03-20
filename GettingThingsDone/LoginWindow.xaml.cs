@@ -33,7 +33,31 @@ namespace GettingThingsDone
         private void Login(object sender, EventArgs e)
         {
             IDatabaseProvider dbProvider = App.Current.Properties["DBProvider"] as IDatabaseProvider;
-            IUser user = dbProvider.IdManager.GetUser(dbProvider.Database.Users.First().Id); // dummy user for now
+            DataClassesDataContext db = dbProvider.Database;
+
+            //recup des infos
+            string userName = this.loginBox.Text;
+            string password = this.passBox.Password;
+
+            //récupération de l'utilisateur en base
+            Users dbUser = null;
+            try
+            {
+                dbUser = db.Users.Single(usr => usr.Username == userName);
+            }
+            catch (InvalidOperationException ioe)
+            {
+                //TODO : afficher un message d'erreur
+                return;
+            }
+
+            if (!(dbUser.Password == password))
+            {
+                //TODO : afficher un message d'erreur
+                return;
+            }
+
+            IUser user = dbProvider.IdManager.GetUser(dbUser.Id);
             IGTDFactory factory = App.Current.Properties["Factory"] as IGTDFactory;
             App.Current.Properties["GTD"] = factory.makeSystem(user);
 
