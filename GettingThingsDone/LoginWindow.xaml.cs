@@ -37,7 +37,7 @@ namespace GettingThingsDone
             IGTDFactory factory = App.Current.Properties["Factory"] as IGTDFactory;
             App.Current.Properties["GTD"] = factory.makeSystem(user);
 
-            Window win = App.Current.MainWindow;
+            Window win = new MainWindow();
             win.Show();
             this.Close();
         }

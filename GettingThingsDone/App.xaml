@@ -4,9 +4,7 @@
              xmlns:gtd="clr-namespace:GettingThingsDone"
              StartupUri="LoginWindow.xaml"
              Exit="Application_Exit_1">
-    <Application.MainWindow>
-        <gtd:MainWindow />
-    </Application.MainWindow>
+    
     <Application.Resources>
         <!-- styles found at : http://blog.ninlabs.com/2011/04/keeping-it-simple-customizing-the-wpf-expander-icon/ -->
         <Style x:Key="ExpanderHeaderFocusVisual">
