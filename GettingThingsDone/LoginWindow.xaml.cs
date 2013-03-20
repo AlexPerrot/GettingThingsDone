@@ -33,7 +33,31 @@ namespace GettingThingsDone
         private void Login(object sender, EventArgs e)
         {
             IDatabaseProvider dbProvider = App.Current.Properties["DBProvider"] as IDatabaseProvider;
-            IUser user = dbProvider.IdManager.GetUser(dbProvider.Database.Users.First().Id); // dummy user for now
+            DataClassesDataContext db = dbProvider.Database;
+
+            //recup des infos
+            string userName = this.loginBox.Text;
+            string password = this.passBox.Password;
+
+            //récupération de l'utilisateur en base
+            Users dbUser = null;
+            try
+            {
+                dbUser = db.Users.Single(usr => usr.Username == userName);
+            }
+            catch (InvalidOperationException ioe)
+            {
+                MessageBox.Show("No user with this username", "Sorry");
+                return;
+            }
+
+            if (!(dbUser.Password == password))
+            {
+                MessageBox.Show("Wrong password", "Try again");
+                return;
+            }
+
+            IUser user = dbProvider.IdManager.GetUser(dbUser.Id);
             IGTDFactory factory = App.Current.Properties["Factory"] as IGTDFactory;
             App.Current.Properties["GTD"] = factory.makeSystem(user);
 
@@ -45,6 +69,34 @@ namespace GettingThingsDone
         private void Window_Closed_1(object sender, EventArgs e)
         {
             App.Current.Shutdown();
+        }
+
+        private void EnterPressed(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                Login(sender, e);
+        }
+
+        private void CreateUser(object sender, RoutedEventArgs e)
+        {
+            IDatabaseProvider dbProvider = App.Current.Properties["DBProvider"] as IDatabaseProvider;
+            DataClassesDataContext db = dbProvider.Database;
+
+            //recup des infos
+            string userName = this.loginBox.Text;
+            string password = this.passBox.Password;
+
+            IEnumerable<Users> users = db.Users.Where(usr => usr.Username == userName);
+            if (users.Count() != 0)
+            {
+                MessageBox.Show("Already a user with username", "Sorry");
+                return;
+            }
+
+            IGTDFactory factory = App.Current.Properties["Factory"] as IGTDFactory;
+            factory.makeUser(userName, password, "1337");
+
+            MessageBox.Show("New user created");
         }
     }
 }
