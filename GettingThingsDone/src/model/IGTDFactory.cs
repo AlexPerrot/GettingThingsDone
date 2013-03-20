@@ -13,5 +13,6 @@ namespace GettingThingsDone.src.model
         IGTDSystem makeSystem(IUser owner);
         ISchedule makeSchedule(IGTDSystem source);
         IStaticList makeContext(string title, string description, IUser owner);
+        IUser makeUser(string username, string password, string mail);
     }
 }

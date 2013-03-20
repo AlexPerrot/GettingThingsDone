@@ -141,5 +141,20 @@ namespace GettingThingsDone.src.data
         {
             return new Schedule(source);
         }
+
+
+        public IUser makeUser(string username, string password, string mail)
+        {
+            DataClassesDataContext db = dbProvider.Database;
+
+            Users user = new Users();
+            user.Username = username;
+            user.Password = password;
+            user.Mail = mail;
+            db.Users.InsertOnSubmit(user);
+            db.SubmitChanges();
+
+            return dbProvider.IdManager.GetUser(user.Id);
+        }
     }
 }
