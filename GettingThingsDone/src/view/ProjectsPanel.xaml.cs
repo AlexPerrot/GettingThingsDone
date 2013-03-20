@@ -65,7 +65,7 @@ namespace GettingThingsDone.src.view
         private void DeleteProjectButton(object sender, RoutedEventArgs e)
         {
             IProject project = (sender as Button).DataContext as IProject;
-            IGTDSystem sys = (App.Current as App).GTD;
+            IGTDSystem sys = App.Current.Properties["GTD"] as IGTDSystem;
             sys.removeProject(project);
             this.FileList.Items.Refresh();
         }

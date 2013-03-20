@@ -95,7 +95,7 @@ namespace GettingThingsDone.src.view
         private void DeleteTaskButton(object sender, RoutedEventArgs e)
         {
             ISingleTask task = (sender as Button).DataContext as ISingleTask;
-            IGTDSystem sys = (App.Current as App).GTD;
+            IGTDSystem sys = App.Current.Properties["GTD"] as IGTDSystem;
             sys.removeTask(task);
             this.TaskList.Items.Refresh();
         }
