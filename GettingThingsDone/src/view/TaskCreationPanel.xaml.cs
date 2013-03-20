@@ -57,8 +57,8 @@ namespace GettingThingsDone.src.view
 
         public Task CreateTask()
         {
-            IGTDFactory factory = (App.Current as App).Factory;
-            IUser user = (App.Current as App).GTD.Owner;
+            IGTDFactory factory = App.Current.Properties["Factory"] as IGTDFactory;
+            IUser user = (App.Current.Properties["GTD"] as IGTDSystem).Owner;
             return factory.makeTask(TitleText.Text, DescText.Text, DueDatePicker.SelectedDate, user);
         }
 

@@ -38,8 +38,8 @@ namespace GettingThingsDone.src.view
 
         public IStaticList CreateContext()
         {
-            IGTDFactory factory = (App.Current as App).Factory;
-            IUser user = (App.Current as App).GTD.Owner;
+            IGTDFactory factory = App.Current.Properties["Factory"] as IGTDFactory;
+            IUser user = (App.Current.Properties["GTD"] as IGTDSystem).Owner;
             return factory.makeContext(TitleText.Text, DescText.Text, user);
         }
 

@@ -84,7 +84,7 @@ namespace GettingThingsDone.src.data
                 Lists_Tasks dbListTask = new Lists_Tasks();
                 dbListTask.Task_id = idm.GetId(t);
                 dbListTask.List_id = this.id;
-                dbListTask.Owner = (App.Current as App).Admin.Id;
+                dbListTask.Owner = idm.GetId(t.Owner);
 
                 db.Lists_Tasks.InsertOnSubmit(dbListTask);
                 db.SubmitChanges();
