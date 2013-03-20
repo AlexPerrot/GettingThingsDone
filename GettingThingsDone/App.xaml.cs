@@ -36,12 +36,8 @@ namespace GettingThingsDone
             : base()
         {
             factory = new DBGTDFactory(dbProvider);
-            admin = this.DB.Users.Single(item => item.Username == "admin");
-            gtd = Factory.makeSystem(dbProvider.IdManager.GetUser(admin.Id));
 
             this.Properties["Factory"] = factory;
-            this.Properties["Admin"] = admin;
-            this.Properties["GTD"] = gtd;
             this.Properties["DBProvider"] = dbProvider;
         }
 
