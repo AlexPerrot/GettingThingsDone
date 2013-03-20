@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:gtd="clr-namespace:GettingThingsDone"
              StartupUri="LoginWindow.xaml"
+             ShutdownMode="OnLastWindowClose"
              Exit="Application_Exit_1">
     
     <Application.Resources>
