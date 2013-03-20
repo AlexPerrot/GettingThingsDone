@@ -76,5 +76,27 @@ namespace GettingThingsDone
             if (e.Key == Key.Enter)
                 Login(sender, e);
         }
+
+        private void CreateUser(object sender, RoutedEventArgs e)
+        {
+            IDatabaseProvider dbProvider = App.Current.Properties["DBProvider"] as IDatabaseProvider;
+            DataClassesDataContext db = dbProvider.Database;
+
+            //recup des infos
+            string userName = this.loginBox.Text;
+            string password = this.passBox.Password;
+
+            IEnumerable<Users> users = db.Users.Where(usr => usr.Username == userName);
+            if (users.Count() != 0)
+            {
+                MessageBox.Show("Already a user with username", "Sorry");
+                return;
+            }
+
+            IGTDFactory factory = App.Current.Properties["Factory"] as IGTDFactory;
+            factory.makeUser(userName, password, "1337");
+
+            MessageBox.Show("New user created");
+        }
     }
 }
