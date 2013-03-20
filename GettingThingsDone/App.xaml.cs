@@ -42,6 +42,7 @@ namespace GettingThingsDone
             this.Properties["Factory"] = factory;
             this.Properties["Admin"] = admin;
             this.Properties["GTD"] = gtd;
+            this.Properties["DBProvider"] = dbProvider;
         }
 
         private void Application_Exit_1(object sender, ExitEventArgs e)
