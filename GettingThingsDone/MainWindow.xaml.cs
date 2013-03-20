@@ -28,8 +28,8 @@ namespace GettingThingsDone
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = ((App)App.Current).GTD;
-            schedule = (App.Current as App).Factory.makeSchedule(DataContext as IGTDSystem);
+            DataContext = App.Current.Properties["GTD"];
+            schedule = (App.Current.Properties["Factory"] as IGTDFactory).makeSchedule(DataContext as IGTDSystem);
         }
 
         private void CreateTask(object sender, RoutedEventArgs e)
@@ -37,7 +37,7 @@ namespace GettingThingsDone
             Task t = TaskCreationWindow.GetNewTask();
             if (t != null)
             {
-                ((App)App.Current).GTD.Inbox.AddTask(t);
+                (DataContext as IGTDSystem).Inbox.AddTask(t);
             }
         }
 
@@ -46,7 +46,7 @@ namespace GettingThingsDone
             IStaticList c = ContextCreationWindow.GetNewContext();
             if (c != null)
             {
-                ((App)App.Current).GTD.Contexts.Add(c);
+                (DataContext as IGTDSystem).Contexts.Add(c);
             }
         }
 
