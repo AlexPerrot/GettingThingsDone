@@ -27,5 +27,12 @@ namespace GettingThingsDone
         private void ShowCredentials(object Sender, EventArgs e) {
             System.Console.WriteLine(string.Format("Credentials : {0}, {1}", loginBox.Text, passBox.Password));
         }
+
+        private void Login(object sender, EventArgs e)
+        {
+            Window win = App.Current.MainWindow;
+            win.Show();
+            this.Close();
+        }
     }
 }
