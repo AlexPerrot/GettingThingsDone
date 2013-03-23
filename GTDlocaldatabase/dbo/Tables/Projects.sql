@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Projects] (
     [Id]          INT           IDENTITY (1, 1) NOT NULL,
     [Title]       NVARCHAR (50) NOT NULL,
-    [Description] NVARCHAR (50) NULL,
+    [Description] NVARCHAR (MAX) NULL,
     [Owner]       INT           NOT NULL,
     [Done] BIT NOT NULL DEFAULT 0, 
     [DueDate] DATETIMEOFFSET NULL, 
