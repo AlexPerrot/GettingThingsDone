@@ -72,5 +72,26 @@ namespace GettingThingsDone.src.view
         {
             Contexts.Items.Refresh();
         }
+
+        private void CreateContext_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            IStaticList c = ContextCreationWindow.GetNewContext();
+            if (c != null)
+            {
+                (DataContext as IGTDSystem).Contexts.Add(c);
+            }
+        }
+
+        private void CreateContext_MouseEnter_1(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Hand;
+            this.CreateContext.Foreground = new SolidColorBrush(Colors.Aqua);
+        }
+
+        private void CreateContext_MouseLeave_1(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = null;
+            this.CreateContext.Foreground = new SolidColorBrush(Colors.AntiqueWhite);
+        }
     }
 }

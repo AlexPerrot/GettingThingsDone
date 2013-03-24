@@ -37,9 +37,6 @@
                 <local:ProjectsPanel x:Name="ProjectsPanel" />
             </TabItem>
         </TabControl>
-        
-        <!-- <Button Content="Créer une tâche" Grid.Row="1" Click="CreateTask" Grid.ColumnSpan="2"/> -->
-        <Button Content="Créer un contexte" Grid.Row="2" Click="CreateContext" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

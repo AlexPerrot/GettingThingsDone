@@ -33,6 +33,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -41,9 +42,14 @@
         <local:StaticListPanel DataContext="{Binding Someday}" Grid.Row="0" Grid.Column="2" Margin="12" VerticalAlignment="Stretch" AllowDelete="False" Drop="StaticListPanel_Drop_1"/>
         
         <GridSplitter Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" ShowsPreview="True" Height="5" Background="#FF262626" />
-        
-        
-        <ItemsControl Name="Contexts" Grid.Row="2" Grid.ColumnSpan="3" ItemsSource="{Binding Contexts, NotifyOnSourceUpdated=True}" SourceUpdated="ItemsControl_TargetUpdated_1" AlternationCount="2" ItemTemplate="{StaticResource ContextPanel}">
+
+        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                Name="CreateContext" Content="Create a new Context" Foreground="AntiqueWhite" Background="#FF10253F" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"
+               Margin="10,0,10,0" VerticalContentAlignment="Center" Width="280" Height="50" MouseEnter="CreateContext_MouseEnter_1" MouseLeave="CreateContext_MouseLeave_1"
+               MouseLeftButtonDown="CreateContext_MouseLeftButtonDown_1"/>
+
+
+        <ItemsControl Name="Contexts" Grid.Row="3" Grid.ColumnSpan="3" ItemsSource="{Binding Contexts, NotifyOnSourceUpdated=True}" SourceUpdated="ItemsControl_TargetUpdated_1" AlternationCount="2" ItemTemplate="{StaticResource ContextPanel}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                 <WrapPanel Orientation="Horizontal" AllowDrop="True"/>
