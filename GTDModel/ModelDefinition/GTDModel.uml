@@ -5,38 +5,6 @@
   name="GTDModel" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
   <ownedCommentsInternal>
     <comment
-      Id="1c3c3784-ccb1-44ec-8cb7-94a40ebd713f">
-      <body>En lisant le bouquin de GTD, j'ai préférer revenir à ce double composite.
-J'explique : bien qu'un projet semble être une liste de taches, il ne fait que se comporter comme un truc dans lequel y'a des taches et n'est pas une liste de taches au sens GTD.
-Un projet est en fait une tache qui necessite plus d'une action. Donc projet hérite de tache et gère ses taches avec une liste (au sens structure de données).</body>
-      <annotatedElements>
-        <classMoniker
-          Id="18d5ec28-3aeb-449a-be2c-b04aaf703f60"
-          LastKnownName="Project"
-          LastKnownLocation="GTDModel.uml" />
-      </annotatedElements>
-    </comment>
-    <comment
-      Id="5d93b1c6-bdf2-470a-87f2-0c95bf878fbd">
-      <body>Cette classe décrit le système général de GTD, avec la boite de reception et les listes de l'utilisateur. On ajoutera surement le calendrier ici.</body>
-      <annotatedElements>
-        <classMoniker
-          Id="e02b192e-eb64-49be-b50e-766b3768af64"
-          LastKnownName="GTDSystem"
-          LastKnownLocation="GTDModel.uml" />
-      </annotatedElements>
-    </comment>
-    <comment
-      Id="532339d5-46e0-4c2c-9bcb-3ffcba5b1a86">
-      <body>La liste dynamique se construit avec une liste cible (statique ou dynamique) et un filtre (à définir).</body>
-      <annotatedElements>
-        <classMoniker
-          Id="72627cd0-ffd3-42c3-8422-2146dd27ab23"
-          LastKnownName="DynamicList"
-          LastKnownLocation="GTDModel.uml" />
-      </annotatedElements>
-    </comment>
-    <comment
       Id="086679d9-4263-4f69-aa3e-bf56a12980f2">
       <body>Proxy pour l'écriture et la lecture des données de taches contenues dans la base de données locale.</body>
       <annotatedElements>
@@ -3545,6 +3513,229 @@ Un projet est en fait une tache qui necessite plus d'une action. Donc projet hé
       <undefinedType
         Id="7953a74d-3536-456e-af18-a4e40cfed91c"
         name="Lazy&lt;TasksIO&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="ae6d158e-bd88-45e0-924c-c65995fb0219"
+        name="GTDItem"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="8d921d42-71a1-4d21-9fe4-c5ab8c0e72c5"
+        name="Task"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="65a466af-f6c7-43be-ac7f-8d1d92d5e488"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="ae6d158e-bd88-45e0-924c-c65995fb0219"
+              LastKnownName="GTDItem"
+              LastKnownLocation="GTDModel.uml" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="d7084ac1-c976-46ca-aeeb-24fad230aeac"
+        name="TaskList"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="44b2000a-82fb-4143-94d9-48c2e22d4efb"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="ae6d158e-bd88-45e0-924c-c65995fb0219"
+              LastKnownName="GTDItem"
+              LastKnownLocation="GTDModel.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="fa46b4d1-1ded-4186-b60e-4b9fd78f33ae"
+            isDerived="false"
+            sourceEndRoleName="TaskList"
+            targetEndRoleName="GTDItem"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="ae6d158e-bd88-45e0-924c-c65995fb0219"
+              LastKnownName="GTDItem"
+              LastKnownLocation="GTDModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9709dc06-b992-4d87-b1ee-986844ce4be7"
+                  name="TaskList"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1219359c-c32f-47bb-b537-344b79014b11"
+                  name="GTDItem"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="245a5129-4d7f-4e33-8b2f-0e8df54a2284"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="cc7195bd-f0a3-4503-99f5-133cf593b3f8"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="49405c31-50d7-4def-b324-1932ad4e78cf"
+        name="ISingleTask"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="65cd12d4-a46f-4fa8-beae-69c47e25d5e7"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="8d921d42-71a1-4d21-9fe4-c5ab8c0e72c5"
+              LastKnownName="Task"
+              LastKnownLocation="GTDModel.uml" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="bb3848e8-2b82-44c2-9f88-19455e3704a4"
+        name="IProject"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="adb577db-7b6c-4776-9a28-0596757a7f69"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="8d921d42-71a1-4d21-9fe4-c5ab8c0e72c5"
+              LastKnownName="Task"
+              LastKnownLocation="GTDModel.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="a0ae4ea3-e3e6-43bc-8a42-9406b5babfe5"
+            isDerived="false"
+            sourceEndRoleName="IProject"
+            targetEndRoleName="Task"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="8d921d42-71a1-4d21-9fe4-c5ab8c0e72c5"
+              LastKnownName="Task"
+              LastKnownLocation="GTDModel.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="fd31f621-5120-4047-9e87-48d991012c06"
+                  name="IProject"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a71385ca-6500-497c-90f4-d26a8b8fa400"
+                  name="Task"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="2c481742-a4eb-463d-9d00-a29dce825e2d"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="c65cb7b9-b720-4622-90d0-239f702ad255"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="7ed9ebd3-df5f-44b2-9835-9779bd0c979f"
+        name="IStaticList"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="36131a0b-1642-47b2-ae80-23cd4c9e3ffb"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="d7084ac1-c976-46ca-aeeb-24fad230aeac"
+              LastKnownName="TaskList"
+              LastKnownLocation="GTDModel.uml" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="ac2fe1d2-34c6-4c60-a30c-fc85c36a24df"
+        name="IGTDSystem"
+        isAbstract="false"
+        isLeaf="false">
+        <generalsInternal>
+          <generalization
+            Id="86859863-0280-44d9-b3d6-fcd6703c5e7e"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="d7084ac1-c976-46ca-aeeb-24fad230aeac"
+              LastKnownName="TaskList"
+              LastKnownLocation="GTDModel.uml" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
