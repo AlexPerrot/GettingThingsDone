@@ -143,6 +143,7 @@ namespace GettingThingsDone.src.data
                 pt.Project_id = this.id;
                 pt.Task_id = id;
                 pt.Owner = dbProvider.IdManager.GetId(t.Owner);
+                pt.Task_order = this.Tasks.ToArray<Task>().Length-1;
                 dc.Projects_Tasks.InsertOnSubmit(pt);
             }
             else
@@ -156,6 +157,7 @@ namespace GettingThingsDone.src.data
         public void RemoveTask(Task t)
         {
             tasks.Remove(t);
+            reorderAllTasksInDB();
         }
 
         public void moveTaskTo(int currentIndex, int nextIndex)
@@ -164,11 +166,39 @@ namespace GettingThingsDone.src.data
                 && nextIndex >= 0 && nextIndex < this.tasks.Count
                 && currentIndex != nextIndex)
             {
+                DataClassesDataContext db = dbProvider.Database;
+
+                // On échange l'ordre des tâches en BD
+                Projects_Tasks project_task = db.Projects_Tasks.Single(item => item.Task_id == ((DBSingleTask)(this.tasks.ElementAt(currentIndex))).Id);
+                project_task.Task_order = nextIndex;
+
+                Projects_Tasks project_task2 = db.Projects_Tasks.Single(item => item.Task_id == ((DBSingleTask)(this.tasks.ElementAt(nextIndex))).Id);
+                project_task2.Task_order = currentIndex;
+
+                db.SubmitChanges();
+
+                // Puis dans la liste
                 Task itemToMove = this.tasks.ElementAt(currentIndex);
                 this.tasks.RemoveAt(currentIndex);
                 this.tasks.Insert(nextIndex, itemToMove);
             }
-         }
+        }
+
+        private void reorderAllTasksInDB()
+        {
+            DataClassesDataContext db = dbProvider.Database;
+
+            int task_order = 0;
+            foreach (Task task in this.tasks)
+            {
+                Projects_Tasks project_task = db.Projects_Tasks.Single(item => item.Task_id == ((DBSingleTask)(task)).Id);
+                project_task.Task_order = task_order;
+
+                task_order++;
+            }
+
+            db.SubmitChanges();
+        }
 
         public IUser Owner
         {

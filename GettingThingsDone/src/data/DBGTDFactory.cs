@@ -119,7 +119,7 @@ namespace GettingThingsDone.src.data
                 sys.Projects.Add(p);
             }
 
-            foreach (Projects_Tasks pt in db.Projects_Tasks.Where(item => item.Owner == usrid))
+            foreach (Projects_Tasks pt in db.Projects_Tasks.Where(item => item.Owner == usrid).OrderBy(item => item.Task_order))
                 projectMap[pt.Project_id].AddTask(taskMap[pt.Task_id]);
 
             //selection des orphelins
