@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Security.Cryptography;
 
 namespace GettingThingsDone
 {
@@ -37,7 +38,7 @@ namespace GettingThingsDone
 
             //recup des infos
             string userName = this.loginBox.Text;
-            string password = this.passBox.Password;
+            string password = GetMd5Hash(this.passBox.Password);
 
             //récupération de l'utilisateur en base
             Users dbUser = null;
@@ -84,7 +85,7 @@ namespace GettingThingsDone
 
             //recup des infos
             string userName = this.loginBox.Text;
-            string password = this.passBox.Password;
+            string password = GetMd5Hash(this.passBox.Password);
 
             IEnumerable<Users> users = db.Users.Where(usr => usr.Username == userName);
             if (users.Count() != 0)
@@ -97,6 +98,18 @@ namespace GettingThingsDone
             factory.makeUser(userName, password, "1337");
 
             MessageBox.Show("New user created");
+        }
+
+        private static String GetMd5Hash(string input)
+        {
+            MD5 md5Hasher = MD5.Create();
+            byte[] data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(input));
+            StringBuilder sBuilder = new StringBuilder();
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+            return sBuilder.ToString();
         }
     }
 }
