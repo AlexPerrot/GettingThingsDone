@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="GTDLibrary.ArrowButtonBody"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="80" Height="30" Width="80" BorderThickness="0, 1, 0, 1" BorderBrush="#FF707070" 
+             Background="{Binding ElementName=MainButton, Path=Background}" Name="ArrowButtonMiddleUserControl">
+
+    <Grid ClipToBounds="True">
+        <Button Name="MainButtonUI" Margin="-5" Width="Auto" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                BorderThickness="0" BorderBrush="{x:Null}" Opacity="1" Visibility="Visible" Click="MainButtonUI_Click">
+            Button
+        </Button>
+        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+    </Grid>
+</UserControl>

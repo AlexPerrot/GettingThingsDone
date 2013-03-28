@@ -53,6 +53,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ArrowButtonBody.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ArrowButtonMiddle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ArrowButtonRight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LinkLabel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -61,6 +73,20 @@
   <ItemGroup>
     <Compile Include="AriadneThread.xaml.cs">
       <DependentUpon>AriadneThread.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="utils\AriadneThreadElementBuilderAbstract.cs" />
+    <Compile Include="utils\AriadneThreadElementBuilderButton.cs" />
+    <Compile Include="utils\AriadneThreadElementBuilderFactory.cs" />
+    <Compile Include="utils\AriadneThreadElementBuilderLinkLabel.cs" />
+    <Compile Include="utils\IAriadneThreadElementBuilder.cs" />
+    <Compile Include="ArrowButtonBody.xaml.cs">
+      <DependentUpon>ArrowButtonBody.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ArrowButtonMiddle.xaml.cs">
+      <DependentUpon>ArrowButtonMiddle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ArrowButtonRight.xaml.cs">
+      <DependentUpon>ArrowButtonRight.xaml</DependentUpon>
     </Compile>
     <Compile Include="LinkLabel.xaml.cs">
       <DependentUpon>LinkLabel.xaml</DependentUpon>
@@ -78,6 +104,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="AriadneThreadStyle.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -88,6 +115,7 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
